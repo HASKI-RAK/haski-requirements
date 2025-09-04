@@ -1,0 +1,25 @@
+.rtm-status-summary { margin: 0.5rem 0 1rem; font-size: 0.85rem; }
+.rtm-status-summary .rtm-badge { margin-right: 0.5rem; }
+
+/* Badge base */
+.rtm-badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 0.5rem; font-size: 0.70rem; font-weight: 600; line-height: 1; letter-spacing: .5px; text-transform: uppercase; }
+
+/* Color mappings – adjust as needed */
+.rtm-badge--passed { background: #2e7d32; color: #fff; }
+.rtm-badge--failed { background: #c62828; color: #fff; }
+.rtm-badge--skipped { background: #757575; color: #fff; }
+.rtm-badge--unknown { background: #546e7a; color: #fff; }
+
+/* Table styling */
+#rtm-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+#rtm-table thead { background: var(--md-default-fg-color--lightest); }
+#rtm-table th, #rtm-table td { padding: 0.4rem 0.6rem; border-top: 1px solid var(--md-default-fg-color--lightest); vertical-align: top; }
+#rtm-table tbody tr:hover { background: var(--md-accent-fg-color--transparent); }
+
+/* Filter bar */
+.rtm-filters { display: flex; gap: .5rem; flex-wrap: wrap; margin: 0 0 0.75rem; }
+.rtm-filters input[type=text] { flex: 2 1 240px; padding: 0.35rem .6rem; }
+.rtm-filters select { flex: 0 1 160px; padding: 0.35rem .6rem; }
+
+/* Hidden rows (filtered) */
+#rtm-table tr[hidden] { display: none; }

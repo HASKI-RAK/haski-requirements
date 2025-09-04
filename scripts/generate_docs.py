@@ -1,37 +1,44 @@
 #!/usr/bin/env python3
-"""Generate MkDocs 'docs/' tree from single sources of truth.
+"""Generate the ephemeral MkDocs ``docs/`` tree from canonical sources.
 
-Sources of truth:
-- srs/SRS.md
-- requirements/*.md (with YAML front matter)
-- traceability/RTM.csv (generated separately)
+Canonical sources (edited by humans):
+  * ``srs/`` – master SRS document
+  * ``requirements/`` – individual requirement markdown files with YAML front matter
+  * ``traceability/RTM.csv`` – produced by the traceability build (requirements ↔ tests)
 
-Generated structure:
- docs/
-   index.md
-   srs/SRS.md
-   requirements/ (copied & filtered)
-     index.md (auto list)
-   rtm/index.md
-   rtm/RTM.csv (copied if exists else placeholder)
-   .pages (top-level ordering) + section .pages files
+This script:
+  1. Wipes ``docs/`` and recreates a clean structure
+  2. Copies / normalises SRS + Requirement files (adding simple indices / navigation helpers)
+  3. Copies the raw ``RTM.csv`` and renders an HTML enhanced, filterable Traceability Matrix
+  4. Writes ``.pages`` files so the ``awesome-pages`` plugin builds navigation automatically
 
-This allows us to keep authoritative content outside docs/ and avoid drift.
+No manual edits should be made inside ``docs/`` – they will be overwritten on each run.
+
+The script is intentionally dependency‑light (only stdlib + PyYAML). It can be invoked locally
+or inside CI prior to ``mkdocs build --strict``.
 """
+
 from __future__ import annotations
-import os
+
+import csv
 import re
 import shutil
+from collections import Counter
 from pathlib import Path
+from typing import Tuple
+
 import yaml
 
-BASE = Path(__file__).resolve().parent.parent
-DOCS = BASE / "docs"
-SRS_SRC = BASE / "srs" / "SRS.md"
-REQS_SRC = BASE / "requirements"
-RTM_SRC = BASE / "traceability" / "RTM.csv"
+# ---------------------------------------------------------------------------
+# Paths & constants
+# ---------------------------------------------------------------------------
+ROOT = Path(__file__).parent.parent
+DOCS = ROOT / "docs"
+SRS_SRC = ROOT / "srs" / "SRS.md"
+REQS_SRC = ROOT / "requirements"
+RTM_SRC = ROOT / "traceability" / "RTM.csv"
 
-FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n?", re.DOTALL)
+FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
 
 def read_front_matter(path: Path):
@@ -131,17 +138,108 @@ def copy_requirements():
 def copy_rtm():
     rtm_dir = DOCS / "rtm"
     rtm_dir.mkdir(parents=True, exist_ok=True)
+    csv_path = rtm_dir / "RTM.csv"
     if RTM_SRC.exists():
-        shutil.copy2(RTM_SRC, rtm_dir / "RTM.csv")
+        shutil.copy2(RTM_SRC, csv_path)
     else:
         write(
-            rtm_dir / "RTM.csv",
+            csv_path,
             "requirement_id,requirement_title,test_name,test_file,test_line,status\n",
         )
-    write(
-        rtm_dir / "index.md",
-        "# Traceability\n\nAktuelle Traceability-Matrix als CSV Download.\n\n- [RTM.csv](RTM.csv)\n\n_Diese Seite wurde automatisch generiert._\n",
-    )
+
+    # Build markdown table from CSV
+    rows = []
+    with csv_path.open("r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for r in reader:
+            rows.append(r)
+
+    def link_req(rid: str) -> str:
+        if not rid:
+            return ""
+        return f"[{rid}](../requirements/{rid}.md)"
+
+    # Aggregate status counts
+    status_counter = Counter(r.get("status", "") for r in rows if r.get("status"))
+    status_order = sorted(status_counter.keys())
+    status_lines = []
+    total = len(rows)
+
+    def badge(status: str) -> str:
+        if not status:
+            return ""
+        cls = status.lower().replace(" ", "-")
+        return f"<span class='rtm-badge rtm-badge--{cls}'>{status}</span>"
+
+    if total:
+        status_lines.append("### Status Übersicht")
+        status_lines.append("")
+        items = []
+        for st in status_order:
+            cnt = status_counter[st]
+            items.append(f"{badge(st)} {cnt} ({cnt/total:.0%})")
+        status_lines.append(
+            "<div class='rtm-status-summary'>" + " | ".join(items) + "</div>"
+        )
+        status_lines.append("")
+
+    # Build HTML table (filterable) instead of Markdown pipe table
+    table_lines = []
+    if rows:
+        table_lines.append("<div class='rtm-filters'>")
+        table_lines.append(
+            "<input id='rtm-search' type='text' placeholder='Filter (Text)...' />"
+        )
+        if status_order:
+            table_lines.append(
+                "<select id='rtm-status-filter'><option value=''>Alle Status</option>"
+                + "".join([f"<option value='{s}'>{s}</option>" for s in status_order])
+                + "</select>"
+            )
+        table_lines.append("</div>")
+        table_lines.append("<table id='rtm-table'>")
+        table_lines.append(
+            "<thead><tr><th>Requirement</th><th>Title</th><th>Test Name"
+            "</th><th>File:Line</th><th>Status</th></tr></thead>"
+        )
+        table_lines.append("<tbody>")
+        for r in rows:
+            file_line = (
+                f"{r.get('test_file','')}:{r.get('test_line','')}"
+                if r.get("test_file")
+                else ""
+            )
+            st = r.get("status", "")
+            table_lines.append(
+                "<tr data-status='{}'>".format(st)
+                + f"<td>{link_req(r.get('requirement_id',''))}</td>"
+                + f"<td>{(r.get('requirement_title') or '').replace('<','&lt;')}</td>"
+                + f"<td>{(r.get('test_name') or '').replace('<','&lt;')}</td>"
+                + f"<td>{file_line}</td>"
+                + f"<td>{badge(st)}</td>"
+                + "</tr>"
+            )
+        table_lines.append("</tbody></table>")
+    else:
+        table_lines.append(
+            "<p><em>Noch keine Test-Traceability-Daten vorhanden (RTM.csv leer).</em></p>"
+        )
+
+    index_md = [
+        "# Traceability",
+        "",
+        "Diese Seite zeigt die aktuelle Traceability-Matrix (Anforderung ↔ Tests).",
+        "",
+        "CSV Rohdaten: [RTM.csv](RTM.csv)",
+        "",
+    ]
+    index_md.extend(status_lines)
+    index_md.append("### Matrix")
+    index_md.append("")
+    index_md.extend(table_lines)
+    index_md.append("")
+    index_md.append("_Diese Seite wurde automatisch generiert._")
+    write(rtm_dir / "index.md", "\n".join(index_md) + "\n")
     write(rtm_dir / ".pages", "title: Traceability\n")
 
 

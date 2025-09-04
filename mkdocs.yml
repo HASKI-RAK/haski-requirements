@@ -16,3 +16,9 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.superfences
+
+extra_css:
+  - assets/css/rtm.css
+
+extra_javascript:
+  - assets/js/rtm-filter.js
