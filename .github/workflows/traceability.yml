@@ -1,1 +1,53 @@
-# CI: Prüft IDs, baut RTM, lintet YAML/MD
+name: Traceability Matrix
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  rtm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout requirements
+        uses: actions/checkout@v4
+
+      - name: Checkout frontend
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.repository_owner }}/haski-frontend
+          path: frontend
+
+      - name: Prepare npm cache directory
+        run: mkdir -p ~/.npm
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'yarn'
+          cache-dependency-path: frontend/yarn.lock
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: yarn install
+
+      - name: Run frontend tests
+        working-directory: frontend
+        run: yarn test:report || true
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate traceability matrix
+        run: python traceability/build.py --config traceability/config.yaml
+
+      - name: Upload traceability matrix
+        uses: actions/upload-artifact@v4
+        with:
+          name: rtm
+          path: traceability/RTM.csv
