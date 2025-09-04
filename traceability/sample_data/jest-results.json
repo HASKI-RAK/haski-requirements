@@ -1,0 +1,15 @@
+{
+  "testResults": [
+    {
+      "name": "src/components/Recommendation.test.tsx",
+      "assertionResults": [
+        {
+          "title": "sollte die n\u00e4chste empfohlene \u00dcbung anzeigen",
+          "ancestorTitles": ["[HASKI-REQ-0001] Recommendation component"],
+          "status": "passed",
+          "location": {"line": 10, "column": 3}
+        }
+      ]
+    }
+  ]
+}

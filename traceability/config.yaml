@@ -1,0 +1,5 @@
+requirements_dir: ../requirements
+test_reports:
+  - type: jest
+    path: ../frontend/reports/jest-results.json
+output: RTM.csv
