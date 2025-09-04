@@ -24,14 +24,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'yarn'
+          cache-dependency-path: frontend/yarn.lock
 
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm ci
+        run: yarn install
 
       - name: Run frontend tests
         working-directory: frontend
-        run: npm run test:report || true
+        run: yarn test:report || true
 
       - name: Setup Python
         uses: actions/setup-python@v4
