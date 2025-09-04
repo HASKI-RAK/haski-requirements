@@ -56,18 +56,17 @@ jobs:
       - name: Generate traceability matrix
         run: python traceability/build.py --config traceability/config.yaml
 
-      # --- GitHub Pages Site bauen ---
-      - name: Build Pages site
+      # --- MkDocs Docs Site bauen ---
+      - name: Install MkDocs (Material)
+        run: pip install -r requirements.txt
+
+      - name: Stage RTM into docs
         run: |
-          rm -rf site && mkdir -p site/rtm
-          cp traceability/RTM.csv site/rtm/RTM.csv
-          cat > site/index.md << 'EOF'
-          # HASKI Traceability
+          mkdir -p docs/rtm
+          cp traceability/RTM.csv docs/rtm/RTM.csv || echo "RTM.csv not found"
 
-          - **Traceability-Matrix (CSV):** [Download](./rtm/RTM.csv)
-
-          _(Automatisch generiert. Stand: $GITHUB_SHA)_
-          EOF
+      - name: Build MkDocs site
+        run: mkdocs build --strict
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

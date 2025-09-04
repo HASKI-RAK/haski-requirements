@@ -1,0 +1,24 @@
+site_name: HASKI Docs
+site_url: https://haski-rak.github.io/haski-requirements/
+repo_url: https://github.com/HASKI-RAK/haski-requirements
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.indexes
+    - content.code.copy
+plugins:
+  - search
+  - awesome-pages
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+nav:
+  - Home: index.md
+  - SRS: srs/SRS.md
+  - Requirements: requirements/
+  - Traceability:
+    - Matrix (CSV): rtm/RTM.csv
