@@ -123,7 +123,8 @@ def copy_requirements():
     index_lines.append("\n_Hinweis: Diese Seite wird automatisch generiert._\n")
     write(dst_dir / "index.md", "\n".join(index_lines))
     # .pages config
-    write(dst_dir / ".pages", "title: Requirements\narrange: natural\n")
+    # awesome-pages: remove invalid scalar arrange; natural order is default
+    write(dst_dir / ".pages", "title: Requirements\n")
     return requirements_meta
 
 
