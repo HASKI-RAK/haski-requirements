@@ -17,6 +17,9 @@ jobs:
           repository: ${{ github.repository_owner }}/haski-frontend
           path: frontend
 
+      - name: Prepare npm cache directory
+        run: mkdir -p ~/.npm
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
