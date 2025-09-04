@@ -16,9 +16,3 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.superfences
-nav:
-  - Home: index.md
-  - SRS: srs/SRS.md
-  - Requirements: requirements/
-  - Traceability:
-    - Matrix (CSV): rtm/RTM.csv

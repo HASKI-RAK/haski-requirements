@@ -1,8 +1,8 @@
 # Software Requirements Specification (SRS)
 
-_Dupliziert aus `srs/SRS.md` für die Site-Bereitstellung._
+<!-- Generated copy from srs/SRS.md -->
 
-<!-- Source of truth: ../srs/SRS.md -->
+# Software Requirements Specification (SRS)
 
 für das HASKI-System (Frontend, Backend, NodeGrade) nach **ISO/IEC/IEEE 29148:2018** Abschnitt 9.6 „Software Requirements Specification“.
 

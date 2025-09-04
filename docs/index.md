@@ -1,17 +1,16 @@
 # HASKI Documentation
 
-Willkommen bei der HASKI Dokumentation.
-
 ## Inhalte
 
-- **SRS**: System / Software Requirements Specification
-- **Requirements**: Einzelne Anforderungen (YAML Front Matter)
-- **Traceability Matrix**: Verknüpfung Anforderungen ↔ Tests (CSV)
+- **SRS**
+- **Requirements**
+- **Traceability Matrix (CSV)**
 
-## Links
+## Requirements Übersicht
 
-- Repository: https://github.com/HASKI-RAK/haski-requirements
-- Traceability CSV direkt: [RTM.csv](rtm/RTM.csv)
+- [HASKI-REQ-0000](requirements/HASKI-REQ-0000.md) – 
+- [HASKI-REQ-0001](requirements/HASKI-REQ-0001.md) – Einzelanforderung mit YAML-Frontmatter (29148-Attribute)
+- [HASKI-REQ-0002](requirements/HASKI-REQ-0002.md) – Platzhalter für zweite Anforderung
 
 ---
-_Automatisch generiert & versioniert. Commit: {{ git_revision }}_
+_Automatisch generiert._

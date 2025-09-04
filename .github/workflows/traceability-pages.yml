@@ -56,14 +56,12 @@ jobs:
       - name: Generate traceability matrix
         run: python traceability/build.py --config traceability/config.yaml
 
-      # --- MkDocs Docs Site bauen ---
-      - name: Install MkDocs (Material)
+      # --- Generate Docs tree & build MkDocs ---
+      - name: Install MkDocs & tooling
         run: pip install -r requirements.txt
 
-      - name: Stage RTM into docs
-        run: |
-          mkdir -p docs/rtm
-          cp traceability/RTM.csv docs/rtm/RTM.csv || echo "RTM.csv not found"
+      - name: Generate docs tree
+        run: python scripts/generate_docs.py
 
       - name: Build MkDocs site
         run: mkdocs build --strict
