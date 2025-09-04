@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout requirements
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Checkout frontend
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ${{ github.repository_owner }}/haski-frontend
           path: frontend
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
@@ -44,7 +44,7 @@ jobs:
         run: python traceability/build.py --config traceability/config.yaml
 
       - name: Upload traceability matrix
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: rtm
           path: traceability/RTM.csv
