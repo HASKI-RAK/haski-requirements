@@ -42,6 +42,7 @@ RTM_SRC = ROOT / "traceability" / "RTM.csv"
 
 TRACEABILITY_CONFIG = ROOT / "traceability" / "config.yaml"
 
+
 def load_github_mappings() -> List[Dict[str, str]]:
     """Load github_file_link_mappings from traceability/config.yaml (single source of truth).
 
@@ -77,6 +78,7 @@ def load_github_mappings() -> List[Dict[str, str]]:
         )
     return mappings
 
+
 def effective_ref(branch: str) -> str:
     """Return the effective ref (branch or commit) taking environment overrides.
 
@@ -93,11 +95,14 @@ def effective_ref(branch: str) -> str:
         return ref
     return branch
 
+
 # Cached (loaded once) – acceptable for this CLI tool
 GITHUB_FILE_LINK_MAPPINGS = load_github_mappings()
 
 
-def build_github_file_link(local_path: str, line: Optional[str | int], unmatched: Optional[List[str]] = None) -> Optional[str]:
+def build_github_file_link(
+    local_path: str, line: Optional[str | int], unmatched: Optional[List[str]] = None
+) -> Optional[str]:
     """Return an HTML anchor (<a>) linking to the GitHub file:line if mapping matches.
 
     Parameters
@@ -142,12 +147,13 @@ def build_github_file_link(local_path: str, line: Optional[str | int], unmatched
             url = f"https://github.com/{repo}/blob/{branch}/{repo_path}{anchor}"
             display = f"{repo_path}:{line}" if line else repo_path
             # Basic escaping for '<'
-            display = display.replace('<', '&lt;')
+            display = display.replace("<", "&lt;")
             return f"<a href='{url}' target='_blank' rel='noopener noreferrer'>{display}</a>"
     # Track unmatched for diagnostics
     if unmatched is not None:
         unmatched.append(local_path)
     return None
+
 
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
@@ -316,15 +322,15 @@ def copy_rtm(verbose: bool = False):
         table_lines.append("<tbody>")
         unmatched_files: List[str] = []
         for r in rows:
-            raw_file = r.get('test_file', '') or ''
-            raw_line = r.get('test_line', '') or ''
+            raw_file = r.get("test_file", "") or ""
+            raw_line = r.get("test_line", "") or ""
             link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
             if link:
                 file_line = link
             else:
                 # fallback to original representation (escaped minimal)
                 file_line = f"{raw_file}:{raw_line}" if raw_file else ""
-                file_line = file_line.replace('<', '&lt;')
+                file_line = file_line.replace("<", "&lt;")
             st = r.get("status", "")
             table_lines.append(
                 "<tr data-status='{}'>".format(st)
@@ -338,7 +344,11 @@ def copy_rtm(verbose: bool = False):
         table_lines.append("</tbody></table>")
         if verbose and unmatched_files:
             uniq = sorted(set(unmatched_files))
-            table_lines.append("<details><summary>Nicht verlinkbare Test-Dateien ({}):</summary><pre>".format(len(uniq)))
+            table_lines.append(
+                "<details><summary>Nicht verlinkbare Test-Dateien ({}):</summary><pre>".format(
+                    len(uniq)
+                )
+            )
             for f in uniq:
                 table_lines.append(f)
             table_lines.append("</pre></details>")
@@ -378,13 +388,25 @@ def print_mappings():
         return
     print("[traceability] Active GitHub file link mappings:")
     for m in GITHUB_FILE_LINK_MAPPINGS:
-        print(f"  - repo={m['repo']} local_root={m['local_root']} branch={m.get('branch')} sub={m.get('repo_root_subpath')}")
+        print(
+            f"  - repo={m['repo']} local_root={m['local_root']} branch={m.get('branch')} sub={m.get('repo_root_subpath')}"
+        )
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate docs (SRS, requirements, RTM)")
-    parser.add_argument("--print-mappings", action="store_true", help="Print active GitHub file link mappings and exit")
-    parser.add_argument("--verbose", action="store_true", help="Verbose output (diagnostics section in RTM page)")
+    parser = argparse.ArgumentParser(
+        description="Generate docs (SRS, requirements, RTM)"
+    )
+    parser.add_argument(
+        "--print-mappings",
+        action="store_true",
+        help="Print active GitHub file link mappings and exit",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Verbose output (diagnostics section in RTM page)",
+    )
     args = parser.parse_args()
 
     if args.print_mappings:
