@@ -276,6 +276,37 @@ def copy_rtm(verbose: bool = False):
             return ""
         return f"[{rid}](../requirements/{rid}.md)"
 
+    # Pre-load requirement excerpts (first non-empty line of body) for tooltip usage
+    excerpt_cache: Dict[str, str] = {}
+    for req_file in (DOCS / "requirements").glob("HASKI-REQ-*.md"):
+        rid = req_file.stem
+        try:
+            lines = req_file.read_text(encoding='utf-8').splitlines()
+        except OSError:
+            continue
+        # Skip front matter / heading lines (# RID) and blank lines until first content
+        body_lines = []
+        skip_heading = True
+        for ln in lines:
+            if skip_heading:
+                if ln.strip().startswith('# '):
+                    continue
+                if ln.strip() == '' or ln.strip().startswith('---'):
+                    continue
+                # First real content line
+                skip_heading = False
+            if not skip_heading:
+                if ln.strip():
+                    body_lines.append(ln.strip())
+                if len(body_lines) >= 1:
+                    break
+        excerpt = body_lines[0] if body_lines else ''
+        # Truncate long excerpts
+        if len(excerpt) > 180:
+            excerpt = excerpt[:177] + '...'
+        # Basic escaping for quotes
+        excerpt_cache[rid] = excerpt.replace('"', '&quot;').replace("'", "&#39;")
+
     # Aggregate status counts
     status_counter = Counter(r.get("status", "") for r in rows if r.get("status"))
     status_order = sorted(status_counter.keys())
@@ -316,8 +347,7 @@ def copy_rtm(verbose: bool = False):
         table_lines.append("</div>")
         table_lines.append("<table id='rtm-table'>")
         table_lines.append(
-            "<thead><tr><th>Requirement</th><th>Title</th><th>Test Name"
-            "</th><th>File:Line</th><th>Status</th></tr></thead>"
+            "<thead><tr><th>Requirement</th><th>Test Name" "</th><th>File:Line</th><th>Status</th></tr></thead>"
         )
         table_lines.append("<tbody>")
         unmatched_files: List[str] = []
@@ -332,10 +362,24 @@ def copy_rtm(verbose: bool = False):
                 file_line = f"{raw_file}:{raw_line}" if raw_file else ""
                 file_line = file_line.replace("<", "&lt;")
             st = r.get("status", "")
+            rid = r.get('requirement_id','')
+            title_raw = (r.get('requirement_title') or '')
+            title_display = title_raw.strip() or '(kein Titel)'
+            title_display = title_display.replace('<','&lt;')
+            if rid:
+                excerpt = excerpt_cache.get(rid, '')
+                tooltip_attr = f" title='{excerpt}'" if excerpt else ''
+                # Combined cell: ID + optional title below (if different)
+                if title_raw.strip():
+                    combined_label = f"<strong>{rid}</strong><br><span class='rtm-req-title'>{title_display}</span>"
+                else:
+                    combined_label = f"<strong>{rid}</strong>"
+                req_cell = f"<a href='../requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
+            else:
+                req_cell = title_display or ''
             table_lines.append(
                 "<tr data-status='{}'>".format(st)
-                + f"<td>{link_req(r.get('requirement_id',''))}</td>"
-                + f"<td>{(r.get('requirement_title') or '').replace('<','&lt;')}</td>"
+                + f"<td>{req_cell}</td>"
                 + f"<td>{(r.get('test_name') or '').replace('<','&lt;')}</td>"
                 + f"<td>{file_line}</td>"
                 + f"<td>{badge(st)}</td>"
