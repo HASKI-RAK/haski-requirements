@@ -208,7 +208,8 @@ def build_index(requirements_meta: list[dict]):
         rid = meta.get("id")
         title = meta.get("title", "")
         if rid:
-            lines.append(f"- [{rid}](requirements/{rid}.md) – {title}")
+            # Remove .md from link
+            lines.append(f"- [{rid}](requirements/{rid}/) – {title}")
     lines.append("\n---\n_Automatisch generiert._")
     return "\n".join(lines) + "\n"
 
@@ -243,7 +244,8 @@ def copy_requirements():
     for m in sorted(requirements_meta, key=lambda m: m.get("id", "")):
         rid = m["id"]
         title = m.get("title", "")
-        index_lines.append(f"- [{rid}]({rid}.md) – {title}")
+        # Remove .md from link
+        index_lines.append(f"- [{rid}]({rid}/) – {title}")
     index_lines.append("\n_Hinweis: Diese Seite wird automatisch generiert._\n")
     write(dst_dir / "index.md", "\n".join(index_lines))
     # .pages config
@@ -274,7 +276,8 @@ def copy_rtm(verbose: bool = False):
     def link_req(rid: str) -> str:
         if not rid:
             return ""
-        return f"[{rid}](../requirements/{rid}.md)"
+        # Remove .md from link
+        return f"[{rid}](../requirements/{rid}/)"
 
     # Pre-load requirement excerpts (first non-empty line of body) for tooltip usage
     excerpt_cache: Dict[str, str] = {}
@@ -375,7 +378,8 @@ def copy_rtm(verbose: bool = False):
                     combined_label = f"<strong>{rid}</strong><br><span class='rtm-req-title'>{title_display}</span>"
                 else:
                     combined_label = f"<strong>{rid}</strong>"
-                req_cell = f"<a href='../requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
+                # Remove .md from link
+                req_cell = f"<a href='../requirements/{rid}/'{tooltip_attr}>{combined_label}</a>"
             else:
                 req_cell = title_display or ""
             table_lines.append(
