@@ -24,8 +24,10 @@ import csv
 import re
 import shutil
 from collections import Counter
+import os
+import argparse
 from pathlib import Path
-from typing import Tuple
+from typing import Tuple, Optional, List, Dict
 
 import yaml
 
@@ -37,6 +39,115 @@ DOCS = ROOT / "docs"
 SRS_SRC = ROOT / "srs" / "SRS.md"
 REQS_SRC = ROOT / "requirements"
 RTM_SRC = ROOT / "traceability" / "RTM.csv"
+
+TRACEABILITY_CONFIG = ROOT / "traceability" / "config.yaml"
+
+def load_github_mappings() -> List[Dict[str, str]]:
+    """Load github_file_link_mappings from traceability/config.yaml (single source of truth).
+
+    Returns an empty list if not present or file missing.
+    Normalises local_root to absolute resolved paths.
+    """
+    if not TRACEABILITY_CONFIG.exists():
+        return []
+    try:
+        with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
+            cfg = yaml.safe_load(h) or {}
+    except yaml.YAMLError:
+        return []
+    mappings = []
+    for m in cfg.get("github_file_link_mappings", []) or []:
+        if not isinstance(m, dict):
+            continue
+        local_root = m.get("local_root")
+        repo = m.get("repo")
+        if not local_root or not repo:
+            continue  # mandatory fields
+        branch = m.get("branch", "main")
+        repo_root_subpath = m.get("repo_root_subpath", "")
+        # Resolve local_root relative to config file location
+        abs_root = (TRACEABILITY_CONFIG.parent / local_root).resolve()
+        mappings.append(
+            {
+                "local_root": str(abs_root),
+                "repo": repo,
+                "branch": branch,
+                "repo_root_subpath": repo_root_subpath,
+            }
+        )
+    return mappings
+
+def effective_ref(branch: str) -> str:
+    """Return the effective ref (branch or commit) taking environment overrides.
+
+    Environment precedence (first non-empty wins):
+      TRACEABILITY_GITHUB_COMMIT – treat as immutable commit SHA
+      TRACEABILITY_GITHUB_REF    – arbitrary ref (tag/branch)
+    Fallback: value from config (branch param)
+    """
+    commit = os.environ.get("TRACEABILITY_GITHUB_COMMIT")
+    if commit:
+        return commit
+    ref = os.environ.get("TRACEABILITY_GITHUB_REF")
+    if ref:
+        return ref
+    return branch
+
+# Cached (loaded once) – acceptable for this CLI tool
+GITHUB_FILE_LINK_MAPPINGS = load_github_mappings()
+
+
+def build_github_file_link(local_path: str, line: Optional[str | int], unmatched: Optional[List[str]] = None) -> Optional[str]:
+    """Return an HTML anchor (<a>) linking to the GitHub file:line if mapping matches.
+
+    Parameters
+    ----------
+    local_path: Absolute (preferred) or relative path to the test file as captured in RTM.csv
+    line:       Line number (string or int) – may be missing/blank
+
+    Returns
+    -------
+    str | None: HTML <a> element or None if no mapping applies
+    """
+    if not local_path:
+        return None
+    try:
+        p = Path(local_path).resolve()
+    except OSError:
+        return None
+
+    for mapping in GITHUB_FILE_LINK_MAPPINGS:
+        try:
+            root = Path(mapping["local_root"]).resolve()
+        except KeyError:
+            continue
+        if root in p.parents or p == root:
+            try:
+                rel = p.relative_to(root)
+            except ValueError:
+                # Not actually relative; skip
+                continue
+            repo = mapping.get("repo")
+            if not repo:
+                continue
+            branch = effective_ref(mapping.get("branch", "main"))
+            sub = mapping.get("repo_root_subpath", "")
+            # Compose path inside repository
+            repo_path_parts = []
+            if sub:
+                repo_path_parts.append(sub.strip("/"))
+            repo_path_parts.append(rel.as_posix())
+            repo_path = "/".join(repo_path_parts)
+            anchor = f"#L{line}" if line else ""
+            url = f"https://github.com/{repo}/blob/{branch}/{repo_path}{anchor}"
+            display = f"{repo_path}:{line}" if line else repo_path
+            # Basic escaping for '<'
+            display = display.replace('<', '&lt;')
+            return f"<a href='{url}' target='_blank' rel='noopener noreferrer'>{display}</a>"
+    # Track unmatched for diagnostics
+    if unmatched is not None:
+        unmatched.append(local_path)
+    return None
 
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
 
@@ -135,7 +246,7 @@ def copy_requirements():
     return requirements_meta
 
 
-def copy_rtm():
+def copy_rtm(verbose: bool = False):
     rtm_dir = DOCS / "rtm"
     rtm_dir.mkdir(parents=True, exist_ok=True)
     csv_path = rtm_dir / "RTM.csv"
@@ -203,12 +314,17 @@ def copy_rtm():
             "</th><th>File:Line</th><th>Status</th></tr></thead>"
         )
         table_lines.append("<tbody>")
+        unmatched_files: List[str] = []
         for r in rows:
-            file_line = (
-                f"{r.get('test_file','')}:{r.get('test_line','')}"
-                if r.get("test_file")
-                else ""
-            )
+            raw_file = r.get('test_file', '') or ''
+            raw_line = r.get('test_line', '') or ''
+            link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
+            if link:
+                file_line = link
+            else:
+                # fallback to original representation (escaped minimal)
+                file_line = f"{raw_file}:{raw_line}" if raw_file else ""
+                file_line = file_line.replace('<', '&lt;')
             st = r.get("status", "")
             table_lines.append(
                 "<tr data-status='{}'>".format(st)
@@ -220,6 +336,12 @@ def copy_rtm():
                 + "</tr>"
             )
         table_lines.append("</tbody></table>")
+        if verbose and unmatched_files:
+            uniq = sorted(set(unmatched_files))
+            table_lines.append("<details><summary>Nicht verlinkbare Test-Dateien ({}):</summary><pre>".format(len(uniq)))
+            for f in uniq:
+                table_lines.append(f)
+            table_lines.append("</pre></details>")
     else:
         table_lines.append(
             "<p><em>Noch keine Test-Traceability-Daten vorhanden (RTM.csv leer).</em></p>"
@@ -250,11 +372,29 @@ def top_level_pages(requirements_meta):
     write(DOCS / ".pages", "nav:\n  - index.md\n  - srs\n  - requirements\n  - rtm\n")
 
 
+def print_mappings():
+    if not GITHUB_FILE_LINK_MAPPINGS:
+        print("[traceability] No GitHub file link mappings configured.")
+        return
+    print("[traceability] Active GitHub file link mappings:")
+    for m in GITHUB_FILE_LINK_MAPPINGS:
+        print(f"  - repo={m['repo']} local_root={m['local_root']} branch={m.get('branch')} sub={m.get('repo_root_subpath')}")
+
+
 def main():
+    parser = argparse.ArgumentParser(description="Generate docs (SRS, requirements, RTM)")
+    parser.add_argument("--print-mappings", action="store_true", help="Print active GitHub file link mappings and exit")
+    parser.add_argument("--verbose", action="store_true", help="Verbose output (diagnostics section in RTM page)")
+    args = parser.parse_args()
+
+    if args.print_mappings:
+        print_mappings()
+        return
+
     clean_docs()
     copy_srs()
     req_meta = copy_requirements()
-    copy_rtm()
+    copy_rtm(verbose=args.verbose)
     top_level_pages(req_meta)
     print("Docs tree generated.")
 

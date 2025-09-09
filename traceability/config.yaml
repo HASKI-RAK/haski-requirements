@@ -3,3 +3,19 @@ test_reports:
   - type: jest
     path: ../frontend/reports/jest-results.json
 output: RTM.csv
+
+# Optional: mappings to build GitHub file:line links in generated docs.
+# Each entry:
+#   local_root: path (relative to this config file) that corresponds to code in external repo
+#   repo: GitHub owner/repository
+#   branch: branch or tag (default main)
+#   repo_root_subpath: optional path prefix inside repository (omit if local_root already aligns)
+github_file_link_mappings:
+  - local_root: ../frontend/src
+    repo: HASKI-RAK/HASKI-Frontend
+    branch: main
+    repo_root_subpath: src
+
+# Environment overrides (used by scripts/generate_docs.py):
+#   TRACEABILITY_GITHUB_COMMIT – if set, replaces branch in links with this commit SHA (immutable deep links)
+#   TRACEABILITY_GITHUB_REF    – if set (and COMMIT not set), replaces branch with arbitrary ref (tag/branch)
