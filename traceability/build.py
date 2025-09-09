@@ -26,7 +26,9 @@ def gather_tests(test_reports: List[dict], debug: bool = False):
                 if not os.path.exists(path):
                     print(f"[traceability][WARN] Jest report not found: {path}")
                 else:
-                    print(f"[traceability] Parsed {len(parsed)} jest test(s) from {path}")
+                    print(
+                        f"[traceability] Parsed {len(parsed)} jest test(s) from {path}"
+                    )
             tests.extend(parsed)
         else:
             if debug:
@@ -62,14 +64,16 @@ def build_matrix(config_path: str, debug: bool = False):
         matched_tests += 1
         for req_id in test.requirements:
             req = reqs.get(req_id)
-            rows.append({
-                "requirement_id": req_id,
-                "requirement_title": req.title if req else "",
-                "test_name": test.name,
-                "test_file": test.file,
-                "test_line": test.line,
-                "status": test.status,
-            })
+            rows.append(
+                {
+                    "requirement_id": req_id,
+                    "requirement_title": req.title if req else "",
+                    "test_name": test.name,
+                    "test_file": test.file,
+                    "test_line": test.line,
+                    "status": test.status,
+                }
+            )
     if debug:
         print(f"[traceability] Tests referencing requirements: {matched_tests}")
         print(f"[traceability] Matrix rows to write: {len(rows)}")

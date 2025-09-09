@@ -40,7 +40,9 @@ def parse(report_path: str) -> List[TestResult]:
     for suite in data.get("testResults", []):
         file_name = suite.get("name", "")
         for assertion in suite.get("assertionResults", []):
-            full_name = " ".join(assertion.get("ancestorTitles", []) + [assertion.get("title", "")])
+            full_name = " ".join(
+                assertion.get("ancestorTitles", []) + [assertion.get("title", "")]
+            )
             status = assertion.get("status", "unknown")
             location = assertion.get("location") or {}
             line = location.get("line") if isinstance(location, dict) else None
