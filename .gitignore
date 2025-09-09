@@ -4,3 +4,4 @@ traceability/RTM.csv
 bin/act
 venv/
 site/
+*.pyc

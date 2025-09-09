@@ -45,6 +45,9 @@ def parse(report_path: str) -> List[TestResult]:
             location = assertion.get("location") or {}
             line = location.get("line") if isinstance(location, dict) else None
             req_ids = REQ_PATTERN.findall(full_name)
+            # Fallback: also look in file name (some teams encode ID there)
+            if not req_ids:
+                req_ids = REQ_PATTERN.findall(file_name)
             results.append(
                 TestResult(
                     name=full_name,
