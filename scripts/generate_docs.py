@@ -194,7 +194,9 @@ def _try_parse_yaml_or_json_list(value: str):
     return None
 
 
-def parse_test_sources(test_file_field: str, test_line_field: str) -> List[Tuple[str, Optional[str]]]:
+def parse_test_sources(
+    test_file_field: str, test_line_field: str
+) -> List[Tuple[str, Optional[str]]]:
     """Parse multi-source File:Line inputs from RTM.
 
     Supported formats (mixed per convenience):
@@ -491,25 +493,35 @@ def copy_rtm(verbose: bool = False):
             link_pieces: List[str] = []
             if sources:
                 for fpath, l in sources:
-                    link = build_github_file_link(fpath, l or "", unmatched=unmatched_files)
+                    link = build_github_file_link(
+                        fpath, l or "", unmatched=unmatched_files
+                    )
                     if link:
                         link_pieces.append(link)
                     else:
                         # fallback minimal escaping; omit colon if no line
                         if fpath:
-                            display = f"{fpath}:{l}" if (l and str(l).strip()) else f"{fpath}"
+                            display = (
+                                f"{fpath}:{l}" if (l and str(l).strip()) else f"{fpath}"
+                            )
                         else:
                             display = ""
                         display = display.replace("<", "&lt;")
                         link_pieces.append(display)
                 file_line = "<br>".join(link_pieces)
             else:
-                link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
+                link = build_github_file_link(
+                    raw_file, raw_line, unmatched=unmatched_files
+                )
                 if link:
                     file_line = link
                 else:
                     if raw_file:
-                        display = f"{raw_file}:{raw_line}" if (raw_line and str(raw_line).strip()) else f"{raw_file}"
+                        display = (
+                            f"{raw_file}:{raw_line}"
+                            if (raw_line and str(raw_line).strip())
+                            else f"{raw_file}"
+                        )
                     else:
                         display = ""
                     file_line = display.replace("<", "&lt;")
