@@ -1,15 +1,15 @@
 ---
-id: HASKI-REQ-0000
-title: [Kurzname der Anforderung]
-type: [Functional | Interface | NFR:Performance | NFR:Security …]
-source: [Projektbeschreibung §x, AP y, Issue #123]
-rationale: [Warum ist diese Anforderung nötig?]
-owner: [Verantwortliche Person/Team]
-priority: [High | Medium | Low]
-status: [Proposed | Approved | Implemented | Verified]
-risk: [Low | Medium | High]  # optional nach ISO 16085
-verification_method: [Test | Review | Analysis | Demonstration]
-links:
+id: HASKI-REQ-0000 # Parser working
+title: [Kurzname der Anforderung] # No parser effect
+type: [Functional | Interface | NFR:Performance | NFR:Security …] # Parser working
+source: [Projektbeschreibung §x, AP y, Issue #123] # No parser effect
+rationale: [Warum ist diese Anforderung nötig?] # No parser effect
+owner: [Verantwortliche Person/Team] # No parser effect
+priority: [High | Medium | Low] # No parser effect
+status: [Proposed | Approved | Implemented | Verified] # No parser effect
+risk: [Low | Medium | High]  # optional nach ISO 16085, no parser effect
+verification_method: [Test | Review | Analysis | Demonstration] #  No parser effect
+links: # No parser effect
   stories: [GH-#123, GH-#456]
   tests: [backend::tc_eval_001, fe:cypress::t_login_01]
   parents: [HASKI-STRS-0003]   # falls abgeleitet
