@@ -2,32 +2,29 @@
 
 für das HASKI-System (Frontend, Backend, NodeGrade) nach **ISO/IEC/IEEE 29148:2018** Abschnitt 9.6 „Software Requirements Specification“.
 
+# IEEE Seite 56 - SRS Example Outline
+
 ## 1. Einleitung
 
 1.1 Zweck
 1.2 Geltungsbereich des Dokuments
 1.3 Zielgruppe (Fördergeber, Entwickler, Lehrende, Studierende)
-1.4 Referenzen (Projektbeschreibung, Teilvorhaben, Arbeitsprogramm, Normen)
-1.5 Definitionen, Abkürzungen, Glossar
+Ergänzung: Die vollständige Stakeholderliste und ihre Needs sind in der [StRS](StRS.md) dokumentiert. Diese SRS fasst die relevanten Stakeholdergruppen zusammen und leitet daraus Anforderungen ab.
+1.4 Definitionen
 
 ## 2. Gesamtbeschreibung
 
 2.1 Produktperspektive (Einbettung in HASKI-Gesamtkonzept: Lernraum, LMS, HASKI-System)
 2.2 Produktfunktionen (adaptives Lernen, KI-gestützte Bewertung, Feedback, Reporting)
 2.3 Benutzerklassen und -merkmale (Studierende, Lehrende, Administratoren)
+> Hinweis: Details siehe [StRS](StRS.md).
 2.4 Betriebsumgebung (LMS Moodle, Frontend-Web, Backend-Services, NodeGrade-Tool)
 2.5 Design- und Implementierungsrestriktionen (z. B. DSGVO, Open-Source-Strategie, Interoperabilität mit Moodle)
 2.6 Annahmen und Abhängigkeiten (Bayessche Netzwerke, ML-Modelle, Infrastruktur an Hochschulen)
 
-## 3. Externe Schnittstellenanforderungen
-
-3.1 Benutzeroberflächen (Frontend Web-UI, Dozierenden-Reports)
-3.2 Hardware-Schnittstellen (Server, Eye-Tracking-Labor bei OTH R)
-3.3 Software-Schnittstellen (Moodle-API, NodeGrade-Integration, KI-Modelle)
-3.4 Kommunikationsschnittstellen (REST APIs, Authentifizierung, Protokolle)
-
-## 4. Systemfunktionen
-
+## 3. Anforderungen
+### 3.1 Systemfunktionen
+> Note: SSOT: Folder `requirements` contains individual requirement files (e.g., HASKI-REQ-0001.md).
 * 4.1 Modellverwaltung (Lernenden-, Tutorien-, Domänen-Modell)
 * 4.2 KI-gestützte Aufgabenbewertung (Freitext, Code, Diagramme, Quizzes)
 * 4.3 Feedbackgenerierung für Studierende
@@ -43,35 +40,51 @@ Jede Funktion sollte beschrieben werden mit:
 * Ausgaben
 * Anforderungen (z. B. Performance, Genauigkeit)
 
-## 5. Nicht-funktionale Anforderungen
+### 3.2 Performance (Antwortzeit Feedback ≤ 2 s, Skalierung für große Gruppen)
 
-5.1 Usability (Micro-Learning, barrierefrei, studierendenzentriert)
-5.2 Performance (Antwortzeit Feedback ≤ 2 s, Skalierung für große Gruppen)
-5.3 Sicherheit & Datenschutz (DSGVO, Pseudonymisierung, Anonymisierung)
-5.4 Zuverlässigkeit & Verfügbarkeit
-5.5 Wartbarkeit & Erweiterbarkeit
-5.6 Portabilität (Deployment an Partnerhochschulen, Cloud/On-Premise)
+### 3.3 Usability (Micro-Learning, barrierefrei, studierendenzentriert)
 
-## 6. Datenanforderungen
+### 3.4 Externe Schnittstellenanforderungen
 
-6.1 Logische Datenbankanforderungen (Lernpfade, Aufgaben, Feedback, User-Modelle)
-6.2 Datensicherung und -archivierung
-6.3 Datenschutzanforderungen
+3.1 Benutzeroberflächen (Frontend Web-UI, Dozierenden-Reports)
+3.2 Hardware-Schnittstellen (Server, Eye-Tracking-Labor bei OTH R)
+3.3 Software-Schnittstellen (Moodle-API, NodeGrade-Integration, KI-Modelle)
+3.4 Kommunikationsschnittstellen (REST APIs, Authentifizierung, Protokolle)
 
-## 7. Designbeschränkungen
+### 3.5 Logische Datenbankanforderungen (Lernpfade, Aufgaben, Feedback, User-Modelle)
 
-7.1 Standards-Compliance (ISO, IEEE, OER, Open Science)
-7.2 Entwicklungsumgebung (z. B. Python, Node.js, React, Moodle-Plugins)
-7.3 Vorgaben aus Arbeitsprogramm (Iterationen, Meilensteine)
+3.5.1 Datensicherung und -archivierung
+3.5.2 Datenschutzanforderungen
 
-## 8. Qualitätsanforderungen
+### 3.6 Designbeschränkungen
 
-8.1 Verifikation (Zuordnung Tests ↔ Anforderungen)
-8.2 Validierung (Feldtests an Hochschulen, Eye-Tracking, Evaluation)
-8.3 Akzeptanzkriterien
+3.6.1 Standards-Compliance (ISO, IEEE, OER, Open Science)
+3.6.2 Entwicklungsumgebung (z. B. Python, Node.js, React, Moodle-Plugins)
+3.6.3 Vorgaben aus Arbeitsprogramm (Iterationen, Meilensteine)
 
-## 9. Anhang
+### 3.7 Software system Attribute
+
+3.7.1 Sicherheit & Datenschutz (DSGVO, Pseudonymisierung, Anonymisierung)
+3.7.2 Zuverlässigkeit & Verfügbarkeit
+3.7.3 Wartbarkeit & Erweiterbarkeit
+3.7.4 Portabilität (Deployment an Partnerhochschulen, Cloud/On-Premise)
+
+### 3.8 Zusätzliche Informationen
+
+## 4. Verifikation
+
+4.1 Verifikation (Zuordnung Tests ↔ Anforderungen)
+4.2 Validierung (Feldtests an Hochschulen, Eye-Tracking, Evaluation)
+4.3 Akzeptanzkriterien
+
+## 5. Anhang
+
+### 5.1 Annahmen und Abhängigkeiten
 
 * Glossar
-* Abkürzungen
 * Referenzdokumente (Projektbeschreibung, Arbeitsprogramm, Teilvorhabenbeschreibung, Normen)
+* Anhang A (optional): Stakeholderliste (Kurzfassung)
+  - Tabellen-Auszug (Top-10 Stakeholder) mit Verweis auf [StRS](StRS.md) für die vollständige Liste.
+
+### 5.2 Acronyme und Abkürzungen
+* Abkürzungen

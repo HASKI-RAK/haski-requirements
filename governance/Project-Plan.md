@@ -19,22 +19,27 @@ Er richtet sich an Fördergeber, Projektleitung und Entwicklerteams.
 - Evaluation der Wirksamkeit und Dissemination (AP 6, AP 7).  
 
 ## 4 Tailoring und Conformance-Matrix
-Das Projekt folgt ISO/IEC/IEEE 15289 als Dokumentationsrahmen.  
-Volle IEEE-Konformität wird nicht beansprucht; stattdessen Tailoring:
+Das Projekt folgt ISO/IEC/IEEE 15289 als Dokumentationsrahmen.
+Volle IEEE-Konformität wird nicht beansprucht; stattdessen Tailoring gemäß Projektbedarf.
+Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in der Tabelle aufgeführt. Begründung: Die meisten Items sind durch den Projektantrag und das Arbeitsprogramm bereits abgedeckt.
+:
 //TODO: Up to date halten
-| Information Item (15289)                | Umsetzung im Projekt                | Status |
-|-----------------------------------------|-------------------------------------|--------|
-| System/Software Requirements Spec.      | `srs/SRS.md` + `requirements/`      | erstellt |
-| System Architecture Description         | `architecture/System-AD.md`         | geplant |
-| Design Description                      | `design/SDD.md`                     | geplant |
-| Test Plan / Specs / Report              | `tests/`                            | teilweise |
-| Risk Management Plan                    | `governance/Risk-Management-Plan.md`| geplant |
-| Configuration Management Plan           | `governance/CM-Plan.md`             | geplant |
-| Software Quality Assurance Plan         | `governance/SQA-Plan.md`            | geplant |
-| Information Security Plan               | `governance/Info-Security-Plan.md`  | geplant |
-| Validation / Verification Plans+Reports | `vnv/`                              | geplant |
-| Progress Reports                        | GitHub Issues / Milestones          | laufend |
-| Dissemination Report                    | `deliverables/`                     | offen |
+| Normabschnitt (29148)                | Umsetzung im Projekt                | Status | Bemerkung               |
+|-----------------------------------------|-------------------------------------|--------| ------------------------|
+| 8.2 Business Requirements Specification     | nicht umgesetzt                     | nicht geplant |  Durch das BMBF auf Basis eines genehmigten Projektantrags bewilligt.BRS-Dokument nicht erforderlich. Grundlegenden Ziele, Rahmenbedingungen und Anforderungen bereits im Projektantrag beschrieben, von der Förderinstitution geprüft und akzeptiert.
+8.4 System Requirements Specification | nicht umgesetzt | nicht geplant | 
+| 9.4 Stakeholder Requirements Spec.        | `srs/StRS.md` + `srs/stakeholder-requirements/` | erstellt | vollständig |
+| 9.6 System/Software Requirements Spec.      | `srs/SRS.md` + `requirements/`      | erstellt | vollständig |
+|-----------------------------------------------|-------------------------------------|---------| ------------------------|
+| Information Item (15289)                      | Umsetzung im Projekt                | Status  | Bemerkung               |
+|-----------------------------------------------|-------------------------------------|---------| ------------------------|
+| 10.60 System Architecture Description         | `architecture/System-AD.md`         | geplant | Noch unklar |
+| 10.61 Test Plan / Specs / Report              | `tests/`                            | geplant | |
+| 10.52 Risk Management Plan                    | `governance/Risk-Management-Plan.md`| geplant | |
+| 10.9 Configuration Management Plan            | `governance/CM-Plan.md`             | geplant | |
+| 10.24 Information Security Plan               | `governance/Info-Security-Plan.md`  | geplant | |
+| 10.69 + 10.71 / 10.72 + 10.74 Validation / Verification Plans+Reports | `vnv/`      | geplant | |
+| 10.41 Progress Reports                        | GitHub Issues / Milestones          | laufend | In den [Ressourcen](#8-Ressourcen) aufgeführt |
 
 **Tailoring-Grundsatz:**  
 Nur für Fördergebernachweis wesentliche Information Items werden in Markdown gepflegt.  

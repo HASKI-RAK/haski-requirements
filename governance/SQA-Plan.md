@@ -1,1 +1,0 @@
-# Qualitätssicherung (IEEE 730)
