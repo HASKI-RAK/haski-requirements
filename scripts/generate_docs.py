@@ -16,6 +16,17 @@ No manual edits should be made inside ``docs/`` – they will be overwritten on 
 
 The script is intentionally dependency‑light (only stdlib + PyYAML). It can be invoked locally
 or inside CI prior to ``mkdocs build --strict``.
+
+RTM multi-source support for File:Line
+--------------------------------------
+The RTM generator supports multiple test sources per row. Accepted inputs in
+RTM.csv columns `test_file` and `test_line`:
+    - Inline tokens separated by `;` or `|`, e.g. `a.py:10; b.py:20` (preferred)
+    - Parallel lists: `test_file="a.py; b.py"` and `test_line="10; 20"`
+    - JSON/YAML lists in either column, e.g. `[{file: a.py, line: 10}, {file: b.py, line: 20}]`
+    - JSON/YAML list of strings: `["a.py:10", "b.py:20"]`
+
+All parsed entries are rendered as separate links separated by `<br>` in the table.
 """
 
 from __future__ import annotations
@@ -156,6 +167,124 @@ def build_github_file_link(
 
 
 FRONT_MATTER_RE = re.compile(r"^---\n(.*?)\n---\n", re.DOTALL)
+
+
+def _try_parse_yaml_or_json_list(value: str):
+    """Attempt to parse a CSV cell content as a YAML/JSON list.
+
+    Returns the parsed Python object if it results in a list or list-like structure,
+    otherwise returns None. Safe to use on arbitrary strings.
+    """
+    if not value:
+        return None
+    # Fast pre-check to avoid invoking YAML parser for plain scalars most of the time
+    s = value.strip()
+    if not (s.startswith("[") or s.startswith("- ") or s.startswith("{")):
+        # Could still be a scalar; not list-like
+        return None
+    try:
+        parsed = yaml.safe_load(s)
+    except Exception:
+        return None
+    if isinstance(parsed, list):
+        return parsed
+    # Sometimes a single mapping containing file/line can be provided – normalise to list
+    if isinstance(parsed, dict):
+        return [parsed]
+    return None
+
+
+def parse_test_sources(test_file_field: str, test_line_field: str) -> List[Tuple[str, Optional[str]]]:
+    """Parse multi-source File:Line inputs from RTM.
+
+    Supported formats (mixed per convenience):
+      1) Single file and optional line (legacy):
+         test_file="path/to/test.py", test_line="123"
+      2) Multiple entries separated by ';' or '|':
+         test_file="a.py:10; b.py:20"  (preferred: inline path:line)
+         or
+         test_file="a.py; b.py" and test_line="10; 20"
+      3) JSON/YAML list in either column:
+         test_file='["a.py:10", "b.py:20"]'
+         test_file='["a.py", "b.py"]', test_line='[10, 20]'
+         test_file='[{"file":"a.py","line":10}, {"file":"b.py","line":20}]'
+
+    Returns a list of (file, line) where line is an optional string (may be None).
+    """
+
+    def normalise_line(x) -> Optional[str]:
+        if x is None:
+            return None
+        s = str(x).strip()
+        return s or None
+
+    def from_token(tok: str) -> Tuple[str, Optional[str]]:
+        tok = tok.strip()
+        # Detect trailing :<digits> to avoid splitting on colons in paths
+        m = re.match(r"^(.*?):(\d+)$", tok)
+        if m:
+            return m.group(1), m.group(2)
+        return tok, None
+
+    files_raw = (test_file_field or "").strip()
+    lines_raw = (test_line_field or "").strip()
+
+    # 1) JSON/YAML list support
+    parsed_files = _try_parse_yaml_or_json_list(files_raw)
+    parsed_lines = _try_parse_yaml_or_json_list(lines_raw)
+
+    sources: List[Tuple[str, Optional[str]]] = []
+
+    if isinstance(parsed_files, list):
+        # list could be of strings ("a.py:12" or "a.py") or dicts
+        for item in parsed_files:
+            if isinstance(item, str):
+                f, ln = from_token(item)
+                sources.append((f, ln))
+            elif isinstance(item, dict):
+                f = item.get("file") or item.get("path") or item.get("test_file") or ""
+                ln = item.get("line") or item.get("ln") or item.get("test_line")
+                f = (f or "").strip()
+                if f:
+                    sources.append((f, normalise_line(ln)))
+        # If no lines present in any entries and parsed_lines provided, zip them
+        if all(ln is None for _, ln in sources) and isinstance(parsed_lines, list):
+            out: List[Tuple[str, Optional[str]]] = []
+            for idx, (f, _ln) in enumerate(sources):
+                ln = parsed_lines[idx] if idx < len(parsed_lines) else None
+                out.append((f, normalise_line(ln)))
+            sources = out
+        return [(f, ln) for f, ln in sources if f]
+
+    # 2) tokenised scalars separated by ';' or '|'
+    def split_tokens(val: str) -> List[str]:
+        if not val:
+            return []
+        # Prefer ';' first (less likely in paths), then '|'
+        if ";" in val:
+            return [t for t in (v.strip() for v in val.split(";")) if t]
+        if "|" in val:
+            return [t for t in (v.strip() for v in val.split("|")) if t]
+        return [val.strip()] if val.strip() else []
+
+    file_tokens = split_tokens(files_raw)
+    # If tokens include inline :line, we ignore test_line_field
+    inline_pairs: List[Tuple[str, Optional[str]]] = [from_token(t) for t in file_tokens]
+    if any(ln is not None for _, ln in inline_pairs):
+        return [(f, ln) for f, ln in inline_pairs if f]
+
+    # Otherwise, zip with lines
+    line_tokens = split_tokens(lines_raw)
+    if not file_tokens:
+        return []
+    max_len = max(len(file_tokens), len(line_tokens))
+    result: List[Tuple[str, Optional[str]]] = []
+    for i in range(max_len):
+        f = file_tokens[i] if i < len(file_tokens) else None
+        ln = line_tokens[i] if i < len(line_tokens) else None
+        if f:
+            result.append((f, normalise_line(ln)))
+    return result
 
 
 def read_front_matter(path: Path):
@@ -358,13 +487,32 @@ def copy_rtm(verbose: bool = False):
         for r in rows:
             raw_file = r.get("test_file", "") or ""
             raw_line = r.get("test_line", "") or ""
-            link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
-            if link:
-                file_line = link
+            sources = parse_test_sources(raw_file, raw_line)
+            link_pieces: List[str] = []
+            if sources:
+                for fpath, l in sources:
+                    link = build_github_file_link(fpath, l or "", unmatched=unmatched_files)
+                    if link:
+                        link_pieces.append(link)
+                    else:
+                        # fallback minimal escaping; omit colon if no line
+                        if fpath:
+                            display = f"{fpath}:{l}" if (l and str(l).strip()) else f"{fpath}"
+                        else:
+                            display = ""
+                        display = display.replace("<", "&lt;")
+                        link_pieces.append(display)
+                file_line = "<br>".join(link_pieces)
             else:
-                # fallback to original representation (escaped minimal)
-                file_line = f"{raw_file}:{raw_line}" if raw_file else ""
-                file_line = file_line.replace("<", "&lt;")
+                link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
+                if link:
+                    file_line = link
+                else:
+                    if raw_file:
+                        display = f"{raw_file}:{raw_line}" if (raw_line and str(raw_line).strip()) else f"{raw_file}"
+                    else:
+                        display = ""
+                    file_line = display.replace("<", "&lt;")
             st = r.get("status", "")
             rid = r.get("requirement_id", "")
             title_raw = r.get("requirement_title") or ""
