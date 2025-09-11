@@ -2,3 +2,4 @@ PyYAML
 mkdocs>=1.6
 mkdocs-material>=9.5
 mkdocs-awesome-pages-plugin>=2.9
+pathspec>=0.12

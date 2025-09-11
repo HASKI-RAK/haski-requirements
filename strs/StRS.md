@@ -48,7 +48,7 @@ System- und Projektkontext; Bezug zu SRS (srs/SRS.md) und RTM (traceability/RTM.
 // Stakeholder-Bedürfnisse (informell)
 - NEED-001: ...
 // Stakeholder-Anforderungen (formell)
-> Hinweis: in `srs/stakeholder-requirements/StRS-NNN.md` jeweils eine Stakeholder-Anforderung.
+> Hinweis: in `strs/stakeholder-requirements/StRS-NNN.md` jeweils eine Stakeholder-Anforderung.
 
 ## 6. Detaillierte Lebenszyklus-Konzepte des vorgeschlagenen Systems
 ### 6.1 Betriebskonzept

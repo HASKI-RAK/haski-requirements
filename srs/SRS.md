@@ -9,7 +9,7 @@ für das HASKI-System (Frontend, Backend, NodeGrade) nach **ISO/IEC/IEEE 29148:2
 1.1 Zweck
 1.2 Geltungsbereich des Dokuments
 1.3 Zielgruppe (Fördergeber, Entwickler, Lehrende, Studierende)
-Ergänzung: Die vollständige Stakeholderliste und ihre Needs sind in der [StRS](StRS.md) dokumentiert. Diese SRS fasst die relevanten Stakeholdergruppen zusammen und leitet daraus Anforderungen ab.
+Ergänzung: Die vollständige Stakeholderliste und ihre Needs sind in der [StRS](../strs/StRS.md) dokumentiert. Diese SRS fasst die relevanten Stakeholdergruppen zusammen und leitet daraus Anforderungen ab.
 1.4 Definitionen
 
 ## 2. Gesamtbeschreibung
@@ -17,7 +17,7 @@ Ergänzung: Die vollständige Stakeholderliste und ihre Needs sind in der [StRS]
 2.1 Produktperspektive (Einbettung in HASKI-Gesamtkonzept: Lernraum, LMS, HASKI-System)
 2.2 Produktfunktionen (adaptives Lernen, KI-gestützte Bewertung, Feedback, Reporting)
 2.3 Benutzerklassen und -merkmale (Studierende, Lehrende, Administratoren)
-> Hinweis: Details siehe [StRS](StRS.md).
+> Hinweis: Details siehe [StRS](../strs/StRS.md).
 2.4 Betriebsumgebung (LMS Moodle, Frontend-Web, Backend-Services, NodeGrade-Tool)
 2.5 Design- und Implementierungsrestriktionen (z. B. DSGVO, Open-Source-Strategie, Interoperabilität mit Moodle)
 2.6 Annahmen und Abhängigkeiten (Bayessche Netzwerke, ML-Modelle, Infrastruktur an Hochschulen)
@@ -84,7 +84,7 @@ Jede Funktion sollte beschrieben werden mit:
 * Glossar
 * Referenzdokumente (Projektbeschreibung, Arbeitsprogramm, Teilvorhabenbeschreibung, Normen)
 * Anhang A (optional): Stakeholderliste (Kurzfassung)
-  - Tabellen-Auszug (Top-10 Stakeholder) mit Verweis auf [StRS](StRS.md) für die vollständige Liste.
+  - Tabellen-Auszug (Top-10 Stakeholder) mit Verweis auf [StRS](../strs/StRS.md) für die vollständige Liste.
 
 ### 5.2 Acronyme und Abkürzungen
 * Abkürzungen

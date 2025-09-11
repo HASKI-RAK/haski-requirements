@@ -22,13 +22,13 @@ Er richtet sich an Fördergeber, Projektleitung und Entwicklerteams.
 Das Projekt folgt ISO/IEC/IEEE 15289 als Dokumentationsrahmen.
 Volle IEEE-Konformität wird nicht beansprucht; stattdessen Tailoring gemäß Projektbedarf.
 Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in der Tabelle aufgeführt. Begründung: Die meisten Items sind durch den Projektantrag und das Arbeitsprogramm bereits abgedeckt.
-:
+
 //TODO: Up to date halten
 | Normabschnitt (29148)                | Umsetzung im Projekt                | Status | Bemerkung               |
 |-----------------------------------------|-------------------------------------|--------| ------------------------|
 | 8.2 Business Requirements Specification     | nicht umgesetzt                     | nicht geplant |  Durch das BMBF auf Basis eines genehmigten Projektantrags bewilligt.BRS-Dokument nicht erforderlich. Grundlegenden Ziele, Rahmenbedingungen und Anforderungen bereits im Projektantrag beschrieben, von der Förderinstitution geprüft und akzeptiert.
 8.4 System Requirements Specification | nicht umgesetzt | nicht geplant | 
-| 9.4 Stakeholder Requirements Spec.        | `srs/StRS.md` + `srs/stakeholder-requirements/` | erstellt | vollständig |
+| 9.4 Stakeholder Requirements Spec.        | `strs/StRS.md` + `strs/stakeholder-requirements/` | erstellt | vollständig |
 | 9.6 System/Software Requirements Spec.      | `srs/SRS.md` + `requirements/`      | erstellt | vollständig |
 |-----------------------------------------------|-------------------------------------|---------| ------------------------|
 | Information Item (15289)                      | Umsetzung im Projekt                | Status  | Bemerkung               |
@@ -41,9 +41,6 @@ Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in de
 | 10.69 + 10.71 / 10.72 + 10.74 Validation / Verification Plans+Reports | `vnv/`      | geplant | |
 | 10.41 Progress Reports                        | GitHub Issues / Milestones          | laufend | In den [Ressourcen](#8-Ressourcen) aufgeführt |
 
-**Tailoring-Grundsatz:**  
-Nur für Fördergebernachweis wesentliche Information Items werden in Markdown gepflegt.  
-Andere (z. B. formale Verträge) entfallen, da nicht projektrelevant.
 
 ## 5 Arbeitspakete und Bezug
 - **AP 1**: Modelle entwickeln (Lernenden-, Tutorielles-, Domänenmodell)  
@@ -92,4 +89,4 @@ Andere (z. B. formale Verträge) entfallen, da nicht projektrelevant.
 - RTM-Generierung automatisiert. //TODO: Beschreiben wie genau
 ---
 
-*Version 2.1 — erstellt am 03.09.2025*
+*Version 2.2*

@@ -32,6 +32,7 @@ All parsed entries are rendered as separate links separated by `<br>` in the tab
 from __future__ import annotations
 
 import csv
+import logging
 import re
 import shutil
 from collections import Counter
@@ -41,6 +42,8 @@ from pathlib import Path
 from typing import Tuple, Optional, List, Dict
 
 import yaml
+from pathspec import PathSpec
+from pathspec.patterns.gitwildmatch import GitWildMatchPattern
 
 # ---------------------------------------------------------------------------
 # Paths & constants
@@ -54,6 +57,22 @@ RTM_SRC = ROOT / "traceability" / "RTM.csv"
 TRACEABILITY_CONFIG = ROOT / "traceability" / "config.yaml"
 
 
+# ---------------------------------------------------------------------------
+# Logging
+# ---------------------------------------------------------------------------
+logger = logging.getLogger(__name__)
+
+
+def setup_logging(verbose: bool = False):
+    """Configure minimal logging for the script.
+
+    - INFO by default
+    - DEBUG when --verbose flag is provided
+    """
+    level = logging.DEBUG if verbose else logging.INFO
+    logging.basicConfig(level=level, format="%(levelname)s: %(message)s")
+
+
 def load_github_mappings() -> List[Dict[str, str]]:
     """Load github_file_link_mappings from traceability/config.yaml (single source of truth).
 
@@ -61,11 +80,13 @@ def load_github_mappings() -> List[Dict[str, str]]:
     Normalises local_root to absolute resolved paths.
     """
     if not TRACEABILITY_CONFIG.exists():
+        logger.debug("traceability/config.yaml not found; no GitHub mappings loaded")
         return []
     try:
         with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
             cfg = yaml.safe_load(h) or {}
     except yaml.YAMLError:
+        logger.warning("Failed parsing traceability/config.yaml; ignoring github mappings")
         return []
     mappings = []
     for m in cfg.get("github_file_link_mappings", []) or []:
@@ -87,7 +108,148 @@ def load_github_mappings() -> List[Dict[str, str]]:
                 "repo_root_subpath": repo_root_subpath,
             }
         )
+    logger.debug("Loaded %d GitHub mapping(s)", len(mappings))
     return mappings
+
+
+def _read_yaml_cfg() -> dict:
+    """Internal helper: load traceability/config.yaml safely and return a dict."""
+    if not TRACEABILITY_CONFIG.exists():
+        return {}
+    try:
+        with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
+            return yaml.safe_load(h) or {}
+    except yaml.YAMLError:
+        logger.warning("Failed parsing traceability/config.yaml; using empty config")
+        return {}
+
+
+def load_docs_copy_excludes() -> List[str]:
+    """Read optional extra excludes for copying into docs from config.yaml.
+
+    Supported keys (list[str]):
+      - docs_copy_exclude
+      - docs_exclude (legacy alias)
+
+    Entries can be relative paths (to repo root or to the config file),
+    absolute paths, or gitignore-style patterns. Returned as gitignore-style
+    patterns relative to the repo root.
+    """
+    cfg = _read_yaml_cfg()
+    excludes = cfg.get("docs_copy_exclude") or cfg.get("docs_exclude") or []
+    out: List[str] = []
+    if not isinstance(excludes, list):
+        return out
+    for e in excludes:
+        if not isinstance(e, str) or not e.strip():
+            continue
+        e_clean = e.strip()
+        # If entry is an absolute or relative path, normalise relative to ROOT
+        p = Path(e_clean)
+        if not any(ch in e_clean for ch in ["*", "?", "["]):
+            # treat like a path
+            if not p.is_absolute():
+                # try relative to config dir first (more natural when editing config)
+                p_abs = (TRACEABILITY_CONFIG.parent / p).resolve()
+            else:
+                p_abs = p.resolve()
+            try:
+                rel = p_abs.relative_to(ROOT)
+                # If directory, add trailing slash to behave like gitignore dir rule
+                if p_abs.is_dir():
+                    out.append(rel.as_posix().rstrip("/") + "/")
+                else:
+                    out.append(rel.as_posix())
+                continue
+            except Exception:
+                # falls through to treat as pattern
+                pass
+        # Otherwise, treat as a raw gitignore-like pattern relative to root
+        out.append(e_clean)
+    return out
+
+
+def load_gitignore_spec(extra_patterns: Optional[List[str]] = None) -> PathSpec:
+    """Compile a PathSpec from .gitignore plus extra patterns.
+
+    Always enforces ignoring the output docs/ tree and the VCS dir.
+    """
+    lines: List[str] = []
+    gitignore = ROOT / ".gitignore"
+    if gitignore.exists():
+        try:
+            lines.extend(gitignore.read_text(encoding="utf-8").splitlines())
+        except OSError:
+            pass
+    # Ensure we never recurse into the output or VCS dir
+    enforced = [
+        "docs/",  # output tree
+        ".git/",
+    ]
+    lines.extend(enforced)
+    if extra_patterns:
+        lines.extend(extra_patterns)
+    # Filter out comments and blank lines
+    norm = [ln for ln in (ln.strip() for ln in lines) if ln and not ln.startswith("#")]
+    return PathSpec.from_lines(GitWildMatchPattern, norm)
+
+
+def copy_repo_tree_to_docs(spec: PathSpec):
+    """Copy all directories/files from repo into docs/, honoring ignore spec.
+
+    Rules:
+      - Start at repo ROOT, skip any path matched by spec
+      - Do not copy the ROOT-level files (only directories), to keep docs root clean
+      - Never traverse into the output docs/ directory (enforced in spec)
+      - Preserve relative paths under docs/
+    """
+    logger.info("Copying repository content into docs/ (applying ignore rules)")
+    for dirpath, dirnames, filenames in os.walk(ROOT, topdown=True):
+        dpath = Path(dirpath)
+        rel_dir = dpath.relative_to(ROOT)
+
+        # Skip the root files – we'll only copy directories content
+        if rel_dir == Path("."):
+            # Prune ignored directories early to avoid descending
+            pruned = []
+            for dn in list(dirnames):
+                rel = (rel_dir / dn).as_posix()
+                if spec.match_file(rel) or spec.match_file(rel + "/"):
+                    pruned.append(dn)
+            for dn in pruned:
+                dirnames.remove(dn)
+            # Also explicitly prune output dir if present (belt & braces)
+            if DOCS.name in dirnames:
+                dirnames.remove(DOCS.name)
+            # Do not copy files at the repo root
+            continue
+
+        # If current directory itself is ignored, skip subtree
+        rel_dir_posix = rel_dir.as_posix()
+        if spec.match_file(rel_dir_posix) or spec.match_file(rel_dir_posix + "/"):
+            dirnames[:] = []
+            continue
+
+        # Prune ignored child directories before descending further
+        for dn in list(dirnames):
+            child_rel = (rel_dir / dn).as_posix()
+            if spec.match_file(child_rel) or spec.match_file(child_rel + "/"):
+                dirnames.remove(dn)
+
+        # Copy files in this directory
+        for fn in filenames:
+            rel_file = (rel_dir / fn).as_posix()
+            if spec.match_file(rel_file):
+                continue
+            src = dpath / fn
+            dst = DOCS / rel_dir / fn
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                shutil.copy2(src, dst)
+            except OSError as e:
+                # Best-effort copy; skip unreadable files
+                logger.debug("Skip unreadable file %s: %s", src, e)
+                continue
 
 
 def effective_ref(branch: str) -> str:
@@ -308,12 +470,14 @@ def read_front_matter(path: Path):
 
 def clean_docs():
     if DOCS.exists():
+        logger.info("Cleaning docs/ directory")
         for item in DOCS.iterdir():
             if item.is_dir():
                 shutil.rmtree(item)
             else:
                 item.unlink()
     else:
+        logger.info("Creating docs/ directory")
         DOCS.mkdir(parents=True)
 
 
@@ -347,6 +511,7 @@ def build_index(requirements_meta: list[dict]):
 
 def copy_srs():
     if SRS_SRC.exists():
+        logger.info("Copy SRS -> docs/srs/SRS.md")
         dst = DOCS / "srs" / "SRS.md"
         content = SRS_SRC.read_text(encoding="utf-8")
         banner = "# Software Requirements Specification (SRS)\n\n<!-- Generated copy from srs/SRS.md -->\n\n"
@@ -354,9 +519,12 @@ def copy_srs():
             # keep original if proper heading missing
             banner = ""
         write(dst, banner + content)
+    else:
+        logger.warning("SRS source not found at %s", SRS_SRC)
 
 
 def copy_requirements():
+    logger.info("Copy requirement files -> docs/requirements/")
     requirements_meta = []
     dst_dir = DOCS / "requirements"
     for src in REQS_SRC.glob("HASKI-REQ-*.md"):
@@ -386,12 +554,14 @@ def copy_requirements():
 
 
 def copy_rtm(verbose: bool = False):
+    logger.info("Generate Traceability Matrix page")
     rtm_dir = DOCS / "rtm"
     rtm_dir.mkdir(parents=True, exist_ok=True)
     csv_path = rtm_dir / "RTM.csv"
     if RTM_SRC.exists():
         shutil.copy2(RTM_SRC, csv_path)
     else:
+        logger.warning("RTM source not found at %s; writing empty template", RTM_SRC)
         write(
             csv_path,
             "requirement_id,requirement_title,test_name,test_file,test_line,status\n",
@@ -403,6 +573,7 @@ def copy_rtm(verbose: bool = False):
         reader = csv.DictReader(f)
         for r in reader:
             rows.append(r)
+    logger.debug("Loaded %d RTM row(s)", len(rows))
 
     def link_req(rid: str) -> str:
         if not rid:
@@ -593,12 +764,16 @@ def top_level_pages(requirements_meta):
 
 def print_mappings():
     if not GITHUB_FILE_LINK_MAPPINGS:
-        print("[traceability] No GitHub file link mappings configured.")
+        logger.info("No GitHub file link mappings configured.")
         return
-    print("[traceability] Active GitHub file link mappings:")
+    logger.info("Active GitHub file link mappings:")
     for m in GITHUB_FILE_LINK_MAPPINGS:
-        print(
-            f"  - repo={m['repo']} local_root={m['local_root']} branch={m.get('branch')} sub={m.get('repo_root_subpath')}"
+        logger.info(
+            "  - repo=%s local_root=%s branch=%s sub=%s",
+            m.get('repo'),
+            m.get('local_root'),
+            m.get('branch'),
+            m.get('repo_root_subpath'),
         )
 
 
@@ -618,16 +793,29 @@ def main():
     )
     args = parser.parse_args()
 
+    # Configure logging level based on --verbose
+    setup_logging(verbose=args.verbose)
+    logger.debug("Starting docs generation (verbose=%s)", args.verbose)
+
     if args.print_mappings:
         print_mappings()
         return
 
     clean_docs()
+
+    # 1) Copy the repository tree (minus excluded/ignored) into docs/
+    extra_excludes = load_docs_copy_excludes()
+    if extra_excludes:
+        logger.debug("Additional copy excludes from config: %s", extra_excludes)
+    ignore_spec = load_gitignore_spec(extra_patterns=extra_excludes)
+    copy_repo_tree_to_docs(ignore_spec)
+
+    # 2) Overlay generated content (SRS, requirements, RTM, navigation)
     copy_srs()
     req_meta = copy_requirements()
     copy_rtm(verbose=args.verbose)
     top_level_pages(req_meta)
-    print("Docs tree generated.")
+    logger.info("Docs tree generated.")
 
 
 if __name__ == "__main__":

@@ -19,3 +19,15 @@ github_file_link_mappings:
 # Environment overrides (used by scripts/generate_docs.py):
 #   TRACEABILITY_GITHUB_COMMIT – if set, replaces branch in links with this commit SHA (immutable deep links)
 #   TRACEABILITY_GITHUB_REF    – if set (and COMMIT not set), replaces branch with arbitrary ref (tag/branch)
+
+# Optional: extra exclusions when copying the repo tree into docs/ (gitignore-style patterns or paths).
+# By default the script already ignores:
+#   - docs/ (output)
+#   - .git/
+#   - anything matched by .gitignore at repo root
+# You can add more here, e.g. the frontend app and build outputs:
+docs_copy_exclude:
+  - frontend/
+  - venv/
+  - __pycache__/
+  - "*.pyc"

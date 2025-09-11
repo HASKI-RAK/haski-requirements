@@ -6,8 +6,8 @@
 - Rollen & Verantwortung: Product Owner (Lead), Requirements Engineer, Domänen-Expert:innen, Projektleitung; Freigabe durch Lenkungskreis.
 - Zeitpunkte & Cadence: Initial (Projektstart), bei wesentlichen Änderungen (Releaseplanung, Scope-Änderungen), quartalsweise Review.
 - Artefakte:
-  - Stakeholderliste und Needs: srs/StRS.md
-  - Kurzverweise in srs/SRS.md (1.3, 2.3, Anhang)
+  - Stakeholderliste und Needs: strs/StRS.md
+  - Kurzverweise in strs/SRS.md (1.3, 2.3, Anhang)
   - Traceability: traceability/RTM.csv (Spalte „Stakeholder“)
 - Kriterien/Exit: Stakeholder sind klassifiziert (Kern, indirekt, regulatorisch, technisch, operativ), Needs validiert, Traceability zu Anforderungen etabliert.
 - Änderungskontrolle: gemäß governance/CM-Plan.md (Versionierung, Review, Freigabe).
