@@ -86,7 +86,9 @@ def load_github_mappings() -> List[Dict[str, str]]:
         with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
             cfg = yaml.safe_load(h) or {}
     except yaml.YAMLError:
-        logger.warning("Failed parsing traceability/config.yaml; ignoring github mappings")
+        logger.warning(
+            "Failed parsing traceability/config.yaml; ignoring github mappings"
+        )
         return []
     mappings = []
     for m in cfg.get("github_file_link_mappings", []) or []:
@@ -503,8 +505,8 @@ def build_index(requirements_meta: list[dict]):
         rid = meta.get("id")
         title = meta.get("title", "")
         if rid:
-            # Remove .md from link
-            lines.append(f"- [{rid}](requirements/{rid}/) – {title}")
+            # Link directly to generated markdown page
+            lines.append(f"- [{rid}](requirements/{rid}.md) – {title}")
     lines.append("\n---\n_Automatisch generiert._")
     return "\n".join(lines) + "\n"
 
@@ -543,8 +545,8 @@ def copy_requirements():
     for m in sorted(requirements_meta, key=lambda m: m.get("id", "")):
         rid = m["id"]
         title = m.get("title", "")
-        # Remove .md from link
-        index_lines.append(f"- [{rid}]({rid}/) – {title}")
+        # Link directly to generated markdown page
+        index_lines.append(f"- [{rid}]({rid}.md) – {title}")
     index_lines.append("\n_Hinweis: Diese Seite wird automatisch generiert._\n")
     write(dst_dir / "index.md", "\n".join(index_lines))
     # .pages config
@@ -578,8 +580,8 @@ def copy_rtm(verbose: bool = False):
     def link_req(rid: str) -> str:
         if not rid:
             return ""
-        # Remove .md from link
-        return f"[{rid}](../requirements/{rid}/)"
+        # Link directly to generated markdown page
+        return f"[{rid}](../requirements/{rid}.md)"
 
     # Pre-load requirement excerpts (first non-empty line of body) for tooltip usage
     excerpt_cache: Dict[str, str] = {}
@@ -709,8 +711,8 @@ def copy_rtm(verbose: bool = False):
                     combined_label = f"<strong>{rid}</strong><br><span class='rtm-req-title'>{title_display}</span>"
                 else:
                     combined_label = f"<strong>{rid}</strong>"
-                # Remove .md from link
-                req_cell = f"<a href='../requirements/{rid}/'{tooltip_attr}>{combined_label}</a>"
+                # Link directly to generated markdown page
+                req_cell = f"<a href='../requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
             else:
                 req_cell = title_display or ""
             table_lines.append(
@@ -758,8 +760,7 @@ def copy_rtm(verbose: bool = False):
 def top_level_pages(requirements_meta):
     # docs/index.md
     write(DOCS / "index.md", build_index(requirements_meta))
-    # top-level .pages ordering
-    write(DOCS / ".pages", "nav:\n  - index.md\n  - srs\n  - requirements\n  - rtm\n")
+    # Do not override top-level navigation: let awesome-pages include all directories
 
 
 def print_mappings():
@@ -770,10 +771,10 @@ def print_mappings():
     for m in GITHUB_FILE_LINK_MAPPINGS:
         logger.info(
             "  - repo=%s local_root=%s branch=%s sub=%s",
-            m.get('repo'),
-            m.get('local_root'),
-            m.get('branch'),
-            m.get('repo_root_subpath'),
+            m.get("repo"),
+            m.get("local_root"),
+            m.get("branch"),
+            m.get("repo_root_subpath"),
         )
 
 

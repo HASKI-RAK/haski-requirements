@@ -39,7 +39,7 @@ Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in de
 | 10.9 Configuration Management Plan            | `governance/CM-Plan.md`             | geplant | |
 | 10.24 Information Security Plan               | `governance/Info-Security-Plan.md`  | geplant | |
 | 10.69 + 10.71 / 10.72 + 10.74 Validation / Verification Plans+Reports | `vnv/`      | geplant | |
-| 10.41 Progress Reports                        | GitHub Issues / Milestones          | laufend | In den [Ressourcen](#8-Ressourcen) aufgeführt |
+| 10.41 Progress Reports                        | GitHub Issues / Milestones          | laufend | In den [Ressourcen](#8-ressourcen) aufgeführt |
 
 
 ## 5 Arbeitspakete und Bezug
