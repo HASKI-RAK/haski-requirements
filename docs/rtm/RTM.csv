@@ -1,2 +1,1 @@
 requirement_id,requirement_title,test_name,test_file,test_line,status
-HASKI-REQ-0000,,[HASKI-REQ-0000] setConfig should use appConfig correctly,/home/fischerd/Development/haski-requirements/haski-requirements/frontend/src/shared/config.test.ts,4,passed

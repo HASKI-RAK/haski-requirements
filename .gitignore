@@ -6,3 +6,4 @@ venv/
 site/
 *.pyc
 ISO-IEEE-29148-2018.pdf
+.venv/

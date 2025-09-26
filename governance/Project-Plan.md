@@ -1,4 +1,4 @@
-# Project Plan – HASKI
+# Project Plan
 
 ## 1 Zweck und Geltungsbereich
 Dieser Projektplan beschreibt Vorgehen, Organisation und Tailoring des SDLC für das Projekt **HASKI** im Rahmen des Verbundprojekts *Hochschullehre: Adaptiv, selbstgesteuert, KI-gestützt (HASKI)*.  

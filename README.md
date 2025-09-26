@@ -12,7 +12,7 @@ Automatisiertes Requirements & Traceability Repository mit **Single Source of Tr
 
 ## Inhalte der Site
 Die generierte Dokumentation umfasst u.a.:
-- Software Requirements Specification (SRS)
+- Software Requirements SpecificationR (SRS)
 - Anforderungen (klassifiziert und mit Metadaten)
 - Traceability Matrix (filterbar: Requirement ↔ Tests)
 
@@ -181,7 +181,7 @@ Voraussetzungen: Python 3.9+, pip
 ```bash
 pip install -r requirements.txt        # mkdocs + plugins + PyYAML
 python scripts/generate_docs.py        # docs/ neu erzeugen
-mkdocs serve                           # lokale Vorschau (http://127.0.0.1:8000)
+mkdocs serve --dev-addr 127.0.0.1:8001 # lokale Vorschau (http://127.0.0.1:8001)
 ```
 
 CI führt dieselben Schritte automatisch aus (plus Test-/Traceability-Generierung, falls integriert).

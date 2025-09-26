@@ -1,4 +1,4 @@
-# Requirements-Management-Plan
+# Requirements Management Plan
 
 ### Stakeholder-Identifikation (ISO/IEC/IEEE 29148 — Stakeholder Requirements Definition)
 - Ziel: Relevante Stakeholder identifizieren, klassifizieren und ihre Bedürfnisse erfassen.
