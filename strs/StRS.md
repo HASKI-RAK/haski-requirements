@@ -6,7 +6,7 @@ für das HASKI-System nach ISO/IEC/IEEE 29148:2018 (Stakeholder Needs and Requir
 Dieses Dokument identifiziert systematisch alle Stakeholder des HASKI-Systems, analysiert deren Bedürfnisse, Erwartungen und Einflussbereiche, und leitet daraus formelle Stakeholder-Anforderungen ab. Es bildet die Grundlage für die nachgelagerte Systemanforderungsspezifikation (SRS) und gewährleistet, dass alle relevanten Interessensgruppen im Entwicklungsprozess angemessen berücksichtigt werden.
 
 ### 1.2 Stakeholder-Geltungsbereich
-Das HASKI-System ist eine KI-gestützte Software-Komponente zur Unterstützung adaptiven und selbstgesteuerten Lernens in Blended-Learning-Umgebungen an Hochschulen. Das System kommuniziert mit Learning Management Systemen (LMS) und erstellt mittels KI-Methoden Lernpfade und Bewertungen von Lernergebnissen. Bezug zu SRS (srs/SRS.md) und RTM (traceability/RTM.csv).
+Das HASKI-System ist eine KI-gestützte Software-Komponente zur Unterstützung adaptiven und selbstgesteuerten Lernens in Blended-Learning-Umgebungen an Hochschulen. Das System kommuniziert mit Learning Management Systemen (LMS) und erstellt mittels KI-Methoden Lernpfade und Bewertungen von Lernergebnissen. Bezug zu SRS (srs/SRS.md) und [RTM](../rtm/RTM.csv).
 
 ### 1.3 Überblick
 Dieses Dokument identifiziert und analysiert die verschiedenen Stakeholder-Gruppen des HASKI-Systems sowie deren spezifische Bedürfnisse, Erwartungen und Anforderungen. Es definiert die Interessen und Einflussgrade aller beteiligten Parteien und leitet daraus formelle Stakeholder-Anforderungen ab, die als Grundlage für die Systemanforderungsspezifikation dienen.

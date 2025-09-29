@@ -36,7 +36,7 @@ Tests werden in der Regel von Entwicklern geschrieben, welche das zugehörige Fe
 Tests werden in isolierten Umgebungen ausgeführt. Unit-Tests und Integrationstests laufen einerseits lokal, andererseits in CI/CD-Pipelines. Durch Docker stellen wir eine konsistente Umgebung sicher. Statische Analysen werden durch SonarCloud auf GitHub durchgeführt. Lokale Erweiterungen (SonarCube) in den Entwicklungsumgebungen unterstützen Entwickler zusätzlich.
 
 ## Traceability
-- [RTM](../traceability/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## Akzeptanzkriterien
 <!-- //TODO: Quoten für Testabdeckung, Anzahl bestandener Tests, etc. -->

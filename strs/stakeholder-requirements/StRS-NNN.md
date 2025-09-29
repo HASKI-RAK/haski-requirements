@@ -28,14 +28,14 @@ Das HASKI-System **shall** <eindeutig formulierte, prüfbare Anforderung im „s
 - Externe Normen oder Gesetze (z. B. DSGVO, BMBF-Richtlinie)  
 
 ## 7. Verifikation
-- [ ] Review (Fachliche Prüfung durch Didaktik-Experten)  
-- [ ] Analyse (Überprüfung der KI-Modelle auf Anpassungsfähigkeit)  
-- [ ] Test (Systemtest mit Studierenden, Vergleich von Lernpfaden)  
-- [ ] Demonstration (Präsentation der Funktionalität in Pilotkursen)  
+- [ ] Review (Fachliche Prüfung durch Didaktik-Experten)
+- [ ] Analyse (Überprüfung der KI-Modelle auf Anpassungsfähigkeit)
+- [ ] Test (Systemtest mit Studierenden, Vergleich von Lernpfaden)
+- [ ] Demonstration (Präsentation der Funktionalität in Pilotkursen)
 
 ## 8. Abhängigkeiten / Traceability
 - [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../traceability/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Entwurf / In Bearbeitung / Abgenommen / Implementiert / Verifiziert
