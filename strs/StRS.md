@@ -69,7 +69,7 @@ Das HASKI-System operiert im Hochschulbildungsbereich mit Fokus auf technische S
 Open Science Ansatz - das System soll allen Hochschullehrenden fach- und institutsübergreifend zur Verfügung gestellt werden. Keine kommerzielle Verwertung geplant.
 
 ### 3.4 Informationsumfeld
-Integration in bestehende LMS (primär Moodle), Datenaustausch über LTI-Standard, Eye-Tracking-Daten für Forschungszwecke, Compliance mit Datenschutzbestimmungen.
+Integration in bestehende LMS (primär Moodle), Datenaustausch über LTI-Standard, Compliance mit Datenschutzbestimmungen.
 
 ## 4. Anforderungen an den Systembetrieb
 ### 4.1 Systemprozesse
@@ -98,31 +98,52 @@ Integration in bestehende LMS (primär Moodle), Datenaustausch über LTI-Standar
 ### 5.1 Stakeholder-Bedürfnisse (informell)
 
 #### Studierende (STK-01)
-- **NEED-001**: Individuell angepasste Lernpfade basierend auf Kenntnisstand und Lernstil
-- **NEED-002**: Sofortiges, spezifisches Feedback zu Lösungen verschiedener Aufgabentypen
-- **NEED-003**: Möglichkeit zur Selbststeuerung des Lernprozesses (adaptiv vs. selbstgesteuert)
-- **NEED-004**: Transparenz über Lernfortschritt und Bewertungskriterien
+- **NEED-101**: Zugang zu individuell zugeschnittenen Lernpfaden basierend auf Lernstil, Interessen und Kompetenzen
+- **NEED-102**: Möglichkeit, den Lernprozess entweder adaptiv vom System oder selbstgesteuert zu gestalten
+- **NEED-103**: Direkte, transparente und verständliche Rückmeldungen zu Aufgabenlösungen
+- **NEED-104**: Wahrung der informationellen Selbstbestimmung bei der Datennutzung (Einwilligung, Transparenz)
+- **NEED-105**: Stabile Verfügbarkeit der Plattform während Vorlesungszeiten und Prüfungsphasen
+- **NEED-106**: Zugang zu hochwertigen, didaktisch aufbereiteten Lehrvideos und animierte, interaktive Lerninhalten
+- **NEED-107**: Unterstützung für Micro-Learning durch atomare, kombinierbare "Wissenshappen"
 
 #### Lehrende (STK-02)
-- **NEED-005**: Aussagekräftige Reports über Lernfortschritt und Schwierigkeiten der Studierenden
-- **NEED-006**: Unterstützung bei automatisierter Bewertung von Aufgaben (Quiz, Freitext, Code, Diagramme)
-- **NEED-007**: Einfache Konfiguration von Lernräumen und Scaffolding-Elementen
-- **NEED-008**: Integration in bestehende Lehr-Lern-Workflows
+- **NEED-108**: Unterstützung bei der Bewertung durch automatisierte Analyse von Quiz, Freitexten, Programmieraufgaben und Diagrammen
+- **NEED-109**: Aussagekräftige Reports über Lernfortschritte, Schwierigkeiten und Kompetenzentwicklung der Studierenden
+- **NEED-110**: Möglichkeit, Lernräume mit scaffolding-Elementen flexibel zu konfigurieren
+- **NEED-111**: Frühzeitige Prototypen für Tests im realen Lehrbetrieb
+- **NEED-112**: Unterstützung bei der Erstellung professionell animierter Lehrvideos
+- **NEED-113**: Verfügbarkeit von technischem Equipment zur Erstellung hochwertiger, didaktisch aufbereiteter Lehrvideos
+- **NEED-114**: Iterative Systemverbesserung durch 7 Entwicklungszyklen
+- **NEED-115**: Unterstützung bei der Konzeption von Lernräumen für kollaborative Problemlösung
 
 #### Hochschulleitungen (STK-03)
-- **NEED-009**: Nachweis der Verbesserung der Lehrqualität und Lernergebnisse
-- **NEED-010**: Effizienzsteigerung bei größeren Studierendengruppen
-- **NEED-011**: Skalierbarkeit auf verschiedene Studiengänge und Module
+- **NEED-116**: Nachweisbare Verbesserung der Lehrqualität durch wissenschaftlich fundierte Evaluation
+- **NEED-117**: Open Source Verfügbarkeit der Software und Lehrmaterialien für institutionelle Nutzung
 
 #### Datenschutzbeauftragte (STK-04)
-- **NEED-012**: Vollständige DSGVO-Compliance bei der Datenverarbeitung
-- **NEED-013**: Transparente Datenverwendung und Einverständniserklärungen
-- **NEED-014**: Anonymisierung und Pseudonymisierung von Lerndaten
+- **NEED-118**: DSGVO-konforme Erhebung, Verarbeitung und Speicherung personenbezogener Daten
+- **NEED-119**: Transparente Dokumentation der Datenverwendung und Einwilligungsprozesse
+- **NEED-120**: Technische Verfahren zur Anonymisierung und Pseudonymisierung der Lern- und Nutzungsdaten
 
 #### IT-Administration (STK-05)
-- **NEED-015**: Nahtlose Integration mit vorhandenem LMS (Moodle)
-- **NEED-016**: Stabile Performance und Skalierbarkeit
-- **NEED-017**: Wartbare Systemarchitektur und Dokumentation
+- **NEED-121**: Kompatibilität mit bestehenden Learning Management Systemen (vorrangig Moodle, via LTI-Schnittstellen)
+- **NEED-122**: Klare technische Dokumentation zur Systemintegration und Wartung
+- **NEED-123**: Zugang zu KI-Workstations mit ausreichend Prozessor- und Speicherkapazität
+
+#### Projektförderer (STK-07)
+- **NEED-124**: Termingerechte Umsetzung aller Meilensteine innerhalb der Projektlaufzeit (2022–2025)
+- **NEED-125**: Nachvollziehbare Berichterstattung über Projektfortschritte und Mittelverwendung
+- **NEED-126**: Nachweis der Dissemination durch Publikationen, Konferenzen und Workshops
+- **NEED-127**: Konzept für nachhaltige Weiternutzung nach Ende der Förderung
+
+#### Wissenschaftliche Mitarbeiter (STK-11)
+- **NEED-128**: Zugang zu modernen KI-Entwicklungstools und -bibliotheken für die Implementierung
+- **NEED-129**: Iterative Entwicklungsmöglichkeiten mit regelmäßigen Feedback-Zyklen
+
+#### Didaktikzentren & Community (STK-06, STK-14)
+- **NEED-130**: Transferierbare didaktische Konzepte, die auch außerhalb der Informatik eingesetzt werden können
+- **NEED-131**: Bereitstellung von Workshops und Best-Practice-Beispielen für Lehrende
+- **NEED-132**: Wissenschaftlicher Austausch über Ergebnisse, Methoden und Evaluationsdaten
 
 ### 5.2 Stakeholder-Anforderungen (formell)
 Die detaillierten, formellen Stakeholder-Anforderungen werden in separaten Dokumenten spezifiziert:
@@ -150,7 +171,6 @@ Entwicklung im Projektrahmen, Open Source Komponenten wo möglich, spezielle KI-
 - HUGIN Researcher für Bayessche Netzwerke (TH Aschaffenburg)
 - Vyond Premium Lizenz für Animationsvideos (HS Kempten)
 - Serverhardware und KI-Rechner für maschinelles Lernen
-- Eye-Tracking-Labor (20 Arbeitsplätze an OTH Regensburg)
 
 ### 6.4 Einführungskonzept
 Iterative Einführung über Projektverlauf (48 Monate), Start mit Pilotveranstaltungen, schrittweise Ausweitung auf weitere Module und Hochschulen.
@@ -180,6 +200,9 @@ Nach Projektende: Überführung in regulären Hochschulbetrieb oder Open Source 
 - **RCAI**: Regensburg Center for Artificial Intelligence
 - **SECAT**: Software Engineering Competency Assessment Tool
 - **THAB**: Technische Hochschule Aschaffenburg
+  
+# 8.2 Referenzen
+- ISO/IEC/IEEE 29148:2018
 
 ## 9 Traceability
 - Bidirektionale Nachverfolgbarkeit Stakeholder → Anforderungen: siehe traceability/RTM.csv
@@ -188,7 +211,6 @@ Nach Projektende: Überführung in regulären Hochschulbetrieb oder Open Source 
 **Verwendete Methoden**: 
 - Systematisches Literaturreview zu adaptiven Lernumgebungen
 - Grounded-Theory-Methodologie für Evaluationen
-- Eye-Tracking-Studien für Nutzungsanalysen
 - Befragungen und Beobachtungen der Nutzerinteraktionen
 
 **Review-/Abnahmeprozess**: Iterative Evaluationen mit Studierenden und Lehrenden, Abstimmung mit Datenschutzbeauftragten, wissenschaftliche Begutachtung durch Projektbeirat
