@@ -2,6 +2,8 @@ requirements_dir: ../requirements
 test_reports:
   - type: jest
     path: ../frontend/reports/jest-results.json
+  - type: pytest
+    path: ../backend/reports/pytest-report.json
 output: RTM.csv
 
 # Optional: mappings to build GitHub file:line links in generated docs.
@@ -15,6 +17,9 @@ github_file_link_mappings:
     repo: HASKI-RAK/HASKI-Frontend
     branch: main
     repo_root_subpath: src
+  - local_root: ../backend
+    repo: HASKI-RAK/HASKI-Backend
+    branch: main
 
 # Environment overrides (used by scripts/generate_docs.py):
 #   TRACEABILITY_GITHUB_COMMIT – if set, replaces branch in links with this commit SHA (immutable deep links)

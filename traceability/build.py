@@ -7,7 +7,7 @@ from typing import List
 
 import yaml
 
-from adapters import jest
+from adapters import jest, pytest
 from requirements_loader import load as load_requirements
 
 
@@ -28,6 +28,16 @@ def gather_tests(test_reports: List[dict], debug: bool = False):
                 else:
                     print(
                         f"[traceability] Parsed {len(parsed)} jest test(s) from {path}"
+                    )
+            tests.extend(parsed)
+        elif rtype == "pytest":
+            parsed = pytest.parse(path)
+            if debug:
+                if not os.path.exists(path):
+                    print(f"[traceability][WARN] Pytest report not found: {path}")
+                else:
+                    print(
+                        f"[traceability] Parsed {len(parsed)} pytest test(s) from {path}"
                     )
             tests.extend(parsed)
         else:

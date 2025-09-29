@@ -1,5 +1,9 @@
 docs/
 frontend/
+backend/
+HASKI-Backend/
+HASKI-Frontend/
+node-grade/
 traceability/RTM.csv
 bin/act
 venv/
