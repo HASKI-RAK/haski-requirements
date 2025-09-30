@@ -9,9 +9,7 @@
 - **Stakeholder:** <z. B. Studierende (STK-01)>  
 
 ## 3. Anforderung (Requirement Statement)
-Das HASKI-System **shall** <eindeutig formulierte, prüfbare Anforderung im „soll/shall“-Stil>.  
-
-*(gemäß ISO 29148: beschreibt „was“ das System leisten soll, nicht „wie“)*
+Das HASKI-System **shall** <eindeutig formulierte, prüfbare Anforderung im „soll/shall“-Stil>.
 
 ## 4. Attribute
 - **Priorität:** Hoch / Mittel / Niedrig  

@@ -2,7 +2,7 @@
 
 ## 1. Identifikation
 - **Requirement ID:** StRS-101
-- **Owner:** Projektteam HASKI / OTH Regensburg  
+- **Owner:** Projektteam HASKI
 
 ## 2. Bezug
 - **Zugehöriges Bedürfnis (NEED):** NEED-101 – Zugang zu individuell zugeschnittenen Lernpfaden basierend auf Lernstil, Interessen und Kompetenzen  
@@ -21,18 +21,18 @@ Das HASKI-System **shall** individuell zugeschnittene Lernpfade bereitstellen, d
 Individuelle Lernpfade sind ein Kernziel von HASKI und fördern Motivation, Akzeptanz und Lernerfolg der Studierenden. Ohne diese Funktion würde das System keinen wesentlichen Mehrwert gegenüber herkömmlichen LMS bieten.  
 
 ## 6. Quellen
-- Stakeholder-Workshops mit Studierenden  
 - Projektbeschreibung HASKI (Teil A, Projektziele)  
 - Literatur zu adaptiven Lernumgebungen (z. B. Franken & Franken, 2020)  
 
 ## 7. Verifikation
 - [x] Review (Fachliche Prüfung durch Didaktik-Experten)  
 - [x] Analyse (Überprüfung der Lernpfad-Generierung auf Anpassungsfähigkeit)  
-- [ ] Test (Systemtest mit Studierenden, Vergleich der generierten Lernpfade)  
-- [ ] Demonstration (Vorführung in Pilotkursen)  
+- [x] Test (Systemtest mit Studierenden, Vergleich der generierten Lernpfade)  
+- [x] Demonstration (Vorführung in Pilotkursen)  
 
 ## 8. Abhängigkeiten / Traceability
-- Verknüpft mit: StRS-102 (Wahl adaptiv vs. selbstgesteuert), StRS-107 (Micro-Learning)  
+- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
+- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert
