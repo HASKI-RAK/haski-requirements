@@ -31,8 +31,8 @@ Die Open-Source-Verfügbarkeit stellt sicher, dass die Ergebnisse des Projekts l
 - [x] Demonstration (Verfügbarkeit des Quellcodes und der Materialien in einem öffentlichen Repository)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-COMP-003](../../system-requirements/SyRS-COMP-003.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

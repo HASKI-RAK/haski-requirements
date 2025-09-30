@@ -31,8 +31,8 @@ Eine klare und umfassende Dokumentation erleichtert die Integration des Systems 
 - [x] Demonstration (Einsatz der Dokumentation bei Wartungsaufgaben im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-DOC-001](../../system-requirements/SyRS-DOC-001.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

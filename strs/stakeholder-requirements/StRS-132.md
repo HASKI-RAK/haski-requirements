@@ -32,8 +32,8 @@ Der wissenschaftliche Austausch ist wesentlich für die Weiterentwicklung des Fo
 - [x] Demonstration (Nachweis durch Publikationslisten, Tagungsprogramme und Workshopberichte)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-MGMT-008](../../system-requirements/SyRS-MGMT-008.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

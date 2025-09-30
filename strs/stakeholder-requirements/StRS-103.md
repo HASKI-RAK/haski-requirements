@@ -31,8 +31,8 @@ Schnelles und nachvollziehbares Feedback ist entscheidend für den Lernfortschri
 - [x] Demonstration (Vorführung der Feedback-Funktion in Pilotveranstaltungen)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-FUNC-003](../../system-requirements/SyRS-FUNC-003.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

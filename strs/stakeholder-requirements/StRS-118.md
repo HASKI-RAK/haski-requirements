@@ -31,8 +31,8 @@ Die DSGVO ist verbindlich für alle Hochschulen in der EU. Nur bei Einhaltung de
 - [x] Demonstration (Audit der Systemimplementierung)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-COMP-004](../../system-requirements/SyRS-COMP-004.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

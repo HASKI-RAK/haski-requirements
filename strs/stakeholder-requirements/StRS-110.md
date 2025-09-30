@@ -31,8 +31,8 @@ Die Möglichkeit zur Konfiguration von Lernräumen mit Scaffolding-Elementen unt
 - [x] Demonstration (Vorführung der Konfigurationsmöglichkeiten im Systembetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-FUNC-008](../../system-requirements/SyRS-FUNC-008.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

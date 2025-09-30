@@ -32,8 +32,8 @@ Projektförderer wie das BMBF erwarten Transparenz und Nachvollziehbarkeit bei d
 - [x] Demonstration (Präsentation der Ergebnisse in Status-Meetings)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-MGMT-004](../../system-requirements/SyRS-MGMT-004.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

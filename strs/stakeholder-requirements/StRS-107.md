@@ -31,8 +31,8 @@ Micro-Learning erleichtert den Wissenserwerb in kurzen, fokussierten Lerneinheit
 - [x] Demonstration (Vorführung der Micro-Learning-Funktionalitäten im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-FUNC-005](../../system-requirements/SyRS-FUNC-005.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

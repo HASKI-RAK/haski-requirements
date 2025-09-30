@@ -31,8 +31,8 @@ Die Qualität von Lehrvideos hängt maßgeblich von der verfügbaren technischen
 - [x] Demonstration (Vorführung der Videoerstellung mit bereitgestelltem Equipment)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-INT-002](../../system-requirements/SyRS-INT-002.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -31,8 +31,8 @@ Rechenintensive KI-Algorithmen benötigen leistungsfähige Hardware. Nur durch g
 - [x] Demonstration (Nachweis der Stabilität im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-PERF-002](../../system-requirements/SyRS-PERF-002.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

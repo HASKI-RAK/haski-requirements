@@ -31,8 +31,8 @@ Automatisierte Analysen reduzieren den Bewertungsaufwand für Lehrende und ermö
 - [x] Demonstration (Vorführung der Bewertungsfunktionen im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SRS-requirements](../../requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [SyRS-FUNC-006](../../system-requirements/SyRS-FUNC-006.md) referenziert diese StRS.
+- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert
