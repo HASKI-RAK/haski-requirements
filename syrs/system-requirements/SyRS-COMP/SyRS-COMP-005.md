@@ -7,6 +7,7 @@ stakeholder_priority: High
 verification_method: Review
 links:
   parents: [StRS-119]
+  children: [HASKI-REQ-0005]
 ---
 
 ## Beschreibung
