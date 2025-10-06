@@ -1,30 +1,31 @@
 ---
-id: HASKI-REQ-0000 # Parser working
-title: [Kurzname der Anforderung] # No parser effect
-type: [Functional | Interface | NFR:Performance | NFR:Security …] # Parser working
-source_id: [StRS-NNN] # Stakeholder Requirement ID, no parser effect
-version: 1.0
+id: ${newReqId}
+title: [Derive from primary issue title and SyRS, make it requirement-focused]
+type: [Infer from SyRS type and issue labels: Functional | Interface | NFR:Performance | NFR:Security | NFR:Usability]
+status: [Map primary issue state: open->Approved, closed->Implemented]
+source_id: [${input:syrsId}]
+links:
+  stories: ["GH-${primaryIssue}", "GH-[other related issue numbers]"]
+  parents: ["${input:syrsId}"]
 ---
 
 ## Beschreibung
-Die Software **shall** [präzise, messbare Beschreibung der Funktion oder Eigenschaft].  (should: kann (empfohlen, nicht zwingend), may: darf (Möglichkeit, locker), will: wird in Zukunft)
-| Wort       | Bedeutung im Standard                            | Verwendung für                  |
-| ---------- | ------------------------------------------------ | ------------------------------- |
-| **shall**  | zwingend, bindend, verifiziert (Anforderung)     | Pflicht-Anforderungen           |
-| **should** | Wunsch, Ziel (empfohlen, aber nicht zwingend)    | Ziele, nicht bindende Vorgaben  |
-| **will**   | Tatsache, Zukunftsaussage, Zweck (nicht bindend) | Kontexte, Fakten, Absicht       |
-| **may**    | Möglichkeit, Erlaubnis (locker)                  | Optionen, erlaubte Spielräume   |
 
-[Keine vagen Begriffe, kein „wie“, nur „was“ – ISO/IEC/IEEE 29148 §5.2.4–5.2.7:contentReference[oaicite:0]{index=0}]
-
-## Bedingungen / Constraints
-- [Messbare Bedingung 1]  
-- [Randbedingung, gesetzlich/technisch]
+[Synthesize from SyRS requirement, primary issue description, and context from related issues. Use "shall" language. Be specific and measurable.]
 
 ## Akzeptanzkriterien
-- [objektiv prüfbares Kriterium 1]  
-- [objektiv prüfbares Kriterium 2]
 
-## Notizen
-- Annahmen: …  
-- Abhängigkeiten: …
+[Insert merged and organized acceptance criteria from all analyzed issues]
+
+## Rationale
+
+Primary implementation: GitHub issue GH-${primaryIssue}: [Issue Title]
+Related work: [List other analyzed issues with brief description of how they relate]
+Derived from system requirement ${input:syrsId}.
+
+## Hinweise
+
+- Primary issue: https://github.com/HASKI-RAK/[repo]/issues/${primaryIssue}
+- Related issues: [Links to other analyzed issues]
+- [Add technical constraints from issue comments across all issues]
+- [Note dependencies between issues]
