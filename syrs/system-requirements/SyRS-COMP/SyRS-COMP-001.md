@@ -7,6 +7,8 @@ stakeholder_priority: High
 verification_method: Review
 links:
   parents: [StRS-104]
+  stories: ["GH-195", "GH-226"]
+  children: ["HASKI-REQ-0001"]
 ---
 
 ## Beschreibung

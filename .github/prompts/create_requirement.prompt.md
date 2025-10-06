@@ -184,7 +184,7 @@ Derived from system requirement ${input:syrsId}.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/[repo]/issues/${primaryIssue}
+- Primary issue: [Issue-id](https://github.com/HASKI-RAK/[repo]/issues/${primaryIssue})
 - Related issues: [Links to other analyzed issues]
 - [Add technical constraints from issue comments across all issues]
 - [Note dependencies between issues]
