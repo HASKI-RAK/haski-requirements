@@ -526,7 +526,7 @@ def copy_srs():
 
 
 def copy_requirements():
-    logger.info("Copy requirement files -> docs/requirements/")
+    logger.info("Copy requirement files -> docs/srs/srs-requirements/")
     requirements_meta = []
     dst_dir = DOCS / "requirements"
     for src in REQS_SRC.glob("HASKI-REQ-*.md"):
@@ -581,7 +581,7 @@ def copy_rtm(verbose: bool = False):
         if not rid:
             return ""
         # Link directly to generated markdown page
-        return f"[{rid}](../requirements/{rid}.md)"
+        return f"[{rid}](../srs/srs-requirements/{rid}.md)"
 
     # Pre-load requirement excerpts (first non-empty line of body) for tooltip usage
     excerpt_cache: Dict[str, str] = {}
@@ -712,7 +712,7 @@ def copy_rtm(verbose: bool = False):
                 else:
                     combined_label = f"<strong>{rid}</strong>"
                 # Link directly to generated markdown page
-                req_cell = f"<a href='../requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
+                req_cell = f"<a href='../srs/srs-requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
             else:
                 req_cell = title_display or ""
             table_lines.append(
