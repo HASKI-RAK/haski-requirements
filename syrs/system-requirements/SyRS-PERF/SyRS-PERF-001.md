@@ -7,6 +7,7 @@ stakeholder_priority: High
 verification_method: Analysis
 links:
   parents: [StRS-105]
+  children: [HASKI-REQ-0030]
 ---
 
 ## Beschreibung
