@@ -26,6 +26,7 @@ Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in de
 //TODO: Up to date halten
 | Normabschnitt (29148)                | Umsetzung im Projekt                | Status | Bemerkung               |
 |-----------------------------------------|-------------------------------------|--------| ------------------------|
+| 5.2.8.2 Examples of requirements attributes | Wir nehmen Owner, Stakeholder priority, risk, rationale, difficulty aus den requirements heraus, da diese redundant sind. | umgesetzt | siehe `requirements/` |
 | 8.2 Business Requirements Specification     | nicht umgesetzt                     | nicht geplant |  Durch das BMBF auf Basis eines genehmigten Projektantrags bewilligt.BRS-Dokument nicht erforderlich. Grundlegenden Ziele, Rahmenbedingungen und Anforderungen bereits im Projektantrag beschrieben, von der Förderinstitution geprüft und akzeptiert.
 8.4 System Requirements Specification | nicht umgesetzt | nicht geplant | 
 | 9.4 Stakeholder Requirements Spec.        | `strs/StRS.md` + `strs/stakeholder-requirements/` | erstellt | vollständig |
