@@ -7,6 +7,8 @@ stakeholder_priority: High
 verification_method: Demonstration
 links:
   parents: [StRS-112]
+  stories: ["GH-188"]
+  children: ["HASKI-REQ-0027"]
 ---
 
 ## Beschreibung

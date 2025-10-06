@@ -6,6 +6,8 @@ status: Proposed
 stakeholder_priority: High
 verification_method: Test
 links:
+  stories: ["GH-10", "GH-9", "GH-11", "GH-26", "GH-22", "GH-37"]
+  children: ["HASKI-REQ-0033"]
   parents: [StRS-108]
 ---
 
