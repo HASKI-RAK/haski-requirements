@@ -7,6 +7,7 @@ stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-COMP-004
 links:
+  stories: []
   parents: ["SyRS-COMP-004"]
 ---
 

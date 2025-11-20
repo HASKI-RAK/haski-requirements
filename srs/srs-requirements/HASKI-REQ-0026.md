@@ -5,7 +5,7 @@ type: Functional
 status: Implemented
 source_id: SyRS-FUNC-008
 links:
-  stories: ["GH-353", "GH-84", "GH-306"]
+  stories: ["HASKI-RAK/HASKI-Frontend#353", "HASKI-RAK/HASKI-Backend#84", "HASKI-RAK/HASKI-Frontend#306"]
   parents: ["SyRS-FUNC-008"]
 ---
 

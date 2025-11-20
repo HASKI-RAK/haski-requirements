@@ -5,7 +5,7 @@ type: Functional
 status: Implemented
 source_id: SyRS-COMP-001
 links:
-  stories: ["GH-195", "GH-226"]
+  stories: ["HASKI-RAK/HASKI-Frontend#195", "HASKI-RAK/HASKI-Frontend#226"]
   parents: ["SyRS-COMP-001"]
 ---
 

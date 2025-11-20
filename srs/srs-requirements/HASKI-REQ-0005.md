@@ -7,7 +7,7 @@ stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-COMP-005
 links:
-  stories: ["GH-128", "GH-195"]
+  stories: ["HASKI-RAK/HASKI-Frontend#128", "HASKI-RAK/HASKI-Frontend#195"]
   parents: ["SyRS-COMP-005"]
 ---
 

@@ -5,7 +5,7 @@ type: Functional
 status: Implemented
 source_id: SyRS-FUNC-006
 links:
-  stories: ["GH-10", "GH-9", "GH-11", "GH-26", "GH-22", "GH-37"]
+  stories: ["HASKI-RAK/NodeGrade#10", "HASKI-RAK/NodeGrade#9", "HASKI-RAK/NodeGrade#11", "HASKI-RAK/NodeGrade#26", "HASKI-RAK/NodeGrade#22", "HASKI-RAK/NodeGrade#37"]
   parents: ["SyRS-FUNC-006"]
 ---
 

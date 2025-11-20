@@ -5,7 +5,7 @@ type: Interface
 status: Implemented
 source_id: SyRS-INT-003
 links:
-  stories: ["GH-19", "GH-138", "GH-42", "GH-83", "GH-146"]
+  stories: ["HASKI-RAK/HASKI-Backend#19", "HASKI-RAK/HASKI-Frontend#138", "HASKI-RAK/HASKI-Backend#42", "HASKI-RAK/HASKI-Frontend#83", "HASKI-RAK/HASKI-Frontend#146"]
   parents: ["SyRS-INT-003"]
 ---
 

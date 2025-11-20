@@ -7,7 +7,7 @@ stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-DOC-001
 links:
-  stories: ["GH-316"]
+  stories: ["HASKI-RAK/HASKI-Frontend#316"]
   parents: ["SyRS-DOC-001"]
 ---
 

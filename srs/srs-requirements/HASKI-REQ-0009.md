@@ -7,7 +7,7 @@ stakeholder_priority: High
 verification_method: Test
 links:
   parents: ["SyRS-FUNC-003"]
-  stories: ["NodeGrade#10", "NodeGrade#11", "NodeGrade#9", "NodeGrade#19", "NodeGrade#37", "NodeGrade#40"]
+  stories: ["HASKI-RAK/NodeGrade#10", "HASKI-RAK/NodeGrade#11", "HASKI-RAK/NodeGrade#9", "HASKI-RAK/NodeGrade#19", "HASKI-RAK/NodeGrade#37", "HASKI-RAK/NodeGrade#40"]
   tests: []
 ---
 

@@ -8,7 +8,7 @@ verification_method: Demonstration
 source_id: SyRS-FUNC-002
 links:
   parents: ["SyRS-FUNC-002"]
-  stories: [GH-308, GH-353, GH-362, GH-83, GH-93, GH-24]
+  stories: ["HASKI-RAK/HASKI-Frontend#308", "HASKI-RAK/HASKI-Frontend#353", "HASKI-RAK/HASKI-Frontend#362", "HASKI-RAK/HASKI-Backend#83", "HASKI-RAK/HASKI-Backend#93", "HASKI-RAK/HASKI-Backend#24"]
 ---
 
 ## Beschreibung

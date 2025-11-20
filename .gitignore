@@ -3,6 +3,7 @@ frontend/
 backend/
 HASKI-Backend/
 HASKI-Frontend/
+NodeGrade/
 node-grade/
 traceability/RTM.csv
 bin/act

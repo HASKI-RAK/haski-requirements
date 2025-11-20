@@ -5,7 +5,7 @@ type: Interface
 status: Proposed
 source_id: SyRS-INT-001
 links:
-  stories: ["GH-188"]
+  stories: ["HASKI-RAK/HASKI-Frontend#188"]
   parents: ["SyRS-INT-001"]
 ---
 
