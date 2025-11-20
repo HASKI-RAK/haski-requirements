@@ -48,7 +48,7 @@ Dieses Dokument verwendet einen systematischen Ansatz zur Stakeholder-Identifika
 - ISO/IEC/IEEE 29148:2018
 - governance/Requirements-Management-Plan.md
 - srs/SRS.md
-- traceability/RTM.csv
+- scripts/traceability/RTM.csv
 - Richtlinie zur Bund-Länder-Initiative zur Förderung der KI in der Hochschulbildung
 - DSGVO
 
@@ -205,7 +205,7 @@ Nach Projektende: Überführung in regulären Hochschulbetrieb oder Open Source 
 - ISO/IEC/IEEE 29148:2018
 
 ## 9 Traceability
-- Bidirektionale Nachverfolgbarkeit Stakeholder → Anforderungen: siehe traceability/RTM.csv
+- Bidirektionale Nachverfolgbarkeit Stakeholder → Anforderungen: siehe scripts/traceability/RTM.csv
 
 ## Ermittlung & Validierung
 **Verwendete Methoden**: 

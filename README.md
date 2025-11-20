@@ -20,7 +20,7 @@ Die generierte Dokumentation umfasst u.a.:
 ```
 requirements/        # Kanonische Requirement-Dateien (YAML Front Matter + Text)
 srs/                  # Master SRS Dokument
-traceability/         # Skripte + RTM.csv (generiert durch build.py)
+scripts/traceability/ # Skripte + RTM.csv (generiert durch build.py)
 scripts/              # generate_docs.py (baut docs/ aus Quellen)
 docs/                 # Ephemer (wird bei Build generiert, nicht manuell editieren)
 tests/                # Test-Strategie, -Plan, -Spezifikationen
@@ -28,13 +28,13 @@ architecture/         # Architektur- und Interface-Dokumente
 design/               # Software Design Description (SDD)
 governance/           # Pläne (CM, Security, Projekt, Risiko, Qualität)
 vnv/                  # Verifikation & Validierung (VV-Plan / Report)
-traceability/adapters # Parser/Adapter für Testergebnisse (z.B. Jest)
+scripts/traceability/adapters # Parser/Adapter für Testergebnisse (z.B. Jest)
 ```
 
 ## Workflow & Automatisierung
 1. Änderungen an Anforderungen / SRS werden in den jeweiligen Quellordnern gepflegt.
 2. Tests referenzieren Anforderungen über Tags, z.B. `verifies=HASKI-REQ-0001`.
-3. `traceability/build.py` aggregiert Requirements + Testergebnis-Metadaten → `traceability/RTM.csv`.
+3. `scripts/traceability/build.py` aggregiert Requirements + Testergebnis-Metadaten → `scripts/traceability/RTM.csv`.
 4. `scripts/generate_docs.py` erzeugt den kompletten `docs/` Baum (SRS-Kopie, Requirement-Index, Traceability HTML mit Filter/Badges).
 5. GitHub Action `traceability-pages.yml` baut & deployt die MkDocs Site (strict) nach GitHub Pages.
 
@@ -57,8 +57,8 @@ Dieser Abschnitt beschreibt, wie ein zusätzliches (externes) Code-/Test-Reposit
 2. Einen Test-Report erzeugen (z.B. Jest JSON mit `--json --testLocationInResults`).
 3. Report-Datei ins (oder per Pfad referenzierbar vom) `haski-requirements` Repository legen.
 4. Adapter (Parser) bereitstellen, falls Format noch nicht unterstützt.
-5. `traceability/config.yaml` erweitern: Eintrag unter `test_reports` und optional GitHub-Link-Mapping unter `github_file_link_mappings`.
-6. CI Workflow anpassen / ergänzen: Report generieren, `traceability/build.py` ausführen, `scripts/generate_docs.py` ausführen, MkDocs deployen.
+5. `scripts/traceability/config.yaml` erweitern: Eintrag unter `test_reports` und optional GitHub-Link-Mapping unter `github_file_link_mappings`.
+6. CI Workflow anpassen / ergänzen: Report generieren, `scripts/generate_docs.py` ausführen (führt auch das Traceability-Build aus), MkDocs deployen.
 
 ### 1. Anforderungen in Tests referenzieren
 Aktuell genügt, dass die Requirement-ID im Testnamen auftaucht (Pattern `HASKI-REQ-\d+`). Beispiel (Jest):
@@ -80,12 +80,12 @@ Variante A (empfohlen): CI Job im Ziel-Repo lädt Artefakt hoch und der `haski-r
 Variante B: Monorepo-ähnliches Checkout im `haski-requirements` CI Workflow – zusätzliches `actions/checkout` mit `repository: HASKI-RAK/HASKI-Frontend` in einen Unterordner `frontend/` (aktueller Ansatz bereits vorhanden). Dann liegt die Report-Datei z.B. unter `frontend/reports/jest-results.json`.
 
 ### 4. Adapter schreiben (falls neues Format)
-Bestehender Adapter: `traceability/adapters/jest.py` liefert `parse(report_path) -> List[TestResult]`.
+Bestehender Adapter: `scripts/traceability/adapters/jest.py` liefert `parse(report_path) -> List[TestResult]`.
 
 Neues Format hinzufügen (Beispiel `pytest` JUnit XML):
-1. Datei `traceability/adapters/pytest_junit.py` anlegen.
+1. Datei `scripts/traceability/adapters/pytest_junit.py` anlegen.
 2. Parser implementieren, der `TestResult(name, file, line, status, requirements)` Instanzen erzeugt.
-3. In `traceability/build.py` im `gather_tests` Zweig erweitern:
+3. In `scripts/traceability/build.py` im `gather_tests` Zweig erweitern:
 ```python
 elif rtype == "pytest-junit":
 		parsed = pytest_junit.parse(path)
@@ -93,21 +93,21 @@ elif rtype == "pytest-junit":
 ```
 4. `test_reports` Eintrag mit `type: pytest-junit` konfigurieren.
 
-### 5. `traceability/config.yaml` erweitern
+### 5. `scripts/traceability/config.yaml` erweitern
 Beispiel-Erweiterung:
 ```yaml
 test_reports:
 	- type: jest
-		path: ../frontend/reports/jest-results.json
+        path: ../../frontend/reports/jest-results.json
 	- type: pytest-junit
-		path: ../api/reports/junit.xml
+		path: ../../api/reports/junit.xml
 
 github_file_link_mappings:
-	- local_root: ../frontend/src
+	- local_root: ../../frontend/src
 		repo: HASKI-RAK/HASKI-Frontend
 		branch: main
 		repo_root_subpath: src
-	- local_root: ../api/src
+	- local_root: ../../api/src
 		repo: HASKI-RAK/HASKI-API
 		branch: main
 		repo_root_subpath: src
@@ -138,10 +138,10 @@ jobs:
 					cd frontend
 					npm ci
 					npx jest --json --outputFile reports/jest-results.json --testLocationInResults
-			- name: Python deps
-				run: pip install -r requirements.txt
+			 - name: Python deps
+			 	run: pip install -r requirements.txt
 			- name: Build traceability CSV
-				run: python traceability/build.py --debug
+				run: python scripts/traceability/build.py --debug
 			- name: Generate docs
 				run: python scripts/generate_docs.py --verbose
 			- name: Build & Deploy MkDocs
@@ -153,7 +153,7 @@ Weitere Repos analog durch zusätzlichen Checkout + Test-Report-Erstellung.
 
 ### Prüfschritte nach Integration
 - Stimmt Anzahl der "parsed test(s)" im `--debug` Output?
-- Enthält `traceability/RTM.csv` Zeilen für neue Requirements?
+- Enthält `scripts/traceability/RTM.csv` Zeilen für neue Requirements?
 - Werden Links im Traceability-Table korrekt angezeigt?
 - Gibt es unverlinkte Dateien (bei `--verbose` würde ein Details-Block erscheinen)?
 
@@ -167,10 +167,10 @@ Weitere Repos analog durch zusätzlichen Checkout + Test-Report-Erstellung.
 
 ### Minimaler manueller Test lokal
 ```bash
-python traceability/build.py --debug \
-	--config traceability/config.yaml
+python scripts/traceability/build.py --debug \
+	--config scripts/traceability/config.yaml
 python scripts/generate_docs.py --verbose
-grep HASKI-REQ-0005 traceability/RTM.csv || echo 'Nicht gefunden'
+grep HASKI-REQ-0005 scripts/traceability/RTM.csv || echo 'Nicht gefunden'
 ```
 
 Damit ist ein neuer Test-Provider vollständig angebunden.

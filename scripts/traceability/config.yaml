@@ -1,9 +1,9 @@
-requirements_dir: ../srs/srs-requirements
+requirements_dir: ../../srs/srs-requirements
 test_reports:
   - type: jest
-    path: ../frontend/reports/jest-results.json
+    path: ../../frontend/reports/jest-results.json
   - type: pytest
-    path: ../backend/reports/pytest-report.json
+    path: ../../backend/reports/pytest-report.json
 output: RTM.csv
 
 # Optional: mappings to build GitHub file:line links in generated docs.
@@ -13,11 +13,11 @@ output: RTM.csv
 #   branch: branch or tag (default main)
 #   repo_root_subpath: optional path prefix inside repository (omit if local_root already aligns)
 github_file_link_mappings:
-  - local_root: ../frontend/src
+  - local_root: ../../frontend/src
     repo: HASKI-RAK/HASKI-Frontend
     branch: main
     repo_root_subpath: src
-  - local_root: ../backend
+  - local_root: ../../backend
     repo: HASKI-RAK/HASKI-Backend
     branch: main
 
@@ -32,7 +32,7 @@ github_file_link_mappings:
 #   - anything matched by .gitignore at repo root
 # You can add more here, e.g. the frontend app and build outputs:
 docs_copy_exclude:
-  - frontend/
-  - venv/
-  - __pycache__/
+  - ../../frontend/
+  - ../../venv/
+  - ../../__pycache__/
   - "*.pyc"

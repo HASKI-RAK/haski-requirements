@@ -10,11 +10,35 @@ from typing import Dict, List, Optional, Tuple
 import yaml
 
 from .config import GITHUB_FILE_LINK_MAPPINGS, effective_ref
+from .paths import DOCS, RTM_SRC, TRACEABILITY_CONFIG
 from .copying import write
-from .paths import DOCS, RTM_SRC
 from .requirements import read_front_matter
 
 logger = logging.getLogger(__name__)
+
+
+def generate_traceability_matrix(verbose: bool = False):
+    """Invoke the traceability builder to refresh ``RTM.csv`` before copying.
+
+    This keeps docs generation self-contained: running ``scripts/generate_docs.py``
+    will also regenerate the traceability matrix from the latest test reports.
+    """
+
+    if not TRACEABILITY_CONFIG.exists():
+        logger.warning("Traceability config not found at %s; skipping matrix generation", TRACEABILITY_CONFIG)
+        return
+
+    try:
+        from traceability.build import build_matrix
+    except Exception as exc:  # noqa: BLE001 - surface any import/runtime issues
+        logger.warning("Traceability module unavailable; RTM not updated (%s)", exc)
+        return
+
+    logger.info("Generate traceability matrix")
+    build_matrix(str(TRACEABILITY_CONFIG), debug=verbose)
+
+    if not RTM_SRC.exists():
+        logger.warning("Traceability generation finished but RTM.csv missing at %s", RTM_SRC)
 
 
 def build_github_file_link(
@@ -320,6 +344,7 @@ def copy_rtm(verbose: bool = False):
 
 
 __all__ = [
+    "generate_traceability_matrix",
     "build_github_file_link",
     "copy_rtm",
     "parse_test_sources",

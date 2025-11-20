@@ -7,8 +7,12 @@ from typing import List
 
 import yaml
 
-from adapters import jest, pytest
-from requirements_loader import load as load_requirements
+try:
+    from .adapters import jest, pytest  # type: ignore
+    from .requirements_loader import load as load_requirements
+except ImportError:  # pragma: no cover - fallback for direct script execution
+    from adapters import jest, pytest  # type: ignore
+    from requirements_loader import load as load_requirements
 
 
 def gather_tests(test_reports: List[dict], debug: bool = False):

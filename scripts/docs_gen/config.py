@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 def _read_yaml_cfg() -> dict:
-    """Load ``traceability/config.yaml`` safely and return a dict."""
+    """Load ``scripts/traceability/config.yaml`` safely and return a dict."""
 
     if not TRACEABILITY_CONFIG.exists():
         return {}
@@ -23,19 +23,19 @@ def _read_yaml_cfg() -> dict:
         with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as handle:
             return yaml.safe_load(handle) or {}
     except yaml.YAMLError:
-        logger.warning("Failed parsing traceability/config.yaml; using empty config")
+        logger.warning("Failed parsing scripts/traceability/config.yaml; using empty config")
         return {}
 
 
 def load_github_mappings() -> List[Dict[str, str]]:
-    """Load ``github_file_link_mappings`` from ``traceability/config.yaml``.
+    """Load ``github_file_link_mappings`` from ``scripts/traceability/config.yaml``.
 
     Returns an empty list if the file is missing or invalid. Normalises
     ``local_root`` to absolute resolved paths.
     """
 
     if not TRACEABILITY_CONFIG.exists():
-        logger.debug("traceability/config.yaml not found; no GitHub mappings loaded")
+        logger.debug("scripts/traceability/config.yaml not found; no GitHub mappings loaded")
         return []
 
     try:
@@ -43,7 +43,7 @@ def load_github_mappings() -> List[Dict[str, str]]:
             cfg = yaml.safe_load(handle) or {}
     except yaml.YAMLError:
         logger.warning(
-            "Failed parsing traceability/config.yaml; ignoring github mappings"
+            "Failed parsing scripts/traceability/config.yaml; ignoring github mappings"
         )
         return []
 

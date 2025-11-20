@@ -6,7 +6,7 @@ from .copying import clean_docs, copy_repo_tree_to_docs
 from .index_pages import top_level_pages
 from .logging_utils import setup_logging
 from .requirements import copy_requirements
-from .rtm import copy_rtm
+from .rtm import copy_rtm, generate_traceability_matrix
 from .srs import copy_srs
 
 logger = logging.getLogger(__name__)
@@ -38,6 +38,7 @@ def build_docs(verbose: bool):
 
     copy_srs()
     req_meta = copy_requirements()
+    generate_traceability_matrix(verbose=verbose)
     copy_rtm(verbose=verbose)
     top_level_pages(req_meta)
     logger.info("Docs tree generated.")

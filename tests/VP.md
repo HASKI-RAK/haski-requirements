@@ -46,4 +46,4 @@ Tests werden in isolierten Umgebungen ausgeführt. Unit-Tests und Integrationste
 - **CI/CD**: GitHub Actions.
 - **Statische Analyse**: SonarCloud.
 - **Containerisierung**: Docker.
-- **Metriken-Export**: Traceability [Script](../traceability/build.py), Konfiguration in der `package.json`, pytest konfiguration und toml.
+- **Metriken-Export**: Traceability [Script](../scripts/traceability/build.py), Konfiguration in der `package.json`, pytest konfiguration und toml.
