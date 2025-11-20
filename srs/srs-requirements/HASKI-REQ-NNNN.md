@@ -5,7 +5,7 @@ type: [Infer from SyRS type and issue labels: Functional | Interface | NFR:Perfo
 status: [Map primary issue state: open->Approved, closed->Implemented]
 source_id: [${input:syrsId}]
 links:
-  stories: ["GH-${primaryIssue}", "GH-[other related issue numbers]"]
+  stories: ["HASKI-RAK/<repo>-<#primaryIssueNumber>", "HASKI-RAK/<repo>-<#relatedIssue1>", "HASKI-RAK/<repo>-<#relatedIssue2>"]
   parents: ["${input:syrsId}"]
 ---
 
