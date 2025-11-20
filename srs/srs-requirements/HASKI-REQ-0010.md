@@ -8,7 +8,7 @@ verification_method: Demonstration
 links:
   stories: ["HASKI-RAK/HASKI-Frontend#139", "HASKI-RAK/HASKI-Frontend#211", "HASKI-RAK/HASKI-Frontend#188", "HASKI-RAK/HASKI-Frontend#315", "HASKI-RAK/HASKI-Frontend#331"]
   tests: []
-  parents: [SyRS-FUNC-004]
+  parents: ["SyRS-FUNC-004"]
 ---
 
 ## Beschreibung
