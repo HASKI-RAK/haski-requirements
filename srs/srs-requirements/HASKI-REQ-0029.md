@@ -6,7 +6,7 @@ status: Proposed
 source_id: SyRS-INT-004
 verification_method: Demonstration
 links:
-  parents: [SyRS-INT-004]
+  parents: ["SyRS-INT-004"]
 ---
 
 ## Beschreibung

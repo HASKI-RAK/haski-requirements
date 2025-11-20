@@ -8,7 +8,7 @@ verification_method: Demonstration
 source_id: SyRS-FUNC-001
 links:
   stories: ["GH-239", "GH-209", "GH-220", "GH-182"]
-  parents: [SyRS-FUNC-001]
+  parents: ["SyRS-FUNC-001"]
 ---
 
 ## Beschreibung

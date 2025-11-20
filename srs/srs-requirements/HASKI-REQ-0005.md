@@ -8,7 +8,7 @@ verification_method: Review
 source_id: SyRS-COMP-005
 links:
   stories: ["GH-128", "GH-195"]
-  parents: [SyRS-COMP-005]
+  parents: ["SyRS-COMP-005"]
 ---
 
 ## Beschreibung

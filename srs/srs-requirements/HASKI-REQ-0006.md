@@ -8,7 +8,7 @@ verification_method: Review
 source_id: SyRS-DOC-001
 links:
   stories: ["GH-316"]
-  parents: [SyRS-DOC-001]
+  parents: ["SyRS-DOC-001"]
 ---
 
 ## Beschreibung

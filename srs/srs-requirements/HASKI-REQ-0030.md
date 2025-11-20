@@ -6,7 +6,7 @@ status: Approved
 source_id: SyRS-PERF-001
 verification_method: Analysis
 links:
-  parents: [SyRS-PERF-001]
+  parents: ["SyRS-PERF-001"]
 ---
 
 ## Beschreibung

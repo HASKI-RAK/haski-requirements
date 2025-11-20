@@ -6,7 +6,7 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 links:
-  parents: [SyRS-FUNC-003]
+  parents: ["SyRS-FUNC-003"]
   stories: ["NodeGrade#10", "NodeGrade#11", "NodeGrade#9", "NodeGrade#19", "NodeGrade#37", "NodeGrade#40"]
   tests: []
 ---

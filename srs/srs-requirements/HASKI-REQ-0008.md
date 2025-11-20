@@ -7,7 +7,7 @@ stakeholder_priority: High
 verification_method: Demonstration
 source_id: SyRS-FUNC-002
 links:
-  parents: [SyRS-FUNC-002]
+  parents: ["SyRS-FUNC-002"]
   stories: [GH-308, GH-353, GH-362, GH-83, GH-93, GH-24]
 ---
 
