@@ -2,13 +2,13 @@ name: Traceability --> GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 permissions:
   contents: read
-  pages: write       # für deploy-pages
-  id-token: write    # für OIDC
+  pages: write # für deploy-pages
+  id-token: write # für OIDC
 
 concurrency:
   group: "pages"
@@ -59,7 +59,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Generate docs tree (incl. traceability)
-        run: python scripts/generate_docs.py
+        run: python scripts/generate_docs.py --verbose
 
       - name: Build MkDocs site
         run: mkdocs build --strict
