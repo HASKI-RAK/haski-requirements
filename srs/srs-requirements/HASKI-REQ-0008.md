@@ -1,5 +1,5 @@
 ---
-id: HASKI-REQ-0009
+id: HASKI-REQ-0008
 title: Wahlmöglichkeit zwischen adaptiven und selbstgesteuerten Lernpfaden
 type: Functional
 status: Proposed

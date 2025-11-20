@@ -554,8 +554,9 @@ def build_requirement_links_section(meta: Dict, syrs_index: Dict[str, str]) -> s
             continue
         rel = syrs_index.get(pid_clean)
         if rel:
-            # requirement pages live under docs/requirements/, so "../" goes to docs/ root
-            parent_links.append(f"- [{pid_clean}](../{rel})")
+            # requirement pages live under docs/srs/srs-requirements/,
+            # so "../../" goes to docs/ root
+            parent_links.append(f"- [{pid_clean}](../../{rel})")
         else:
             parent_links.append(f"- {pid_clean}")
 
@@ -620,8 +621,10 @@ def build_index(requirements_meta: list[dict]):
         rid = meta.get("id")
         title = meta.get("title", "")
         if rid:
-            # Link directly to generated markdown page
-            lines.append(f"- [{rid}](requirements/{rid}.md) – {title}")
+            # Link directly to generated markdown page (mirror repo structure)
+            lines.append(
+                f"- [{rid}](srs/srs-requirements/{rid}.md) – {title}"
+            )
     lines.append("\n---\n_Automatisch generiert._")
     return "\n".join(lines) + "\n"
 
@@ -641,9 +644,10 @@ def copy_srs():
 
 
 def copy_requirements():
-    logger.info("Copy requirement files -> docs/srs/srs-requirements/")
+    logger.info("Process requirement files in docs/srs/srs-requirements/")
     requirements_meta = []
-    dst_dir = DOCS / "requirements"
+    dst_dir = DOCS / "srs" / "srs-requirements"
+    dst_dir.mkdir(parents=True, exist_ok=True)
     syrs_index = build_syrs_index()
     for src in REQS_SRC.glob("HASKI-REQ-*.md"):
         meta, body = read_front_matter(src)
@@ -655,19 +659,16 @@ def copy_requirements():
         # Reconstruct file with original front matter (normalized)
         fm = yaml.safe_dump(meta, sort_keys=False).strip()
         links_block = build_requirement_links_section(meta, syrs_index)
-        content = f"---\n{fm}\n---\n\n# {rid}\n\n" + \
-            links_block + body.lstrip()
+        content = f"---\n{fm}\n---\n\n# {rid}\n\n" + links_block + body.lstrip()
         write(dst_dir / f"{rid}.md", content)
-    # index
-    index_lines = ["# Requirements Übersicht",
-                   "", "Liste der Anforderungen:", ""]
+    # index (placed alongside the requirements, mirroring source tree)
+    index_lines = ["# Requirements Übersicht", "", "Liste der Anforderungen:", ""]
     for m in sorted(requirements_meta, key=lambda m: m.get("id", "")):
         rid = m["id"]
         title = m.get("title", "")
-        # Link directly to generated markdown page
+        # Link directly to generated markdown page in same directory
         index_lines.append(f"- [{rid}]({rid}.md) – {title}")
-    index_lines.append(
-        "\n_Hinweis: Diese Seite wird automatisch generiert._\n")
+    index_lines.append("\n_Hinweis: Diese Seite wird automatisch generiert._\n")
     write(dst_dir / "index.md", "\n".join(index_lines))
     # .pages config
     # awesome-pages: remove invalid scalar arrange; natural order is default
@@ -706,7 +707,7 @@ def copy_rtm(verbose: bool = False):
 
     # Pre-load requirement excerpts (first non-empty line of body) for tooltip usage
     excerpt_cache: Dict[str, str] = {}
-    for req_file in (DOCS / "requirements").glob("HASKI-REQ-*.md"):
+    for req_file in (DOCS / "srs" / "srs-requirements").glob("HASKI-REQ-*.md"):
         rid = req_file.stem
         try:
             lines = req_file.read_text(encoding="utf-8").splitlines()
