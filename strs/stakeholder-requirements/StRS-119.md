@@ -31,7 +31,7 @@ Transparenz bei der Datenverwendung ist eine Kernforderung der DSGVO und Grundla
 - [x] Demonstration (Nachweis der Transparenz im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-COMP-005](../../system-requirements/SyRS-COMP-005.md) referenziert diese StRS.
+- [SyRS-COMP-005](../../syrs/system-requirements/SyRS-COMP/SyRS-COMP-005.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

@@ -31,7 +31,7 @@ Die Open-Source-Verfügbarkeit stellt sicher, dass die Ergebnisse des Projekts l
 - [x] Demonstration (Verfügbarkeit des Quellcodes und der Materialien in einem öffentlichen Repository)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-COMP-003](../../system-requirements/SyRS-COMP-003.md) referenziert diese StRS.
+- [SyRS-COMP-003](../../syrs/system-requirements/SyRS-COMP/SyRS-COMP-003.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

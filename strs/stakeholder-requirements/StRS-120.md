@@ -31,7 +31,7 @@ Die DSGVO fordert die Minimierung personenbezogener Daten. Durch Anonymisierung 
 - [x] Demonstration (Nachweis der Verfahren im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-SEC-001](../../system-requirements/SyRS-SEC-001.md) referenziert diese StRS.
+- [SyRS-SEC-001](../../syrs/system-requirements/SyRS-SEC/SyRS-SEC-001.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

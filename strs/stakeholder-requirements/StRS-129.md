@@ -31,7 +31,7 @@ Iterative Entwicklung mit Feedback-Schleifen stellt sicher, dass Anforderungen f
 - [x] Demonstration (Vorlage von Verbesserungen aus mehreren Zyklen)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-MGMT-007](../../system-requirements/SyRS-MGMT-007.md) referenziert diese StRS.
+- [SyRS-MGMT-007](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-007.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

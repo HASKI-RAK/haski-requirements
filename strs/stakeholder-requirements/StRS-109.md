@@ -31,7 +31,7 @@ Lehrende benötigen klare und umfassende Informationen zum Lernstand der Studier
 - [x] Demonstration (Vorführung der Reports im Systembetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-007](../../system-requirements/SyRS-FUNC-007.md) referenziert diese StRS.
+- [SyRS-FUNC-007](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-007.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

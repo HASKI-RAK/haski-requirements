@@ -32,7 +32,7 @@ Die termingerechte Umsetzung der Meilensteine ist eine zentrale Voraussetzung f�
 - [x] Demonstration (Nachweis der Meilensteinerreichung in Projektberichten)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-MGMT-003](../../system-requirements/SyRS-MGMT-003.md) referenziert diese StRS.
+- [SyRS-MGMT-003](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-003.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

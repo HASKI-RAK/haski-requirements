@@ -31,7 +31,7 @@ Kollaborative Problemlösung ist eine zentrale Kompetenz in modernen Studiengän
 - [x] Demonstration (Vorführung von Kollaborationsszenarien im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-009](../../system-requirements/SyRS-FUNC-009.md) referenziert diese StRS.
+- [SyRS-FUNC-009](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-009.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

@@ -31,7 +31,7 @@ Eine hohe Verfügbarkeit ist für die Akzeptanz bei Studierenden entscheidend, i
 - [x] Demonstration (Nachweis durch Betriebsprotokolle in Vorlesungs- und Prüfungsphasen)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-PERF-001](../../system-requirements/SyRS-PERF-001.md) referenziert diese StRS.
+- [SyRS-PERF-001](../../syrs/system-requirements/SyRS-PERF/SyRS-PERF-001.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

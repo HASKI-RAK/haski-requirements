@@ -32,7 +32,7 @@ Projektförderer erwarten, dass die Ergebnisse über die Projektlaufzeit hinaus 
 - [x] Demonstration (Vorlage von Vereinbarungen zur Weiternutzung)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-MGMT-006](../../system-requirements/SyRS-MGMT-006.md) referenziert diese StRS.
+- [SyRS-MGMT-006](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-006.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

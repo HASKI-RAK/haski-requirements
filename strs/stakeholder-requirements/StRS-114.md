@@ -31,7 +31,7 @@ Eine iterative Entwicklung mit mehreren Zyklen stellt sicher, dass Feedback von 
 - [x] Demonstration (Nachweis der Umsetzung durch Prototypen in den einzelnen Zyklen)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-MGMT-002](../../system-requirements/SyRS-MGMT-002.md) referenziert diese StRS.
+- [SyRS-MGMT-002](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-002.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

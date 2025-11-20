@@ -31,7 +31,7 @@ Workshops und Best-Practice-Beispiele fördern die Kompetenzentwicklung der Lehr
 - [x] Demonstration (Vorlage von Workshop-Programmen und Materialien)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-DOC-002](../../system-requirements/SyRS-DOC-002.md) referenziert diese StRS.
+- [SyRS-DOC-002](../../syrs/system-requirements/SyRS-DOC/SyRS-DOC-002.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

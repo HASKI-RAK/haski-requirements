@@ -31,7 +31,7 @@ Für eine effiziente und zukunftsfähige Entwicklung des HASKI-Systems sind mode
 - [x] Demonstration (Vorführung der Tool-Nutzung im Entwicklungsprozess)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-INT-004](../../system-requirements/SyRS-INT-004.md) referenziert diese StRS.
+- [SyRS-INT-004](../../syrs/system-requirements/SyRS-INT/SyRS-INT-004.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

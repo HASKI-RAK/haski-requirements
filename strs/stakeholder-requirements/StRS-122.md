@@ -31,7 +31,7 @@ Eine klare und umfassende Dokumentation erleichtert die Integration des Systems 
 - [x] Demonstration (Einsatz der Dokumentation bei Wartungsaufgaben im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-DOC-001](../../system-requirements/SyRS-DOC-001.md) referenziert diese StRS.
+- [SyRS-DOC-001](../../syrs/system-requirements/SyRS-DOC/SyRS-DOC-001.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

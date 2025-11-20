@@ -31,7 +31,7 @@ Die Übertragbarkeit der didaktischen Konzepte auf andere Fachbereiche erhöht d
 - [x] Demonstration (Vorstellung der Konzepte in Workshops mit Lehrenden anderer Fächer)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-010](../../system-requirements/SyRS-FUNC-010.md) referenziert diese StRS.
+- [SyRS-FUNC-010](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-010.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

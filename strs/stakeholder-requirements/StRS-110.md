@@ -31,7 +31,7 @@ Die Möglichkeit zur Konfiguration von Lernräumen mit Scaffolding-Elementen unt
 - [x] Demonstration (Vorführung der Konfigurationsmöglichkeiten im Systembetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-008](../../system-requirements/SyRS-FUNC-008.md) referenziert diese StRS.
+- [SyRS-FUNC-008](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-008.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

@@ -31,7 +31,7 @@ Multimediale und interaktive Inhalte erhöhen Motivation, Verständnis und Lerne
 - [x] Demonstration (Vorführung von Lerninhalten im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-004](../../system-requirements/SyRS-FUNC-004.md) referenziert diese StRS.
+- [SyRS-FUNC-004](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-004.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

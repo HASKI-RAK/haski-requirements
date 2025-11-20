@@ -32,7 +32,7 @@ Projektförderer wie das BMBF erwarten Transparenz und Nachvollziehbarkeit bei d
 - [x] Demonstration (Präsentation der Ergebnisse in Status-Meetings)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-MGMT-004](../../system-requirements/SyRS-MGMT-004.md) referenziert diese StRS.
+- [SyRS-MGMT-004](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-004.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status

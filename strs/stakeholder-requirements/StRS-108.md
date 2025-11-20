@@ -31,7 +31,7 @@ Automatisierte Analysen reduzieren den Bewertungsaufwand für Lehrende und ermö
 - [x] Demonstration (Vorführung der Bewertungsfunktionen im Pilotbetrieb)
 
 ## 8. Abhängigkeiten / Traceability
-- [SyRS-FUNC-006](../../system-requirements/SyRS-FUNC-006.md) referenziert diese StRS.
+- [SyRS-FUNC-006](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-006.md) referenziert diese StRS.
 - [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
