@@ -51,7 +51,7 @@ from pathspec.patterns.gitwildmatch import GitWildMatchPattern
 ROOT = Path(__file__).parent.parent
 DOCS = ROOT / "docs"
 SRS_SRC = ROOT / "srs" / "SRS.md"
-REQS_SRC = ROOT / "requirements"
+REQS_SRC = ROOT / "srs" / "srs-requirements"
 RTM_SRC = ROOT / "traceability" / "RTM.csv"
 
 TRACEABILITY_CONFIG = ROOT / "traceability" / "config.yaml"
@@ -80,7 +80,8 @@ def load_github_mappings() -> List[Dict[str, str]]:
     Normalises local_root to absolute resolved paths.
     """
     if not TRACEABILITY_CONFIG.exists():
-        logger.debug("traceability/config.yaml not found; no GitHub mappings loaded")
+        logger.debug(
+            "traceability/config.yaml not found; no GitHub mappings loaded")
         return []
     try:
         with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
@@ -122,7 +123,8 @@ def _read_yaml_cfg() -> dict:
         with TRACEABILITY_CONFIG.open("r", encoding="utf-8") as h:
             return yaml.safe_load(h) or {}
     except yaml.YAMLError:
-        logger.warning("Failed parsing traceability/config.yaml; using empty config")
+        logger.warning(
+            "Failed parsing traceability/config.yaml; using empty config")
         return {}
 
 
@@ -192,7 +194,8 @@ def load_gitignore_spec(extra_patterns: Optional[List[str]] = None) -> PathSpec:
     if extra_patterns:
         lines.extend(extra_patterns)
     # Filter out comments and blank lines
-    norm = [ln for ln in (ln.strip() for ln in lines) if ln and not ln.startswith("#")]
+    norm = [ln for ln in (ln.strip() for ln in lines)
+            if ln and not ln.startswith("#")]
     return PathSpec.from_lines(GitWildMatchPattern, norm)
 
 
@@ -408,8 +411,10 @@ def parse_test_sources(
                 f, ln = from_token(item)
                 sources.append((f, ln))
             elif isinstance(item, dict):
-                f = item.get("file") or item.get("path") or item.get("test_file") or ""
-                ln = item.get("line") or item.get("ln") or item.get("test_line")
+                f = item.get("file") or item.get(
+                    "path") or item.get("test_file") or ""
+                ln = item.get("line") or item.get(
+                    "ln") or item.get("test_line")
                 f = (f or "").strip()
                 if f:
                     sources.append((f, normalise_line(ln)))
@@ -435,7 +440,8 @@ def parse_test_sources(
 
     file_tokens = split_tokens(files_raw)
     # If tokens include inline :line, we ignore test_line_field
-    inline_pairs: List[Tuple[str, Optional[str]]] = [from_token(t) for t in file_tokens]
+    inline_pairs: List[Tuple[str, Optional[str]]] = [
+        from_token(t) for t in file_tokens]
     if any(ln is not None for _, ln in inline_pairs):
         return [(f, ln) for f, ln in inline_pairs if f]
 
@@ -466,8 +472,117 @@ def read_front_matter(path: Path):
             meta = yaml.safe_load(m.group(1)) or {}
         except yaml.YAMLError:
             meta = {}
-        body = text[m.end() :]
+        body = text[m.end():]
     return meta, body
+
+
+def build_syrs_index() -> Dict[str, str]:
+    """Scan SyRS system-requirements for id -> relative path (from docs/ root).
+
+    This lets us turn SRS links.parents entries into markdown links into the
+    copied SyRS tree under docs/.
+    """
+    base = ROOT / "syrs" / "system-requirements"
+    index: Dict[str, str] = {}
+    if not base.exists():
+        return index
+    for md in base.rglob("SyRS-*.md"):
+        meta, _ = read_front_matter(md)
+        if not isinstance(meta, dict):
+            continue
+        rid = meta.get("id")
+        if not isinstance(rid, str) or not rid.strip():
+            continue
+        # paths inside docs/ mirror repo layout (copy_repo_tree_to_docs)
+        rel_from_root = md.relative_to(ROOT).as_posix()
+        index[rid.strip()] = rel_from_root
+    return index
+
+
+def _build_github_story_link(story: str) -> Optional[str]:
+    """Convert a story reference into a markdown link if possible.
+
+    Expected canonical format in front matter:
+      HASKI-RAK/HASKI-Frontend#139
+      HASKI-RAK/HASKI-Backend#42
+    Falls back to plain text if pattern does not match.
+    """
+    if not isinstance(story, str):
+        return None
+    story = story.strip()
+    if not story:
+        return None
+    if "#" not in story:
+        # not enough structure to build a URL – keep as plain label
+        return story
+    repo, issue = story.split("#", 1)
+    repo = repo.strip()
+    issue = issue.strip().lstrip("#")
+    if not repo or not issue.isdigit():
+        return story
+    url = f"https://github.com/{repo}/issues/{issue}"
+    label = story.replace("<", "&lt;")
+    return f"[{label}]({url})"
+
+
+def build_requirement_links_section(meta: Dict, syrs_index: Dict[str, str]) -> str:
+    """Render an optional 'Links' block for requirement pages.
+
+    Uses YAML front matter:
+      links.parents  -> SyRS parent requirements
+      links.stories  -> GitHub issues (frontend/backend repos)
+    """
+    links = meta.get("links") or {}
+    if not isinstance(links, dict):
+        links = {}
+
+    parents = links.get("parents") or []
+    if not isinstance(parents, list):
+        parents = []
+    stories = links.get("stories") or []
+    if not isinstance(stories, list):
+        stories = []
+
+    lines: List[str] = []
+
+    parent_links: List[str] = []
+    for pid in parents:
+        if not isinstance(pid, str):
+            continue
+        pid_clean = pid.strip()
+        if not pid_clean:
+            continue
+        rel = syrs_index.get(pid_clean)
+        if rel:
+            # requirement pages live under docs/requirements/, so "../" goes to docs/ root
+            parent_links.append(f"- [{pid_clean}](../{rel})")
+        else:
+            parent_links.append(f"- {pid_clean}")
+
+    story_links: List[str] = []
+    for s in stories:
+        link = _build_github_story_link(s)
+        if not link:
+            continue
+        # _build_github_story_link already returns markdown bullet label
+        story_links.append(f"- {link}")
+
+    if parent_links or story_links:
+        lines.append("## Links")
+        lines.append("")
+        if parent_links:
+            lines.append("**SyRS-Parents**")
+            lines.extend(parent_links)
+            lines.append("")
+        if story_links:
+            lines.append("**GitHub-Stories**")
+            lines.extend(story_links)
+            lines.append("")
+        # Visual separator before main body
+        lines.append("---")
+        lines.append("")
+
+    return "\n".join(lines)
 
 
 def clean_docs():
@@ -529,6 +644,7 @@ def copy_requirements():
     logger.info("Copy requirement files -> docs/srs/srs-requirements/")
     requirements_meta = []
     dst_dir = DOCS / "requirements"
+    syrs_index = build_syrs_index()
     for src in REQS_SRC.glob("HASKI-REQ-*.md"):
         meta, body = read_front_matter(src)
         if meta is None:
@@ -538,16 +654,20 @@ def copy_requirements():
         requirements_meta.append(meta)
         # Reconstruct file with original front matter (normalized)
         fm = yaml.safe_dump(meta, sort_keys=False).strip()
-        content = f"---\n{fm}\n---\n\n# {rid}\n\n" + body.lstrip()
+        links_block = build_requirement_links_section(meta, syrs_index)
+        content = f"---\n{fm}\n---\n\n# {rid}\n\n" + \
+            links_block + body.lstrip()
         write(dst_dir / f"{rid}.md", content)
     # index
-    index_lines = ["# Requirements Übersicht", "", "Liste der Anforderungen:", ""]
+    index_lines = ["# Requirements Übersicht",
+                   "", "Liste der Anforderungen:", ""]
     for m in sorted(requirements_meta, key=lambda m: m.get("id", "")):
         rid = m["id"]
         title = m.get("title", "")
         # Link directly to generated markdown page
         index_lines.append(f"- [{rid}]({rid}.md) – {title}")
-    index_lines.append("\n_Hinweis: Diese Seite wird automatisch generiert._\n")
+    index_lines.append(
+        "\n_Hinweis: Diese Seite wird automatisch generiert._\n")
     write(dst_dir / "index.md", "\n".join(index_lines))
     # .pages config
     # awesome-pages: remove invalid scalar arrange; natural order is default
@@ -563,7 +683,8 @@ def copy_rtm(verbose: bool = False):
     if RTM_SRC.exists():
         shutil.copy2(RTM_SRC, csv_path)
     else:
-        logger.warning("RTM source not found at %s; writing empty template", RTM_SRC)
+        logger.warning(
+            "RTM source not found at %s; writing empty template", RTM_SRC)
         write(
             csv_path,
             "requirement_id,requirement_title,test_name,test_file,test_line,status\n",
@@ -612,10 +733,12 @@ def copy_rtm(verbose: bool = False):
         if len(excerpt) > 180:
             excerpt = excerpt[:177] + "..."
         # Basic escaping for quotes
-        excerpt_cache[rid] = excerpt.replace('"', "&quot;").replace("'", "&#39;")
+        excerpt_cache[rid] = excerpt.replace(
+            '"', "&quot;").replace("'", "&#39;")
 
     # Aggregate status counts
-    status_counter = Counter(r.get("status", "") for r in rows if r.get("status"))
+    status_counter = Counter(r.get("status", "")
+                             for r in rows if r.get("status"))
     status_order = sorted(status_counter.keys())
     status_lines = []
     total = len(rows)
@@ -675,7 +798,8 @@ def copy_rtm(verbose: bool = False):
                         # fallback minimal escaping; omit colon if no line
                         if fpath:
                             display = (
-                                f"{fpath}:{l}" if (l and str(l).strip()) else f"{fpath}"
+                                f"{fpath}:{l}" if (
+                                    l and str(l).strip()) else f"{fpath}"
                             )
                         else:
                             display = ""
@@ -718,7 +842,7 @@ def copy_rtm(verbose: bool = False):
             table_lines.append(
                 "<tr data-status='{}'>".format(st)
                 + f"<td>{req_cell}</td>"
-                + f"<td>{(r.get('test_name') or '').replace('<','&lt;')}</td>"
+                + f"<td>{(r.get('test_name') or '').replace('<', '&lt;')}</td>"
                 + f"<td>{file_line}</td>"
                 + f"<td>{badge(st)}</td>"
                 + "</tr>"
@@ -807,7 +931,8 @@ def main():
     # 1) Copy the repository tree (minus excluded/ignored) into docs/
     extra_excludes = load_docs_copy_excludes()
     if extra_excludes:
-        logger.debug("Additional copy excludes from config: %s", extra_excludes)
+        logger.debug("Additional copy excludes from config: %s",
+                     extra_excludes)
     ignore_spec = load_gitignore_spec(extra_patterns=extra_excludes)
     copy_repo_tree_to_docs(ignore_spec)
 
