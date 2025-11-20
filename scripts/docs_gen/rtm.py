@@ -49,28 +49,51 @@ def build_github_file_link(
     try:
         path_obj = Path(local_path).resolve()
     except OSError:
-        return None
+        path_obj = None
 
     for mapping in GITHUB_FILE_LINK_MAPPINGS:
         try:
             root = Path(mapping["local_root"]).resolve()
         except KeyError:
             continue
-        if root in path_obj.parents or path_obj == root:
+        repo = mapping.get("repo")
+        if not repo:
+            continue
+        branch = effective_ref(mapping.get("branch", "main"))
+        repo_root_subpath = mapping.get("repo_root_subpath", "").strip("/")
+
+        # Primary match: on-disk paths inside local_root
+        if path_obj and (root in path_obj.parents or path_obj == root):
             try:
                 rel = path_obj.relative_to(root)
             except ValueError:
-                continue
-            repo = mapping.get("repo")
-            if not repo:
-                continue
-            branch = effective_ref(mapping.get("branch", "main"))
-            sub = mapping.get("repo_root_subpath", "")
-            repo_parts = []
-            if sub:
-                repo_parts.append(sub.strip("/"))
-            repo_parts.append(rel.as_posix())
-            repo_path = "/".join(repo_parts)
+                rel = None
+            if rel:
+                repo_parts = []
+                if repo_root_subpath:
+                    repo_parts.append(repo_root_subpath)
+                repo_parts.append(rel.as_posix())
+                repo_path = "/".join(repo_parts)
+                anchor = f"#L{line}" if line else ""
+                url = f"https://github.com/{repo}/blob/{branch}/{repo_path}{anchor}"
+                display = f"{repo_path}:{line}" if line else repo_path
+                display = display.replace("<", "&lt;")
+                return f"<a href='{url}' target='_blank' rel='noopener noreferrer'>{display}</a>"
+
+        # Fallback: absolute paths that contain the repo name (e.g. /home/runner/work/HASKI-Frontend/HASKI-Frontend/src/...)
+        repo_name = repo.split("/", 1)[1] if "/" in repo else repo
+        marker = f"/{repo_name}/"
+        if marker in str(local_path):
+            after = str(local_path).split(marker, 1)[1]
+            # Some CI paths embed the repo name twice; drop the second occurrence if present
+            if after.startswith(f"{repo_name}/"):
+                after = after[len(repo_name) + 1 :]
+            after = after.lstrip("/")
+            if repo_root_subpath and after.startswith(repo_root_subpath):
+                repo_path = after
+            else:
+                repo_parts = [p for p in [repo_root_subpath, after] if p]
+                repo_path = "/".join(repo_parts)
             anchor = f"#L{line}" if line else ""
             url = f"https://github.com/{repo}/blob/{branch}/{repo_path}{anchor}"
             display = f"{repo_path}:{line}" if line else repo_path
@@ -193,6 +216,21 @@ def copy_rtm(verbose: bool = False):
             return ""
         return f"[{rid}](../srs/srs-requirements/{rid}.md)"
 
+    def html_escape(value: str) -> str:
+        return (value or "").replace("<", "&lt;").replace(">", "&gt;")
+
+    def collapse_list(summary_label: str, items: List[str]) -> str:
+        if not items:
+            return ""
+        return (
+            "<details class='rtm-collapse'>"
+            "<summary>"
+            + summary_label
+            + "</summary><ul>"
+            + "".join(f"<li>{item}</li>" for item in items)
+            + "</ul></details>"
+        )
+
     excerpt_cache: Dict[str, str] = {}
     for req_file in (DOCS / "srs" / "srs-requirements").glob("HASKI-REQ-*.md"):
         rid = req_file.stem
@@ -219,10 +257,46 @@ def copy_rtm(verbose: bool = False):
             excerpt = excerpt[:177] + "..."
         excerpt_cache[rid] = excerpt.replace('"', "&quot;").replace("'", "&#39;")
 
-    status_counter = Counter(row.get("status", "") for row in rows if row.get("status"))
+    # Group tests per requirement so we render a single row per requirement.
+    grouped: Dict[str, Dict[str, object]] = {}
+    for row in rows:
+        rid = row.get("requirement_id", "") or ""
+        tests = grouped.setdefault(
+            rid,
+            {
+                "requirement_id": rid,
+                "requirement_title": row.get("requirement_title", ""),
+                "tests": [],
+            },
+        )
+        if not tests.get("requirement_title") and row.get("requirement_title"):
+            tests["requirement_title"] = row.get("requirement_title", "")
+        tests["tests"].append(
+            {
+                "name": row.get("test_name", ""),
+                "file": row.get("test_file", ""),
+                "line": row.get("test_line", ""),
+                "status": row.get("status", ""),
+            }
+        )
+
+    # Derive aggregated status per requirement (single status if all same, otherwise "mixed").
+    status_counter: Counter[str] = Counter()
+    for group in grouped.values():
+        statuses = {t.get("status", "") for t in group["tests"] if t.get("status")}
+        if not statuses:
+            agg_status = ""
+        elif len(statuses) == 1:
+            agg_status = statuses.pop()
+        else:
+            agg_status = "mixed"
+        group["aggregate_status"] = agg_status
+        if agg_status:
+            status_counter[agg_status] += 1
+
     status_order = sorted(status_counter.keys())
     status_lines: List[str] = []
-    total = len(rows)
+    total = len(grouped)
 
     def badge(status: str) -> str:
         if not status:
@@ -259,34 +333,51 @@ def copy_rtm(verbose: bool = False):
         )
         table_lines.append("<tbody>")
         unmatched_files: List[str] = []
-        for row in rows:
-            raw_file = row.get("test_file", "") or ""
-            raw_line = row.get("test_line", "") or ""
-            sources = parse_test_sources(raw_file, raw_line)
-            link_pieces: List[str] = []
-            if sources:
-                for fpath, line in sources:
-                    link = build_github_file_link(fpath, line or "", unmatched=unmatched_files)
-                    if link:
-                        link_pieces.append(link)
-                    else:
-                        display = f"{fpath}:{line}" if (line and str(line).strip()) else f"{fpath}" if fpath else ""
-                        display = display.replace("<", "&lt;")
-                        link_pieces.append(display)
-                file_line = "<br>".join(link_pieces)
-            else:
-                link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
-                if link:
-                    file_line = link
-                else:
-                    display = (
-                        f"{raw_file}:{raw_line}" if (raw_line and str(raw_line).strip()) else f"{raw_file}" if raw_file else ""
-                    )
-                    file_line = display.replace("<", "&lt;")
 
-            status_value = row.get("status", "")
-            rid = row.get("requirement_id", "")
-            title_raw = row.get("requirement_title") or ""
+        for rid in sorted(grouped.keys() or [""]):
+            group = grouped[rid]
+            tests = group.get("tests", []) or []
+            agg_status = group.get("aggregate_status", "")
+
+            file_entries: List[str] = []
+            for test in tests:
+                raw_file = test.get("file", "") or ""
+                raw_line = test.get("line", "") or ""
+                sources = parse_test_sources(raw_file, raw_line)
+                if sources:
+                    for fpath, line in sources:
+                        link = build_github_file_link(fpath, line or "", unmatched=unmatched_files)
+                        if link:
+                            file_entries.append(link)
+                        else:
+                            display = f"{fpath}:{line}" if (line and str(line).strip()) else f"{fpath}" if fpath else ""
+                            file_entries.append(html_escape(display))
+                else:
+                    link = build_github_file_link(raw_file, raw_line, unmatched=unmatched_files)
+                    if link:
+                        file_entries.append(link)
+                    else:
+                        display = (
+                            f"{raw_file}:{raw_line}"
+                            if (raw_line and str(raw_line).strip())
+                            else f"{raw_file}"
+                            if raw_file
+                            else ""
+                        )
+                        file_entries.append(html_escape(display))
+
+            test_labels: List[str] = []
+            for test in tests:
+                label = html_escape(test.get("name", ""))
+                t_status = test.get("status", "")
+                if t_status and t_status != agg_status:
+                    label += f" {badge(t_status)}"
+                test_labels.append(label)
+
+            test_cell = collapse_list(f"{len(test_labels)} Test(s)", test_labels)
+            file_cell = collapse_list(f"{len(file_entries)} File/Line(s)", file_entries)
+
+            title_raw = group.get("requirement_title", "") or ""
             title_display = title_raw.strip() or "(kein Titel)"
             title_display = title_display.replace("<", "&lt;")
 
@@ -304,11 +395,11 @@ def copy_rtm(verbose: bool = False):
                 req_cell = title_display or ""
 
             table_lines.append(
-                "<tr data-status='{}'>".format(status_value)
+                "<tr data-status='{}'>".format(agg_status)
                 + f"<td>{req_cell}</td>"
-                + f"<td>{(row.get('test_name') or '').replace('<', '&lt;')}</td>"
-                + f"<td>{file_line}</td>"
-                + f"<td>{badge(status_value)}</td>"
+                + f"<td>{test_cell}</td>"
+                + f"<td>{file_cell}</td>"
+                + f"<td>{badge(agg_status)}</td>"
                 + "</tr>"
             )
         table_lines.append("</tbody></table>")
