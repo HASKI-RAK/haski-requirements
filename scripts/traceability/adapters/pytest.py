@@ -55,6 +55,20 @@ def _extract_file_and_line(
     return file_name, line
 
 
+def _normalize_requirement_ids(text_blobs: List[str]) -> List[str]:
+    """Extract and normalize requirement IDs from arbitrary text blobs."""
+
+    seen = []
+    for blob in text_blobs:
+        if not blob or not isinstance(blob, str):
+            continue
+        for match in REQ_PATTERN.findall(blob):
+            normalized = match.replace("_", "-")
+            if normalized not in seen:
+                seen.append(normalized)
+    return seen
+
+
 def parse(report_path: str) -> List[TestResult]:
     """
     Parse a pytest JSON report (from pytest-json-report plugin) and return extracted test cases.
@@ -86,18 +100,44 @@ def parse(report_path: str) -> List[TestResult]:
         location = test.get(
             "location"
         )  # often ["path", lineno, "domain"] with pytest-json-report
-        lineno = test.get("lineno")  # Direct line number field from pytest-json-report
+        # Direct line number field from pytest-json-report
+        lineno = test.get("lineno")
 
         file_name, line = _extract_file_and_line(nodeid, location, lineno)
-        req_ids = REQ_PATTERN.findall(nodeid) if nodeid else []
+        text_blobs: List[str] = []
+        if nodeid:
+            text_blobs.append(nodeid)
+        if file_name:
+            text_blobs.append(file_name)
 
-        # Normalize requirement IDs to standard format (replace underscores with hyphens)
-        req_ids = [req_id.replace("_", "-") for req_id in req_ids]
+        keywords = test.get("keywords")
+        if isinstance(keywords, list):
+            text_blobs.extend(str(keyword) for keyword in keywords if keyword)
+        elif isinstance(keywords, dict):
+            text_blobs.extend(str(keyword)
+                              for keyword in keywords.keys() if keyword)
 
-        # Fallback: also look in file name (if teams encode ID there)
-        if not req_ids and file_name:
-            file_req_ids = REQ_PATTERN.findall(file_name)
-            req_ids = [req_id.replace("_", "-") for req_id in file_req_ids]
+        metadata = test.get("metadata")
+        if isinstance(metadata, dict):
+            for key in ("docstring", "description", "details", "summary"):
+                value = metadata.get(key)
+                if isinstance(value, str):
+                    text_blobs.append(value)
+            metadata_keywords = metadata.get("keywords")
+            if isinstance(metadata_keywords, list):
+                text_blobs.extend(
+                    str(keyword) for keyword in metadata_keywords if keyword
+                )
+
+        docstring = test.get("docstring")
+        if isinstance(docstring, str):
+            text_blobs.append(docstring)
+
+        markers = test.get("markers")
+        if isinstance(markers, list):
+            text_blobs.extend(str(marker) for marker in markers if marker)
+
+        req_ids = _normalize_requirement_ids(text_blobs)
 
         results.append(
             TestResult(
