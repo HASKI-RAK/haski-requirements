@@ -20,12 +20,12 @@ Das System **shall** Topics und Subtopics automatisch anhand der aus Moodle übe
 
 ## Akzeptanzkriterien
 
-- [ ] Ein REST-Endpunkt erlaubt das Anlegen von Topics/Subtopics pro Moodle-Kurs.
-- [ ] Pflichtattribute (Name, LMS-ID, Typ, Universität, Zeitstempel) werden validiert und persistiert.
-- [ ] Subtopics erhalten automatisch den Parent-Topic- oder Kurs-Bezug sowie ihr `contains_le`-Flag.
-- [ ] Duplicate Topic-Anlagen auf Basis derselben LMS-ID werden verhindert und führen zu Fehlerantworten.
-- [ ] Ungültige Datentypen oder fehlende Felder resultieren in nachvollziehbaren Fehlercodes.
-- [ ] Erfolgreich angelegte Topics stehen sofort für Lernpfad-Berechnungen und Zuordnungen zur Verfügung.
+- [X] Ein REST-Endpunkt erlaubt das Anlegen von Topics/Subtopics pro Moodle-Kurs.
+- [X] Pflichtattribute (Name, LMS-ID, Typ, Universität, Zeitstempel) werden validiert und persistiert.
+- [X] Subtopics erhalten automatisch den Parent-Topic- oder Kurs-Bezug sowie ihr `contains_le`-Flag.
+- [X] Duplicate Topic-Anlagen auf Basis derselben LMS-ID werden verhindert und führen zu Fehlerantworten.
+- [X] Ungültige Datentypen oder fehlende Felder resultieren in nachvollziehbaren Fehlercodes.
+- [X] Erfolgreich angelegte Topics stehen sofort für Lernpfad-Berechnungen und Zuordnungen zur Verfügung.
 
 ## Rationale
 
