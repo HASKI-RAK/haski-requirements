@@ -306,14 +306,9 @@ def copy_rtm(verbose: bool = False):
 
     # Derive aggregated status per requirement (single status if all same, otherwise "mixed").
     status_counter: Counter[str] = Counter()
-    not_passed: List[Tuple[str, Dict[str, object]]] = []
     summary_excluded_statuses = {"untested"}
-    tested_requirements = 0
-    untested_requirements = 0
-    for rid, group in grouped.items():
+    for _rid, group in grouped.items():
         tests = group.get("tests", []) or []
-        if tests:
-            tested_requirements += 1
         statuses = {t.get("status", "") for t in tests if t.get("status")}
         if not tests:
             agg_status = "untested"
@@ -323,13 +318,9 @@ def copy_rtm(verbose: bool = False):
             agg_status = statuses.pop()
         else:
             agg_status = "mixed"
-        if agg_status == "untested":
-            untested_requirements += 1
         group["aggregate_status"] = agg_status
         if agg_status and agg_status not in summary_excluded_statuses:
             status_counter[agg_status] += 1
-        if agg_status != "passed" and rid:
-            not_passed.append((rid, group))
 
     status_order = sorted(status_counter.keys())
     status_lines: List[str] = []
@@ -351,41 +342,6 @@ def copy_rtm(verbose: bool = False):
             items.append(f"{badge(status)} {count} ({percentage:.0%})")
         status_lines.append("<div class='rtm-status-summary'>" + " | ".join(items) + "</div>")
         status_lines.append("")
-
-    display_not_passed = [item for item in not_passed if item[0]]
-    total_requirements = len(requirement_meta) or len(grouped)
-    coverage_lines: List[str] = []
-    if total_requirements:
-        coverage_lines.append("### Coverage der Anforderungen")
-        coverage_lines.append("")
-        tested_pct = tested_requirements / total_requirements if total_requirements else 0
-        coverage_lines.append(
-            f"- Anforderungen mit Tests: **{tested_requirements}/{total_requirements}** ({tested_pct:.0%})"
-        )
-        coverage_lines.append(
-            f"- Ohne Status 'passed': **{len(display_not_passed)}/{total_requirements}**"
-        )
-        if untested_requirements:
-            coverage_lines.append(f"- Davon ungetestet: **{untested_requirements}**")
-        coverage_lines.append("")
-
-    not_passed_lines: List[str] = []
-    if display_not_passed:
-        not_passed_lines.append("### Offene Anforderungen")
-        not_passed_lines.append("")
-        not_passed_lines.append(
-            "Folgende Anforderungen sind noch nicht im Status 'passed' (inkl. ungetestete Anforderungen):"
-        )
-        not_passed_lines.append("")
-        for rid, group in sorted(display_not_passed, key=lambda item: item[0]):
-            title_raw = (group.get("requirement_title", "") or "").strip() or "(kein Titel)"
-            title = html_escape(title_raw)
-            status_label = group.get("aggregate_status") or "unbekannt"
-            tests_count = len(group.get("tests", []) or [])
-            not_passed_lines.append(
-                f"- **{rid}** – {title} (Status: {status_label}, Tests: {tests_count})"
-            )
-        not_passed_lines.append("")
 
     table_lines: List[str] = []
     if rows:
@@ -505,8 +461,6 @@ def copy_rtm(verbose: bool = False):
         "",
     ]
     index_md.extend(status_lines)
-    index_md.extend(coverage_lines)
-    index_md.extend(not_passed_lines)
     index_md.append("### Matrix")
     index_md.append("")
     index_md.extend(table_lines)
