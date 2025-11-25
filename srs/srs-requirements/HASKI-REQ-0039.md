@@ -8,6 +8,11 @@ verification_method: Test
 links:
   parents: ["SyRS-INT-003"]
   stories: ["HASKI-RAK/HASKI-Backend#131"]
+  tests:
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_student_to_course"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_student_to_course_duplicate"
 ---
 
 ## Beschreibung
@@ -25,7 +30,7 @@ Das System **shall** Studierende, die in Moodle als Kursteilnehmende geführt we
 
 ## Rationale
 
-GitHub Issue [#131](https://github.com/HASKI-RAK/HASKI-Backend/issues/131) fordert, dass Studierende ausschließlich Kurse sehen, an denen sie in Moodle teilnehmen. Dafür ist eine zuverlässige Übernahme der Kursmitgliedschaften inklusive Validierung obligatorisch. Die persistierten Lernstil-Basiswerte stellen sicher, dass unmittelbar nach der Zuordnung adaptive Lernpfade berechnet werden können. Verifiziert durch `backend/tests/e2e/test_api.py::TestApi::test_add_student_to_course`.
+GitHub Issue [#131](https://github.com/HASKI-RAK/HASKI-Backend/issues/131) fordert, dass Studierende ausschließlich Kurse sehen, an denen sie in Moodle teilnehmen. Dafür ist eine zuverlässige Übernahme der Kursmitgliedschaften inklusive Validierung obligatorisch. Die persistierten Lernstil-Basiswerte stellen sicher, dass unmittelbar nach der Zuordnung adaptive Lernpfade berechnet werden können. Verifiziert durch `backend/tests/e2e/test_api.py::TestApi::test_add_student_to_course` und `backend/tests/e2e/test_api.py::TestApi::test_add_student_to_course_duplicate`.
 
 ## Hinweise
 

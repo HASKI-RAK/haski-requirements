@@ -25,7 +25,7 @@ Das System **shall** authentifizierten Studierenden ermöglichen, für jedes ihr
 
 ## Rationale
 
-GitHub Issue [#83](https://github.com/HASKI-RAK/HASKI-Backend/issues/83) beschreibt die Notwendigkeit, dass Studierende den für sie passenden Lernpfad-Algorithmus auswählen können, während Tutor:innen bei Bedarf Standard-Algorithmen oder Overrides für einzelne Topics setzen. Die Relation `student_topic_learning_path_algorithm` stellt sicher, dass Lernpfadberechnungen konsistent auf aktuelle Präferenzen zugreifen. Die End-to-End-Prüfung `backend/tests/e2e/test_api.py::TestApi::test_post_student_learning_path_learning_element_algorithm` verifiziert die erfolgreiche Persistierung und das Response-Schema des Student:innen-Endpunkts.
+GitHub Issue [#83](https://github.com/HASKI-RAK/HASKI-Backend/issues/83) beschreibt die Notwendigkeit, dass Studierende den für sie passenden Lernpfad-Algorithmus auswählen können, während Tutor:innen bei Bedarf Standard-Algorithmen oder Overrides für einzelne Topics setzen. Die Relation `student_topic_learning_path_algorithm` stellt sicher, dass Lernpfadberechnungen konsistent auf aktuelle Präferenzen zugreifen. Die End-to-End-Prüfungen `backend/tests/e2e/test_api.py::TestApi::test_post_student_learning_path_learning_element_algorithm` (direkter `POST /student/<student_id>/topic/<topic_id>/algorithm`-Aufruf) und `backend/tests/e2e/test_api.py::TestApi::test_p_student_learning_path_learning_element_algorithm` (LMS-gebundener Pfad `POST /user/<student_id>/<lms_user_id>/course/<course_id>/topic/<topic_id>/studentAlgorithm`) verifizieren beide API-Varianten und stellen sicher, dass die Persistierung sowie das Antwortschema konsistent umgesetzt sind.
 
 ## Hinweise
 
