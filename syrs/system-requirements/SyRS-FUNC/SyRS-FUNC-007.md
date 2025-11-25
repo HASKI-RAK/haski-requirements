@@ -7,8 +7,9 @@ stakeholder_priority: High
 verification_method: Demonstration
 links:
   parents: [StRS-109]
-  children: ["HASKI-REQ-0025"]
+  children: ["HASKI-REQ-0025", "HASKI-REQ-0043"]
 ---
 
 ## Beschreibung
+
 Das System **shall** Reports über Lernfortschritte, Schwierigkeiten und Kompetenzen der Studierenden generieren.

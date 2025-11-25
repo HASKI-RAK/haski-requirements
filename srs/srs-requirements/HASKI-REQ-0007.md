@@ -15,6 +15,8 @@ links:
       "HASKI-RAK/HASKI-Frontend#182",
       "HASKI-RAK/HASKI-Backend#8",
       "HASKI-RAK/HASKI-Backend#2",
+      "HASKI-RAK/HASKI-Backend#23",
+      "HASKI-RAK/HASKI-Backend#93",
     ]
   parents: ["SyRS-FUNC-001"]
   tests:
@@ -48,6 +50,10 @@ links:
       name: "test_post_questionnaire_ils"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_learning_path"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_path_ga"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_calculate_learning_path"
 ---
 
 ## Beschreibung
@@ -91,6 +97,8 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 - [x] Lernpfade sind zugänglich und nutzbar nach ILS-Absolvierung
 - [x] System verhindert Nutzung ohne absolvierte ILS-Erfassung
 - [x] Backend stellt einen abgesicherten `POST /user/<user_id>/<moodle_user_id>/student/<student_id>/course/<course_id>/topic/<topic_id>/learningPath`-Endpunkt bereit, der berechnete Lernpfade (inkl. `based_on`, `path`, `calculated_on`) speichert und als JSON zurückliefert
+- [x] Der Lernpfad-Endpunkt akzeptiert den Parameter `algorithm="ga"` und triggert den genetischen Algorithmus (GH-23)
+- [x] Ein `POST /user/<user_id>/<moodle_user_id>/learningPath`-Aufruf ohne Algorithmus-Parameter löst die gespeicherten Tutor:innen-/Student:innen-Präferenzen aus und liefert den berechneten Pfad zurück (GH-93)
 
 ## Rationale
 
@@ -112,6 +120,7 @@ Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI
 
 - **Primary issue**: [GH-239](https://github.com/HASKI-RAK/HASKI-Frontend/issues/239) - Implementiert die eigentliche Lernpfad-Berechnung nach ILS-Absolvierung
 - **Related issues**:
+  - [GH-23](https://github.com/HASKI-RAK/HASKI-Backend/issues/23) - Genetischer Algorithmus für Lernpfad-Berechnungen
   - [GH-209](https://github.com/HASKI-RAK/HASKI-Frontend/issues/209) - ILS-Algorithmus im Backend
   - [GH-220](https://github.com/HASKI-RAK/HASKI-Frontend/issues/220) - ILS-Pflicht für Frontend-Nutzung
   - [GH-182](https://github.com/HASKI-RAK/HASKI-Frontend/issues/182) - Fragebogen-Datenpersistierung

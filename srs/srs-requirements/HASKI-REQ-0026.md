@@ -91,6 +91,12 @@ links:
       name: "Topic Page"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_teacher_learning_path_learning_element_algorithm"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_path_default"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_learning_path_default"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_calculate_learning_path_for_all_students"
 ---
 
 ## Beschreibung
@@ -104,7 +110,7 @@ Das System **shall** Lehrenden die Möglichkeit bieten, konfigurierbare Standard
 - [ ] Lehrende können einen Standard-Lernpfad für das HASKI-System erstellen
 - [ ] Wenn kein Standard-Lernpfad gesetzt ist, wird der erste Kursersteller aufgefordert, einen zu erstellen
 - [ ] Lehrende können einen bestehenden Standard-Lernpfad aktualisieren
-- [ ] Die Aktualisierung eines Standard-Lernpfads löst eine Neuberechnung aller abhängigen studentischen Lernpfade aus
+- [x] Die Aktualisierung eines Standard-Lernpfads löst eine Neuberechnung aller abhängigen studentischen Lernpfade aus (GH-84)
 
 ### Konfiguration von Scaffolding-Elementen
 

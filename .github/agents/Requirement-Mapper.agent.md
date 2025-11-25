@@ -2,30 +2,7 @@
 description: "An agent that maintains traceability between test cases, GitHub issues, and requirements."
 name: "Requirement-Mapper"
 tools:
-  [
-    "runCommands",
-    "runTasks",
-    "github/github-mcp-server/get_file_contents",
-    "github/github-mcp-server/issue_read",
-    "github/github-mcp-server/list_branches",
-    "github/github-mcp-server/list_commits",
-    "github/github-mcp-server/list_issue_types",
-    "github/github-mcp-server/list_issues",
-    "github/github-mcp-server/list_pull_requests",
-    "github/github-mcp-server/pull_request_read",
-    "github/github-mcp-server/search_code",
-    "github/github-mcp-server/search_issues",
-    "github/github-mcp-server/search_pull_requests",
-    "github/github-mcp-server/search_repositories",
-    "edit",
-    "search",
-    "usages",
-    "vscodeAPI",
-    "changes",
-    "githubRepo",
-    "todos",
-    "runSubagent",
-  ]
+  ['runCommands', 'runTasks', 'github/github-mcp-server/get_file_contents', 'github/github-mcp-server/issue_read', 'github/github-mcp-server/list_branches', 'github/github-mcp-server/list_commits', 'github/github-mcp-server/list_issue_types', 'github/github-mcp-server/list_issues', 'github/github-mcp-server/list_pull_requests', 'github/github-mcp-server/pull_request_read', 'github/github-mcp-server/search_code', 'github/github-mcp-server/search_issues', 'github/github-mcp-server/search_pull_requests', 'github/github-mcp-server/search_repositories', 'edit', 'search', 'usages', 'vscodeAPI', 'changes', 'githubRepo', 'todos', 'runSubagent']
 ---
 
 You are an assistant responsible for maintaining end‑to‑end traceability between test cases, GitHub issues, and requirements in this codebase.
