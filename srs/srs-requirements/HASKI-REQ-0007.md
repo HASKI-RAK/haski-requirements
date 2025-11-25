@@ -41,6 +41,8 @@ links:
       name: "ResultDescriptionILS"
     - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Text/ResultDescriptionListK.test.tsx"
       name: "ResultDescriptionListK"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "test_post_questionnaire_list_k"
 ---
 
 ## Beschreibung
@@ -105,6 +107,7 @@ Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI
   - [GH-209](https://github.com/HASKI-RAK/HASKI-Frontend/issues/209) - ILS-Algorithmus im Backend
   - [GH-220](https://github.com/HASKI-RAK/HASKI-Frontend/issues/220) - ILS-Pflicht für Frontend-Nutzung
   - [GH-182](https://github.com/HASKI-RAK/HASKI-Frontend/issues/182) - Fragebogen-Datenpersistierung
+- **Backend-Verifikation**: `backend/tests/e2e/test_api.py::test_post_questionnaire_list_k` prüft die Persistierung und Validierung der LIST-K-Antworten in direkter Umsetzung von [GH-182](https://github.com/HASKI-RAK/HASKI-Frontend/issues/182).
 - **Technical details**:
   - Verwendet den Index of Learning Styles (ILS) zur Bestimmung von Lernstil-Präferenzen
   - Algorithmen sind hardcoded aber konfigurierbar für verschiedene Hochschul-Standorte

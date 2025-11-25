@@ -3,8 +3,6 @@ description: "An agent that maintains traceability between test cases, GitHub is
 name: "Requirement-Mapper"
 tools:
   [
-    "edit",
-    "search",
     "runCommands",
     "runTasks",
     "github/github-mcp-server/get_file_contents",
@@ -19,6 +17,8 @@ tools:
     "github/github-mcp-server/search_issues",
     "github/github-mcp-server/search_pull_requests",
     "github/github-mcp-server/search_repositories",
+    "edit",
+    "search",
     "usages",
     "vscodeAPI",
     "changes",
