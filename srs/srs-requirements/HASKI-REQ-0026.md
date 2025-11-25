@@ -9,6 +9,9 @@ links:
     [
       "HASKI-RAK/HASKI-Frontend#353",
       "HASKI-RAK/HASKI-Backend#84",
+      "HASKI-RAK/HASKI-Frontend#309",
+      "HASKI-RAK/HASKI-Frontend#308",
+      "HASKI-RAK/HASKI-Backend#93",
       "HASKI-RAK/HASKI-Frontend#306",
       "HASKI-RAK/HASKI-Frontend#66",
       "HASKI-RAK/HASKI-Frontend#269",
@@ -86,6 +89,8 @@ links:
       name: "NodeTypes (getNodeIcon)"
     - path: "frontend/src/pages/Topic/Topic.test.tsx"
       name: "Topic Page"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_teacher_learning_path_learning_element_algorithm"
 ---
 
 ## Beschreibung

@@ -17,6 +17,10 @@ links:
   tests:
     - path: "frontend/src/components/LoginForm/LoginForm.test.tsx"
       name: "Test LoginForm"
+    - path: "backend/tests/unit/lti/test_CookieServiceFlask.py"
+      name: "CookieServiceFlask::test_set_cookie"
+    - path: "backend/tests/unit/lti/test_CookieServiceFlask.py"
+      name: "CookieServiceFlask::test_delete_cookie"
 ---
 
 ## Beschreibung
