@@ -9,6 +9,11 @@ source_id: SyRS-FUNC-002
 links:
   parents: ["SyRS-FUNC-002"]
   stories: ["HASKI-RAK/HASKI-Backend#83"]
+  tests:
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_student_learning_path_learning_element_algorithm"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_p_student_learning_path_learning_element_algorithm"
 ---
 
 ## Beschreibung
