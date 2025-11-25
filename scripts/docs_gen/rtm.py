@@ -74,7 +74,13 @@ def build_github_file_link(
 
         for candidate in candidates:
             try:
-                rel = candidate.resolve().relative_to(root)
+                resolved_candidate = candidate.resolve()
+            except Exception:
+                continue
+            if not resolved_candidate.exists():
+                continue
+            try:
+                rel = resolved_candidate.relative_to(root)
             except Exception:
                 rel = None
             if rel:
