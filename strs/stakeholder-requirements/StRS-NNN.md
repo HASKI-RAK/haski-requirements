@@ -33,7 +33,7 @@ Das HASKI-System **shall** <eindeutig formulierte, prüfbare Anforderung im „s
 
 ## 8. Abhängigkeiten / Traceability
 - [SRS-requirements](../../srs/srs-requirements/HASKI-REQ-NNNN.md) und SyRS referenzieren einzelne StRS.
-- [RTM](../../rtm/RTM.csv) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Entwurf / In Bearbeitung / Abgenommen / Implementiert / Verifiziert

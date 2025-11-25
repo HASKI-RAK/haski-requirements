@@ -33,7 +33,7 @@ Der wissenschaftliche Austausch ist wesentlich für die Weiterentwicklung des Fo
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-MGMT-008](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-008.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

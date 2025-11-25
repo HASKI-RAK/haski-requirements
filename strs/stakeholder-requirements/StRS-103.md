@@ -32,7 +32,7 @@ Schnelles und nachvollziehbares Feedback ist entscheidend für den Lernfortschri
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-003](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-003.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

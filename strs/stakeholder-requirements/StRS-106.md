@@ -32,7 +32,7 @@ Multimediale und interaktive Inhalte erhöhen Motivation, Verständnis und Lerne
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-004](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-004.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -7,6 +7,8 @@ from .index_pages import top_level_pages
 from .logging_utils import setup_logging
 from .requirements import copy_requirements
 from .rtm import copy_rtm, generate_traceability_matrix
+from .stakeholder_requirements import copy_stakeholder_requirements
+from .system_requirements import copy_system_requirements
 from .srs import copy_srs
 
 logger = logging.getLogger(__name__)
@@ -38,6 +40,8 @@ def build_docs(verbose: bool):
 
     copy_srs()
     req_meta = copy_requirements()
+    system_index, stakeholder_children = copy_system_requirements(req_meta)
+    copy_stakeholder_requirements(system_index, stakeholder_children)
     generate_traceability_matrix(verbose=verbose)
     copy_rtm(verbose=verbose)
     top_level_pages(req_meta)

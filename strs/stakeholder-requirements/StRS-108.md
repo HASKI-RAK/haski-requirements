@@ -32,7 +32,7 @@ Automatisierte Analysen reduzieren den Bewertungsaufwand für Lehrende und ermö
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-006](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-006.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -32,7 +32,7 @@ Individuelle Lernpfade sind ein Kernziel von HASKI und fördern Motivation, Akze
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-001](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-001.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -33,7 +33,7 @@ Projektförderer erwarten, dass die Ergebnisse über die Projektlaufzeit hinaus 
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-MGMT-006](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-006.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -32,7 +32,7 @@ Die Wahlfreiheit zwischen adaptivem und selbstgesteuertem Lernen unterstützt un
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-002](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-002.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -32,7 +32,7 @@ Micro-Learning erleichtert den Wissenserwerb in kurzen, fokussierten Lerneinheit
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-FUNC-005](../../syrs/system-requirements/SyRS-FUNC/SyRS-FUNC-005.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -32,7 +32,7 @@ Frühzeitige Prototypen ermöglichen es Lehrenden, die Funktionen des Systems in
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-MGMT-001](../../syrs/system-requirements/SyRS-MGMT/SyRS-MGMT-001.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

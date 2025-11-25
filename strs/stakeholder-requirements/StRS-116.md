@@ -32,7 +32,7 @@ Hochschulleitungen benötigen objektive und nachvollziehbare Nachweise zur Wirks
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-COMP-002](../../syrs/system-requirements/SyRS-COMP/SyRS-COMP-002.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

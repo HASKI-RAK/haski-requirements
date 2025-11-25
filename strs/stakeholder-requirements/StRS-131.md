@@ -32,7 +32,7 @@ Workshops und Best-Practice-Beispiele fördern die Kompetenzentwicklung der Lehr
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-DOC-002](../../syrs/system-requirements/SyRS-DOC/SyRS-DOC-002.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

@@ -32,7 +32,7 @@ Die informationelle Selbstbestimmung ist ein Grundprinzip der DSGVO und ein ents
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-COMP-001](../../syrs/system-requirements/SyRS-COMP/SyRS-COMP-001.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

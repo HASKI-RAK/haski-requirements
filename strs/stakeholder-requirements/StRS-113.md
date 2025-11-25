@@ -32,7 +32,7 @@ Die Qualität von Lehrvideos hängt maßgeblich von der verfügbaren technischen
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-INT-002](../../syrs/system-requirements/SyRS-INT/SyRS-INT-002.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

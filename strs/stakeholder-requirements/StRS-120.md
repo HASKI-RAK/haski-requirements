@@ -32,7 +32,7 @@ Die DSGVO fordert die Minimierung personenbezogener Daten. Durch Anonymisierung 
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-SEC-001](../../syrs/system-requirements/SyRS-SEC/SyRS-SEC-001.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

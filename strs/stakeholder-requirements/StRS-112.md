@@ -32,7 +32,7 @@ Professionell animierte Lehrvideos steigern die Attraktivität und Verständlich
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-INT-001](../../syrs/system-requirements/SyRS-INT/SyRS-INT-001.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

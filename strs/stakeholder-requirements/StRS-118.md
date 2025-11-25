@@ -32,7 +32,7 @@ Die DSGVO ist verbindlich für alle Hochschulen in der EU. Nur bei Einhaltung de
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-COMP-004](../../syrs/system-requirements/SyRS-COMP/SyRS-COMP-004.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert

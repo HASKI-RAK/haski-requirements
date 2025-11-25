@@ -32,7 +32,7 @@ Die Kompatibilität mit etablierten LMS-Systemen stellt sicher, dass HASKI nahtl
 
 ## 8. Abhängigkeiten / Traceability
 - [SyRS-INT-003](../../syrs/system-requirements/SyRS-INT/SyRS-INT-003.md) referenziert diese StRS.
-- [RTM](../../rtm/RTM.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
+- [RTM](../../rtm/index.md) verknüpft Anforderungen mit Überprüfungen. Automatisch generiert.
 
 ## 9. Status
 Verifiziert
