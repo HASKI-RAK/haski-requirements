@@ -214,7 +214,7 @@ def copy_rtm(verbose: bool = False):
     def link_req(rid: str) -> str:
         if not rid:
             return ""
-        return f"[{rid}](../srs/srs-requirements/{rid}.md)"
+        return f"[{rid}](../srs/srs-requirements/{rid}/)"
 
     def html_escape(value: str) -> str:
         return (value or "").replace("<", "&lt;").replace(">", "&gt;")
@@ -306,7 +306,6 @@ def copy_rtm(verbose: bool = False):
 
     # Derive aggregated status per requirement (single status if all same, otherwise "mixed").
     status_counter: Counter[str] = Counter()
-    summary_excluded_statuses = {"untested"}
     for _rid, group in grouped.items():
         tests = group.get("tests", []) or []
         statuses = {t.get("status", "") for t in tests if t.get("status")}
@@ -319,12 +318,12 @@ def copy_rtm(verbose: bool = False):
         else:
             agg_status = "mixed"
         group["aggregate_status"] = agg_status
-        if agg_status and agg_status not in summary_excluded_statuses:
+        if agg_status:
             status_counter[agg_status] += 1
 
     status_order = sorted(status_counter.keys())
     status_lines: List[str] = []
-    tested_total = sum(status_counter.values())
+    total_requirements = len(grouped)
 
     def badge(status: str) -> str:
         if not status:
@@ -332,13 +331,13 @@ def copy_rtm(verbose: bool = False):
         cls = status.lower().replace(" ", "-")
         return f"<span class='rtm-badge rtm-badge--{cls}'>{status}</span>"
 
-    if tested_total:
+    if total_requirements:
         status_lines.append("### Status Übersicht")
         status_lines.append("")
         items = []
         for status in status_order:
             count = status_counter[status]
-            percentage = count / tested_total if tested_total else 0
+            percentage = count / total_requirements if total_requirements else 0
             items.append(f"{badge(status)} {count} ({percentage:.0%})")
         status_lines.append("<div class='rtm-status-summary'>" + " | ".join(items) + "</div>")
         status_lines.append("")
@@ -426,7 +425,7 @@ def copy_rtm(verbose: bool = False):
                     )
                 else:
                     combined_label = f"<strong>{rid}</strong>"
-                req_cell = f"<a href='../srs/srs-requirements/{rid}.md'{tooltip_attr}>{combined_label}</a>"
+                req_cell = f"<a href='../srs/srs-requirements/{rid}/'{tooltip_attr}>{combined_label}</a>"
             else:
                 req_cell = title_display or ""
 
