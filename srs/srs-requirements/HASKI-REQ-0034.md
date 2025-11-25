@@ -5,8 +5,16 @@ type: Functional
 status: Implemented
 source_id: SyRS-INT-003
 links:
-  stories: ["HASKI-RAK/HASKI-Backend#85", "HASKI-RAK/HASKI-Backend#81"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Backend#85",
+      "HASKI-RAK/HASKI-Backend#81",
+      "HASKI-RAK/HASKI-Backend#76",
+    ]
   parents: ["SyRS-INT-003"]
+  tests:
+    - path: "frontend/src/common/hooks/University/University.test.tsx"
+      name: "useUniversity hook"
 ---
 
 ## Beschreibung

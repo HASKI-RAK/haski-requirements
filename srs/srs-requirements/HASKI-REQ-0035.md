@@ -6,13 +6,27 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 links:
-  parents: ["SyRS-INT-003"]
-  stories: ["HASKI-RAK/HASKI-Backend#21"]
+  parents:
+    - "SyRS-INT-003"
+  stories:
+    - "HASKI-RAK/HASKI-Backend#21"
+    - "HASKI-RAK/HASKI-Frontend#47"
+    - "HASKI-RAK/HASKI-Frontend#48"
+    - "HASKI-RAK/HASKI-Frontend#19"
+    - "HASKI-RAK/HASKI-Frontend#339"
   tests:
-    [
-      "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle_without_start_date",
-      "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle",
-    ]
+    - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle_without_start_date"
+    - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle"
+    - path: "frontend/src/components/CreateCourse/Table/CreateCourseTable.test.tsx"
+      name: "CreateCourseTable"
+    - path: "frontend/src/components/CreateCourse/Table/CreateCourseDetailsTable.test.tsx"
+      name: "CreateCourseDetailsTable"
+    - path: "frontend/src/components/CourseCard/CourseCard.test.tsx"
+      name: "CourseCard Component"
+    - path: "frontend/src/components/CourseCard/CreateCourseCard.test.tsx"
+      name: "CreateCourseCard Component"
+    - path: "frontend/src/components/DeleteEntityModal/DeleteEntityModal.test.tsx"
+      name: "DeleteEntityModal Component"
 ---
 
 ## Beschreibung

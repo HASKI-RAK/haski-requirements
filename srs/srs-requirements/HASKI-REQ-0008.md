@@ -2,13 +2,24 @@
 id: HASKI-REQ-0008
 title: Wahlmöglichkeit zwischen adaptiven und selbstgesteuerten Lernpfaden
 type: Functional
-status: Proposed
+status: Implemented
 stakeholder_priority: High
 verification_method: Demonstration
 source_id: SyRS-FUNC-002
 links:
   parents: ["SyRS-FUNC-002"]
-  stories: ["HASKI-RAK/HASKI-Frontend#308", "HASKI-RAK/HASKI-Frontend#353", "HASKI-RAK/HASKI-Frontend#362", "HASKI-RAK/HASKI-Backend#83", "HASKI-RAK/HASKI-Backend#93", "HASKI-RAK/HASKI-Backend#24"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Frontend#308",
+      "HASKI-RAK/HASKI-Frontend#353",
+      "HASKI-RAK/HASKI-Frontend#362",
+      "HASKI-RAK/HASKI-Backend#83",
+      "HASKI-RAK/HASKI-Backend#93",
+      "HASKI-RAK/HASKI-Backend#24",
+    ]
+  tests:
+    - path: "frontend/src/components/AlgorithmSettingsModal/AlgorithmSettingsModal.test.tsx"
+      name: "AlgorithmSettingsModal"
 ---
 
 ## Beschreibung
@@ -18,6 +29,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 ## Akzeptanzkriterien
 
 ### Modus-Auswahl und Konfiguration
+
 - [ ] System bietet eine Einstellung zur Wahl zwischen "Adaptiver Modus" und "Selbstgesteuerter Modus"
 - [ ] Die Auswahl ist für Studierende leicht zugänglich (z.B. in Benutzereinstellungen oder Dashboard)
 - [ ] Die Modus-Auswahl ist persistent gespeichert und bleibt über Sessions hinweg erhalten
@@ -25,6 +37,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 - [ ] Bei Moduswechsel wird der Studierende über die Konsequenzen informiert
 
 ### Adaptiver Modus (Systemgesteuert)
+
 - [ ] System generiert automatisch Lernpfad-Empfehlungen basierend auf ILS-Ergebnissen
 - [ ] Lernressourcen werden nach Lernstil, Kompetenz und Fortschritt priorisiert
 - [ ] System zeigt empfohlene "nächste Schritte" im Lernpfad an
@@ -32,6 +45,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 - [ ] Studierende sehen Hinweise, warum bestimmte Inhalte empfohlen werden
 
 ### Selbstgesteuerter Modus (Nutzerkontrolliert)
+
 - [ ] Alle verfügbaren Lernressourcen sind ohne Priorisierung zugänglich
 - [ ] Keine systemgenerierten Empfehlungen oder "nächste Schritte" werden angezeigt
 - [ ] Studierende können frei durch Topics und Learning Elements navigieren
@@ -39,6 +53,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 - [ ] Fortschrittsanzeige bleibt verfügbar, aber ohne prescriptive Empfehlungen
 
 ### Benutzererfahrung und Transparenz
+
 - [ ] Beim ersten Login wird der Unterschied zwischen den Modi klar erklärt
 - [ ] System zeigt an, welcher Modus aktuell aktiv ist
 - [ ] Hilfe-Funktion erklärt die Vor- und Nachteile beider Modi
@@ -46,6 +61,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 - [ ] Wechsel zwischen Modi ist intuitiv und mit maximal 2 Klicks möglich
 
 ### Datenintegrität und Kompatibilität
+
 - [ ] ILS-Fragebogen wird in beiden Modi erfasst (optional im selbstgesteuerten Modus)
 - [ ] Lernfortschritt wird unabhängig vom Modus korrekt erfasst
 - [ ] xAPI-Statements werden in beiden Modi gleichermaßen generiert
@@ -55,6 +71,7 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 ## Rationale
 
 Basierend auf Stakeholder-Anforderung StRS-102 benötigen Studierende die Wahlfreiheit zwischen adaptivem und selbstgesteuertem Lernen, um:
+
 - Unterschiedliche Lernstile und Präferenzen zu unterstützen
 - Die Autonomie und Selbstbestimmung der Studierenden zu stärken
 - Die Akzeptanz des Systems zu erhöhen (nicht alle Studierenden bevorzugen systemgesteuerte Empfehlungen)
@@ -62,6 +79,7 @@ Basierend auf Stakeholder-Anforderung StRS-102 benötigen Studierende die Wahlfr
 - Flexibilität je nach Lernkontext zu ermöglichen (z.B. strukturierte Unterstützung bei neuen Themen, freie Erkundung bei bekannten Inhalten)
 
 Die Implementierung dieses Features ist essentiell, da:
+
 - Forschung zeigt, dass verschiedene Lernende unterschiedliche Grade an Leitungsunterstützung bevorzugen
 - Erzwungene Systemsteuerung kann zu Reaktanz und reduzierter Motivation führen
 - Selbstgesteuerte Optionen die wahrgenommene Kontrolle und intrinsische Motivation erhöhen

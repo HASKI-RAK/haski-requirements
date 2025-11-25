@@ -5,8 +5,18 @@ type: Interface
 status: Implemented
 source_id: SyRS-INT-003
 links:
-  stories: ["HASKI-RAK/HASKI-Backend#19", "HASKI-RAK/HASKI-Frontend#138", "HASKI-RAK/HASKI-Backend#42", "HASKI-RAK/HASKI-Frontend#83", "HASKI-RAK/HASKI-Frontend#146"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Backend#19",
+      "HASKI-RAK/HASKI-Frontend#138",
+      "HASKI-RAK/HASKI-Backend#42",
+      "HASKI-RAK/HASKI-Frontend#83",
+      "HASKI-RAK/HASKI-Frontend#146",
+    ]
   parents: ["SyRS-INT-003"]
+  tests:
+    - path: "frontend/src/components/LoginForm/LoginForm.test.tsx"
+      name: "Test LoginForm"
 ---
 
 ## Beschreibung
@@ -14,6 +24,7 @@ links:
 Das System **shall** über standardisierte LTI 1.3 Schnittstellen (Learning Tools Interoperability) eine nahtlose Integration mit Moodle ermöglichen. Die LTI-Verbindung **shall** für die Authentifizierung und Autorisierung von Nutzern verwendet werden und **shall** nur autorisierte Moodle-Plattformen akzeptieren.
 
 Die LTI-Integration **shall** folgende Funktionalitäten bereitstellen:
+
 - Authentifizierung von Nutzern über LTI-Launch aus Moodle
 - Sicherer Datenaustausch über JWT-basierte Token
 - Cookie-basiertes Session-Management für authentifizierte Nutzer
@@ -56,6 +67,7 @@ Die LTI-Integration **shall** folgende Funktionalitäten bereitstellen:
 Primary implementation: GitHub issue GH-19: "[Technical] Implement LTI Connection for Moodle"
 
 Related work:
+
 - GH-138 (Frontend): LTI connection and configuration on frontend side
 - GH-42 (Backend): API access control implementation using LTI authentication
 - GH-83 (Frontend): HASKI as platform to integrate Moodle activities, session management

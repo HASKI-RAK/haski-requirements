@@ -5,8 +5,16 @@ type: Functional
 status: Implemented
 source_id: SyRS-COMP-001
 links:
-  stories: ["HASKI-RAK/HASKI-Frontend#195", "HASKI-RAK/HASKI-Frontend#226"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Frontend#195",
+      "HASKI-RAK/HASKI-Frontend#226",
+      "HASKI-RAK/HASKI-Frontend#229",
+    ]
   parents: ["SyRS-COMP-001"]
+  tests:
+    - path: "frontend/src/components/PrivacyModal/PrivacyModal.test.tsx"
+      name: "Test PrivacyModal"
 ---
 
 ## Beschreibung
@@ -29,7 +37,8 @@ Das System **shall** Studierenden, die die funktionalen Cookies ablehnen, auf ei
 
 Primary implementation: GitHub issue GH-195: "User has to accept Privacy Policy before he logs in"
 
-Related work: 
+Related work:
+
 - GH-226: "Set up HASKI account the first time a user enters" - Erweitert das Konzept auf einen umfassenden Onboarding-Prozess, der neben der Datenschutzerklärung auch Cookies, Nutzungsbedingungen und Fragebögen einschließt
 
 Derived from system requirement SyRS-COMP-001, which implements stakeholder requirement StRS-104 ensuring compliance with DSGVO requirements for informed consent and data protection.

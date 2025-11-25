@@ -5,7 +5,12 @@ type: Interface
 status: Proposed
 source_id: SyRS-INT-001
 links:
-  stories: ["HASKI-RAK/HASKI-Frontend#188"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Frontend#188",
+      "HASKI-RAK/HASKI-Frontend#272",
+      "HASKI-RAK/HASKI-Frontend#57",
+    ]
   parents: ["SyRS-INT-001"]
 ---
 
@@ -14,6 +19,7 @@ links:
 Das HASKI-System **shall** eine Frontend-Komponente (VideoNode) zur Darstellung und Integration von Video-Lernelementen bereitstellen, die professionell animierte Lehrvideos unterstützt und als Schnittstelle für Video-Animationssoftware dient.
 
 Die VideoNode-Komponente **shall** folgende Funktionalität bereitstellen:
+
 - Darstellung von Video-Lernelementen im adaptiven Lernpfad mit eindeutiger Klassifizierung ("AN")
 - Integration in das ReactFlow-basierte Lernpfad-Interface
 - Unterstützung für die Anzeige von Videoinhalten aus dem LMS (z.B. Moodle)
@@ -51,7 +57,7 @@ Derived from system requirement SyRS-INT-001 and stakeholder requirement StRS-11
 ## Hinweise
 
 - Primary issue: [GH-188](https://github.com/HASKI-RAK/HASKI-Frontend/issues/188) - Frontend Videoplayer (fokussiert auf Video-Analytics, erweitert die VideoNode-Funktionalität)
-- Related work: 
+- Related work:
   - [GH-272](https://github.com/HASKI-RAK/HASKI-Frontend/issues/272) - Optimierung der Moodle-Video-Darstellung (abgeschlossen)
   - [GH-57](https://github.com/HASKI-RAK/HASKI-Frontend/issues/57) - Skalierung von Lernelementen (inkl. Videos)
 - Implementierung befindet sich in `frontend/src/components/Nodes/VideoNode/`

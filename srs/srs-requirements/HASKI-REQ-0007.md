@@ -7,8 +7,40 @@ stakeholder_priority: High
 verification_method: Demonstration
 source_id: SyRS-FUNC-001
 links:
-  stories: ["HASKI-RAK/HASKI-Frontend#239", "HASKI-RAK/HASKI-Frontend#209", "HASKI-RAK/HASKI-Frontend#220", "HASKI-RAK/HASKI-Frontend#182"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Frontend#239",
+      "HASKI-RAK/HASKI-Frontend#209",
+      "HASKI-RAK/HASKI-Frontend#220",
+      "HASKI-RAK/HASKI-Frontend#182",
+      "HASKI-RAK/HASKI-Backend#8",
+    ]
   parents: ["SyRS-FUNC-001"]
+  tests:
+    - path: "frontend/src/components/MenuBar/MenuBar.test.tsx"
+      name: "MenuBar tests"
+    - path: "frontend/src/components/ResponsiveMiniMap/ResponsiveMiniMap.test.tsx"
+      name: "ResponsiveMiniMap component"
+    - path: "frontend/src/components/Questionnaire/OpenQuestionnaire/OpenQuestionnaire.test.tsx"
+      name: "OpenQuestionnaire"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireQuestions/Modal/QuestionnaireQuestionsModal.test.tsx"
+      name: "QuestionnaireQuestionsModal"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireQuestions/Table/TableILSQuestions.test.tsx"
+      name: "TableILSQuestions"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireQuestions/Table/TableListKQuestions.test.tsx"
+      name: "TableListKQuestions"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Graph/GraphILS.test.tsx"
+      name: "GraphILS"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Graph/GraphListK.test.tsx"
+      name: "GraphListK"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Table/TableILS.test.tsx"
+      name: "TableILS"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Table/TableListK.test.tsx"
+      name: "TableListK"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Text/ResultDescriptionILS.test.tsx"
+      name: "ResultDescriptionILS"
+    - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Text/ResultDescriptionListK.test.tsx"
+      name: "ResultDescriptionListK"
 ---
 
 ## Beschreibung
@@ -18,18 +50,21 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 ## Akzeptanzkriterien
 
 ### Lernpfad-Berechnung (GH-239)
+
 - [x] Lernpfad wird automatisch nach dem Absenden des ILS-Fragebogens berechnet
 - [x] Berechnung berücksichtigt die ILS-Dimensionen des Studierenden
 - [x] Algorithmen sind konfigurierbar für verschiedene Standorte (Kempten, Aschaffenburg)
 - [x] Topic-IDs werden in die Lernpfad-Generierung einbezogen
 
 ### ILS-Verarbeitung (GH-209)
+
 - [x] ILS-Antworten werden durch einen Algorithmus im Backend verarbeitet
 - [x] Lernstil-Dimensionen werden aus den ILS-Antworten bestimmt
 - [x] Studierende können ihre ILS-Ergebnisse im Frontend einsehen
 - [x] Lernpfad-Algorithmus kann die bestimmten Dimensionen verwenden
 
 ### ILS-Pflichterfüllung (GH-220)
+
 - [x] System prüft beim Start, ob ILS-Ergebnisse vorliegen (fetch ILS)
 - [x] Wenn ILS-Ergebnisse vorhanden sind, wird localStorage entsprechend gesetzt
 - [x] Ohne ILS-Ergebnisse wird der ILS-Fragebogen angezeigt
@@ -37,11 +72,13 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 - [x] Nach erfolgreichem Absenden wird die Information im Cookie gespeichert
 
 ### Datenpersistierung (GH-182)
+
 - [x] ILS-Fragebogen-Antworten werden an Backend gesendet
 - [x] Antworten werden persistent gespeichert
 - [x] ILS-Short und LIST-K Fragebogen-Antworten werden ebenfalls persistiert
 
 ### Adaptive Lernpfad-Funktionalität
+
 - [x] Lernpfade werden individuell für jeden Studierenden generiert
 - [x] System berücksichtigt Lernstil-Präferenzen bei der Content-Empfehlung
 - [x] Lernpfade sind zugänglich und nutzbar nach ILS-Absolvierung
@@ -52,6 +89,7 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 Primary implementation: GitHub issue GH-239: "User learning path is calculated after submitting ILS questionnaire"
 
 Related work:
+
 - GH-209: Implementiert den ILS-Algorithmus zur Verarbeitung der Fragebogen-Antworten und Bestimmung der Lernstil-Dimensionen
 - GH-220: Stellt sicher, dass Studierende den ILS-Fragebogen ausfüllen, bevor sie das System nutzen können (Voraussetzung für personalisierte Lernpfade)
 - GH-182: Implementiert die Persistierung der Fragebogen-Antworten (ILS, ILS-Short, LIST-K) im Backend
@@ -63,7 +101,7 @@ Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI
 ## Hinweise
 
 - **Primary issue**: [GH-239](https://github.com/HASKI-RAK/HASKI-Frontend/issues/239) - Implementiert die eigentliche Lernpfad-Berechnung nach ILS-Absolvierung
-- **Related issues**: 
+- **Related issues**:
   - [GH-209](https://github.com/HASKI-RAK/HASKI-Frontend/issues/209) - ILS-Algorithmus im Backend
   - [GH-220](https://github.com/HASKI-RAK/HASKI-Frontend/issues/220) - ILS-Pflicht für Frontend-Nutzung
   - [GH-182](https://github.com/HASKI-RAK/HASKI-Frontend/issues/182) - Fragebogen-Datenpersistierung
@@ -74,4 +112,3 @@ Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI
   - Speicherung des ILS-Status in localStorage und Cookie
 - **Dependencies**: ILS-Fragebogen muss ausgefüllt sein, bevor Lernpfade generiert werden können
 - **Status**: Alle vier Issues sind implementiert und geschlossen (Juli 2023 - Dezember 2023)
-
