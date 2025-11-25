@@ -11,4 +11,5 @@ links:
 ---
 
 ## Beschreibung
+
 Das System **shall** den Studierenden ermöglichen, zwischen adaptiven und selbstgesteuerten Lernpfaden zu wählen.
