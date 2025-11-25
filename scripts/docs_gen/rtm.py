@@ -231,31 +231,42 @@ def copy_rtm(verbose: bool = False):
             + "</ul></details>"
         )
 
-    excerpt_cache: Dict[str, str] = {}
-    for req_file in (DOCS / "srs" / "srs-requirements").glob("HASKI-REQ-*.md"):
-        rid = req_file.stem
-        try:
-            lines = req_file.read_text(encoding="utf-8").splitlines()
-        except OSError:
-            continue
-        body_lines = []
+    def build_excerpt(body: str) -> str:
+        if not body:
+            return ""
+        lines = body.splitlines()
+        body_lines: List[str] = []
         skip_heading = True
         for line in lines:
+            stripped = line.strip()
             if skip_heading:
-                if line.strip().startswith("# "):
+                if stripped.startswith("# "):
                     continue
-                if line.strip() == "" or line.strip().startswith("---"):
+                if stripped == "" or stripped.startswith("---"):
                     continue
                 skip_heading = False
-            if not skip_heading:
-                if line.strip():
-                    body_lines.append(line.strip())
-                if len(body_lines) >= 1:
-                    break
+            if not skip_heading and stripped:
+                body_lines.append(stripped)
+                break
         excerpt = body_lines[0] if body_lines else ""
         if len(excerpt) > 180:
             excerpt = excerpt[:177] + "..."
-        excerpt_cache[rid] = excerpt.replace('"', "&quot;").replace("'", "&#39;")
+        return excerpt.replace('"', "&quot;").replace("'", "&#39;")
+
+    requirement_meta: Dict[str, Dict[str, str]] = {}
+    excerpt_cache: Dict[str, str] = {}
+    req_dir = DOCS / "srs" / "srs-requirements"
+    for req_file in req_dir.glob("HASKI-REQ-*.md"):
+        meta, body = read_front_matter(req_file)
+        if not isinstance(meta, dict):
+            meta = {}
+        rid = str(meta.get("id") or req_file.stem).strip()
+        if not rid:
+            continue
+        title = str(meta.get("title") or "").strip()
+        excerpt = build_excerpt(body or "")
+        requirement_meta[rid] = {"title": title}
+        excerpt_cache[rid] = excerpt
 
     # Group tests per requirement so we render a single row per requirement.
     grouped: Dict[str, Dict[str, object]] = {}
@@ -280,23 +291,49 @@ def copy_rtm(verbose: bool = False):
             }
         )
 
+    # Ensure every requirement file is represented, even without linked tests.
+    for rid, meta in requirement_meta.items():
+        group = grouped.setdefault(
+            rid,
+            {
+                "requirement_id": rid,
+                "requirement_title": meta.get("title", ""),
+                "tests": [],
+            },
+        )
+        if not group.get("requirement_title") and meta.get("title"):
+            group["requirement_title"] = meta.get("title", "")
+
     # Derive aggregated status per requirement (single status if all same, otherwise "mixed").
     status_counter: Counter[str] = Counter()
-    for group in grouped.values():
-        statuses = {t.get("status", "") for t in group["tests"] if t.get("status")}
-        if not statuses:
-            agg_status = ""
+    not_passed: List[Tuple[str, Dict[str, object]]] = []
+    summary_excluded_statuses = {"untested"}
+    tested_requirements = 0
+    untested_requirements = 0
+    for rid, group in grouped.items():
+        tests = group.get("tests", []) or []
+        if tests:
+            tested_requirements += 1
+        statuses = {t.get("status", "") for t in tests if t.get("status")}
+        if not tests:
+            agg_status = "untested"
+        elif not statuses:
+            agg_status = "unknown"
         elif len(statuses) == 1:
             agg_status = statuses.pop()
         else:
             agg_status = "mixed"
+        if agg_status == "untested":
+            untested_requirements += 1
         group["aggregate_status"] = agg_status
-        if agg_status:
+        if agg_status and agg_status not in summary_excluded_statuses:
             status_counter[agg_status] += 1
+        if agg_status != "passed" and rid:
+            not_passed.append((rid, group))
 
     status_order = sorted(status_counter.keys())
     status_lines: List[str] = []
-    total = len(grouped)
+    tested_total = sum(status_counter.values())
 
     def badge(status: str) -> str:
         if not status:
@@ -304,15 +341,51 @@ def copy_rtm(verbose: bool = False):
         cls = status.lower().replace(" ", "-")
         return f"<span class='rtm-badge rtm-badge--{cls}'>{status}</span>"
 
-    if total:
+    if tested_total:
         status_lines.append("### Status Übersicht")
         status_lines.append("")
         items = []
         for status in status_order:
             count = status_counter[status]
-            items.append(f"{badge(status)} {count} ({count/total:.0%})")
+            percentage = count / tested_total if tested_total else 0
+            items.append(f"{badge(status)} {count} ({percentage:.0%})")
         status_lines.append("<div class='rtm-status-summary'>" + " | ".join(items) + "</div>")
         status_lines.append("")
+
+    display_not_passed = [item for item in not_passed if item[0]]
+    total_requirements = len(requirement_meta) or len(grouped)
+    coverage_lines: List[str] = []
+    if total_requirements:
+        coverage_lines.append("### Coverage der Anforderungen")
+        coverage_lines.append("")
+        tested_pct = tested_requirements / total_requirements if total_requirements else 0
+        coverage_lines.append(
+            f"- Anforderungen mit Tests: **{tested_requirements}/{total_requirements}** ({tested_pct:.0%})"
+        )
+        coverage_lines.append(
+            f"- Ohne Status 'passed': **{len(display_not_passed)}/{total_requirements}**"
+        )
+        if untested_requirements:
+            coverage_lines.append(f"- Davon ungetestet: **{untested_requirements}**")
+        coverage_lines.append("")
+
+    not_passed_lines: List[str] = []
+    if display_not_passed:
+        not_passed_lines.append("### Offene Anforderungen")
+        not_passed_lines.append("")
+        not_passed_lines.append(
+            "Folgende Anforderungen sind noch nicht im Status 'passed' (inkl. ungetestete Anforderungen):"
+        )
+        not_passed_lines.append("")
+        for rid, group in sorted(display_not_passed, key=lambda item: item[0]):
+            title_raw = (group.get("requirement_title", "") or "").strip() or "(kein Titel)"
+            title = html_escape(title_raw)
+            status_label = group.get("aggregate_status") or "unbekannt"
+            tests_count = len(group.get("tests", []) or [])
+            not_passed_lines.append(
+                f"- **{rid}** – {title} (Status: {status_label}, Tests: {tests_count})"
+            )
+        not_passed_lines.append("")
 
     table_lines: List[str] = []
     if rows:
@@ -374,8 +447,15 @@ def copy_rtm(verbose: bool = False):
                     label += f" {badge(t_status)}"
                 test_labels.append(label)
 
-            test_cell = collapse_list(f"{len(test_labels)} Test(s)", test_labels)
-            file_cell = collapse_list(f"{len(file_entries)} File/Line(s)", file_entries)
+            if test_labels:
+                test_cell = collapse_list(f"{len(test_labels)} Test(s)", test_labels)
+            else:
+                test_cell = "<em>Keine Tests verknüpft</em>"
+
+            if file_entries:
+                file_cell = collapse_list(f"{len(file_entries)} File/Line(s)", file_entries)
+            else:
+                file_cell = "<em>Keine Test-Dateien</em>"
 
             title_raw = group.get("requirement_title", "") or ""
             title_display = title_raw.strip() or "(kein Titel)"
@@ -425,6 +505,8 @@ def copy_rtm(verbose: bool = False):
         "",
     ]
     index_md.extend(status_lines)
+    index_md.extend(coverage_lines)
+    index_md.extend(not_passed_lines)
     index_md.append("### Matrix")
     index_md.append("")
     index_md.extend(table_lines)

@@ -9,6 +9,7 @@
 .rtm-badge--failed { background: #c62828; color: #fff; }
 .rtm-badge--skipped { background: #757575; color: #fff; }
 .rtm-badge--unknown { background: #546e7a; color: #fff; }
+.rtm-badge--untested { background: #bdbdbd; color: #212121; }
 
 /* Table styling */
 #rtm-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
