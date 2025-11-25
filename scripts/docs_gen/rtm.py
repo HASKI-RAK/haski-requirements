@@ -47,9 +47,11 @@ def build_github_file_link(
     if not local_path:
         return None
     try:
-        path_obj = Path(local_path).resolve()
+        path_obj = Path(local_path)
+        resolved_path = path_obj.resolve()
     except OSError:
         path_obj = None
+        resolved_path = None
 
     for mapping in GITHUB_FILE_LINK_MAPPINGS:
         try:
@@ -62,11 +64,18 @@ def build_github_file_link(
         branch = effective_ref(mapping.get("branch", "main"))
         repo_root_subpath = mapping.get("repo_root_subpath", "").strip("/")
 
-        # Primary match: on-disk paths inside local_root
-        if path_obj and (root in path_obj.parents or path_obj == root):
+        # Primary match: on-disk paths inside local_root (direct or after joining root)
+        candidates = []
+        if path_obj:
+            candidates.append(path_obj)
+        # Join relative paths with configured root so "tests/..." under backend maps correctly
+        if path_obj and not path_obj.is_absolute():
+            candidates.append(root / path_obj)
+
+        for candidate in candidates:
             try:
-                rel = path_obj.relative_to(root)
-            except ValueError:
+                rel = candidate.resolve().relative_to(root)
+            except Exception:
                 rel = None
             if rel:
                 repo_parts = []
