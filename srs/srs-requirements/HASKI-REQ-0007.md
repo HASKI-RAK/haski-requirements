@@ -14,6 +14,7 @@ links:
       "HASKI-RAK/HASKI-Frontend#220",
       "HASKI-RAK/HASKI-Frontend#182",
       "HASKI-RAK/HASKI-Backend#8",
+      "HASKI-RAK/HASKI-Backend#2",
     ]
   parents: ["SyRS-FUNC-001"]
   tests:
@@ -45,6 +46,8 @@ links:
       name: "test_post_questionnaire_list_k"
     - path: "backend/tests/e2e/test_api.py"
       name: "test_post_questionnaire_ils"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_path"
 ---
 
 ## Beschreibung
@@ -87,10 +90,13 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 - [x] System berücksichtigt Lernstil-Präferenzen bei der Content-Empfehlung
 - [x] Lernpfade sind zugänglich und nutzbar nach ILS-Absolvierung
 - [x] System verhindert Nutzung ohne absolvierte ILS-Erfassung
+- [x] Backend stellt einen abgesicherten `POST /user/<user_id>/<moodle_user_id>/student/<student_id>/course/<course_id>/topic/<topic_id>/learningPath`-Endpunkt bereit, der berechnete Lernpfade (inkl. `based_on`, `path`, `calculated_on`) speichert und als JSON zurückliefert
 
 ## Rationale
 
 Primary implementation: GitHub issue GH-239: "User learning path is calculated after submitting ILS questionnaire"
+
+Backend-Issue [GH-2](https://github.com/HASKI-RAK/HASKI-Backend/issues/2) stellt sicher, dass die Lernpfad-Berechnung als REST-Endpunkt verfügbar ist und die vom Tutoring-Model berechneten Sequenzen direkt an das Frontend geliefert werden.
 
 Related work:
 

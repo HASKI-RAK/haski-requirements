@@ -119,3 +119,7 @@ HIGH‑LEVEL WORKFLOW (ONE ITERATION)
      - which GitHub issue you linked it to (issue number and title),
      - which requirement you used or created (ID and short title),
      - and what files you changed.
+
+REPEAT
+
+Do this for all tests in the codebase, one at a time, until all tests are properly linked to requirements!

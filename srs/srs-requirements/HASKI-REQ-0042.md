@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_topic_visit"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_element_visit"
 ---
 
 ## Beschreibung
