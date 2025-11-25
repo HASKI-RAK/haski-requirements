@@ -194,6 +194,12 @@ def copy_rtm(verbose: bool = False):
     logger.info("Generate Traceability Matrix page")
     rtm_dir = DOCS / "rtm"
     rtm_dir.mkdir(parents=True, exist_ok=True)
+
+    # Drop legacy RTM.md page so /rtm resolves only to index.md
+    legacy_md = rtm_dir / "RTM.md"
+    if legacy_md.exists():
+        legacy_md.unlink()
+
     csv_path = rtm_dir / "RTM.csv"
     if RTM_SRC.exists():
         csv_path.write_bytes(RTM_SRC.read_bytes())
