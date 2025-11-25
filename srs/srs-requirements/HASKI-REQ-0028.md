@@ -21,6 +21,8 @@ links:
       name: "CookieServiceFlask::test_set_cookie"
     - path: "backend/tests/unit/lti/test_CookieServiceFlask.py"
       name: "CookieServiceFlask::test_delete_cookie"
+    - path: "backend/tests/unit/lti/test_cryptorandom.py"
+      name: "CryptoRandom::test_getRandom"
 ---
 
 ## Beschreibung
@@ -89,6 +91,7 @@ Die LTI-Integration ermöglicht die nahtlose Einbettung von HASKI in bestehende 
   - [GH-42](https://github.com/HASKI-RAK/HASKI-Backend/issues/42) - API Access Control mit LTI
   - [GH-83](https://github.com/HASKI-RAK/HASKI-Frontend/issues/83) - HASKI als Plattform
   - [GH-146](https://github.com/HASKI-RAK/HASKI-Frontend/issues/146) - LTI Registration (offen)
+- Backend test `backend/tests/unit/lti/test_cryptorandom.py::test_getRandom` deckt die kryptographische Zufallszahlenerzeugung für LTI-Nonce und State ab (GH-19).
 - Technische Bibliothek: [pylti1.3](https://github.com/dmitry-viskov/pylti1.3)
 - Standard: IMS Global Learning Consortium – LTI 1.3 Standard
 - LTI-Konfiguration erfolgt über .env-Datei (siehe GH-64)
