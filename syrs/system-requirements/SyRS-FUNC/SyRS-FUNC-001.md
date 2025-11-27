@@ -12,4 +12,5 @@ links:
 ---
 
 ## Beschreibung
+
 Das System **shall** Lernpfade automatisch anpassen basierend auf Lernstil, Interessen und Kompetenzen.
