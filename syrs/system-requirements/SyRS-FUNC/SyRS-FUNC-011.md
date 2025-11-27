@@ -7,7 +7,7 @@ stakeholder_priority: Medium
 verification_method: Demonstration
 links:
   parents: [StRS-133]
-  children: ["HASKI-REQ-0044"]
+  children: ["HASKI-REQ-0044", "HASKI-REQ-0080"]
 ---
 
 ## Beschreibung
