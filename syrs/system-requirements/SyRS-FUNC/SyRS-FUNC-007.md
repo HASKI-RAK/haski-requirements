@@ -7,7 +7,8 @@ stakeholder_priority: High
 verification_method: Demonstration
 links:
   parents: [StRS-109]
-  children: ["HASKI-REQ-0025", "HASKI-REQ-0043", "HASKI-REQ-0074", "HASKI-REQ-0079"]
+  children:
+    ["HASKI-REQ-0025", "HASKI-REQ-0043", "HASKI-REQ-0074", "HASKI-REQ-0079"]
 ---
 
 ## Beschreibung
