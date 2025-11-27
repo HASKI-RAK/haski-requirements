@@ -9,7 +9,9 @@ links:
   parents: ["SyRS-INT-003"]
   stories: ["HASKI-RAK/HASKI-Backend#21"]
   tests:
-    ["backend/tests/e2e/test_api.py::TestApi::test_api_create_le_from_moodle"]
+    [
+      "backend/tests/e2e/test_api.py::TestApi::test_api_create_le_from_moodle",
+    ]
 ---
 
 ## Beschreibung

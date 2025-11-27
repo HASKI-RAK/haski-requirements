@@ -8,7 +8,7 @@ verification_method: Demonstration
 links:
   stories: ["GH-239", "GH-209", "GH-220", "GH-182"]
   parents: [StRS-101]
-  children: [HASKI-REQ-0007]
+  children: [HASKI-REQ-0007, HASKI-REQ-0072]
 ---
 
 ## Beschreibung

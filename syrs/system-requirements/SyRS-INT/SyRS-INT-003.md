@@ -8,7 +8,7 @@ verification_method: Demonstration
 links:
   parents: [StRS-121]
   stories: ["GH-19", "GH-138", "GH-42", "GH-83", "GH-146"]
-  children: ["HASKI-REQ-0028", "HASKI-REQ-0069", "HASKI-REQ-0070"]
+  children: ["HASKI-REQ-0028", "HASKI-REQ-0069", "HASKI-REQ-0070", "HASKI-REQ-0073", "HASKI-REQ-0075", "HASKI-REQ-0076", "HASKI-REQ-0077"]
 ---
 
 ## Beschreibung
