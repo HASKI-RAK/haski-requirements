@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** einen Endpoint `GET /topic/<topic_id>/teacherAlgorithm` bereitstellen, der den aktuell von Tutor:innen festgelegten Lernpfad-Algorithmus eines Topics mitsamt `short_name`, `algorithm_id` und `topic_id` zurückliefert. Die Route **shall** dieselbe Rollen- und Autorisierungslogik wie die Algorithmus-Administrationsendpunkte verwenden und ausschließlich wiedergeben, was zuvor per `POST .../teacherAlgorithm` oder Default-Lernpfad-Konfiguration gesetzt wurde. Damit Frontend-Dialoge und Automatisierungen stets den verbindlichen Tutor-Override anzeigen können, **shall** der Endpoint deterministisch 404 liefern, wenn für das Topic kein Eintrag existiert oder die aufrufende Rolle nicht berechtigt ist.
+Das System **shall** Tutor:innen-Konfigurationen für Lernpfad-Algorithmen je Topic abrufbar machen, damit alle Anwendungen erkennen, welcher Algorithmus aktuell verbindlich ist. Die Schnittstelle spiegelt ausschließlich die zuletzt gepflegte Auswahl wider und stellt sicher, dass nur berechtigte Rollen Einblick erhalten.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten mindestens `short_name`, `algorithm_id` und `topic_id` des aktuellen Tutor-Overrides.
-- [x] Nicht vorhandene Topics bzw. fehlende Tutor-Konfigurationen führen zu HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Fehlende Berechtigungen liefern HTTP 401/403 gemäß Rollen-Decorator.
-- [x] Der Endpoint verwendet dieselbe Algorithmus-Namensauflösung wie der zentrale Katalog (HASKI-REQ-0040), damit Konsistenz zwischen Auswahl und Anzeige gewährleistet ist.
+- [x] Die Antwort enthält mindestens die eindeutige Algorithmusreferenz, den sprechenden Namen und den Bezug zum Topic.
+- [x] Liegt für ein Topic keine Tutor:innen-Definition vor oder fehlt die Berechtigung, wird keine Konfiguration zurückgegeben.
+- [x] Bezeichner und IDs entsprechen dem zentralen Algorithmuskatalog, damit Auswahl- und Anzeigeprozesse synchron bleiben.
 
 ## Rationale
 
-GitHub Issues [#83](https://github.com/HASKI-RAK/HASKI-Backend/issues/83) und [#93](https://github.com/HASKI-RAK/HASKI-Backend/issues/93) verlangen, dass Tutor:innen Topic-spezifische Lernpfad-Algorithmen setzen und die Frontends diese Overrides anzeigen können. Ohne einen dedizierten Read-Endpoint könnten Studierende und Lehrende nicht erkennen, welcher Algorithmus aktuell gilt, und UI-Komponenten wie das AlgorithmSettingsModal hätten keine verlässliche Datenquelle. Die Anforderung stellt sicher, dass jede Auswahl sofort abrufbar und mit der Persistenz der Tutoring-Funktionen konsistent bleibt.
+SyRS-FUNC-002 fordert, dass Tutoring-Algorithmen pro Topic gesteuert werden können. Damit Benutzeroberflächen, Automationen und Auswertungen erkennen, welcher Algorithmus aktiv ist, braucht es einen standardisierten Lesezugriff auf diese Information.
 
 ## Hinweise
 
-- Endpoint teilt sich die Autorisierungs-Decoratoren mit `POST /user/<user_id>/<lms_user_id>/topic/<topic_id>/teacherAlgorithm`.
-- Die Antwortwerte sind Grundlage für Frontend-Komponenten `AlgorithmSettingsModal` und API-Clients wie `fetchTeacherLpLeAlg`.
-- Für Subtopics gelten identische Pfade; deren IDs werden in der gleichen Tabelle verwaltet.
+- Die Schnittstelle verwendet dieselben Rollenregeln wie die Verwaltung der Tutor:innen-Overrides.
+- Subtopics greifen auf die gleiche Datenquelle zu, wodurch Konfigurationen einheitlich dargestellt werden können.

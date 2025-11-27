@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** eingeschriebenen Studierenden über `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic/<topic_id>/learningElement` sämtliche Learning Elements eines Topics zurückliefern. Die Antwort **shall** den Schlüssel `learning_elements` mit Einträgen liefern, die mindestens `id`, `lms_id`, `activity_type`, `classification`, `name`, `university` und den Lernfortschrittskontext `student_learning_element` enthalten, damit adaptive Lernpfade, Dashboards und Empfehlungssysteme identische Datensichten verwenden.
+Das System **shall** eingeschriebenen Studierenden sämtliche Learning Elements eines Topics inklusive ihres persönlichen Fortschritts bereitstellen. Damit können Empfehlungssysteme, Dashboards und Tracking-Funktionen identische Daten verwenden, ohne mehrere Datenquellen abgleichen zu müssen.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten `learning_elements` inklusive der genannten Felder.
-- [x] Ungültige Studierenden-, Kurs- oder Topic-IDs resultieren in HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Topic-Zugriffe werden nur gestattet, wenn der Studierende für den Kurs eingeschrieben ist; andernfalls 404.
-- [x] Die Route nutzt dieselbe Moodle-ID- und Rollenlogik wie die übrigen Kurs-/Topic-Endpunkte und bleibt konsistent mit dem OAS-Schema aus GH-30.
+- [x] Die Antwort umfasst alle Learning Elements des Topics mit den relevanten Metadaten (z. B. Typ, Klassifikation, Name, LMS-Referenz) und dem zugehörigen `student_learning_element`-Status.
+- [x] Topics, zu denen kein legitimer Zugriff besteht, liefern keine Daten.
+- [x] Änderungen an Learning Elements werden ohne Zusatzaufwand in der Ausgabe sichtbar.
 
 ## Rationale
 
-GitHub Issue [#21](https://github.com/HASKI-RAK/HASKI-Backend/issues/21) fordert, dass Kursinhalte aus Moodle in das HASKI-Backend übernommen und kontextsensitiv ausgeliefert werden. Für Lernpfade und Tracking benötigen Clients Zugriff auf die Learning-Element-Liste eines Topics inklusive Lernfortschritt. Ohne diesen Endpoint müssten Frontends eigenständig filtern oder mehrere Routen kombinieren, was zu Inkonsistenzen führt. Der Endpoint stellt sicher, dass alle Lern- und Analytics-Funktionen denselben konsistenten Datenpool erhalten.
+SyRS-FUNC-008 sieht lernpfadfähige Räume vor, in denen pro Topic sämtliche Elemente verfügbar sind. Eine standardisierte Auslieferung verhindert Inkonsistenzen zwischen Frontend, Analytics und Tutoring-Komponenten.
 
 ## Hinweise
 
-- Der Endpoint kann leer zurückgeben, falls für das Topic keine Learning Elements existieren.
-- Antwortschema ist Grundlage für Frontend-Komponenten wie Topic-Detailseiten und den Lernpfadgraphen.
-- Fehler- und Logging-Mechanismen sollen diejenigen aus HASKI-REQ-0056 widerspiegeln, um Debugging zu vereinheitlichen.
+- Die Datenstruktur entspricht der in der OAS beschriebenen Topic/LE-Spezifikation.
+- Wird kein Learning Element gefunden, wird eine leere Liste zurückgegeben, damit Aufrufer deterministisch reagieren können.

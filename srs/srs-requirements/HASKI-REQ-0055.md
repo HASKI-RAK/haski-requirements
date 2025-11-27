@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** über `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic` alle Topics (inklusive Subtopics) eines Kurses ausliefern, sofern der Studierende für diesen Kurs eingeschrieben ist. Die Antwort **shall** die Topic-Metadaten (`id`, `lms_id`, `name`, `is_topic`, `contains_le`, `university`, `parent_id`) sowie den individuellen Lernfortschrittskontext (`student_topic`) enthalten, damit Lernräume und Lernpfad-Berechnungen (GH-76) auf denselben Datenbestand zugreifen können. Ungültige IDs oder fehlende Berechtigungen **shall** deterministisch abgelehnt werden.
+Das System **shall** allen eingeschriebenen Studierenden einen strukturierten Überblick über die Topics ihrer Kurse bereitstellen. Neben den Metadaten eines Topics sollen auch die jeweils gespeicherten Lernfortschrittsinformationen ausgegeben werden, damit Lernräume, Pfadberechnungen und Auswertungen auf dieselbe Sicht zugreifen können.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten den Schlüssel `topics`, dessen Elemente mindestens die genannten Topic-Metadaten und `student_topic` enthalten.
-- [x] Ungültige Studierenden-, Kurs- oder Topiczuweisungen resultieren in HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Topics spiegeln die in GH-76 genutzten Kurs-Topic-Relationen wider, sodass Lernpfad-Berechnungen und Frontends konsistent bleiben.
-- [x] Der Endpoint folgt dem in GH-30 dokumentierten OAS-Schema und akzeptiert Moodle-IDs zur Identifikation.
+- [x] Die bereitgestellte Liste umfasst sämtliche Topics eines belegten Kurses inklusive wesentlicher Stammdaten und des individuellen Lernkontexts.
+- [x] Topics außerhalb der eigenen Einschreibung oder mit ungültigen Referenzen werden nicht ausgeliefert.
+- [x] Alle beteiligten Systeme (z. B. Lernpfad-Services) können ohne zusätzliche Transformationsschritte mit den gelieferten Daten arbeiten.
 
 ## Rationale
 
-SyRS-FUNC-008 fordert konfigurierbare Lernräume. Dafür muss jeder Studierende die zugehörigen Topics eines belegten Kurses inklusive persönlicher Lernfortschrittsinformationen abrufen können. GitHub issue GH-76 beschreibt die zugrunde liegende Datenhaltung für Kurs-Topic-Relationen, während GH-30 die formale API-Struktur festlegt.
+SyRS-FUNC-008 beschreibt adaptive Lernräume auf Topic-Ebene. Ein konsistenter Topics-Feed stellt sicher, dass sowohl UI-Komponenten als auch Algorithmen auf denselben Strukturen basieren, unabhängig von der Quelle der Kursdaten.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/76
-- Supporting issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/30
-- Die gleiche Pfadstruktur besitzt Unterrouten für Subtopics und Learning Elements; wiederverwendbare Autorisierungsprüfungen werden empfohlen.
+- Die Struktur orientiert sich an der zentralen OAS-Spezifikation; Änderungen sind gemeinsam mit allen Client-Teams zu koordinieren.
+- Autorisierungs- und Filterlogik wird idealerweise gemeinsam mit Kurs- und Subtopic-Routen gepflegt.

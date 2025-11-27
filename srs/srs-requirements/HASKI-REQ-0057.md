@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** einen Endpoint `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic/<topic_id>` bereitstellen, der die vollständigen Daten eines Topics mitsamt `student_topic`-Kontext zurückliefert, sofern der Studierende laut Moodle für den Kurs freigeschaltet ist. Die Route **shall** dieselbe Autorisierung verwenden wie die Kurs- und Topic-Liste (GH-76) und nur Topics ausgeben, die zu den belegten Kursen gehören. Die Antwort **shall** mindestens `id`, `lms_id`, `name`, `is_topic`, `contains_le`, `university`, `parent_id` sowie den Lernfortschrittskontext enthalten, damit Lernräume und Lernpfad-Berechnungen konsistent arbeiten.
+Das System **shall** berechtigten Anfragen die Detaildaten einzelner Topics inklusive des persönlichen Lernfortschritts bereitstellen. Dadurch können Lernräume, Prozessschritte oder Auswertungen gezielt auf ein Topic zugreifen, ohne zuvor komplette Topic-Listen übertragen zu müssen.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 samt vollständigem Topic-Objekt und `student_topic`.
-- [x] Ungültige Studierenden-, Kurs- oder Topic-IDs (einschließlich fehlender Einschreibungen) führen zu HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Der Endpoint nutzt dieselbe Moodle-ID-Mapping-Logik wie `GET .../topic` und konsumiert die von GH-76 beschriebenen Datensätze.
-- [x] Die Nutzlast entspricht der OAS-Struktur aus GH-30, sodass Frontend- und Analytics-Komponenten keine zusätzlichen Transformationen benötigen.
+- [x] Für einen gültig angefragten Kurs-/Topic-Kontext stehen sämtliche relevanten Metadaten sowie der `student_topic`-Status zur Verfügung.
+- [x] Topics, die nicht zum Studierenden gehören oder nicht existieren, werden nicht ausgeliefert.
+- [x] Alle beteiligten Systeme können die gelieferten Felder unverändert weiterverwenden, da sie dem zentralen Schema entsprechen.
 
 ## Rationale
 
-SyRS-FUNC-008 fordert konfigurierbare Lernräume; dazu müssen einzelne Topics inklusive persönlicher Lernfortschrittsdaten abrufbar sein. GH-76 beschreibt die Kurs-Topic-Relationen, und GH-30 spezifiziert die REST-Struktur. Die Anforderung stellt sicher, dass Clients gezielt einzelne Topics referenzieren können, ohne zusätzliche Filterlogik implementieren zu müssen.
+Konfigurierbare Lernräume benötigen gezielte Detailabfragen, z. B. wenn einzelne Topics hervorgehoben oder bearbeitet werden. Diese Anforderung stellt sicher, dass ein Topic in isolierter Form bereitgestellt wird und dennoch denselben Kontext wie die Listenansicht besitzt.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/76
-- Supporting issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/30
-- Der Endpoint teilt sich Autorisierungs- und Fehlerbehandlung mit Subtopic- und Learning-Element-Routen; gemeinsame Middleware minimiert Inkonsistenzen.
+- Felddefinitionen folgen der in der OAS dokumentierten Topic-Spezifikation.
+- Autorisierungsregeln sollten identisch zu den Topic- und Subtopic-Listen umgesetzt werden, um einheitliches Verhalten sicherzustellen.

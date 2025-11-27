@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** für eingeschriebene Studierende über `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/topic/<topic_id>/subtopic` sämtliche Subtopics (Unterabschnitte) eines Topics zurückliefern. Die Antwort **shall** den Schlüssel `topics` enthalten, dessen Elemente mindestens `id`, `lms_id`, `name`, `is_topic`, `contains_le`, `university`, `parent_id` sowie den Kontext `student_topic` bereitstellen, damit Lernräume, Lernpfade und Analytics dieselben Metadaten nutzen. Zugriffe auf fremde Kurse oder Topics **shall** deterministisch mit 404 bzw. 403 beantwortet werden.
+Das System **shall** alle Subtopics eines Topics für eingeschriebene Studierende zugänglich machen. Neben den Stammdaten des jeweiligen Unterabschnitts sind auch die individuellen Lernkontexte bereitzustellen, damit Lernräume und Analysen die hierarchische Struktur vollständig nachvollziehen können.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten `topics` inkl. der genannten Felder pro Subtopic.
-- [x] Ungültige Studierenden-, Kurs- oder Topic-IDs führen zu HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Die Route akzeptiert Moodle-IDs und wiederverwendet dieselbe Mapping-Logik wie `GET .../topic` (HASKI-REQ-0055).
-- [x] Die API antwortet deterministisch, auch wenn keine Subtopics existieren (leeres Array statt Fehler).
+- [x] Die Ausgabe enthält sämtliche Subtopics inklusive Metadaten (z. B. Kennung, Titel, Parent-Bezug, Lernstatus).
+- [x] Fehlen Subtopics, wird eine leere, aber gültige Antwort geliefert, sodass Aufrufer deterministisch planen können.
+- [x] Anfragen außerhalb der eigenen Kurs-/Topic-Zuordnung liefern keine Daten.
 
 ## Rationale
 
-GitHub Issue [#76](https://github.com/HASKI-RAK/HASKI-Backend/issues/76) beschreibt die Kurs-Topic-Relationen, auf deren Basis Lernräume und Lernpfade zusammengesetzt werden. Subtopics bilden die nächste Aggregationsebene (z. B. Wochenabschnitte) und müssen für Dashboards und Pfadberechnung abrufbar sein. OAS-Spezifikation GH-30 legt die Felder und ID-Mappings fest. Mit dem Endpoint können Frontends und Automationen konsistent dieselben Datenquellen wie die Kursübersicht nutzen.
+Subtopics bilden die nächste Detailebene der Lernraumstruktur (SyRS-FUNC-008). Eine standardisierte Bereitstellung ermöglicht es, Wochenabschnitte, Module oder andere Untergliederungen konsistent darzustellen und in Lernpfaden zu berücksichtigen.
 
 ## Hinweise
 
-- Autorisierung erfolgt über dieselben Decorators wie bei `GET .../topic`.
-- Für Topics ohne Subtopics wird `topics: []` zurückgegeben.
-- Strukturierte Fehlermeldungen folgen dem globalen Fehlerformat.
+- Datenstruktur und Feldnamen orientieren sich an der zentralen Topic-Spezifikation.
+- Autorisierungsregeln sollten mit den Kurs- und Topic-Abfragen identisch sein, um gleiche Sichtbarkeiten zu gewährleisten.

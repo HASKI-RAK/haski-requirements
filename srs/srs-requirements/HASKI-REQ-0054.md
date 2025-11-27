@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** einen Endpoint `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>` bereitstellen, der die vollständigen Metadaten eines konkreten Kurses zurückliefert, sofern der Studierende laut LMS (Moodle) eingeschrieben ist. Die Route **shall** Autorisierung gemäß GH-131 enforce und bei fehlenden Zuordnungen deterministisch mit 404 reagieren. Zur Unterstützung konfigurierbarer Lernräume (SyRS-FUNC-008) **shall** die Antwort mindestens `id`, `name`, `lms_id` und `university` enthalten, damit Frontends Kursdetails ohne zusätzliche Queries darstellen können.
+Das System **shall** die Detaildaten eines belegten Kurses bereitstellen, sobald eine Anwendung diese für einen berechtigten Studierenden benötigt. Die gelieferten Informationen sollen sämtliche Kurseigenschaften umfassen, die für Dashboards, Lernräume oder Reporting relevant sind, ohne dass zusätzliche Nachschlagevorgänge notwendig werden.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 mitsamt allen Kursmetadaten (`id`, `name`, `lms_id`, `university`).
-- [x] Ungültige Studierenden- oder Kursreferenzen (inkl. IDs, zu denen keine Einschreibung existiert) führen zu HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Der Endpoint nutzt dieselbe Moodle-ID-Mapping-Logik wie die Kursliste und bezieht seine Daten direkt aus den `student_course`-Zuordnungen, wodurch Änderungen aus GH-131 sofort sichtbar werden.
-- [x] Die Antwort entspricht dem in GH-30 dokumentierten OAS-Schema, damit Frontend- und Analytics-Komponenten konsistent bleiben.
+- [x] Für gültige Kurs-/Studierendenkombinationen stehen vollständige Metadaten (z. B. interne Kennung, LMS-Referenz, Bezeichnung, Hochschule) zur Verfügung.
+- [x] Anfragen außerhalb der zulässigen Einschreibungen werden konsequent abgewiesen und geben keine Details zu fremden Kursen preis.
+- [x] Aktualisierte Kursattribute sind unmittelbar nach Pflege im System sichtbar, sodass gekoppelte Oberflächen immer auf aktuelle Daten zugreifen.
 
 ## Rationale
 
-Konfigurierbare Lernräume benötigen nicht nur eine Kursliste, sondern auch Detailinformationen pro Kurs (z. B. für Course Dashboards oder Deep Links). GitHub issue GH-131 definiert, dass Studierende nur auf eigene Kurse zugreifen dürfen, während GH-30 die Payload-Struktur vorgibt. Die Anforderung stellt sicher, dass Kursdetails ohne Umwege abrufbar sind und keine Fremddaten offengelegt werden.
+Konfigurierbare Lernräume (SyRS-FUNC-008) benötigen Detailinformationen pro Kurs, etwa für Breadcrumbs, Kursbanner oder die Auswahl von Lernpfaden. Eine abstrahierte Kursdetailabfrage sorgt dafür, dass jede Oberfläche identische Informationen nutzt.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/131
-- Supporting issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/30
-- Autorisierungslogik sollte zentral gehalten werden, damit auch verwandte Endpoints (Topics, Learning Elements) identische Checks nutzen.
+- Autorisierungsentscheidungen sollen mit der Kursliste und den Topic-Routen konsistent sein.
+- Relevante Felder sind im OAS-Schema dokumentiert und sollten versioniert angepasst werden.

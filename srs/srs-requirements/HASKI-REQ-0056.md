@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** über `GET /user/<user_id>/<lms_user_id>/student/<student_id>/course/<course_id>/learningElement` alle Lernelemente eines belegten Kurses zurückliefern. Die Route **shall** pro Eintrag die Metadaten (`id`, `lms_id`, `activity_type`, `classification`, `name`, `university`) sowie den studentenspezifischen Status (`student_learning_element`) ausgeben, damit Frontends Lernräume und Fortschrittsanzeigen aufbauen können. Ungültige Kurs- oder Studenten-IDs **shall** deterministisch abgefangen werden, damit keine fremden Inhalte offengelegt werden.
+Das System **shall** allen berechtigten Studierenden eine vollständige Liste der Lernelemente eines belegten Kurses liefern. Neben den Stammdaten der Elemente müssen auch die individuellen Lernfortschrittsinformationen enthalten sein, damit Lernräume, Empfehlungen und Visualisierungen direkt mit der gelieferten Struktur arbeiten können.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten den Schlüssel `learning_elements` mit vollständigen Metadaten sowie `student_learning_element` für jeden Eintrag.
-- [x] Ungültige Studierenden- oder Kurskombinationen führen zu HTTP 404 mit strukturierter Fehlermeldung (`{"error": "...", "message": "..."}`).
-- [x] Die Route übernimmt ihre Daten aus den in GH-21 eingeführten Kurs-/Lernelement-CRUD-Strukturen und folgt der OAS-Spezifikation aus GH-30.
-- [x] Die Antwort reflektiert Aktualisierungen (z. B. neue H5P-Elemente) ohne zusätzliche Synchronisation, sodass Lernräume stets aktuelle Inhalte anzeigen.
+- [x] Die zurückgegebene Liste umfasst sämtliche Lernelemente des ausgewählten Kurses samt Typ, Klassifikation, Namen und studentischem Status.
+- [x] Elemente, die nicht zur Anfrage passen oder nicht freigegeben sind, werden konsequent ausgeblendet.
+- [x] Neue oder geänderte Lernelemente erscheinen ohne zusätzliche Synchronisationsschritte in der Ausgabe.
 
 ## Rationale
 
-SyRS-FUNC-008 verlangt konfigurierbare Lernräume inklusive konkreter Lernelemente. GitHub issue GH-21 etablierte die grundlegenden CRUD-Operationen für Kurse, Topics und Learning Elements; GH-30 beschreibt die zugehörigen REST-Schnittstellen. Die Anforderung stellt sicher, dass Studierende nur die Learning Elements ihrer eigenen Kurse sehen.
+SyRS-FUNC-008 fordert Transparenz über alle Lernressourcen eines Kurses. Eine standardisierte Lernelement-Liste ermöglicht es, Lernräume aufzubauen, Fortschritte darzustellen und Empfehlungen abzuleiten, ohne mehrere Quellen abgleichen zu müssen.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/21
-- Supporting issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/30
-- Der Endpoint teilt sich Autorisierung und Filterlogik mit den Topic- und Kursendpunkten; gemeinsame Middleware reduziert Inkonsistenzen.
+- Datenhaltung und API-Schema sind in den zentralen Backend-Dokumenten beschrieben; Änderungen betreffen auch Frontend und Analytics.
+- Gemeinsame Autorisierungslogik mit Kurs- und Topic-Routen verhindert Inkonsistenzen bei der Sichtbarkeit.

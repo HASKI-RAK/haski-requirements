@@ -16,21 +16,19 @@ links:
 
 ## Beschreibung
 
-Das System **shall** einen Endpoint `GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningStrategy` bereitstellen, der die aktuell hinterlegten Lernstrategie-Vektoren eines Studierenden (z. B. `metacognitive`, `resource_management`, `collaboration`) als strukturiertes JSON zurückliefert. Die Schnittstelle **shall** dieselben Datensätze verwenden, die beim Nutzer-Onboarding (GH-81) angelegt und später durch Fragebögen oder Analytics aktualisiert werden, sodass Dashboards und Tutoring-Algorithmen auf konsistente Werte zugreifen.
+Das System **shall** eine abgesicherte Schnittstelle bereitstellen, über die berechtigte Anwendungen die aktuell hinterlegten Lernstrategien eines Studierenden abrufen können. Die Schnittstelle muss die beim Onboarding erzeugten sowie später fortgeschriebenen Strategieeinträge konsistent ausgeben, damit Dashboards, Tutoring-Modelle und Analysen auf denselben Profilwerten basieren.
 
 ## Akzeptanzkriterien
 
-- [x] Erfolgreiche Aufrufe liefern HTTP 200 und enthalten den vollständigen Lernstrategie-Vektor; leere Arrays sind erlaubt, wenn noch keine Daten erfasst wurden.
-- [x] Ungültige Kombinationen aus `student_id` und `lms_user_id` führen zu HTTP 404 mit strukturierter Fehlermeldung ohne Offenlegung anderer Daten.
-- [x] Die Route akzeptiert Moodle-IDs und folgt dem von GH-30 definierten OAS-Schema, wodurch Frontends keine zusätzlichen Transformationen benötigen.
-- [x] Daten stehen unmittelbar nach automatischer Nutzeranlage durch GH-81 zur Verfügung und spiegeln spätere Anpassungen deterministisch wider.
+- [x] Berechtigte Anfragen liefern den vollständigen Lernstrategie-Datensatz einschließlich aller verfügbaren Dimensionen des angefragten Studierenden.
+- [x] Anfragen außerhalb des autorisierten Kontextes werden datenschutzkonform abgewiesen, ohne Informationen über andere Personen preiszugeben.
+- [x] Die ausgegebenen Werte spiegeln unmittelbar die zuletzt erfassten Fragebogen- oder Analytics-Ergebnisse wider, sodass keine zusätzlichen Synchronisationsschritte notwendig sind.
 
 ## Rationale
 
-GitHub issue GH-30 definierte die REST-Oberfläche für Lernprofil-Daten, einschließlich `learningStrategy`. GH-81 garantiert, dass jede neu angelegte Person initiale Strategieeinträge besitzt. Die Anforderung leitet sich aus SyRS-FUNC-007 ab, damit Lernfortschrittsberichte und Empfehlungssysteme auf die gleiche Datenbasis zurückgreifen können.
+SyRS-FUNC-007 fordert einen zentralen Zugriff auf Lernprofil-Daten, damit adaptive Funktionen konsistent arbeiten. Die abstrahierte Schnittstelle ermöglicht es, alle nachgelagerten Komponenten mit denselben Strategieinformationen zu versorgen, unabhängig davon, wann oder wie die Daten erhoben wurden.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/30
-- Related issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/81
-- Konsistenz mit den Fragebogen-Endpunkten ist sicherzustellen; Änderungen an Feldern müssen rückwärtskompatibel sein.
+- API-Schema ist in der zentralen OAS-Dokumentation gepflegt und sollte nur gemeinsam mit den verantwortlichen Schnittstellen-Teams geändert werden.
+- Frontend- und Analytics-Komponenten können dieselbe Antwortstruktur wiederverwenden, wodurch Doppelpflege vermieden wird.
