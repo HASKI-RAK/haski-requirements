@@ -14,6 +14,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_news"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_news"
 ---
 
 ## Beschreibung
@@ -36,5 +38,5 @@ Issue [GH-92](https://github.com/HASKI-RAK/HASKI-Backend/issues/92) beschreibt d
 ## Hinweise
 
 - Datenmodell: Tabelle `news` mit Feldern `id`, `university`, `language_id`, `created_at`, `expiration_date`, `news_content`.
-- Validierung und Serialisierung liegen in `service_layer.services` und werden durch `backend/tests/e2e/test_api.py::TestApi::test_post_news` verifiziert.
+- Validierung und Serialisierung liegen in `service_layer.services` und werden durch `backend/tests/e2e/test_api.py::TestApi::test_post_news` sowie `::test_get_news` verifiziert.
 - Frontend konsumiert `GET /news` asynchron; Skeleton- und Fehlerzustände sind in GH-92 dokumentiert.
