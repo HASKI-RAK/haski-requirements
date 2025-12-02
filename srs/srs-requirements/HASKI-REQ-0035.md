@@ -29,6 +29,8 @@ links:
       name: "CreateCourseCard Component"
     - path: "frontend/src/components/DeleteEntityModal/DeleteEntityModal.test.tsx"
       name: "DeleteEntityModal Component"
+    - path: "frontend/src/pages/Course/Course.test.tsx"
+      name: "Course Page"
 ---
 
 ## Beschreibung

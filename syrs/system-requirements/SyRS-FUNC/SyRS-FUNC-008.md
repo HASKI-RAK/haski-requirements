@@ -12,4 +12,5 @@ links:
 ---
 
 ## Beschreibung
+
 Das System **shall** konfigurierbare Lernräume mit Scaffolding-Elementen bereitstellen.
