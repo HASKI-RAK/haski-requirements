@@ -46,6 +46,10 @@ links:
       name: "test_get_sub_topics"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_topics_by_student_and_course_id"
+    - path: "frontend/src/services/Course/postCourse.test.tsx"
+      name: "postCourse has expected behaviour"
+    - path: "frontend/src/services/LearningElement/postLearningElement.test.tsx"
+      name: "postLearningElement has expected behaviour"
 ---
 
 ## Beschreibung

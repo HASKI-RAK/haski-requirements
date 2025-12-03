@@ -11,6 +11,7 @@ links:
   stories:
     - "HASKI-RAK/HASKI-Backend#92"
     - "HASKI-RAK/HASKI-Backend#111"
+    - "HASKI-RAK/HASKI-Frontend#118"
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_news"
@@ -20,9 +21,9 @@ links:
       name: "test_create_news"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_news"
-    - path: "HASKI-Frontend/src/components/Newsbanner/Newsbanner.test.tsx"
+    - path: "frontend/src/components/Newsbanner/Newsbanner.test.tsx"
       name: "Newsbanner tests"
-    - path: "HASKI-Frontend/src/services/News/fetchNews.test.tsx"
+    - path: "frontend/src/services/News/fetchNews.test.tsx"
       name: "Test the fetchNews functionalities"
 ---
 

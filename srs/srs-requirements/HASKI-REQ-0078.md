@@ -14,6 +14,10 @@ links:
       name: "TestApi::test_api_add_all_students_to_course"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_api_add_all_students_to_topics"
+    - path: "frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
+      name: "postAddAllStudentsToTopics has expected behaviour"
+    - path: "frontend/src/services/Course/postAddAllStudentsToCourse.test.ts"
+      name: "postAddAllStudentsToCourse has expected behaviour"
 ---
 
 ## Beschreibung

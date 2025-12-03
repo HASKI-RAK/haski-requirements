@@ -23,14 +23,16 @@ links:
       name: "useCreateTopicModal"
     - path: "frontend/src/components/TopicCard/TopicCard.test.tsx"
       name: "TopicCard Component"
-    - path: "HASKI-Frontend/src/components/CreateTopic/Table/CreateRemoteTopics/CreateRemoteTopicsTable.test.tsx"
+    - path: "frontend/src/components/CreateTopic/Table/CreateRemoteTopics/CreateRemoteTopicsTable.test.tsx"
       name: "CreateRemoteTopicsTable"
-    - path: "HASKI-Frontend/src/components/CreateTopic/Table/ExistingTopics/ExistingTopicsTable.test.tsx"
+    - path: "frontend/src/components/CreateTopic/Table/ExistingTopics/ExistingTopicsTable.test.tsx"
       name: "ExistingTopicsTable"
-    - path: "HASKI-Frontend/src/services/Topic/postTopic.test.tsx"
+    - path: "frontend/src/services/Topic/postTopic.test.tsx"
       name: "postTopic has expected behaviour"
     - path: "frontend/src/pages/Course/Course.test.tsx"
       name: "Course Page"
+    - path: "frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
+      name: "fetchRemoteTopics has expected behaviour"
 ---
 
 ## Beschreibung

@@ -10,6 +10,7 @@ links:
     - "SyRS-FUNC-011"
   stories:
     - "HASKI-RAK/HASKI-Backend#39"
+    - "HASKI-RAK/HASKI-Frontend#181"
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_contact_form"
@@ -19,7 +20,7 @@ links:
       name: "Test ContactForm"
     - path: "frontend/src/pages/Contact/Contact.test.tsx"
       name: "Test Contactpage"
-    - path: "HASKI-Frontend/src/services/contact/postContactForm.test.tsx"
+    - path: "frontend/src/services/contact/postContactForm.test.tsx"
       name: "postContactForm"
 ---
 

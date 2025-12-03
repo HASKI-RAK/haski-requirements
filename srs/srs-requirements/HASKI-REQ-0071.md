@@ -18,6 +18,8 @@ links:
       name: "TestApi::test_get_activity_status_for_student_for_learning_element"
     - path: "frontend/src/common/hooks/LearningPathTopicProgress/LearningPathTopicProgress.test.tsx"
       name: "LearningPathTopicProgress tests"
+    - path: "frontend/src/services/LearningPath/fetchLearningPathElementStatus.test.tsx"
+      name: "fetchLearningPathElementStatus has expected behaviour"
     - path: "frontend/src/components/StyledLinearProgress/StyledLinearProgress.test.tsx"
       name: "StyledLinearProgress tests"
     - path: "HASKI-Frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"

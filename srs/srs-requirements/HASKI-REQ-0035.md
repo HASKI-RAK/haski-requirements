@@ -35,10 +35,12 @@ links:
       name: "Course Page"
     - path: "frontend/src/pages/Home/Home.test.tsx"
       name: "Home Page"
-    - path: "HASKI-Frontend/src/services/Course/postCourse.test.tsx"
+    - path: "frontend/src/services/Course/postCourse.test.tsx"
       name: "postCourse has expected behaviour"
-    - path: "HASKI-Frontend/src/services/CourseTopics/CourseTopics.test.tsx"
+    - path: "frontend/src/services/CourseTopics/CourseTopics.test.tsx"
       name: "useCourseTopics"
+    - path: "frontend/src/services/RemoteCourses/fetchRemoteCourses.test.tsx"
+      name: "fetchRemoteCourses has expected behaviour"
 ---
 
 ## Beschreibung

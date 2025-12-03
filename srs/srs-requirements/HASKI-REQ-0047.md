@@ -19,6 +19,8 @@ links:
       name: "test_create_logbuffer"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_logbuffer"
+    - path: "frontend/src/services/BufferContent/postBufferContent.test.tsx"
+      name: "postBufferContent"
 ---
 
 ## Beschreibung
