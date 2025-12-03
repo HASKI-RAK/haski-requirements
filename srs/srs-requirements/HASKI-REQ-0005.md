@@ -12,6 +12,8 @@ links:
   tests:
     - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
       name: "[HASKI-REQ-0005] Imprint Component"
+    - path: "HASKI-Frontend/src/pages/PrivacyPolicy/PrivacyPolicy.test.tsx"
+      name: "Test the PrivacyPolicy page"
 ---
 
 ## Beschreibung

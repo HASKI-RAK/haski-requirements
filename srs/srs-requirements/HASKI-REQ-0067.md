@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_remote_courses"
+    - path: "HASKI-Frontend/src/services/RemoteCourses/fetchRemoteCourses.test.tsx"
+      name: "fetchRemoteCourses has expected behaviour"
 ---
 
 ## Beschreibung

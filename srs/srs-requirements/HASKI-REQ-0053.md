@@ -12,6 +12,10 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_courses"
+    - path: "HASKI-Frontend/src/pages/Home/Home.test.tsx"
+      name: "Test the Home page-1; Test the Home page-2"
+    - path: "HASKI-Frontend/src/services/Courses/fetchCourses.test.tsx"
+      name: "fetchCourses has expected behaviour"
 ---
 
 ## Beschreibung

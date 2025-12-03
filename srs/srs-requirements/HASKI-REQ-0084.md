@@ -18,6 +18,8 @@ links:
       name: "GlossaryIndex tests"
     - path: "HASKI-Frontend/src/components/Glossary/GlossaryList/GlossaryList.test.tsx"
       name: "GlossaryList tests"
+    - path: "HASKI-Frontend/src/pages/Glossary/Glossary.test.tsx"
+      name: "Glossary page tests"
 ---
 
 ## Beschreibung

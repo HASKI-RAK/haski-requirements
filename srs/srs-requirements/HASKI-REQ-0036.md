@@ -27,6 +27,8 @@ links:
       name: "CreateRemoteTopicsTable"
     - path: "HASKI-Frontend/src/components/CreateTopic/Table/ExistingTopics/ExistingTopicsTable.test.tsx"
       name: "ExistingTopicsTable"
+    - path: "HASKI-Frontend/src/services/Topic/postTopic.test.tsx"
+      name: "postTopic has expected behaviour"
 ---
 
 ## Beschreibung

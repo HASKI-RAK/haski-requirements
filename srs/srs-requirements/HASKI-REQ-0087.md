@@ -12,6 +12,14 @@ links:
   tests:
     - path: "frontend/src/pages/LearnerCharacteristics/LearnerCharacteristics.test.tsx"
       name: "LearnerCharacteristics"
+    - path: "HASKI-Frontend/src/services/Questionnaire/fetchILS.test.tsx"
+      name: "fetchILS has expected behaviour"
+    - path: "HASKI-Frontend/src/services/Questionnaire/fetchListK.test.tsx"
+      name: "fetchILS has expected behaviour"
+    - path: "HASKI-Frontend/src/services/Questionnaire/postILS.test.tsx"
+      name: "postILS has expected behaviour"
+    - path: "HASKI-Frontend/src/services/Questionnaire/postListK.test.tsx"
+      name: "postListK has expected behaviour"
 ---
 
 ## Beschreibung

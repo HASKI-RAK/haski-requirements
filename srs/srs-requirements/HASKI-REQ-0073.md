@@ -16,6 +16,10 @@ links:
       name: "TestApi::test_update_user_settings_by_id"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_reset_user_settings"
+    - path: "HASKI-Frontend/src/components/ThemeMenu/Modal/ThemeModal.test.tsx"
+      name: "ThemeModal tests"
+    - path: "HASKI-Frontend/src/services/Theme/postUserSettings.test.tsx"
+      name: "postUserSettings has expected behaviour"
 ---
 
 ## Beschreibung

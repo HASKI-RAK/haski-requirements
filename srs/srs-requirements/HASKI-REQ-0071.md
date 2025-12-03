@@ -20,6 +20,8 @@ links:
       name: "LearningPathTopicProgress tests"
     - path: "frontend/src/components/StyledLinearProgress/StyledLinearProgress.test.tsx"
       name: "StyledLinearProgress tests"
+    - path: "HASKI-Frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"
+      name: "LinearProgressWithLabel"
 ---
 
 ## Beschreibung

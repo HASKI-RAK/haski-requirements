@@ -23,6 +23,22 @@ links:
       name: "CookieServiceFlask::test_delete_cookie"
     - path: "backend/tests/unit/lti/test_cryptorandom.py"
       name: "CryptoRandom::test_getRandom"
+    - path: "HASKI-Frontend/src/pages/Login/Login.test.tsx"
+      name: "Login Page"
+    - path: "HASKI-Frontend/src/services/auth/fetchLogout.test.tsx"
+      name: "fetchLogout"
+    - path: "HASKI-Frontend/src/services/auth/fetchUser.test.tsx"
+      name: "fetchUser"
+    - path: "HASKI-Frontend/src/services/auth/postLogin.test.tsx"
+      name: "postLogin"
+    - path: "HASKI-Frontend/src/services/auth/fetchRedirectMoodleLogin.test.tsx"
+      name: "fetchRedirectMoodleLogin"
+    - path: "HASKI-Frontend/src/services/auth/postLoginCredentials.test.tsx"
+      name: "getLoginStatus"
+    - path: "HASKI-Frontend/src/services/AuthContext/AuthContext.test.tsx"
+      name: "Test Authcontext"
+    - path: "HASKI-Frontend/src/services/AuthProvider/AuthProvider.test.tsx"
+      name: "Test AuthProvider"
 ---
 
 ## Beschreibung

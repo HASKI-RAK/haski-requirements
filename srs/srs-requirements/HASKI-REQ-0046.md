@@ -18,6 +18,8 @@ links:
       name: "TestApi::test_get_news"
     - path: "HASKI-Frontend/src/components/Newsbanner/Newsbanner.test.tsx"
       name: "Newsbanner tests"
+    - path: "HASKI-Frontend/src/services/News/fetchNews.test.tsx"
+      name: "Test the fetchNews functionalities"
 ---
 
 ## Beschreibung

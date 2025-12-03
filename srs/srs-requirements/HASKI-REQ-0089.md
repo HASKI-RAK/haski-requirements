@@ -24,6 +24,8 @@ links:
       name: "LocalNavItem tests"
     - path: "HASKI-Frontend/src/components/Footer/Footer.test.tsx"
       name: "Footer"
+    - path: "HASKI-Frontend/src/pages/MainFrame/MainFrame.test.tsx"
+      name: "MainFrame tests"
 ---
 
 ## Beschreibung

@@ -13,6 +13,18 @@ links:
   tests:
     - path: "frontend/src/components/ImageCollection/ImageCollection.test.tsx"
       name: "ImageCollection Component"
+    - path: "HASKI-Frontend/src/pages/AboutUs/AboutUs.test.tsx"
+      name: "AboutUs"
+    - path: "HASKI-Frontend/src/components/TextCard/TextCardLeft/TextCardLeft.test.tsx"
+      name: "TextCardRight tests"
+    - path: "HASKI-Frontend/src/components/TextCard/TextCardRight/TextCardRight.test.tsx"
+      name: "TextCardLeft tests"
+    - path: "HASKI-Frontend/src/components/TextStepper/TextStepper.test.tsx"
+      name: "TextStepper tests"
+    - path: "HASKI-Frontend/src/components/Typewriter/Typewriter.test.tsx"
+      name: "Typewriter tests"
+    - path: "HASKI-Frontend/src/pages/ProjectDescription/ProjectDescription.test.tsx"
+      name: "ProjectDescription tests"
 ---
 
 ## Beschreibung

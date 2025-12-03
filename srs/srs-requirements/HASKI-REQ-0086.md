@@ -56,6 +56,22 @@ links:
       name: "Searchbar tests"
     - path: "HASKI-Frontend/src/components/SkeletonList/SkeletonList.test.tsx"
       name: "SkeletonList component"
+    - path: "HASKI-Frontend/src/components/Snackbar/handleError.test.tsx"
+      name: "handleError tests"
+    - path: "HASKI-Frontend/src/components/Snackbar/SnackbarContainer/SnackbarContainer.test.tsx"
+      name: "SnackbarContainer tests"
+    - path: "HASKI-Frontend/src/components/Snackbar/SnackbarMessage/SnackbarMessage.test.tsx"
+      name: "SnackbarMessage tests"
+    - path: "HASKI-Frontend/src/components/Snackbar/SnackbarTransition/SnackbarTransition.test.tsx"
+      name: "SnackbarTransition tests"
+    - path: "HASKI-Frontend/src/components/ToggleButtonList/ToggleButtonList.test.tsx"
+      name: "ToggleButtonList tests"
+    - path: "HASKI-Frontend/src/services/connection/NetworkStatus.test.tsx"
+      name: "Test useNetworkStatus"
+    - path: "HASKI-Frontend/src/services/debounce/debounce.test.tsx"
+      name: "Debounce tests"
+    - path: "HASKI-Frontend/src/services/PageName/PageName.test.tsx"
+      name: "Test usePageName"
 ---
 
 ## Beschreibung

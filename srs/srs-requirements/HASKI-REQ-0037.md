@@ -31,6 +31,10 @@ links:
       name: "CreateLearningElementsStep"
     - path: "frontend/src/components/CreateTopic/Modal/CreateLearningElementClassificationsStep/CreateLearningElementClassificationsStep.test.tsx"
       name: "CreateLearningElementClassificationsStep"
+    - path: "frontend/src/services/LearningElement/postLearningElement.test.tsx"
+      name: "postLearningElement has expected behaviour"
+    - path: "frontend/src/services/LearningElement/deleteLearningElement.test.tsx"
+      name: "deleteLearningElement has expected behaviour"
 ---
 
 ## Beschreibung

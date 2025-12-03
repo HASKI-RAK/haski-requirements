@@ -24,6 +24,16 @@ links:
       name: "useCreateAlgorithmTable"
     - path: "frontend/src/components/CreateTopic/Modal/CreateAlgorithmsStep/CreateAlgorithmsStep.test.tsx"
       name: "CreateAlgorithmsStep"
+    - path: "frontend/src/services/LearningPathAlgorithm/postLearningPathAlgorithm.test.tsx"
+      name: "postLearningPathAlgorithm has expected behaviour"
+    - path: "frontend/src/services/LearningPathLearningElementAlgorithm/fetchStudentLpLeAlgorithm.test.tsx"
+      name: "fetchStudentLpLeAlg has expected behaviour"
+    - path: "frontend/src/services/LearningPathLearningElementAlgorithm/fetchTeacherLpLeAlg.test.tsx"
+      name: "fetchTeacherLpLeAlg has expected behaviour"
+    - path: "frontend/src/services/LearningPathLearningElementAlgorithm/postStudentLpLeAlg.test.tsx"
+      name: "postStudentLpLeAlg has expected behaviour"
+    - path: "frontend/src/services/LearningPathLearningElementAlgorithm/postTeacherLpLeAlg.test.tsx"
+      name: "postTeacherLpLeAlg has expected behaviour"
 ---
 
 ## Beschreibung

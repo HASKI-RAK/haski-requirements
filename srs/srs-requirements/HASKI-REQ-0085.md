@@ -53,6 +53,22 @@ links:
       name: "NodeTypes (getNodeIcon)"
     - path: "frontend/src/pages/Topic/Topic.test.tsx"
       name: "Topic Page"
+    - path: "HASKI-Frontend/src/pages/ThemePresentation/LearningElementLearningPath.test.tsx"
+      name: "LearningElementLearningPath tests"
+    - path: "HASKI-Frontend/src/pages/ThemePresresentation/TopicsLearningPath.test.tsx"
+      name: "TopicsLearningPath"
+    - path: "HASKI-Frontend/src/services/LearningPath/fetchLearningPathElement.test.tsx"
+      name: "fetchLearningPathElement has expected behaviour"
+    - path: "HASKI-Frontend/src/services/LearningPath/fetchLearningPathElementStatus.test.tsx"
+      name: "fetchLearningPathElementStatus has expected behaviour"
+    - path: "HASKI-Frontend/src/services/LearningPath/fetchLearningPathElementSpecificStatus.test.tsx"
+      name: "fetchLearningPathElementStatus has expected behaviour"
+    - path: "HASKI-Frontend/src/services/LearningPath/postCalculateLearningPathForAllStudents.test.tsx"
+      name: "postCalculateLearningPathForAllStudents has expected behaviour"
+    - path: "HASKI-Frontend/src/services/LearningPath/postCalculateLearningPathILS.test.tsx"
+      name: "postCalculateLearningPathILS tests"
+    - path: "HASKI-Frontend/src/services/Topic/fetchLearningPathTopic.test.tsx"
+      name: "fetchLearningPathElement has expected behaviour"
 ---
 
 ## Beschreibung

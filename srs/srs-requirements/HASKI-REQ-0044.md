@@ -17,6 +17,8 @@ links:
       name: "Test ContactForm"
     - path: "frontend/src/pages/Contact/Contact.test.tsx"
       name: "Test Contactpage"
+    - path: "HASKI-Frontend/src/services/contact/postContactForm.test.tsx"
+      name: "postContactForm"
 ---
 
 ## Beschreibung

@@ -13,6 +13,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_element_recommendation"
+    - path: "frontend/src/services/LearningElementRecommendation/LearningElementRecommendation.test.tsx"
+      name: "LearningElementRecommendation"
 ---
 
 ## Beschreibung
