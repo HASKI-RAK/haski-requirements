@@ -16,6 +16,8 @@ links:
       name: "TestApi::test_post_news"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_news"
+    - path: "HASKI-Frontend/src/components/Newsbanner/Newsbanner.test.tsx"
+      name: "Newsbanner tests"
 ---
 
 ## Beschreibung

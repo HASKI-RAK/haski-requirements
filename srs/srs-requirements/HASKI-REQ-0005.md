@@ -9,6 +9,9 @@ source_id: SyRS-COMP-005
 links:
   stories: ["HASKI-RAK/HASKI-Frontend#128", "HASKI-RAK/HASKI-Frontend#195"]
   parents: ["SyRS-COMP-005"]
+  tests:
+    - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
+      name: "[HASKI-REQ-0005] Imprint Component"
 ---
 
 ## Beschreibung
@@ -16,6 +19,7 @@ links:
 Das HASKI-System **shall** eine transparente, verständliche und leicht zugängliche Dokumentation der Datenverwendung bereitstellen. Das System **shall** die Einwilligungsprozesse für Studierende nachvollziehbar gestalten und jederzeit Zugriff auf Informationen über die Verarbeitung personenbezogener Daten ermöglichen.
 
 Das System **shall** folgende Informationen transparent dokumentieren und den Nutzern zugänglich machen:
+
 - Welche personenbezogenen Daten erhoben werden
 - Zu welchen Zwecken die Daten verarbeitet werden
 - Wie lange die Daten gespeichert werden
@@ -49,6 +53,7 @@ Basierend auf Stakeholder-Anforderung StRS-119 ist die transparente Dokumentatio
 Während HASKI-REQ-0001 den Einwilligungsprozess vor dem Login implementiert, adressiert diese Anforderung die fortlaufende Transparenz und Nachvollziehbarkeit der Datenverarbeitung während der gesamten Nutzung des Systems.
 
 Related work:
+
 - GH-128: Unterstützt die transparente Dokumentation der Datenverwendung
 - GH-195: Bereits in HASKI-REQ-0001 verlinkt - Implementiert die initiale Einwilligung, aber nicht die fortlaufende transparente Dokumentation
 

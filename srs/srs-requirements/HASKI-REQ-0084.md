@@ -12,6 +12,12 @@ links:
   tests:
     - path: "frontend/src/components/Filter/Filter.test.tsx"
       name: "Filter Component"
+    - path: "HASKI-Frontend/src/components/Glossary/GlossaryEntry/GlossaryEntry.test.tsx"
+      name: "GlossaryEntry tests"
+    - path: "HASKI-Frontend/src/components/Glossary/GlossaryIndex/GlossaryIndex.test.tsx"
+      name: "GlossaryIndex tests"
+    - path: "HASKI-Frontend/src/components/Glossary/GlossaryList/GlossaryList.test.tsx"
+      name: "GlossaryList tests"
 ---
 
 ## Beschreibung

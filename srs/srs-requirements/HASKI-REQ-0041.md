@@ -20,6 +20,8 @@ links:
       name: "TestApi::test_post_teacher_learning_path_learning_element_algorithm"
     - path: "frontend/src/components/CreateTopic/Table/CreateAlgorithm/CreateAlgorithmTable.test.tsx"
       name: "CreateAlgorithmTable"
+    - path: "frontend/src/components/CreateTopic/Table/CreateAlgorithm/CreateAlgorithmTable.hooks.test.tsx"
+      name: "useCreateAlgorithmTable"
     - path: "frontend/src/components/CreateTopic/Modal/CreateAlgorithmsStep/CreateAlgorithmsStep.test.tsx"
       name: "CreateAlgorithmsStep"
 ---

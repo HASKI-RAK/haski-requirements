@@ -19,6 +19,8 @@ links:
       name: "LabeledSwitch Component"
     - path: "frontend/src/components/Nodes/BasicNode/BasicNode.test.tsx"
       name: "BasicNode"
+    - path: "frontend/src/components/BorderedPaper/BorderedPaper.test.tsx"
+      name: "BorderedPaper"
     - path: "frontend/src/components/Nodes/AdditionalLiteratureNode/AdditionalLiteratureNode.test.tsx"
       name: "AdditionalLiteratureNode"
     - path: "frontend/src/components/Nodes/ApplicationExampleNode/ApplicationExampleNode.test.tsx"

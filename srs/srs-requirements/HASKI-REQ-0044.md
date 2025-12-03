@@ -13,6 +13,10 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_contact_form"
+    - path: "frontend/src/components/ContactForm/ContactForm.test.tsx"
+      name: "Test ContactForm"
+    - path: "frontend/src/pages/Contact/Contact.test.tsx"
+      name: "Test Contactpage"
 ---
 
 ## Beschreibung

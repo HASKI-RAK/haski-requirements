@@ -8,12 +8,18 @@ verification_method: Test
 source_id: SyRS-INT-005
 links:
   parents: ["SyRS-INT-005"]
-  stories: ["HASKI-RAK/HASKI-Backend#30"]
+  stories:
+    - "HASKI-RAK/HASKI-Backend#30"
+    - "HASKI-RAK/HASKI-Frontend#264"
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_activity_status_for_student"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_activity_status_for_student_for_learning_element"
+    - path: "frontend/src/common/hooks/LearningPathTopicProgress/LearningPathTopicProgress.test.tsx"
+      name: "LearningPathTopicProgress tests"
+    - path: "frontend/src/components/StyledLinearProgress/StyledLinearProgress.test.tsx"
+      name: "StyledLinearProgress tests"
 ---
 
 ## Beschreibung
@@ -31,6 +37,8 @@ Beide Endpunkte **shall** ausschließlich die von Moodle gelieferten Completion-
 - [x] Die Learning-Element-Variante reduziert die Antwort deterministisch auf den angefragten `cmid`; existiert der `cmid` nicht, wird eine leere Liste zurückgegeben.
 - [x] Fehlerhafte LMS-Aufrufe (z. B. HTTP != 200 oder ungültiges JSON) führen zu einer strukturierten Fehlermeldung oder einer leeren Liste, ohne interne Tracebacks offenzulegen.
 - [x] Beide Endpunkte verwenden die im Kursdatensatz hinterlegte `lms_id` sowie die `lms_user_id`, um den Moodle-Aufruf konsistent aufzubauen.
+- [x] Client-seitige Fortschrittsberechnungen nutzen die gelieferten Statusdaten, reagieren auf Fehlerfälle deterministisch und ignorieren deaktivierte Klassifikationen (verifiziert durch "LearningPathTopicProgress tests").
+- [x] UI-Progressleisten visualisieren die berechneten Werte inklusive Fehler- und Grenzfälle (verifiziert durch "StyledLinearProgress tests").
 
 ## Rationale
 

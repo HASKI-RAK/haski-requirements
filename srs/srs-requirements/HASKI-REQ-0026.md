@@ -17,10 +17,20 @@ links:
     ]
   parents: ["SyRS-FUNC-008"]
   tests:
+    - path: "frontend/src/components/CreateDefaultLearningPath/Modal/CreateDefaultLearningPathModal.test.tsx"
+      name: "CreateDefaultLearningPathModal"
+    - path: "frontend/src/components/CreateDefaultLearningPath/OpenCreateDefaultLearningPath/OpenCreateDefaultLearningPath.test.tsx"
+      name: "OpenCreateDefaultLearningPath"
     - path: "frontend/src/components/CreateDefaultLearningPath/Table/CreateDefaultLearningPathTable.test.tsx"
       name: "CreateDefaultLearningPathTable"
     - path: "frontend/src/components/CreateDefaultLearningPath/Table/CreateDefaultLearningPathTable.hooks.test.tsx"
       name: "useCreateDefaultLearningPathTable"
+    - path: "frontend/src/components/CreateDefaultLearningPath/Table/DraggableItem.test.tsx"
+      name: "DraggableItem Component"
+    - path: "frontend/src/components/CreateDefaultLearningPath/Table/DroppableItem.test.tsx"
+      name: "Droppable Component"
+    - path: "frontend/src/components/CreateDefaultLearningPath/Table/SortableItem.test.tsx"
+      name: "SortableItem Component"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_learning_path_default"
     - path: "backend/tests/e2e/test_api.py"

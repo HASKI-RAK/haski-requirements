@@ -19,6 +19,8 @@ links:
     - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle"
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle"
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle_with_start_date"
+    - path: "frontend/src/components/CreateCourse/Modal/CreateCourseModal.test.tsx"
+      name: "CreateCourseModal"
     - path: "frontend/src/components/CreateCourse/Table/CreateCourseTable.test.tsx"
       name: "CreateCourseTable"
     - path: "frontend/src/components/CreateCourse/Table/CreateCourseDetailsTable.test.tsx"

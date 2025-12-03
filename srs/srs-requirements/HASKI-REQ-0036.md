@@ -13,6 +13,8 @@ links:
   tests:
     - path: "frontend/src/components/CreateTopic/Modal/CreateRemoteTopicsStep/CreateRemoteTopicsStep.test.tsx"
       name: "CreateRemoteTopicsStep"
+    - path: "frontend/src/components/CreateTopic/Table/CreateRemoteTopics/CreateRemoteTopicsTable.hooks.test.tsx"
+      name: "useCreateRemoteTopicsTable"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_api_create_topic_from_moodle"
     - path: "frontend/src/components/CreateTopic/Modal/CreateTopicModal/CreateTopicModal.test.tsx"
@@ -21,6 +23,10 @@ links:
       name: "useCreateTopicModal"
     - path: "frontend/src/components/TopicCard/TopicCard.test.tsx"
       name: "TopicCard Component"
+    - path: "HASKI-Frontend/src/components/CreateTopic/Table/CreateRemoteTopics/CreateRemoteTopicsTable.test.tsx"
+      name: "CreateRemoteTopicsTable"
+    - path: "HASKI-Frontend/src/components/CreateTopic/Table/ExistingTopics/ExistingTopicsTable.test.tsx"
+      name: "ExistingTopicsTable"
 ---
 
 ## Beschreibung
