@@ -24,9 +24,20 @@ links:
 
 ## Beschreibung
 
-Das HASKI-Frontend **shall** einen Mehrfachauswahl-Filter bereitstellen, mit dem Glossareinträge nach inhaltlichen Tags kombiniert werden können. Die Komponente **shall** alle in den Übersetzungsdateien gepflegten Tags als Auswahloptionen anzeigen, die aktuelle Auswahl als Chips visualisieren und bei Benutzerinteraktionen die Tag-Liste aktualisieren, ohne dass die Seite neu geladen werden muss. Fällt kein Callback zur Auswahlsteuerung an, **shall** die Komponente stabil rendern und lediglich die Anzeige der vorgegebenen Tags übernehmen.
+Das HASKI-Frontend **shall** ein Glossar bereitstellen, das Fachbegriffe erklärt und referenziert. Die Glossarseite **shall** eine Liste von Einträgen anzeigen, die durchsuchbar und filterbar sind.
+
+Das System **shall** einen Mehrfachauswahl-Filter bereitstellen, mit dem Glossareinträge nach inhaltlichen Tags kombiniert werden können. Die Komponente **shall** alle in den Übersetzungsdateien gepflegten Tags als Auswahloptionen anzeigen, die aktuelle Auswahl als Chips visualisieren und bei Benutzerinteraktionen die Tag-Liste aktualisieren, ohne dass die Seite neu geladen werden muss.
 
 ## Akzeptanzkriterien
+
+### Glossarseite
+
+- [x] Die Glossarseite zeigt eine Liste von Begriffen und Definitionen an.
+- [x] Die Liste kann durchsucht werden.
+- [x] Einträge können ein- und ausgeklappt werden ("Collapse All", "Expand All").
+- [x] Einträge können nach Tags gefiltert werden.
+
+### Filter-Komponente
 
 - [x] Wird der Filter ohne Eingaben gerendert, bleibt die Komponente stabil und verursacht keine Laufzeitfehler.
 - [x] Bei übergebenen Optionen listet die Mehrfachauswahl alle Tags und stellt die aktuelle Auswahl als Chips im Eingabefeld dar.

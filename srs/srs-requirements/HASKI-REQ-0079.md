@@ -22,6 +22,18 @@ links:
       name: "TestApi::test_reset_learning_strategy"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_reset_knowledge"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_input_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_perception_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_processing_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_understanding_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_questionnaire_list_k"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_questionnaire_ils"
 ---
 
 ## Beschreibung

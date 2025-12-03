@@ -14,6 +14,16 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_delete_user"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_admin"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_course_creator"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_student"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_teacher"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_user"
 ---
 
 ## Beschreibung

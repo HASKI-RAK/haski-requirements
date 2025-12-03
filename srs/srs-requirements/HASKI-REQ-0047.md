@@ -15,6 +15,10 @@ links:
       name: "TestApi::test_post_logbuffer"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_logbuffer"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_logbuffer"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_logbuffer"
 ---
 
 ## Beschreibung

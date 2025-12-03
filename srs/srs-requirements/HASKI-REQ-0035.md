@@ -33,6 +33,8 @@ links:
       name: "DeleteEntityModal Component"
     - path: "frontend/src/pages/Course/Course.test.tsx"
       name: "Course Page"
+    - path: "frontend/src/pages/Home/Home.test.tsx"
+      name: "Home Page"
     - path: "HASKI-Frontend/src/services/Course/postCourse.test.tsx"
       name: "postCourse has expected behaviour"
     - path: "HASKI-Frontend/src/services/CourseTopics/CourseTopics.test.tsx"
