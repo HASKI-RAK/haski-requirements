@@ -1,6 +1,6 @@
 ---
 id: HASKI-REQ-0085
-title: Visualisierung des Standard-Lernpfads im Frontend
+title: Visualisierung des Lernelement-Lernpfads im Frontend
 type: Interface
 status: Implemented
 stakeholder_priority: High
@@ -11,7 +11,9 @@ links:
   stories:
     [
       "HASKI-RAK/HASKI-Frontend#66",
+      "HASKI-RAK/HASKI-Frontend#141",
       "HASKI-RAK/HASKI-Frontend#257",
+      "HASKI-RAK/HASKI-Frontend#276",
       "HASKI-RAK/HASKI-Frontend#306",
     ]
   tests:
@@ -61,8 +63,6 @@ links:
       name: "fetchLearningPathElement has expected behaviour"
     - path: "HASKI-Frontend/src/services/LearningPath/fetchLearningPathElementStatus.test.tsx"
       name: "fetchLearningPathElementStatus has expected behaviour"
-    - path: "HASKI-Frontend/src/services/LearningPath/fetchLearningPathElementSpecificStatus.test.tsx"
-      name: "fetchLearningPathElementStatus has expected behaviour"
     - path: "HASKI-Frontend/src/services/LearningPath/postCalculateLearningPathForAllStudents.test.tsx"
       name: "postCalculateLearningPathForAllStudents has expected behaviour"
     - path: "HASKI-Frontend/src/services/LearningPath/postCalculateLearningPathILS.test.tsx"
@@ -75,9 +75,18 @@ links:
 
 ## Beschreibung
 
-Das Frontend **shall** den Standard-Lernpfad eines Topics als interaktives Node-Graph-Layout darstellen. Jede Lernaktivität wird als Klassifikations-spezifischer Node mit Icon, Status (offen, erledigt, deaktiviert, empfohlen) und Klick-Interaktion visualisiert. Lehrende und Studierende **shall** zwischen gruppierter und ungeordneter Darstellung wechseln können, ohne dass Daten neu geladen werden müssen. Die Visualisierung **shall** als Single Source of Truth für Lernpfad-Interaktionen dienen und unmittelbar auf Änderungen reagieren, die aus Backend-Synchronisationen stammen.
+Das Frontend **shall** den Standard-Lernpfad eines Topics als interaktives Node-Graph-Layout darstellen. Jede Lernaktivität wird als Klassifikations-spezifischer Node mit Icon, Status (offen, erledigt, deaktiviert, empfohlen) und Klick-Interaktion visualisiert. Studierende sollen ihre individuellen Lernelemente als Knoten sehen, verbunden durch Kanten, die die empfohlene oder vorgeschriebene Reihenfolge darstellen. Lehrende und Studierende **shall** zwischen gruppierter und ungeordneter Darstellung wechseln können, ohne dass Daten neu geladen werden müssen. Die Visualisierung **shall** als Single Source of Truth für Lernpfad-Interaktionen dienen und unmittelbar auf Änderungen reagieren, die aus Backend-Synchronisationen stammen.
 
 ## Akzeptanzkriterien
+
+### Grundlegende Darstellung
+
+- [x] Der Lernpfad wird als Graph mit Knoten (Lernelemente) und Kanten (Verbindungen) dargestellt.
+- [x] Der Status der Lernelemente (erledigt, offen, gesperrt) wird visuell hervorgehoben.
+- [x] Lernelemente mit gleicher Klassifikation (z.B. mehrere Übungen) werden gruppiert dargestellt (GH-276).
+- [x] Ein Klick auf ein Lernelement öffnet dieses (z.B. in einem Modal oder IFrame).
+- [x] Die Ansicht unterscheidet sich je nach Rolle (Studierende sehen ihren Fortschritt, Lehrende sehen eine Vorschau oder Bearbeitungsansicht).
+- [x] Fehler beim Laden der Daten (User, Lernpfad, Status) werden abgefangen und dem Nutzer gemeldet.
 
 ### Node-Darstellung
 
@@ -99,11 +108,12 @@ Das Frontend **shall** den Standard-Lernpfad eines Topics als interaktives Node-
 
 ## Rationale
 
-SyRS-FUNC-008 verlangt eine durchgängige Visualisierung der adaptiven Lernräume. GitHub Issue [#66](https://github.com/HASKI-RAK/HASKI-Frontend/issues/66) definiert die Node-Graph-Darstellung als Kernfunktion des Topic-Frontends. Issue [#257](https://github.com/HASKI-RAK/HASKI-Frontend/issues/257) erweitert die Node-Typen, um standortspezifische Klassifikationen abzubilden, und Issue [#306](https://github.com/HASKI-RAK/HASKI-Frontend/issues/306) verknüpft die Visualisierung mit Algorithmus-Overrides. Zusammen stellen die verlinkten Komponenten sicher, dass die Lernpfad-Oberfläche sämtliche Klassifikationen und Statuszustände konsistent im Frontend abbildet.
+Die Visualisierung des Lernpfads ist das zentrale Element für die Orientierung der Studierenden. Sie macht den Lernfortschritt transparent und ermöglicht die Navigation durch die Inhalte. SyRS-FUNC-008 verlangt eine durchgängige Visualisierung der adaptiven Lernräume. GitHub Issue [#66](https://github.com/HASKI-RAK/HASKI-Frontend/issues/66) definiert die Node-Graph-Darstellung als Kernfunktion des Topic-Frontends. Issue [#141](https://github.com/HASKI-RAK/HASKI-Frontend/issues/141) beschreibt die Learning-Path-Komponente, die Lernelemente rendert. Issue [#257](https://github.com/HASKI-RAK/HASKI-Frontend/issues/257) erweitert die Node-Typen, um standortspezifische Klassifikationen abzubilden, Issue [#276](https://github.com/HASKI-RAK/HASKI-Frontend/issues/276) definiert die Gruppierung von Lernelementen, und Issue [#306](https://github.com/HASKI-RAK/HASKI-Frontend/issues/306) verknüpft die Visualisierung mit Algorithmus-Overrides. Zusammen stellen die verlinkten Komponenten sicher, dass die Lernpfad-Oberfläche sämtliche Klassifikationen und Statuszustände konsistent im Frontend abbildet.
 
 ## Hinweise
 
 - Die Visualisierung basiert auf ReactFlow und den Memo-optimierten Node-Komponenten unter `frontend/src/components/Nodes/`.
+- Nutzt `useTopic` Hook für die Logik.
 - LabeledSwitch erlaubt Lehrenden und Studierenden, den Graph bedarfsgerecht umzuschalten (Grouped vs. Single view).
 - Node-spezifische Modals (Algorithmus, Delete-Dialoge) stammen aus den jeweiligen Komponenten und sind für die Interaktionskette relevant.
 - Styling und Icons folgen den Vorgaben in `assets/css/rtm.css` und den Material Icons, wodurch Barrierefreiheit (Kontrast, Fokus) gewährleistet bleibt.

@@ -8,7 +8,7 @@ verification_method: Test
 links:
   parents: [StRS-121]
   stories: ["HASKI-RAK/HASKI-Backend#30"]
-  children: ["HASKI-REQ-0067", "HASKI-REQ-0068", "HASKI-REQ-0071"]
+  children: ["HASKI-REQ-0035", "HASKI-REQ-0068", "HASKI-REQ-0071"]
 ---
 
 ## Beschreibung

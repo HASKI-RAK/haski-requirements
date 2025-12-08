@@ -1,14 +1,14 @@
 ---
 id: HASKI-REQ-0089
-title: Globale Navigationsmenüs und Footer im MainFrame
+title: Globale Navigationsmenüs, Footer und Impressum
 type: Interface
 status: Implemented
-stakeholder_priority: Medium
+stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-019
 links:
-  parents: ["SyRS-FUNC-019"]
-  stories: ["HASKI-RAK/HASKI-Frontend#124"]
+  parents: ["SyRS-FUNC-019", "SyRS-INT-001"]
+  stories: ["HASKI-RAK/HASKI-Frontend#124", "HASKI-RAK/HASKI-Frontend#127"]
   tests:
     - path: "HASKI-Frontend/src/components/GlobalNav/CourseMenu/CourseMenu.test.tsx"
       name: "CourseMenu tests"
@@ -26,6 +26,8 @@ links:
       name: "Footer"
     - path: "HASKI-Frontend/src/pages/MainFrame/MainFrame.test.tsx"
       name: "MainFrame tests"
+    - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
+      name: "Imprint Component"
 ---
 
 ## Beschreibung
@@ -51,6 +53,14 @@ Das Frontend **shall** im MainFrame-Layout persistente Navigationsmenüs bereits
 - [x] `Footer` rendert persistent am unteren Seitenrand und enthält Links zu Impressum, Datenschutz und Projektinformationen (verifiziert durch "Footer").
 - [x] Alle Footer-Links navigieren korrekt zu den entsprechenden Seiten ohne Fehler.
 
+### Impressum
+
+- [x] Die Impressum-Seite zeigt die Adresse der Hochschule.
+- [x] Die Seite zeigt Kontaktinformationen (E-Mail, Telefon).
+- [x] Die Seite enthält einen Haftungsausschluss (Disclaimer).
+- [x] Die Seite nennt den Vertretungsberechtigten.
+- [x] Die Seite ist über den Footer erreichbar.
+
 ### Integration und Konsistenz
 
 - [x] Alle Navigationskomponenten arbeiten mit React Router und nutzen `useNavigate` für Seitenübergänge.
@@ -59,7 +69,7 @@ Das Frontend **shall** im MainFrame-Layout persistente Navigationsmenüs bereits
 
 ## Rationale
 
-Issue [#124](https://github.com/HASKI-RAK/HASKI-Frontend/issues/124) führte das MainFrame-Layout ein, das eine konsistente Navigationsstruktur über alle Seiten hinweg erfordert. Die globalen Navigationsmenüs ermöglichen schnellen Zugriff auf Hauptfunktionen, während die lokale Navigation kontextspezifische Aktionen bereitstellt. Der Footer erfüllt rechtliche Anforderungen (Impressum, Datenschutz) und unterstützt die Projektkommunikation.
+Issue [#124](https://github.com/HASKI-RAK/HASKI-Frontend/issues/124) führte das MainFrame-Layout ein, das eine konsistente Navigationsstruktur über alle Seiten hinweg erfordert. Die globalen Navigationsmenüs ermöglichen schnellen Zugriff auf Hauptfunktionen, während die lokale Navigation kontextspezifische Aktionen bereitstellt. Der Footer erfüllt rechtliche Anforderungen und unterstützt die Projektkommunikation. Issue [#127](https://github.com/HASKI-RAK/HASKI-Frontend/issues/127) implementiert das Impressum zur Erfüllung gesetzlicher Informationspflichten (TMG).
 
 ## Hinweise
 

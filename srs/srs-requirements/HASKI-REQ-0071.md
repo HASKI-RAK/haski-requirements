@@ -7,10 +7,11 @@ stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-INT-005
 links:
-  parents: ["SyRS-INT-005"]
+  parents: ["SyRS-INT-005", "SyRS-FUNC-007"]
   stories:
     - "HASKI-RAK/HASKI-Backend#30"
     - "HASKI-RAK/HASKI-Frontend#264"
+    - "HASKI-RAK/HASKI-Frontend#263"
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_activity_status_for_student"
@@ -26,6 +27,8 @@ links:
       name: "LearningPathTopicProgress tests"
     - path: "frontend/src/services/LearningPath/fetchLearningPathElementStatus.test.tsx"
       name: "fetchLearningPathElementStatus has expected behaviour"
+    - path: "frontend/src/services/LearningPath/fetchLearningPathElementSpecificStatus.test.tsx"
+      name: "fetchLearningPathElementSpecificStatus has expected behaviour"
     - path: "frontend/src/components/StyledLinearProgress/StyledLinearProgress.test.tsx"
       name: "StyledLinearProgress tests"
     - path: "HASKI-Frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"

@@ -4,6 +4,8 @@ title: Erstellung und Konfiguration von Standard-Lernpfaden mit Scaffolding-Elem
 type: Functional
 status: Implemented
 source_id: SyRS-FUNC-008
+stakeholder_priority: Medium
+verification_method: Test
 links:
   stories:
     [
@@ -17,6 +19,7 @@ links:
     ]
   parents: ["SyRS-FUNC-008"]
   tests:
+    # Frontend tests
     - path: "frontend/src/components/CreateDefaultLearningPath/Modal/CreateDefaultLearningPathModal.test.tsx"
       name: "CreateDefaultLearningPathModal"
     - path: "frontend/src/components/CreateDefaultLearningPath/OpenCreateDefaultLearningPath/OpenCreateDefaultLearningPath.test.tsx"
@@ -31,8 +34,6 @@ links:
       name: "Droppable Component"
     - path: "frontend/src/components/CreateDefaultLearningPath/Table/SortableItem.test.tsx"
       name: "SortableItem Component"
-    - path: "backend/tests/e2e/test_api.py"
-      name: "TestApi::test_post_learning_path_default"
     - path: "frontend/src/services/DefaultLearningPath/fetchDefaultLearningPath.test.tsx"
       name: "fetchDefaultLearningPath has expected behaviour"
     - path: "HASKI-Frontend/src/store/Slices/DefaultLearningPathSlice.test.ts"
@@ -43,10 +44,22 @@ links:
       name: "postDefaultLearningPath has expected behaviour"
     - path: "frontend/src/services/LearningPath/postCalculateLearningPathForAllStudents.test.tsx"
       name: "postCalculateLearningPathForAllStudents"
+    # Backend e2e tests
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_path_default"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_path_default"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_calculate_learning_path_for_all_students"
+    # Backend unit tests
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_default_learning_path"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_default_learning_path_by_university"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_default_learning_path_by_uni"
+    - path: "backend/tests/unit/test_tutoring_model.py"
+      name: "test_get_learning_path_default"
 ---
 
 ## Beschreibung

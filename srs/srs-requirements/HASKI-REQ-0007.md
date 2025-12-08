@@ -18,7 +18,7 @@ links:
       "HASKI-RAK/HASKI-Backend#23",
       "HASKI-RAK/HASKI-Backend#93",
     ]
-  parents: ["SyRS-FUNC-001"]
+  parents: ["SyRS-FUNC-001", "SyRS-FUNC-007"]
   tests:
     - path: "frontend/src/components/MenuBar/MenuBar.test.tsx"
       name: "MenuBar tests"
@@ -68,6 +68,10 @@ links:
       name: "test_get_learning_strategy_by_student_id"
     - path: "backend/tests/unit/test_service.py"
       name: "test_reset_learning_style_by_student_id"
+    - path: "frontend/src/services/Questionnaire/postILS.test.tsx"
+      name: "postILS has expected behaviour"
+    - path: "frontend/src/services/Questionnaire/postListK.test.tsx"
+      name: "postListK has expected behaviour"
 ---
 
 ## Beschreibung
