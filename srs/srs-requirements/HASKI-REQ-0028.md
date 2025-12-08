@@ -39,6 +39,10 @@ links:
       name: "Test Authcontext"
     - path: "HASKI-Frontend/src/services/AuthProvider/AuthProvider.test.tsx"
       name: "Test AuthProvider"
+    - path: "HASKI-Frontend/src/store/Slices/AuthSlice.test.ts"
+      name: "AuthSlice expire persistence"
+    - path: "HASKI-Frontend/src/store/Slices/UserSlice.test.ts"
+      name: "UserSlice caching"
 ---
 
 ## Beschreibung

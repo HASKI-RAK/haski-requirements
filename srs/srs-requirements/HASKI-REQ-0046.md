@@ -20,6 +20,8 @@ links:
       name: "Newsbanner tests"
     - path: "HASKI-Frontend/src/services/News/fetchNews.test.tsx"
       name: "Test the fetchNews functionalities"
+    - path: "HASKI-Frontend/src/store/Slices/NewsSlice.test.ts"
+      name: "NewsSlice caching"
 ---
 
 ## Beschreibung

@@ -34,8 +34,10 @@ links:
       name: "Test the demo component"
     - path: "HASKI-Frontend/src/shared/RingBuffer.test.tsx"
       name: "Test the RingBuffer class"
-    - path: "HASKI-Frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
-      name: "RemoteTopicSlice "
+    - path: "HASKI-Frontend/src/shared/config.test.ts"
+      name: "setConfig"
+    - path: "HASKI-Frontend/src/services/RequestResponse.test.ts"
+      name: "RequestResponse"
 ---
 
 ## Beschreibung

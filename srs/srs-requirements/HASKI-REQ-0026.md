@@ -35,6 +35,8 @@ links:
       name: "TestApi::test_post_learning_path_default"
     - path: "frontend/src/services/DefaultLearningPath/fetchDefaultLearningPath.test.tsx"
       name: "fetchDefaultLearningPath has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/DefaultLearningPathSlice.test.ts"
+      name: "DefaultLearningPathSlice caching"
     - path: "frontend/src/services/DefaultLearningPath/fetchDisabledClassifications.test.tsx"
       name: "fetchDisabledClassifications has expected behaviour"
     - path: "frontend/src/services/DefaultLearningPath/postDefaultLearningPath.test.tsx"

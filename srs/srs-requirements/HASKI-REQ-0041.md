@@ -34,6 +34,10 @@ links:
       name: "postStudentLpLeAlg has expected behaviour"
     - path: "frontend/src/services/LearningPathLearningElementAlgorithm/postTeacherLpLeAlg.test.tsx"
       name: "postTeacherLpLeAlg has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/StudentLpLeAlgSlice.test.ts"
+      name: "StudentLpLeAlgSlice cache"
+    - path: "HASKI-Frontend/src/store/Slices/TeacherLpLeAlgorithmSlice.test.ts"
+      name: "TeacherLpLeAlgorithmSlice cache"
 ---
 
 ## Beschreibung

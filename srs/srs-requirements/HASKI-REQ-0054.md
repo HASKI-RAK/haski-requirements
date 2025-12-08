@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_course"
+    - path: "HASKI-Frontend/src/store/Slices/CourseSlice.test.ts"
+      name: "CourseSlice setCourse"
 ---
 
 ## Beschreibung

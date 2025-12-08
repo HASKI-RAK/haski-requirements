@@ -7,7 +7,12 @@ stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-INT-003
 links:
-  stories: ["HASKI-RAK/HASKI-Backend#131"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Backend#131",
+      "HASKI-RAK/HASKI-Frontend#81",
+      "HASKI-RAK/HASKI-Frontend#368",
+    ]
   parents: ["SyRS-INT-003"]
   tests:
     - path: "backend/tests/e2e/test_api.py"

@@ -29,6 +29,8 @@ links:
       name: "ExistingTopicsTable"
     - path: "HASKI-Frontend/src/services/Topic/postTopic.test.tsx"
       name: "postTopic has expected behaviour"
+    - path: "HASKI-Frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
+      name: "postAddAllStudentsToTopics has expected behaviour"
 ---
 
 ## Beschreibung

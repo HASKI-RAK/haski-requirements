@@ -17,18 +17,19 @@ Das HASKI-System **shall** den gesamten Quellcode und alle erstellten Lehrmateri
 
 ## Akzeptanzkriterien
 
-- [ ] Alle Quellcode-Repositories (Frontend, Backend) sind unter einer anerkannten Open-Source-Lizenz veröffentlicht
-- [ ] Die LICENSE-Datei ist in jedem Repository vorhanden und korrekt
-- [ ] Alle Lehrmaterialien sind mit einer geeigneten Creative-Commons-Lizenz versehen
-- [ ] Die package.json/setup.py Dateien enthalten korrekte Lizenzangaben
-- [ ] Alle Abhängigkeiten sind kompatibel mit der gewählten Open-Source-Lizenz (keine Lizenzkonflikte)
-- [ ] Die Repositories sind als öffentlich (public) konfiguriert
-- [ ] Die README-Dateien enthalten klare Lizenzhinweise und Nutzungsbedingungen
-- [ ] Drittanbieter-Code und Bibliotheken sind korrekt attributiert
+- [x] Alle Quellcode-Repositories (Frontend, Backend) sind unter einer anerkannten Open-Source-Lizenz veröffentlicht
+- [x] Die LICENSE-Datei ist in jedem Repository vorhanden und korrekt
+- [x] Alle Lehrmaterialien sind mit einer geeigneten Creative-Commons-Lizenz versehen
+- [x] Die package.json/setup.py Dateien enthalten korrekte Lizenzangaben
+- [x] Alle Abhängigkeiten sind kompatibel mit der gewählten Open-Source-Lizenz (keine Lizenzkonflikte)
+- [x] Die Repositories sind als öffentlich (public) konfiguriert
+- [x] Die README-Dateien enthalten klare Lizenzhinweise und Nutzungsbedingungen
+- [x] Drittanbieter-Code und Bibliotheken sind korrekt attributiert
 
 ## Rationale
 
 Basierend auf Stakeholder-Anforderung StRS-117 muss das HASKI-System als Open-Source-Software verfügbar sein, um:
+
 - Langfristige Nachhaltigkeit und Weiterentwicklung zu gewährleisten
 - Institutionelle Nutzung durch Hochschulen zu ermöglichen
 - Transparenz und Vertrauen in das KI-gestützte Lernsystem zu schaffen
@@ -36,4 +37,3 @@ Basierend auf Stakeholder-Anforderung StRS-117 muss das HASKI-System als Open-So
 - Eine größere Wirkung im Hochschulbereich durch breite Verfügbarkeit zu erzielen
 
 Die Open-Source-Lizenzierung ist eine zentrale Compliance-Anforderung des Projekts und essentiell für die institutionelle Akzeptanz.
-

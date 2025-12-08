@@ -14,6 +14,8 @@ links:
       name: "TestApi::test_get_remote_course_content"
     - path: "HASKI-Frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
       name: "fetchRemoteTopics has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
+      name: "RemoteTopicSlice"
 ---
 
 ## Beschreibung

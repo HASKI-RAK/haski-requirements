@@ -16,6 +16,8 @@ links:
       name: "Test the Home page-1; Test the Home page-2"
     - path: "HASKI-Frontend/src/services/Courses/fetchCourses.test.tsx"
       name: "fetchCourses has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/CoursesSlice.test.ts"
+      name: "CoursesSlice caching"
 ---
 
 ## Beschreibung

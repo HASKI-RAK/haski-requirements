@@ -22,6 +22,10 @@ links:
       name: "StyledLinearProgress tests"
     - path: "HASKI-Frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"
       name: "LinearProgressWithLabel"
+    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementSpecificStatusSlice.test.ts"
+      name: "LearningPathElementSpecificStatusSlice"
+    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementStatusSlice.test.ts"
+      name: "LearningPathElementStatusSlice"
 ---
 
 ## Beschreibung

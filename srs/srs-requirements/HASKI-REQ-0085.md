@@ -69,6 +69,8 @@ links:
       name: "postCalculateLearningPathILS tests"
     - path: "HASKI-Frontend/src/services/Topic/fetchLearningPathTopic.test.tsx"
       name: "fetchLearningPathElement has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/LearningPathTopicSlice.test.ts"
+      name: "LearningPathTopicSlice caching"
 ---
 
 ## Beschreibung

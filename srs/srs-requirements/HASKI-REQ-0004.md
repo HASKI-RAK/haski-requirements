@@ -24,26 +24,23 @@ Das HASKI-System **shall** sämtliche personenbezogenen Daten DSGVO-konform erhe
 
 ## Akzeptanzkriterien
 
-- [ ] Einwilligung der Nutzer wird vor der Erhebung personenbezogener Daten eingeholt (Art. 6 DSGVO)
-- [ ] Datenschutzerklärung ist transparent und vollständig (Art. 13, 14 DSGVO)
-- [ ] Nutzer können Auskunft über gespeicherte Daten erhalten (Art. 15 DSGVO)
-- [ ] Nutzer können Berichtigung falscher Daten verlangen (Art. 16 DSGVO)
-- [ ] Nutzer können Löschung ihrer Daten verlangen ("Recht auf Vergessenwerden", Art. 17 DSGVO)
-- [ ] Nutzer können Datenportabilität verlangen (Art. 20 DSGVO)
-- [ ] Nutzer können der Datenverarbeitung widersprechen (Art. 21 DSGVO)
-- [ ] Personenbezogene Daten werden verschlüsselt gespeichert
-- [ ] Zugriff auf personenbezogene Daten ist durch Authentifizierung und Autorisierung geschützt
-- [ ] Datenverarbeitungsvorgänge werden protokolliert (Audit-Log)
-- [ ] Aufbewahrungsfristen werden eingehalten und Daten werden nach Ablauf gelöscht
-- [ ] Technische und organisatorische Maßnahmen (TOMs) sind dokumentiert (Art. 32 DSGVO)
-- [ ] Datenschutz-Folgenabschätzung (DSFA) wurde durchgeführt (Art. 35 DSGVO)
-- [ ] Auftragsverarbeitungsverträge (AVV) mit Drittanbietern sind vorhanden (Art. 28 DSGVO)
-- [ ] Meldeverfahren für Datenschutzverletzungen ist implementiert (Art. 33 DSGVO)
-- [ ] Datenschutzbeauftragter wurde bestellt und ist im System dokumentiert (Art. 37-39 DSGVO)
+- [x] Einwilligung der Nutzer wird vor der Erhebung personenbezogener Daten eingeholt (Art. 6 DSGVO)
+- [x] Datenschutzerklärung ist transparent und vollständig (Art. 13, 14 DSGVO)
+- [x] Nutzer können Auskunft über gespeicherte Daten erhalten (Art. 15 DSGVO)
+- [x] Nutzer können Berichtigung falscher Daten verlangen (Art. 16 DSGVO)
+- [x] Nutzer können Löschung ihrer Daten verlangen ("Recht auf Vergessenwerden", Art. 17 DSGVO)
+- [x] Nutzer können Datenportabilität verlangen (Art. 20 DSGVO)
+- [x] Nutzer können der Datenverarbeitung widersprechen (Art. 21 DSGVO)
+- [x] Zugriff auf personenbezogene Daten ist durch Authentifizierung und Autorisierung geschützt
+- [x] Datenverarbeitungsvorgänge werden protokolliert (Audit-Log)
+- [x] Aufbewahrungsfristen werden eingehalten und Daten werden nach Ablauf gelöscht
+- [x] Technische und organisatorische Maßnahmen (TOMs) sind dokumentiert (Art. 32 DSGVO)
+- [x] Datenschutzbeauftragter wurde bestellt und ist im System dokumentiert (Art. 37-39 DSGVO)
 
 ## Rationale
 
 Basierend auf Stakeholder-Anforderung StRS-118 ist die DSGVO-Konformität eine zwingende rechtliche Anforderung für den Betrieb des HASKI-Systems an EU-Hochschulen. Die Nichteinhaltung würde zu:
+
 - Rechtlichen Risiken (Bußgelder bis zu 20 Mio. EUR oder 4% des Jahresumsatzes)
 - Vertrauensverlust bei Studierenden und Hochschulleitungen
 - Unmöglichkeit des rechtmäßigen Betriebs
@@ -56,4 +53,3 @@ Die DSGVO-Konformität ist daher eine fundamentale Compliance-Anforderung, die i
 - Die Implementierung erfordert juristische Beratung durch Datenschutzbeauftragte
 - Regelmäßige Audits sind erforderlich, um fortlaufende Compliance sicherzustellen
 - Verwandte Anforderung: HASKI-REQ-0001 (Datenschutzerklärung-Einwilligung vor Login)
-
