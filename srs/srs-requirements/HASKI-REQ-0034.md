@@ -13,6 +13,8 @@ links:
     ]
   parents: ["SyRS-INT-003"]
   tests:
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_api_create_user_from_moodle"
     - path: "frontend/src/common/hooks/University/University.test.tsx"
       name: "useUniversity hook"
 ---

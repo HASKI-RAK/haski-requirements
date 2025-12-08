@@ -8,16 +8,15 @@ verification_method: Test
 source_id: SyRS-FUNC-007
 links:
   parents: ["SyRS-FUNC-007"]
-  stories: []
+  stories:
+    - "HASKI-RAK/HASKI-Frontend#154"
   tests:
     - path: "frontend/src/pages/LearnerCharacteristics/LearnerCharacteristics.test.tsx"
       name: "LearnerCharacteristics"
-    - path: "HASKI-Frontend/src/services/Questionnaire/fetchILS.test.tsx"
+    - path: "frontend/src/services/Questionnaire/fetchILS.test.tsx"
       name: "fetchILS has expected behaviour"
-    - path: "HASKI-Frontend/src/services/Questionnaire/fetchListK.test.tsx"
-      name: "fetchILS has expected behaviour"
-    - path: "HASKI-Frontend/src/services/Questionnaire/postILS.test.tsx"
-      name: "postILS has expected behaviour"
+    - path: "frontend/src/services/Questionnaire/fetchListK.test.tsx"
+      name: "fetchListK has expected behaviour"
     - path: "HASKI-Frontend/src/services/Questionnaire/postListK.test.tsx"
       name: "postListK has expected behaviour"
 ---

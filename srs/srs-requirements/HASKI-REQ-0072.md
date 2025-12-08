@@ -13,6 +13,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_element_recommendation"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_recommended_exercises_for_student_in_topic"
     - path: "frontend/src/services/LearningElementRecommendation/LearningElementRecommendation.test.tsx"
       name: "LearningElementRecommendation"
     - path: "HASKI-Frontend/src/services/LearningElementRecommendation/fetchLearningElementRecommendation.test.ts"

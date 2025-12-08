@@ -11,6 +11,7 @@ links:
     - "HASKI-RAK/HASKI-Frontend#285"
     - "HASKI-RAK/HASKI-Frontend#287"
     - "HASKI-RAK/HASKI-Frontend#256"
+    - "HASKI-RAK/HASKI-Frontend#111"
   tests:
     - path: "frontend/src/common/components/DefaultAccordion/DefaultAccordion.test.tsx"
       name: "DefaultAccordion renders"
@@ -66,11 +67,11 @@ links:
       name: "SnackbarTransition tests"
     - path: "HASKI-Frontend/src/components/ToggleButtonList/ToggleButtonList.test.tsx"
       name: "ToggleButtonList tests"
-    - path: "HASKI-Frontend/src/services/connection/NetworkStatus.test.tsx"
+    - path: "frontend/src/services/connection/NetworkStatus.test.tsx"
       name: "Test useNetworkStatus"
-    - path: "HASKI-Frontend/src/services/debounce/debounce.test.tsx"
+    - path: "frontend/src/services/debounce/debounce.test.tsx"
       name: "Debounce tests"
-    - path: "HASKI-Frontend/src/services/PageName/PageName.test.tsx"
+    - path: "frontend/src/services/PageName/PageName.test.tsx"
       name: "Test usePageName"
 ---
 

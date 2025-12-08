@@ -44,6 +44,10 @@ links:
       name: "ResultDescriptionILS"
     - path: "frontend/src/components/Questionnaire/QuestionnaireResults/Text/ResultDescriptionListK.test.tsx"
       name: "ResultDescriptionListK"
+    - path: "frontend/src/services/LearningPath/postCalculateLearningPathILS.test.tsx"
+      name: "postCalculateLearningPathILS"
+    - path: "frontend/src/services/LearningPath/fetchLearningPathElement.test.tsx"
+      name: "fetchLearningPathElement"
     - path: "backend/tests/e2e/test_api.py"
       name: "test_post_questionnaire_list_k"
     - path: "backend/tests/e2e/test_api.py"
@@ -54,6 +58,16 @@ links:
       name: "TestApi::test_post_learning_path_ga"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_calculate_learning_path"
+    - path: "backend/tests/unit/test_learners_model.py"
+      name: "TestBasicQuestionnaireAlgorithms::test_basic_ils_algorithm"
+    - path: "backend/tests/unit/test_learners_model.py"
+      name: "TestBasicQuestionnaireAlgorithms::test_basic_listk_algorithm"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_learning_style_by_student_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_learning_strategy_by_student_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_reset_learning_style_by_student_id"
 ---
 
 ## Beschreibung

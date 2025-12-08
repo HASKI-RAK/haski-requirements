@@ -18,10 +18,15 @@ links:
       name: "TestApi::test_api_delete_topic_from_moodle"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_api_delete_course_from_moodle"
+    - path: "frontend/src/services/Topic/deleteTopic.test.tsx"
     - path: "HASKI-Frontend/src/services/Course/deleteCourse.test.ts"
       name: "deleteCourse has expected behaviour"
     - path: "HASKI-Frontend/src/services/Topic/deleteTopic.test.tsx"
       name: "deleteTopic has expected behaviour"
+    - path: "frontend/src/services/Course/deleteCourse.test.ts"
+      name: "deleteCourse has expected behaviour"
+    - path: "frontend/src/services/LearningElement/deleteLearningElement.test.tsx"
+      name: "deleteLearningElement has expected behaviour"
 ---
 
 ## Beschreibung

@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_update_user_from_moodle"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_update_user"
 ---
 
 ## Beschreibung

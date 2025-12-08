@@ -8,6 +8,9 @@ verification_method: Test
 links:
   parents: ["SyRS-INT-003"]
   stories: ["HASKI-RAK/HASKI-Backend#21"]
+  tests:
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_teacher_to_course"
 ---
 
 ## Beschreibung

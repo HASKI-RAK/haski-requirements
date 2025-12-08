@@ -17,6 +17,7 @@ links:
   tests:
     - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle_without_start_date"
     - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle"
+    - "backend/tests/unit/test_service.py::test_get_courses_from_moodle"
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle"
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle_with_start_date"
     - path: "frontend/src/components/CreateCourse/Modal/CreateCourseModal.test.tsx"
@@ -33,10 +34,14 @@ links:
       name: "DeleteEntityModal Component"
     - path: "frontend/src/pages/Course/Course.test.tsx"
       name: "Course Page"
-    - path: "HASKI-Frontend/src/services/Course/postCourse.test.tsx"
+    - path: "frontend/src/pages/Home/Home.test.tsx"
+      name: "Home Page"
+    - path: "frontend/src/services/Course/postCourse.test.tsx"
       name: "postCourse has expected behaviour"
-    - path: "HASKI-Frontend/src/services/CourseTopics/CourseTopics.test.tsx"
+    - path: "frontend/src/services/CourseTopics/CourseTopics.test.tsx"
       name: "useCourseTopics"
+    - path: "frontend/src/services/RemoteCourses/fetchRemoteCourses.test.tsx"
+      name: "fetchRemoteCourses has expected behaviour"
 ---
 
 ## Beschreibung

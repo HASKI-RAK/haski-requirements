@@ -41,6 +41,8 @@ links:
       name: "fetchDisabledClassifications has expected behaviour"
     - path: "frontend/src/services/DefaultLearningPath/postDefaultLearningPath.test.tsx"
       name: "postDefaultLearningPath has expected behaviour"
+    - path: "frontend/src/services/LearningPath/postCalculateLearningPathForAllStudents.test.tsx"
+      name: "postCalculateLearningPathForAllStudents"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_path_default"
     - path: "backend/tests/e2e/test_api.py"

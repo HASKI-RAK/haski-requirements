@@ -7,11 +7,20 @@ stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-FUNC-008
 links:
-  stories: ["HASKI-RAK/HASKI-Backend#76", "HASKI-RAK/HASKI-Backend#30"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Backend#76",
+      "HASKI-RAK/HASKI-Backend#30",
+      "HASKI-RAK/HASKI-Frontend#264",
+    ]
   parents: ["SyRS-FUNC-008"]
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_course_topics"
+    - path: "frontend/src/services/Topic/fetchLearningPathTopic.test.tsx"
+      name: "fetchLearningPathTopic"
+    - path: "frontend/src/services/CourseTopics/CourseTopics.test.tsx"
+      name: "useCourseTopics"
 ---
 
 ## Beschreibung
