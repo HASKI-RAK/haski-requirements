@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_path_algorithm_student"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_student_learning_path_learning_element_algorithm"
 ---
 
 ## Beschreibung

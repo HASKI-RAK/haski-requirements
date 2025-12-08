@@ -67,6 +67,12 @@ links:
       name: "test_delete_student_ratings_by_topic"
     - path: "backend/tests/unit/test_service.py"
       name: "test_update_ratings"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_h5p_activity_id_for_learning_element"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_moodle_h5p_activity_attempts"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_moodle_most_recent_attempt_by_user"
 ---
 
 ## Beschreibung

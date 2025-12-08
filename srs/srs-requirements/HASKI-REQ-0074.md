@@ -12,6 +12,8 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_update_learning_style_by_student_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_update_learning_style_by_student_id"
 ---
 
 ## Beschreibung
