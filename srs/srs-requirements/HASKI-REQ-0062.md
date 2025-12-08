@@ -1,6 +1,6 @@
 ---
 id: HASKI-REQ-0062
-title: Learning Elements eines Topics abrufen
+title: Learning Elements über REST abrufen
 type: Functional
 status: Implemented
 stakeholder_priority: Medium
@@ -12,23 +12,44 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_les_for_topic_for_student"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_le_by_id_for_student"
+  merged_from: ["HASKI-REQ-0063"]
 ---
 
 ## Beschreibung
 
-Das System **shall** eingeschriebenen Studierenden sämtliche Learning Elements eines Topics inklusive ihres persönlichen Fortschritts bereitstellen. Damit können Empfehlungssysteme, Dashboards und Tracking-Funktionen identische Daten verwenden, ohne mehrere Datenquellen abgleichen zu müssen.
+Das System **shall** eingeschriebenen Studierenden Learning Elements bereitstellen, sowohl als Liste aller Elemente eines Topics als auch als Einzelabfrage. Damit können Empfehlungssysteme, Dashboards und Tracking-Funktionen identische Daten verwenden, ohne mehrere Datenquellen abgleichen zu müssen.
+
+### Learning Elements pro Topic
+
+Listet sämtliche Learning Elements eines Topics inklusive persönlichem Fortschritt.
+
+### Einzelnes Learning Element
+
+Liefert Detailinformationen zu einem einzelnen Learning Element, sodass UI- und Analytics-Komponenten gezielt mit einem Element arbeiten können, ohne komplette Listen zu laden.
 
 ## Akzeptanzkriterien
 
-- [x] Die Antwort umfasst alle Learning Elements des Topics mit den relevanten Metadaten (z. B. Typ, Klassifikation, Name, LMS-Referenz) und dem zugehörigen `student_learning_element`-Status.
+### Learning Elements pro Topic
+
+- [x] Die Antwort umfasst alle Learning Elements des Topics mit den relevanten Metadaten (z. B. Typ, Klassifikation, Name, LMS-Referenz) und dem zugehörigen `student_learning_element`-Status.
 - [x] Topics, zu denen kein legitimer Zugriff besteht, liefern keine Daten.
 - [x] Änderungen an Learning Elements werden ohne Zusatzaufwand in der Ausgabe sichtbar.
+- [x] Wird kein Learning Element gefunden, wird eine leere Liste zurückgegeben, damit Aufrufer deterministisch reagieren können.
+
+### Einzelnes Learning Element
+
+- [x] Für gültige Kombinationen aus Studierendem, Kurs, Topic und Learning Element werden sämtliche relevanten Metadaten sowie der `student_learning_element`-Kontext geliefert.
+- [x] Nicht zugeordnete oder unbekannte Ressourcen werden nicht ausgegeben.
+- [x] Die gelieferten Felder entsprechen der zentralen Learning-Element-Spezifikation und können ohne zusätzliche Transformationen verwendet werden.
+- [x] Wird ein Learning Element entfernt, liefert die Abfrage keine Daten mehr, wodurch veraltete Verlinkungen frühzeitig auffallen.
 
 ## Rationale
 
-SyRS-FUNC-008 sieht lernpfadfähige Räume vor, in denen pro Topic sämtliche Elemente verfügbar sind. Eine standardisierte Auslieferung verhindert Inkonsistenzen zwischen Frontend, Analytics und Tutoring-Komponenten.
+SyRS-FUNC-008 sieht lernpfadfähige Räume vor, in denen pro Topic sämtliche Elemente verfügbar sind. Eine standardisierte Auslieferung verhindert Inkonsistenzen zwischen Frontend, Analytics und Tutoring-Komponenten. Einzelne Lernpfad-Ansichten, Feedbackdialoge oder Auswertungen benötigen zielgerichtete Detailinformationen, wobei jede Ressource isoliert adressiert werden kann und gleichzeitig die geltenden Einschreibungsregeln respektiert werden.
 
 ## Hinweise
 
 - Die Datenstruktur entspricht der in der OAS beschriebenen Topic/LE-Spezifikation.
-- Wird kein Learning Element gefunden, wird eine leere Liste zurückgegeben, damit Aufrufer deterministisch reagieren können.
+- Die Struktur ist kompatibel zwischen Listen- und Einzelabfrage-Endpunkten, wodurch Frontends dieselben Komponenten wiederverwenden können.

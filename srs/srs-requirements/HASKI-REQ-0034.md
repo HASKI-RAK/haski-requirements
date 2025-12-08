@@ -11,17 +11,58 @@ links:
       "HASKI-RAK/HASKI-Backend#81",
       "HASKI-RAK/HASKI-Backend#76",
     ]
-  parents: ["SyRS-INT-003"]
+  parents: ["SyRS-INT-003", "SyRS-FUNC-001"]
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_api_create_user_from_moodle"
     - path: "frontend/src/common/hooks/University/University.test.tsx"
       name: "useUniversity hook"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_admin"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_course_creator"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_settings"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_student"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_empty_user_by_lms_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_user_by_lms_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_teacher"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_user"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_learning_characteristics"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_learning_style"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_learning_strategy"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_knowledge"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_learning_analytics"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_learning_characteristics"
+  merged_from: ["HASKI-REQ-0092"]
 ---
 
 ## Beschreibung
 
 Das System **shall** beim ersten Zugriff eines Moodle-Nutzers über LTI oder OIDC automatisch einen vollständigen HASKI-Nutzeraccount mit allen erforderlichen Stammdaten und initialen Einstellungen anlegen. Das System **shall** alle Nutzerrollen (Administrator, Kursersteller, Lehrkraft, Studierende) unterstützen und die Rollenzuordnung aus den Moodle-Daten übernehmen. Bereits registrierte Nutzer **shall** erkannt werden, sodass keine Dubletten entstehen. Die Nutzeranlage **shall** alle notwendigen Datenbanktabellen für den Betrieb initialisieren.
+
+Der Provisionierungsprozess umfasst die Initialisierung folgender Entitäten:
+
+- `User` (Basis-Benutzerdaten aus LTI-Launch)
+- `Settings` (Benutzerspezifische Einstellungen)
+- `Student` (Rollenspezifische Daten, falls Rolle Student)
+- `LearningCharacteristics` (Lernmerkmale)
+- `LearningStyle` (Lernstil-Präferenzen, initialisiert mit Standardwerten)
+- `Knowledge` (Wissensstand)
+- `LearningAnalytics` (Lernfortschrittsdaten)
+- `LearningStrategy` (Lernstrategien)
+- `StudentCourse` (Verknüpfung zum Kurs)
 
 ## Akzeptanzkriterien
 
@@ -33,6 +74,9 @@ Das System **shall** beim ersten Zugriff eines Moodle-Nutzers über LTI oder OID
 - [ ] Neu angelegte Nutzer können unmittelbar nach der Anlage alle Systemfunktionen nutzen
 - [ ] Fehlgeschlagene Anlageversuche werden protokolliert und sind administrativ nachvollziehbar
 - [ ] Nur authentifizierte Moodle-Zugriffe können Nutzeraccounts anlegen
+- [ ] Alle abhängigen Tabellen (`LearningCharacteristics`, `LearningStyle`, `Knowledge`, `LearningAnalytics`, `LearningStrategy`) werden mit validen Standardwerten initialisiert
+- [ ] Die Integrität der Verknüpfungen (Foreign Keys) ist gewährleistet
+- [ ] Der Vorgang ist idempotent oder prüft auf Existenz, um Duplikate zu vermeiden
 
 ## Rationale
 

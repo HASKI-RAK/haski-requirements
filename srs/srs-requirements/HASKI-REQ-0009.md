@@ -6,12 +6,24 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 links:
-  parents: ["SyRS-FUNC-003"]
-  stories: ["HASKI-RAK/NodeGrade#10", "HASKI-RAK/NodeGrade#11", "HASKI-RAK/NodeGrade#9", "HASKI-RAK/NodeGrade#19", "HASKI-RAK/NodeGrade#37", "HASKI-RAK/NodeGrade#40"]
+  parents: ["SyRS-FUNC-003", "SyRS-FUNC-006"]
+  stories:
+    [
+      "HASKI-RAK/NodeGrade#10",
+      "HASKI-RAK/NodeGrade#11",
+      "HASKI-RAK/NodeGrade#9",
+      "HASKI-RAK/NodeGrade#19",
+      "HASKI-RAK/NodeGrade#22",
+      "HASKI-RAK/NodeGrade#26",
+      "HASKI-RAK/NodeGrade#37",
+      "HASKI-RAK/NodeGrade#40",
+    ]
   tests: []
+  merged_from: ["HASKI-REQ-0033"]
 ---
 
 ## Beschreibung
+
 Das System **shall** Studierenden unmittelbar nach der Abgabe von Aufgaben verständliches Feedback bereitstellen, das folgende Aufgabentypen abdeckt:
 
 - **Quiz-Aufgaben**: Automatische Bewertung mit Ergebnisanzeige
@@ -20,7 +32,9 @@ Das System **shall** Studierenden unmittelbar nach der Abgabe von Aufgaben verst
 - **Diagrammaufgaben**: Feedback zu grafischen und diagrammatischen Lösungen
 
 ## Rationale
+
 Unmittelbares Feedback ist ein zentraler Bestandteil wirksamen Lernens (formative Assessment). Studierende benötigen zeitnahe, präzise und verständliche Rückmeldungen, um:
+
 - Fehler zu erkennen und zu korrigieren
 - Lernfortschritte zu reflektieren
 - Motivation und Selbstwirksamkeit zu fördern
@@ -29,6 +43,7 @@ Unmittelbares Feedback ist ein zentraler Bestandteil wirksamen Lernens (formativ
 Das NodeGrade-System ermöglicht automatisierte Bewertungen mittels konfigurierbarer Workflows und LLM-basierter Textanalyse, wodurch sowohl strukturierte als auch offene Aufgabenformate unterstützt werden.
 
 ## Akzeptanzkriterien
+
 1. **Unmittelbarkeit**: Feedback wird innerhalb akzeptabler Ladezeiten (< 10 Sekunden für einfache Aufgaben, < 60 Sekunden für komplexe LLM-Analysen) nach Abgabe angezeigt
 2. **Verständlichkeit**: Feedback ist in natürlicher Sprache formuliert und enthält:
    - Bewertungsergebnis (Punkte, Prozentsatz oder qualitative Einschätzung)
@@ -41,8 +56,13 @@ Das NodeGrade-System ermöglicht automatisierte Bewertungen mittels konfigurierb
    - Diagramme: Strukturelle oder inhaltliche Bewertung (je nach Implementierung)
 4. **Feedbackqualität**: Studierende können bei Unklarheiten Rückfragen zum Feedback stellen (Issue #40)
 5. **Transparenz**: Bewertungskriterien sind für Studierende nachvollziehbar
+6. **Freitext-Bewertungsmethoden**:
+   - Schlüsselwort-basierte Bewertung: Rating basierend auf dem Verhältnis vorhandener Schlüsselwörter in der Studierendenantwort (GH-26)
+   - LLM-basierte Bewertung: Integration von Large Language Models zur semantischen Analyse (GH-22)
+   - Präzises Feedback durch LLM-gestützte Analyse (GH-37)
 
 ## Implementierungshinweise
+
 - **NodeGrade-System** (https://github.com/HASKI-RAK/NodeGrade) wird als LTI-Tool in Moodle integriert
 - Workflow-basierte Evaluation mit konfigurierbaren Nodes (LLM, Feedback Output, Answer Input)
 - Lehrende erstellen Bewertungsgraphen über grafische Oberfläche
@@ -50,13 +70,14 @@ Das NodeGrade-System ermöglicht automatisierte Bewertungen mittels konfigurierb
 - LTI 1.3 Integration für Rollenverwaltung und Ergebnisübermittlung
 
 ## Abhängigkeiten
+
 - NodeGrade-Deployment und LTI-Konfiguration
 - Moodle-Integration (LTI 1.3)
 - LLM-Infrastruktur für Freitextbewertung (z.B. DeepSeek, lokale Modelle)
 - Learning Analytics (LRS) für Tracking der Feedbacknutzung (optional, Issue #12)
 
 ## Verifikation
+
 - **Test**: Automatisierte Tests für verschiedene Aufgabentypen und Antwortszenarien
 - **Demonstration**: Pilotveranstaltungen mit Studierenden-Feedback zur Verständlichkeit
 - **Analyse**: Messung der Feedbackqualität (Präzision, Hilfsbereitschaft) durch Nutzerbefragungen
-

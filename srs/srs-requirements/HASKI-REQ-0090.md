@@ -40,6 +40,7 @@ links:
       name: "setConfig"
     - path: "HASKI-Frontend/src/services/RequestResponse.test.ts"
       name: "RequestResponse"
+  merged_from: ["HASKI-REQ-0099"]
 ---
 
 ## Beschreibung
@@ -55,6 +56,13 @@ Das Routing **shall** alle funktionalen Seiten (Home, Course, Topic, Login, Impr
 - [x] Die `App`-Komponente rendert fehlerfrei und initialisiert die Provider-Hierarchie: `ThemeProvider` → `ReactFlowProvider` → `SnackbarProvider` → `Router` → `AuthProvider` → `RoleProvider` → `XAPIProvider` (verifiziert durch "App tests::renders correctly").
 - [x] Der `useApp`-Hook lädt bei Initialisierung den User über `getUser()`, setzt die LMS-User-ID und konfiguriert das xAPI-Objekt mit Projekt-URL, Versionsnummer, Repositories und Fehler-Callback (verifiziert durch "App tests::useApp hook").
 - [x] Schlägt `getUser()` fehl, wird der Fehler geloggt, aber die App bleibt lauffähig, und das xAPI-Objekt wird mit Platzhalter-Werten initialisiert (verifiziert durch "App tests::useApp hook with getUser failed").
+
+### Benutzersitzung initialisieren
+
+- [x] Beim Start wird der aktuelle Benutzer vom Backend abgerufen (`fetchUser`).
+- [x] Wenn der Benutzer erfolgreich geladen wurde, wird der xAPI-Service mit der User-ID initialisiert.
+- [x] Wenn das Laden fehlschlägt, wird der Fehler behandelt (z.B. Logging, Fehleranzeige).
+- [x] Die Anwendung stellt den Benutzerkontext global bereit.
 
 ### Routing und 404-Handling
 

@@ -12,19 +12,88 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_students_learning_characteristics"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_students_learning_analytics"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_students_learning_style"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_students_learning_strategy"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_students_knowledge"
+  merged_from:
+    ["HASKI-REQ-0049", "HASKI-REQ-0050", "HASKI-REQ-0051", "HASKI-REQ-0052"]
 ---
 
 ## Beschreibung
 
 Das System **shall** eine abgesicherte REST-Schnittstelle bereitstellen, über die authentifizierte Rollen (Studierende, Lehrende) die konsolidierten Lerncharakteristika eines Studierenden abrufen können. Die Antwort **shall** mindestens den aktuellen Lernstil (ILS-Basiswerte), Lernstrategie-Vektoren, Learning-Analytics-Metriken und Wissensstände enthalten, sodass Dashboards und Lernpfad-Berechnungen auf denselben Datenpool zugreifen. Die Endpunkte **shall** Moodle-IDs akzeptieren und auf automatisch angelegte Nutzerprofile (GH-81) referenzieren, damit neu registrierte Personen ohne zusätzlichen Abgleich sichtbar werden.
 
+Die folgenden spezialisierten Endpunkte werden bereitgestellt:
+
+### Konsolidierte Lerncharakteristika
+
+`GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningCharacteristics`
+
+### Learning Analytics
+
+`GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningAnalytics`
+
+- Liefert aktuelle Learning-Analytics-Metriken (z.B. `engagement`, `activity_counts`, `last_activity_at`)
+
+### Lernstil (Felder-Silverman-Modell)
+
+`GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningStyle`
+
+- Liefert die vier FSLSM-Dimensionen: `input`, `perception`, `processing`, `understanding` mit jeweiliger Dimension und Ausprägung
+
+### Lernstrategien
+
+`GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningStrategy`
+
+- Liefert den vollständigen Lernstrategie-Datensatz einschließlich aller verfügbaren Dimensionen
+
+### Wissensstände
+
+`GET /user/<user_id>/<lms_user_id>/student/<student_id>/knowledge`
+
+- Liefert sämtliche bekannten Wissensstandeinträge in strukturierter Form
+
 ## Akzeptanzkriterien
+
+### Allgemein
 
 - [x] `GET /user/<user_id>/<lms_user_id>/student/<student_id>/learningCharacteristics` liefert ein JSON mit den Schlüsseln `learning_style`, `learning_strategy`, `learning_analytics`, `knowledge`.
 - [x] Die Antwort bezieht sich ausschließlich auf den abgefragten Studierenden; Fremddaten werden ausgeschlossen.
 - [x] Nicht vorhandene Studierende oder inkonsistente ID-Kombinationen führen zu HTTP 404 mit einer strukturierten Fehlermeldung (`{"error": "...", "message": "..."}`) ohne Seiteneffekte.
 - [x] Die Implementierung folgt der im OAS von GH-30 definierten Struktur, damit Frontend-Komponenten die Daten ohne Mapping abrufen können.
 - [x] Sobald ein Studierender durch GH-81 automatisch angelegt wird, stehen seine Lernprofil-Daten über denselben Endpunkt zur Verfügung.
+
+### Learning Analytics
+
+- [x] Erfolgreiche Aufrufe liefern HTTP 200 und serialisieren den Learning-Analytics-Datensatz (z.B. `engagement`, `activity_counts`, `last_activity_at`); Leerlisten sind zulässig.
+- [x] Der Endpoint akzeptiert Moodle-IDs (`lms_user_id`) und mappt sie deterministisch auf HASKI-Studenten.
+- [x] Lernanalytics-Datensätze, die durch GH-81 automatisch angelegt werden, sind unmittelbar abrufbar.
+
+### Lernstil
+
+- [x] Erfolgreiche Aufrufe liefern HTTP 200 sowie alle acht erwarteten Schlüssel (`perception_dimension`, `perception_value`, `input_dimension`, `input_value`, `processing_dimension`, `processing_value`, `understanding_dimension`, `understanding_value`).
+- [x] Die Werte spiegeln exakt den gespeicherten Lernstil-Datensatz aus der `learning_style`-Tabelle wider und berücksichtigen Updates aus ILS-/LIST-K-Fragebögen.
+
+### Lernstrategien
+
+- [x] Berechtigte Anfragen liefern den vollständigen Lernstrategie-Datensatz einschließlich aller verfügbaren Dimensionen.
+- [x] Die ausgegebenen Werte spiegeln unmittelbar die zuletzt erfassten Fragebogen- oder Analytics-Ergebnisse wider.
+
+### Wissensstände
+
+- [x] Die Antwort enthält sämtliche bekannten Wissensstandeinträge des angefragten Studierenden in strukturierter Form.
+- [x] Aktualisierte Werte stehen ohne Verzögerung für Lernpfadberechnungen, Dashboards und externe Auswertungen zur Verfügung.
+
+### Autorisierung (alle Endpunkte)
+
+- [x] Zugriff erfordert authentifizierte Nutzer (Tutor oder Studierende), die nur ihre eigenen oder berechtigten Datensätze abrufen dürfen.
+- [x] Anfragen außerhalb des autorisierten Kontextes werden datenschutzkonform abgewiesen.
+- [x] Autorisierung wird über bestehende Middleware/Decorator sichergestellt; direkte Zugriffe ohne Session/Cookie werden abgelehnt.
 
 ## Rationale
 
