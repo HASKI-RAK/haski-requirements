@@ -14,12 +14,14 @@ links:
       name: "TestApi::test_get_les_for_topic_for_student"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_le_by_id_for_student"
-  merged_from: ["HASKI-REQ-0063"]
+  merged_from: ["HASKI-REQ-0063", "HASKI-REQ-0056"]
 ---
 
 ## Beschreibung
 
 Das System **shall** eingeschriebenen Studierenden Learning Elements bereitstellen, sowohl als Liste aller Elemente eines Topics als auch als Einzelabfrage. Damit können Empfehlungssysteme, Dashboards und Tracking-Funktionen identische Daten verwenden, ohne mehrere Datenquellen abgleichen zu müssen.
+
+Ergänzend **shall** das System allen berechtigten Studierenden eine vollständige Liste der Lernelemente eines belegten Kurses liefern. Neben den Stammdaten der Elemente müssen auch die individuellen Lernfortschrittsinformationen enthalten sein, damit Lernräume, Empfehlungen und Visualisierungen direkt mit der gelieferten Struktur arbeiten können.
 
 ### Learning Elements pro Topic
 
@@ -44,6 +46,12 @@ Liefert Detailinformationen zu einem einzelnen Learning Element, sodass UI- und 
 - [x] Nicht zugeordnete oder unbekannte Ressourcen werden nicht ausgegeben.
 - [x] Die gelieferten Felder entsprechen der zentralen Learning-Element-Spezifikation und können ohne zusätzliche Transformationen verwendet werden.
 - [x] Wird ein Learning Element entfernt, liefert die Abfrage keine Daten mehr, wodurch veraltete Verlinkungen frühzeitig auffallen.
+
+### Learning Elements eines Kurses
+
+- [x] Die zurückgegebene Liste umfasst sämtliche Lernelemente des ausgewählten Kurses samt Typ, Klassifikation, Namen und studentischem Status.
+- [x] Elemente, die nicht zur Anfrage passen oder nicht freigegeben sind, werden konsequent ausgeblendet.
+- [x] Neue oder geänderte Lernelemente erscheinen ohne zusätzliche Synchronisationsschritte in der Ausgabe.
 
 ## Rationale
 

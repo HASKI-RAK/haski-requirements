@@ -6,6 +6,7 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-019
+merged_from: ["HASKI-REQ-0088"]
 links:
   parents: ["SyRS-FUNC-019", "SyRS-INT-001"]
   stories: ["HASKI-RAK/HASKI-Frontend#124", "HASKI-RAK/HASKI-Frontend#127"]
@@ -28,11 +29,15 @@ links:
       name: "MainFrame tests"
     - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
       name: "Imprint Component"
+    - path: "frontend/src/components/BreadcrumbsContainer/BreadcrumbsContainer.test.tsx"
+      name: "BreadcrumbsContainer tests"
 ---
 
 ## Beschreibung
 
 Das Frontend **shall** im MainFrame-Layout persistente Navigationsmenüs bereitstellen, die kontextabhängig Kurs-, Statistik- und Servicefunktionen zugänglich machen. Die globale Navigation **shall** in einem einheitlichen Menüsystem Zugang zu Kursen (`CourseMenu`), Statistiken (`StatisticsMenu`) und weiterführenden Informationen (`FurtherInfoMenu`) bieten, während die lokale Navigation (`LocalNavBar`, `LocalNavItem`) kontextspezifische Untermenüs für Topic- und Aktivitätsnavigation bereitstellt. Der Footer **shall** Links zu Impressum, Datenschutz und Projektinformationen enthalten und in allen Ansichten verfügbar sein.
+
+Zusätzlich **shall** das Frontend oberhalb des Seiteninhalts eine Breadcrumb-Navigation (`BreadcrumbsContainer`) bereitstellen, die den aktuellen Routing-Pfad anzeigt und Nutzenden ermöglicht, zu übergeordneten Ansichten zurückzuspringen. Für jede Pfadstufe **shall** ein lokalisierter Text angezeigt werden, der auf den entsprechenden Zwischenpfad zurücknavigiert; vollständig numerische Segmente (z. B. Kurs- oder Topic-IDs) **shall** in der Anzeige unterdrückt bzw. durch den vorangegangenen Textknoten ersetzt werden, sodass die Navigation semantisch bleibt.
 
 ## Akzeptanzkriterien
 
@@ -52,6 +57,13 @@ Das Frontend **shall** im MainFrame-Layout persistente Navigationsmenüs bereits
 
 - [x] `Footer` rendert persistent am unteren Seitenrand und enthält Links zu Impressum, Datenschutz und Projektinformationen (verifiziert durch "Footer").
 - [x] Alle Footer-Links navigieren korrekt zu den entsprechenden Seiten ohne Fehler.
+
+### Breadcrumb-Navigation
+
+- [x] Beim Root-Pfad `/` wird ausschließlich ein „Home“-Eintrag angezeigt, dessen Klick den Router auf `/` navigiert (verifiziert durch „BreadcrumbsContainer tests“).
+- [x] Mehrstufige Pfade erzeugen für jeden Textknoten eine anklickbare Breadcrumb-Stufe, die beim Klicken den korrekten Zwischennavigationspfad aufruft.
+- [x] Pfadsegmente, die vollständig numerisch sind, tauchen in der Anzeige nicht auf; stattdessen bleibt die zuvor benannte Stufe sichtbar.
+- [x] Der `BreadcrumbsContainer` arbeitet innerhalb eines React-Routers (MemoryRouter) ohne Fehler und respektiert i18n-Schlüssel aus `pages.*`.
 
 ### Impressum
 
