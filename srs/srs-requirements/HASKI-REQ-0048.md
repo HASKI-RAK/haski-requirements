@@ -20,8 +20,45 @@ links:
       name: "TestApi::test_get_students_learning_strategy"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_students_knowledge"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_update_learning_style_by_student_id"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_update_learning_style_by_student_id"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_reset_learning_characteristics"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_reset_learning_characteristics"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_reset_learning_analytics"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_reset_learning_style"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_reset_learning_strategy"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_reset_learning_strategy_by_student_id"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_reset_knowledge"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_input_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_perception_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_processing_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_ils_understanding_answers"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_questionnaire_list_k"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_questionnaire_ils"
   merged_from:
-    ["HASKI-REQ-0049", "HASKI-REQ-0050", "HASKI-REQ-0051", "HASKI-REQ-0052"]
+    [
+      "HASKI-REQ-0049",
+      "HASKI-REQ-0050",
+      "HASKI-REQ-0051",
+      "HASKI-REQ-0052",
+      "HASKI-REQ-0074",
+      "HASKI-REQ-0079",
+    ]
 ---
 
 ## Beschreibung
@@ -58,6 +95,20 @@ Die folgenden spezialisierten Endpunkte werden bereitgestellt:
 
 - Liefert sämtliche bekannten Wissensstandeinträge in strukturierter Form
 
+### Aktualisierung der Lernstil-Dimensionen
+
+`PUT /user/<user_id>/<lms_user_id>/student/<student_id>/learningStyle`
+
+- Aktualisiert die vier Dimensionen des Felder–Silverman-Lernstilmodells (Perception, Input, Processing, Understanding) mitsamt numerischer Ausprägung für das adressierte Lernprofil.
+
+### Reset von Lernprofil-Daten
+
+`DELETE /user/<user_id>/<lms_user_id>/student/<student_id>/learningCharacteristics`
+
+- Setzt sämtliche abhängigen Artefakte (Learning-Analytics-Metriken, Lernstil, Lernstrategie, Knowledge) in einem Schritt auf ihre Defaultwerte zurück und liefert den neu initialisierten Datensatz in derselben Struktur wie der `GET`-Endpoint.
+
+Zusätzlich stehen granulare `DELETE`-Routen für `learningAnalytics`, `learningStyle`, `learningStrategy` und `knowledge` zur Verfügung, über die einzelne Teilbereiche des Lernprofils separat auf Defaultwerte zurückgesetzt werden können.
+
 ## Akzeptanzkriterien
 
 ### Allgemein
@@ -78,6 +129,21 @@ Die folgenden spezialisierten Endpunkte werden bereitgestellt:
 
 - [x] Erfolgreiche Aufrufe liefern HTTP 200 sowie alle acht erwarteten Schlüssel (`perception_dimension`, `perception_value`, `input_dimension`, `input_value`, `processing_dimension`, `processing_value`, `understanding_dimension`, `understanding_value`).
 - [x] Die Werte spiegeln exakt den gespeicherten Lernstil-Datensatz aus der `learning_style`-Tabelle wider und berücksichtigen Updates aus ILS-/LIST-K-Fragebögen.
+
+### Aktualisierung der Lernstil-Dimensionen
+
+- [x] Erfolgreiche Aufrufe des `PUT /.../learningStyle`-Endpoints liefern HTTP 201 sowie alle acht Felder (`*_dimension`, `*_value`) der FSLSM-Darstellung und spiegeln den persistenten Datensatz wider.
+- [x] Die numerischen Werte müssen im Bereich 1–11 liegen; Werte außerhalb oder fehlende Felder führen zu HTTP 400 mit der standardisierten Fehlstruktur (`{"error": "...", "message": "..."}`).
+- [x] Ungültige Typen (z. B. Strings statt Integern) oder leere Requests werden deterministisch mit HTTP 400 beantwortet.
+- [x] Nicht existente Nutzer- oder Studierendenkombinationen resultieren in HTTP 404 ohne Offenlegung interner Details.
+- [x] Nach erfolgreichem Update geben `GET /learningStyle` sowie `GET /learningCharacteristics` dieselben Werte aus, sodass Reports und Empfehlungsalgorithmen konsistent bleiben.
+
+### Reset von Lernprofil-Daten
+
+- [x] Ein valider Aufruf von `DELETE /.../learningCharacteristics` liefert HTTP 200 sowie ein JSON mit den Schlüsseln `learning_style`, `learning_strategy`, `learning_analytics`, `knowledge` und verweist auf die neu initialisierten Defaultdatensätze.
+- [x] Die Einzel-Endpoints (`.../learningAnalytics`, `.../learningStyle`, `.../learningStrategy`, `.../knowledge`) liefern jeweils HTTP 200 samt neuem Datensatz und verändern ausschließlich den adressierten Teilbereich.
+- [x] Nicht vorhandene oder nicht zusammenpassende `user_id`/`lms_user_id`/`student_id`-Kombinationen werden mit HTTP 404 und der standardisierten Fehlstruktur (`{"error": "...", "message": "..."}`) beantwortet.
+- [x] Direkt nach einem Reset liefern die entsprechenden `GET`-Endpoints wieder die Defaultwerte aus GH-81, sodass Lernpfadberechnungen deterministisch weiterlaufen.
 
 ### Lernstrategien
 

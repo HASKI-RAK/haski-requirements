@@ -1,14 +1,17 @@
 ---
 id: HASKI-REQ-0035
-title: Automatische Kursanlage, -synchronisation und Kurs-Seite
+title: Automatische Kursanlage, -synchronisation, Enrollment und Kurs-Seite
 type: Functional
 status: Implemented
 stakeholder_priority: High
 verification_method: Test
+source_id: SyRS-FUNC-008
+merged_from: ["HASKI-REQ-0053"]
 links:
   parents:
     - "SyRS-INT-003"
     - "SyRS-INT-005"
+    - "SyRS-FUNC-008"
   stories:
     - "HASKI-RAK/HASKI-Backend#21"
     - "HASKI-RAK/HASKI-Frontend#47"
@@ -16,6 +19,9 @@ links:
     - "HASKI-RAK/HASKI-Frontend#19"
     - "HASKI-RAK/HASKI-Frontend#339"
     - "HASKI-RAK/HASKI-Backend#30"
+    - "HASKI-RAK/HASKI-Backend#131"
+    - "GH-131"
+    - "GH-123"
   tests:
     - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle_without_start_date"
     - "backend/tests/e2e/test_api.py::TestApi::test_api_create_course_from_moodle"
@@ -23,6 +29,34 @@ links:
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle"
     - "backend/tests/e2e/test_api.py::TestApi::test_update_course_from_moodle_with_start_date"
     - path: "frontend/src/components/CreateCourse/Modal/CreateCourseModal.test.tsx"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_create_course"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_course_by_id"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_update_course_without_start_date"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_update_course_with_start_date"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_delete_course"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_create_course_topic"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_course_topic_by_course"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_course_topic_by_topic"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_delete_course_topic_by_course"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_delete_course_topic_by_topic"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_topics_by_student_and_course_id"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_les_for_course_id"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_les_for_course_and_topic_id"
+      - path: "backend/tests/unit/test_service.py"
+        name: "test_get_sub_topics"
       name: "CreateCourseModal"
     - path: "frontend/src/components/CreateCourse/Table/CreateCourseTable.test.tsx"
       name: "CreateCourseTable"
@@ -46,6 +80,28 @@ links:
       name: "fetchRemoteCourses has expected behaviour"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_remote_courses"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_add_student_to_course"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_add_teacher_to_course"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_course_creator_course"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_courses_by_uni"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_courses_by_student_id"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_student_courses"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_student_course"
+    - path: "frontend/src/pages/Home/Home.test.tsx"
+      name: "Test the Home page-1; Test the Home page-2"
+    - path: "frontend/src/services/Courses/fetchCourses.test.tsx"
+      name: "fetchCourses has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/CoursesSlice.test.ts"
+      name: "CoursesSlice caching"
+    - path: "HASKI-Frontend/src/store/Slices/CourseSlice.test.ts"
+      name: "CourseSlice setCourse"
 ---
 
 ## Beschreibung
@@ -53,6 +109,12 @@ links:
 Das System **shall** Kurse automatisch basierend auf Daten aus dem Learning Management System (Moodle) anlegen und aktualisieren. Dabei **shall** die Kursstruktur, Metadaten (wie Name, ID, Startdatum) und die Zuordnung zur Hochschule übernommen werden.
 
 Das System **shall** eine Kurs-Seite bereitstellen, die eine Übersicht aller Themen (Topics) des Kurses anzeigt. Die Seite **shall** die Navigation zu den einzelnen Themen ermöglichen. Für Lehrende (Course Creator) **shall** zusätzlich ein Button zum Erstellen neuer Themen angezeigt werden.
+
+Das System **shall** Benutzer (Studierende, Lehrende, Course Creator) in Kursen einschreiben können. Studierende **shall** nur die Kurse sehen, in denen sie eingeschrieben sind. Das System **shall** verschiedene Rollen innerhalb eines Kurses unterstützen (Student, Teacher).
+
+Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die Studierende ihre Kurse abrufen können – sowohl als gefilterte Übersicht aller belegten Veranstaltungen als auch für einzelne Kurse. Die Kursübersicht **shall** ausschließlich Veranstaltungen liefern, für die eine gültige Einschreibung des Studierenden besteht, und pro Kurs die wesentlichen Metadaten (interne ID, LMS-Referenz, Name, Hochschule) in konsistenter Form bereitstellen. Einzelkurs-Detailabfragen **shall** dieselben Metadaten für einen konkret adressierten Kurs zurückgeben und Anfragen außerhalb der zulässigen Einschreibungen konsequent abweisen.
+
+Über die Synchronisation hinaus **shall** das Backend vollständige CRUD-Funktionen für Kurse, Kurs-Topic-Zuordnungen und kursbezogene Abfragen bereitstellen. Dazu gehört, dass Kurse mit und ohne Startdatum gepflegt werden können, Topic-Zuordnungen konsistent bleiben und Service-Layer-Abfragen nach Hochschule, Kurs-ID oder Topic-ID stets die korrekten Datensichten liefern.
 
 ## Akzeptanzkriterien
 
@@ -71,6 +133,31 @@ Das System **shall** eine Kurs-Seite bereitstellen, die eine Übersicht aller Th
 - [x] Ein Klick auf ein Thema navigiert zur entsprechenden Themen-Seite.
 - [x] Lehrende sehen einen Button "Thema erstellen".
 - [x] Studierende sehen den Button "Thema erstellen" nicht.
+
+### Enrollment und Sichtbarkeit
+
+- [ ] Benutzer können in Kursen eingeschrieben werden (Studierende, Lehrende, Course Creator).
+- [ ] Studierende sehen nur die Kurse, in denen sie eingeschrieben sind.
+- [ ] Das System unterstützt verschiedene Rollen innerhalb eines Kurses.
+
+### Kursübersicht-API (Studierendenkurse über REST)
+
+- [x] Die bereitgestellte Kursliste für einen Studierenden enthält ausschließlich Veranstaltungen, für die eine gültige Einschreibung des angefragten Studierenden besteht.
+- [x] Pro Kurs stehen die wesentlichen Metadaten (z. B. interne ID, LMS-Referenz, Name, Hochschule) zur Verfügung, sodass Lernräume und Dashboards diese Informationen direkt anzeigen können.
+- [x] Änderungen an Einschreibungen oder Kursdaten werden ohne zusätzliche Synchronisation in der Kursübersicht sichtbar.
+
+### Einzelkurs-Details-API
+
+- [x] Für gültige Kurs-/Studierendenkombinationen stehen vollständige Metadaten (z. B. interne Kennung, LMS-Referenz, Bezeichnung, Hochschule) über REST zur Verfügung.
+- [x] Anfragen außerhalb der zulässigen Einschreibungen werden konsequent abgewiesen und geben keine Details zu fremden Kursen preis.
+- [x] Aktualisierte Kursattribute sind unmittelbar nach Pflege im System in den Einzelkurs-Detailaufrufen sichtbar, sodass gekoppelte Oberflächen immer auf aktuelle Daten zugreifen.
+
+### Verwaltung & Abfragen
+
+- [x] Kurse können per API erstellt, aktualisiert und gelöscht werden – optionales Startdatum ist kein Pflichtfeld.
+- [x] Kurs-Topic-Zuordnungen können erzeugt, abgefragt und gelöscht werden, ohne referenzielle Integrität zu verletzen.
+- [x] Service-Methoden liefern Kurse nach Hochschule, Kurs-ID sowie studentischer Zugehörigkeit konsistent zurück.
+- [x] Das System stellt Kurs- und Topic-Inhalte pro Kurs-ID bereit, inklusive zugehöriger Learning Elements für Kurs- und Topic-Detailansichten.
 
 ## Rationale
 

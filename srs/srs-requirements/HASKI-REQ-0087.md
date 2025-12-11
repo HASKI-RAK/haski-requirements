@@ -17,8 +17,6 @@ links:
       name: "fetchILS has expected behaviour"
     - path: "frontend/src/services/Questionnaire/fetchListK.test.tsx"
       name: "fetchListK has expected behaviour"
-    - path: "HASKI-Frontend/src/services/Questionnaire/postListK.test.tsx"
-      name: "postListK has expected behaviour"
 ---
 
 ## Beschreibung

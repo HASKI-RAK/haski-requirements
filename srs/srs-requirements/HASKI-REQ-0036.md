@@ -5,11 +5,15 @@ type: Functional
 status: Implemented
 stakeholder_priority: High
 verification_method: Test
+source_id: SyRS-FUNC-008
 links:
-  parents: ["SyRS-INT-003"]
+  parents:
+    - "SyRS-INT-003"
+    - "SyRS-FUNC-008"
   stories:
     - "HASKI-RAK/HASKI-Backend#21"
     - "HASKI-RAK/HASKI-Frontend#135"
+    - "HASKI-RAK/HASKI-Backend#131"
   tests:
     - path: "frontend/src/components/CreateTopic/Modal/CreateRemoteTopicsStep/CreateRemoteTopicsStep.test.tsx"
       name: "CreateRemoteTopicsStep"
@@ -35,11 +39,31 @@ links:
       name: "fetchRemoteTopics has expected behaviour"
     - path: "HASKI-Frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
       name: "postAddAllStudentsToTopics has expected behaviour"
+    - path: "frontend/src/services/LearningElement/postLearningElement.test.tsx"
+      name: "postLearningElement has expected behaviour"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_topic"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_update_topic"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_create_topic_learning_element"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_topic_learning_element_by_topic"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_get_topic_learning_element_by_le"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_topic_learning_element_by_topic"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_topic_learning_element_by_le"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_learning_element"
 ---
 
 ## Beschreibung
 
 Das System **shall** Topics und Subtopics automatisch anhand der aus Moodle übermittelten Kursstruktur anlegen. Für jeden Moodle-Kurs **shall** sowohl der Topic-Knoten als auch die optionale Subtopic-Hierarchie mit allen Metadaten (Name, LMS-ID, Universitätszuordnung, Erstellungskontext) übernommen werden. Bereits angelegte Topics **shall** erkannt und nicht dupliziert werden. Das Frontend **shall** Lehrenden die aus Moodle synchronisierten Topics in einem Create-Topic-Dialog anzeigen, damit die automatische Anlage nachvollziehbar und bei Bedarf gezielt ausgelöst werden kann; der Dialog **shall** den Import als mehrstufigen Assistenten abbilden, in dem die Topic-Auswahl die nachfolgenden Schritte steuert und Zwischenergebnisse bis zum Abschluss konserviert.
+
+Neben der automatischen Anlage **shall** das System Topics, Subtopics und deren Learning-Element-Zuordnungen vollständig verwaltbar machen (Erstellen, Aktualisieren, Löschen, Abfragen). Jede Änderung **shall** konsistent mit `course_topic` sowie `topic_learning_element` Relationen erfolgen, sodass Lernpfade und Kurs-Detailansichten sofort die aktuelle Struktur widerspiegeln.
 
 ## Akzeptanzkriterien
 
@@ -50,6 +74,9 @@ Das System **shall** Topics und Subtopics automatisch anhand der aus Moodle übe
 - [x] Ungültige Datentypen oder fehlende Felder resultieren in nachvollziehbaren Fehlercodes.
 - [x] Erfolgreich angelegte Topics stehen sofort für Lernpfad-Berechnungen und Zuordnungen zur Verfügung.
 - [x] Der mehrstufige Create-Topic-Dialog blockiert das Fortschreiten, bis ein importierbares Topic gewählt wurde, behält Nutzerentscheidungen zwischen den Schritten bei und löst nach Bestätigung die Topic-Anlage inklusive abhängiger REST-Aufrufe konsistent aus.
+- [x] Topics und Subtopics können nachträglich aktualisiert oder gelöscht werden, ohne die Parent/Child-Hierarchie zu verletzen.
+- [x] Topic-Learning-Element-Zuordnungen lassen sich erstellen, auflösen und aus beiden Richtungen abfragen (Topic oder Learning Element).
+- [x] Service-Endpunkte liefern Topics, Subtopics und Learning Elements über Kurs- oder Topic-IDs sowie pro Studierendem konsistent aus.
 
 ## Rationale
 
