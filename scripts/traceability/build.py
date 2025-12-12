@@ -8,10 +8,10 @@ from typing import List
 import yaml
 
 try:
-    from .adapters import jest, pytest  # type: ignore
+    from .adapters import jest, pytest, ts_tags  # type: ignore
     from .requirements_loader import load as load_requirements
 except ImportError:  # pragma: no cover - fallback for direct script execution
-    from adapters import jest, pytest  # type: ignore
+    from adapters import jest, pytest, ts_tags  # type: ignore
     from requirements_loader import load as load_requirements
 
 
@@ -42,6 +42,16 @@ def gather_tests(test_reports: List[dict], debug: bool = False):
                 else:
                     print(
                         f"[traceability] Parsed {len(parsed)} pytest test(s) from {path}"
+                    )
+            tests.extend(parsed)
+        elif rtype in {"ts-tags", "typescript-tags"}:
+            parsed = ts_tags.parse(path)
+            if debug:
+                if not os.path.exists(path):
+                    print(f"[traceability][WARN] TS source path not found: {path}")
+                else:
+                    print(
+                        f"[traceability] Parsed {len(parsed)} tagged TS test(s) from {path}"
                     )
             tests.extend(parsed)
         else:
