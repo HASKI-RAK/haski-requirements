@@ -29,10 +29,10 @@ Das Backend **shall** zwei REST-Endpunkte `POST /user/<user_id>/logbuffer` und `
 
 ## Akzeptanzkriterien
 
-- [ ] `POST /user/<user_id>/logbuffer` legt bei gültiger Nutzlast einen Logbuffer-Datensatz mit den Feldern `id`, `user_id`, `content`, `date` an und liefert diese Werte in der Antwort.
-- [ ] Fehlende Pflichtfelder oder leere Inhalte führen zu einer Fehlerantwort mit HTTP 400 und werden nicht gespeichert.
-- [ ] Jede gespeicherte Nachricht ist der aufrufenden Nutzer-ID zugeordnet und kann später wieder abgerufen oder gelöscht werden.
-- [ ] `GET /user/<user_id>/logbuffer` liefert ausschließlich die Einträge der angefragten Nutzer-ID, strukturiert als Liste von Objekten mit den Feldern `user_id`, `content`, `date` (plus optionalen Metadaten), und antwortet mit HTTP 200 bzw. einer leeren Liste wenn keine Einträge vorliegen.
+- [x] `POST /user/<user_id>/logbuffer` legt bei gültiger Nutzlast einen Logbuffer-Datensatz mit den Feldern `id`, `user_id`, `content`, `date` an und liefert diese Werte in der Antwort.
+- [x] Fehlende Pflichtfelder oder leere Inhalte führen zu einer Fehlerantwort mit HTTP 400 und werden nicht gespeichert.
+- [x] Jede gespeicherte Nachricht ist der aufrufenden Nutzer-ID zugeordnet und kann später wieder abgerufen oder gelöscht werden.
+- [x] `GET /user/<user_id>/logbuffer` liefert ausschließlich die Einträge der angefragten Nutzer-ID, strukturiert als Liste von Objekten mit den Feldern `user_id`, `content`, `date` (plus optionalen Metadaten), und antwortet mit HTTP 200 bzw. einer leeren Liste wenn keine Einträge vorliegen.
 
 ## Rationale
 

@@ -35,11 +35,11 @@ Zusätzlich **shall** das Backend einen authentifizierten Endpunkt `DELETE /user
 ## Akzeptanzkriterien
 
 - [x] Die Kontakt-Seite zeigt ein Formular mit Auswahlfeldern für Thema und Typ sowie einem Textfeld für die Beschreibung.
-- [ ] Fehlende Pflichtfelder (`report_topic`, `report_type`, `report_description`) führen zu einer Validierungsmeldung im Frontend bzw. 400-Fehler im Backend.
-- [ ] Die übermittelte Meldung wird mit der verknüpften Nutzer-ID gespeichert und als JSON mit den gespeicherten Feldern (`id`, `user_id`, `report_topic`, `report_type`, `report_description`, `date`) zurückgegeben
-- [ ] Nur bekannte Nutzer:innen (verifizierbar über `user_id`/`lms_user_id`) dürfen Meldungen absenden; unbekannte IDs führen zu einer `MissingUser`-Fehlermeldung
-- [ ] Erfolgreiche Meldungen liefern HTTP-Status `201 Created`
-- [ ] Persistierte Meldungen können vom Support über die Datenbank oder Administrationsprozesse ausgelesen und weiterverarbeitet werden
+- [x] Fehlende Pflichtfelder (`report_topic`, `report_type`, `report_description`) führen zu einer Validierungsmeldung im Frontend bzw. 400-Fehler im Backend.
+- [x] Die übermittelte Meldung wird mit der verknüpften Nutzer-ID gespeichert und als JSON mit den gespeicherten Feldern (`id`, `user_id`, `report_topic`, `report_type`, `report_description`, `date`) zurückgegeben
+- [x] Nur bekannte Nutzer:innen (verifizierbar über `user_id`/`lms_user_id`) dürfen Meldungen absenden; unbekannte IDs führen zu einer `MissingUser`-Fehlermeldung
+- [x] Erfolgreiche Meldungen liefern HTTP-Status `201 Created`
+- [x] Persistierte Meldungen können vom Support über die Datenbank oder Administrationsprozesse ausgelesen und weiterverarbeitet werden
 
 ### Löschen von Kontaktmeldungen
 

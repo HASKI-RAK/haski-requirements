@@ -22,11 +22,11 @@ Das System **shall** jede Topic- und Learning-Element-Nutzung eines Studierenden
 
 ## Akzeptanzkriterien
 
-- [ ] `POST /lms/student/<student_id>/<moodle_user_id>/topic/<topic_id>` legt einen Besuchseintrag mit `visit_start` und optionalem `visit_end` an; Antwort enthält `id`, `student_id`, `topic_id`, `visit_start`, `visit_end`.
-- [ ] `POST /lms/student/<student_id>/<moodle_user_id>/learningElement/<learning_element_id>` verhält sich analog und speichert `learning_element_id` statt `topic_id`.
-- [ ] Fehlende Pflichtfelder oder falsche Datentypen führen zu HTTP 400 mit einer klaren Fehlerstruktur (`{"error": ..., "message": ...}`), ohne Seiteneffekte.
-- [ ] Falsche Datumformate (z.B. `01.01.2023`) werden abgelehnt und begründet.
-- [ ] Jeder persistierte Besuch ist eindeutig dem Studierenden und dem referenzierten Topic bzw. Learning Element zuordenbar, damit spätere Aggregationen (z.B. Frontend-Issue GH-136) darauf zugreifen können.
+- [x] `POST /lms/student/<student_id>/<moodle_user_id>/topic/<topic_id>` legt einen Besuchseintrag mit `visit_start` und optionalem `visit_end` an; Antwort enthält `id`, `student_id`, `topic_id`, `visit_start`, `visit_end`.
+- [x] `POST /lms/student/<student_id>/<moodle_user_id>/learningElement/<learning_element_id>` verhält sich analog und speichert `learning_element_id` statt `topic_id`.
+- [x] Fehlende Pflichtfelder oder falsche Datentypen führen zu HTTP 400 mit einer klaren Fehlerstruktur (`{"error": ..., "message": ...}`), ohne Seiteneffekte.
+- [x] Falsche Datumformate (z.B. `01.01.2023`) werden abgelehnt und begründet.
+- [x] Jeder persistierte Besuch ist eindeutig dem Studierenden und dem referenzierten Topic bzw. Learning Element zuordenbar, damit spätere Aggregationen (z.B. Frontend-Issue GH-136) darauf zugreifen können.
 
 ## Rationale
 

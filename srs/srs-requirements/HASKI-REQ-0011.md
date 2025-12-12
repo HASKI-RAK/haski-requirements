@@ -5,7 +5,23 @@ type: Functional
 status: Implemented
 source_id: SyRS-FUNC-005
 links:
-  stories: ["HASKI-RAK/HASKI-Frontend#3", "HASKI-RAK/HASKI-Frontend#4", "HASKI-RAK/HASKI-Frontend#135", "HASKI-RAK/HASKI-Frontend#139", "HASKI-RAK/HASKI-Frontend#190", "HASKI-RAK/HASKI-Frontend#211", "HASKI-RAK/HASKI-Frontend#263", "HASKI-RAK/HASKI-Frontend#264", "HASKI-RAK/HASKI-Frontend#269", "HASKI-RAK/HASKI-Frontend#315", "HASKI-RAK/HASKI-Frontend#331", "HASKI-RAK/HASKI-Backend#100", "HASKI-RAK/HASKI-Backend#120", "HASKI-RAK/HASKI-Backend#121"]
+  stories:
+    [
+      "HASKI-RAK/HASKI-Frontend#3",
+      "HASKI-RAK/HASKI-Frontend#4",
+      "HASKI-RAK/HASKI-Frontend#135",
+      "HASKI-RAK/HASKI-Frontend#139",
+      "HASKI-RAK/HASKI-Frontend#190",
+      "HASKI-RAK/HASKI-Frontend#211",
+      "HASKI-RAK/HASKI-Frontend#263",
+      "HASKI-RAK/HASKI-Frontend#264",
+      "HASKI-RAK/HASKI-Frontend#269",
+      "HASKI-RAK/HASKI-Frontend#315",
+      "HASKI-RAK/HASKI-Frontend#331",
+      "HASKI-RAK/HASKI-Backend#100",
+      "HASKI-RAK/HASKI-Backend#120",
+      "HASKI-RAK/HASKI-Backend#121",
+    ]
   parents: ["SyRS-FUNC-005"]
 ---
 
@@ -15,18 +31,19 @@ Das System **shall** Lerninhalte als atomare, kombinierbare Micro-Learning-Einhe
 
 ## Akzeptanzkriterien
 
-- [ ] Alle Learning Element-Typen im System sind auf eine maximale Bearbeitungszeit von 10 Minuten ausgelegt
-- [ ] Learning Elements können unabhängig voneinander abgerufen und bearbeitet werden (atomare Einheiten)
-- [ ] Learning Elements können zu Lernpfaden kombiniert werden (kombinierbar)
-- [ ] Das System unterstützt verschiedene Learning Element-Typen (Text, Video, Quiz, interaktive Elemente, etc.)
-- [ ] Jedes Learning Element hat einen definierten Umfang, der Micro-Learning-Prinzipien entspricht
-- [ ] Learning Elements sind in Topics organisiert und können flexibel angeordnet werden
+- [x] Alle Learning Element-Typen im System sind auf eine maximale Bearbeitungszeit von 10 Minuten ausgelegt
+- [x] Learning Elements können unabhängig voneinander abgerufen und bearbeitet werden (atomare Einheiten)
+- [x] Learning Elements können zu Lernpfaden kombiniert werden (kombinierbar)
+- [x] Das System unterstützt verschiedene Learning Element-Typen (Text, Video, Quiz, interaktive Elemente, etc.)
+- [x] Jedes Learning Element hat einen definierten Umfang, der Micro-Learning-Prinzipien entspricht
+- [x] Learning Elements sind in Topics organisiert und können flexibel angeordnet werden
 
 ## Rationale
 
 Diese Anforderung implementiert das Micro-Learning-Prinzip als fundamentales Designprinzip des HASKI-Systems. Die 10-Minuten-Grenze ermöglicht es Studierenden, Lerninhalte flexibel in ihren Alltag zu integrieren und unterstützt nachhaltiges Lernen durch fokussierte, überschaubare Lerneinheiten.
 
 Die atomare Struktur erlaubt:
+
 - Flexible Zusammenstellung von Lernpfaden
 - Wiederverwendung von Lerninhalten
 - Adaptive Anpassung an individuelle Lernbedürfnisse
@@ -37,7 +54,9 @@ Abgeleitet von Systemanforderung SyRS-FUNC-005 und Stakeholder-Anforderung StRS-
 ## Hinweise
 
 ### Moodle Activity Type Support
+
 Das System unterstützt verschiedene Moodle-Aktivitätstypen als Micro-Learning-Einheiten:
+
 - **H5P** (Interactive Content): [Frontend#139](https://github.com/HASKI-RAK/HASKI-Frontend/issues/139), [Frontend#190](https://github.com/HASKI-RAK/HASKI-Frontend/issues/190), [Frontend#211](https://github.com/HASKI-RAK/HASKI-Frontend/issues/211), [Frontend#315](https://github.com/HASKI-RAK/HASKI-Frontend/issues/315)
 - **Feedback/Questionnaires**: [Frontend#3](https://github.com/HASKI-RAK/HASKI-Frontend/issues/3), [Frontend#269](https://github.com/HASKI-RAK/HASKI-Frontend/issues/269), [Backend#100](https://github.com/HASKI-RAK/HASKI-Backend/issues/100)
 - **Quiz**: Completion tracking and progress monitoring via [Frontend#263](https://github.com/HASKI-RAK/HASKI-Frontend/issues/263), [Frontend#264](https://github.com/HASKI-RAK/HASKI-Frontend/issues/264)
@@ -45,10 +64,12 @@ Das System unterstützt verschiedene Moodle-Aktivitätstypen als Micro-Learning-
 - **General Activity Types**: User learning path setting via [Frontend#331](https://github.com/HASKI-RAK/HASKI-Frontend/issues/331)
 
 ### Content Integration
+
 - Moodle-Kurse werden als Template für HASKI-Kurse verwendet: [Frontend#135](https://github.com/HASKI-RAK/HASKI-Frontend/issues/135)
 - Solutions/Lösungen können als separate Learning Elements mit Feedback-Funktionalität bereitgestellt werden: [Backend#120](https://github.com/HASKI-RAK/HASKI-Backend/issues/120), [Backend#121](https://github.com/HASKI-RAK/HASKI-Backend/issues/121)
 
 ### Technical Implementation Notes
+
 - Die 10-Minuten-Grenze ist eine Designrichtlinie für Content-Ersteller, keine technisch durchgesetzte Beschränkung
 - Bezieht sich auf alle im System verfügbaren Learning Element-Typen
 - Unterstützt durch die Learning Element-Architektur:

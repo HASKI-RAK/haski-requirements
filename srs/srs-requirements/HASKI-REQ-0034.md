@@ -85,31 +85,31 @@ Ergänzend **shall** das System Benutzende (Lehrkräfte und Studierende) automat
 
 ### Nutzeranlage aus Moodle-Daten
 
-- [ ] Das System legt automatisch einen vollständigen Nutzeraccount an, wenn ein Moodle-Nutzer erstmalig auf HASKI zugreift.
-- [ ] Alle Nutzerrollen (Administrator, Kursersteller, Lehrkraft, Studierende) werden korrekt erkannt und zugeordnet.
-- [ ] Die Nutzeridentität wird aus den Moodle-Stammdaten übernommen (Name, Rolle, Hochschulzugehörigkeit, LMS-Benutzer-ID).
-- [ ] Bereits vorhandene Nutzer werden anhand ihrer Moodle-ID erkannt, es werden keine Duplikate angelegt.
-- [ ] Die initialen Einstellungen und alle erforderlichen Datenbanktabellen werden automatisch angelegt.
-- [ ] Neu angelegte Nutzer können unmittelbar nach der Anlage alle Systemfunktionen nutzen.
-- [ ] Fehlgeschlagene Anlageversuche werden protokolliert und sind administrativ nachvollziehbar.
-- [ ] Nur authentifizierte Moodle-Zugriffe können Nutzeraccounts anlegen.
-- [ ] Alle abhängigen Tabellen (`LearningCharacteristics`, `LearningStyle`, `Knowledge`, `LearningAnalytics`, `LearningStrategy`) werden mit validen Standardwerten initialisiert.
-- [ ] Die Integrität der Verknüpfungen (Foreign Keys) ist gewährleistet.
-- [ ] Der Vorgang ist idempotent oder prüft auf Existenz, um Duplikate zu vermeiden.
+- [x] Das System legt automatisch einen vollständigen Nutzeraccount an, wenn ein Moodle-Nutzer erstmalig auf HASKI zugreift.
+- [x] Alle Nutzerrollen (Kursersteller/Lehrender, Studierende) werden korrekt erkannt und zugeordnet.
+- [x] Die Nutzeridentität wird aus den Moodle-Stammdaten übernommen (Name, Rolle, Hochschulzugehörigkeit, LMS-Benutzer-ID).
+- [x] Bereits vorhandene Nutzer werden anhand ihrer Moodle-ID erkannt, es werden keine Duplikate angelegt.
+- [x] Die initialen Einstellungen und alle erforderlichen Datenbanktabellen werden automatisch angelegt.
+- [x] Neu angelegte Nutzer können unmittelbar nach der Anlage alle Systemfunktionen nutzen.
+- [x] Fehlgeschlagene Anlageversuche werden protokolliert und sind administrativ nachvollziehbar.
+- [x] Nur authentifizierte Moodle-Zugriffe können Nutzeraccounts anlegen.
+- [x] Alle abhängigen Tabellen (`LearningCharacteristics`, `LearningStyle`, `Knowledge`, `LearningAnalytics`, `LearningStrategy`) werden mit validen Standardwerten initialisiert.
+- [x] Die Integrität der Verknüpfungen (Foreign Keys) ist gewährleistet.
+- [x] Der Vorgang ist idempotent oder prüft auf Existenz, um Duplikate zu vermeiden.
 
 ### Einzelne Kurszuordnungen
 
-- [ ] Ein POST-Endpunkt ermöglicht es berechtigten Rollen, eine Lehrkraft anhand der Moodle-ID einem Kurs zuzuweisen; bei gültigen Kurs- und Lehrkraft-IDs wird genau eine Relation erzeugt und mit HTTP 201 quittiert.
-- [ ] Ein POST-Endpunkt `POST /lms/course/<course_id>/student/<student_id>` erstellt genau eine Kursmitgliedschaft mit HTTP 201, wenn Kurs- und Studierenden-ID existieren, und liefert Kurs- und Studierenden-IDs sowie initiale Lernstil-Dimensionen zurück.
-- [ ] Nicht vorhandene Lehrkräfte, Studierende oder Kurse führen zu HTTP 404 mit erklärender Fehlermeldung.
-- [ ] Bereits bestehende Zuordnungen werden nicht dupliziert, sondern liefern einen Validierungsfehler (HTTP 400/409).
+- [x] Ein POST-Endpunkt ermöglicht es berechtigten Rollen, eine Lehrkraft anhand der Moodle-ID einem Kurs zuzuweisen; bei gültigen Kurs- und Lehrkraft-IDs wird genau eine Relation erzeugt und mit HTTP 201 quittiert.
+- [x] Ein POST-Endpunkt `POST /lms/course/<course_id>/student/<student_id>` erstellt genau eine Kursmitgliedschaft mit HTTP 201, wenn Kurs- und Studierenden-ID existieren, und liefert Kurs- und Studierenden-IDs sowie initiale Lernstil-Dimensionen zurück.
+- [x] Nicht vorhandene Lehrkräfte, Studierende oder Kurse führen zu HTTP 404 mit erklärender Fehlermeldung.
+- [x] Bereits bestehende Zuordnungen werden nicht dupliziert, sondern liefern einen Validierungsfehler (HTTP 400/409).
 
 ### Bulk-Synchronisation von Moodle-Einschreibungen
 
-- [ ] Ein REST-Endpunkt `POST /course/<course_id>/allStudents` synchronisiert alle in Moodle eingeschriebenen Studierenden in die HASKI-Relation `student_course` und liefert bei Erfolg HTTP 201 mit `CREATED`, `course_id` und der Anzahl neu verknüpfter Studierender; ohne neue Zuordnungen wird `CREATED: false` gemeldet.
-- [ ] Ein ergänzender Endpunkt `POST /course/<course_id>/topics/allStudents` stellt sicher, dass alle in HASKI erfassten Topics dieses Kurses dieselben Studierenden-Zuordnungen erhalten; die Implementierung ist idempotent und erzeugt keine doppelten Relationen.
-- [ ] Für jeden verarbeiteten Studierenden wird geprüft, ob die Moodle-Einschreibung zur Hochschule/Kurs-ID passt; Inkonsistenzen erzeugen keinen Eintrag und werden geloggt.
-- [ ] Fehlerhafte Kurs-IDs oder fehlende Referenzdaten lösen nachvollziehbare HTTP-Fehler (z. B. 404) aus, ohne interne Informationen preiszugeben.
+- [x] Ein REST-Endpunkt `POST /course/<course_id>/allStudents` synchronisiert alle in Moodle eingeschriebenen Studierenden in die HASKI-Relation `student_course` und liefert bei Erfolg HTTP 201 mit `CREATED`, `course_id` und der Anzahl neu verknüpfter Studierender; ohne neue Zuordnungen wird `CREATED: false` gemeldet.
+- [x] Ein ergänzender Endpunkt `POST /course/<course_id>/topics/allStudents` stellt sicher, dass alle in HASKI erfassten Topics dieses Kurses dieselben Studierenden-Zuordnungen erhalten; die Implementierung ist idempotent und erzeugt keine doppelten Relationen.
+- [x] Für jeden verarbeiteten Studierenden wird geprüft, ob die Moodle-Einschreibung zur Hochschule/Kurs-ID passt; Inkonsistenzen erzeugen keinen Eintrag und werden geloggt.
+- [x] Fehlerhafte Kurs-IDs oder fehlende Referenzdaten lösen nachvollziehbare HTTP-Fehler (z. B. 404) aus, ohne interne Informationen preiszugeben.
 
 ## Rationale
 

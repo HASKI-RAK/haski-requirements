@@ -51,14 +51,14 @@ Die spezialisierte VideoNode-Komponente konkretisiert diese Anforderung für vid
 
 ### Video-Lernelement-Komponente (VideoNode)
 
-- [ ] Die VideoNode-Komponente ist als eigenständiger Node-Typ mit der Klassifizierung "AN" implementiert.
-- [ ] Die Komponente nutzt die gemeinsame BasicNode-Infrastruktur für konsistentes Verhalten.
-- [ ] Ein eindeutiges Video-Icon wird zur Identifizierung des Node-Typs verwendet.
-- [ ] Die Komponente kann innerhalb eines ReactFlow-Diagramms gerendert und im `nodeTypes`-Objekt registriert werden.
-- [ ] Video-Lernelemente können durch Klick geöffnet werden und zeigen den entsprechenden LMS-Inhalt im iFrame-Kontext an.
-- [ ] Unit-Tests decken die Zustände `isDone` true/false sowie `isDisabled` true/false ab und erreichen eine Testabdeckung von mindestens 90 %.
-- [ ] Die Komponente ist vollständig mit TypeScript typisiert und folgt dem Memo-Pattern für Performance-Optimierung.
-- [ ] Videos können in verschiedenen Formaten und von verschiedenen Quellen eingebunden werden; die iFrame-Darstellung von Moodle-Videos ist für das HASKI-Layout optimiert.
+- [x] Die VideoNode-Komponente ist als eigenständiger Node-Typ mit der Klassifizierung "AN" implementiert.
+- [x] Die Komponente nutzt die gemeinsame BasicNode-Infrastruktur für konsistentes Verhalten.
+- [x] Ein eindeutiges Video-Icon wird zur Identifizierung des Node-Typs verwendet.
+- [x] Die Komponente kann innerhalb eines ReactFlow-Diagramms gerendert und im `nodeTypes`-Objekt registriert werden.
+- [x] Video-Lernelemente können durch Klick geöffnet werden und zeigen den entsprechenden LMS-Inhalt im iFrame-Kontext an.
+- [x] Unit-Tests decken die Zustände `isDone` true/false sowie `isDisabled` true/false ab und erreichen eine Testabdeckung von mindestens 100 %.
+- [x] Die Komponente ist vollständig mit TypeScript typisiert und folgt dem Memo-Pattern für Performance-Optimierung.
+- [x] Videos können in verschiedenen Formaten und von verschiedenen Quellen eingebunden werden; die iFrame-Darstellung von Moodle-Videos ist für das HASKI-Layout optimiert.
 
 ## Abhängigkeiten
 

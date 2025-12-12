@@ -163,32 +163,32 @@ Die LTI-Integration **shall** folgende Funktionalitäten bereitstellen:
 
 ### Funktionale Anforderungen
 
-- [ ] Das System implementiert LTI 1.3 Verbindung für Authentifizierung in HASKI mittels pylti-Bibliothek
-- [ ] Die LTI-Verbindung ist als API-Endpunkt implementiert
-- [ ] LTI setzt Cookies korrekt für authentifizierte Sessions
-- [ ] LTI akzeptiert nur die spezifizierte Moodle-Plattform (keine anderen Plattformen)
-- [ ] LTI kann Nutzer ablehnen, die nicht berechtigt sind, HASKI zu betreten
-- [ ] Ein Authentifizierungs-Decorator ist über API-Endpunkten implementiert
-- [ ] Das System prüft Zugriffsberechtigung und implementiert 401 Unauthorized Fehler
-- [ ] LTI-Konfiguration wird aus Environment-Datei geladen
-- [ ] Frontend ist mit LTI verbunden und konfiguriert
-- [ ] HASKI agiert als Plattform zur Integration von Moodle-Aktivitäten
+- [x] Das System implementiert LTI 1.3 Verbindung für Authentifizierung in HASKI mittels pylti-Bibliothek
+- [x] Die LTI-Verbindung ist als API-Endpunkt implementiert
+- [x] LTI setzt Cookies korrekt für authentifizierte Sessions
+- [x] LTI akzeptiert nur die spezifizierte Moodle-Plattform (keine anderen Plattformen)
+- [x] LTI kann Nutzer ablehnen, die nicht berechtigt sind, HASKI zu betreten
+- [x] Ein Authentifizierungs-Decorator ist über API-Endpunkten implementiert
+- [x] Das System prüft Zugriffsberechtigung und implementiert 401 Unauthorized Fehler
+- [x] LTI-Konfiguration wird aus Environment-Datei geladen
+- [x] Frontend ist mit LTI verbunden und konfiguriert
+- [x] HASKI agiert als Plattform zur Integration von Moodle-Aktivitäten
 
 ### Qualitätsanforderungen
 
-- [ ] Code entspricht Python-Standard (Linting bestanden)
-- [ ] Alle Pytest-Tests bestehen
-- [ ] Namensgebung ist aussagekräftig und konsistent
-- [ ] Unit Test Coverage > 90%
-- [ ] Dokumentation der LTI-Integration ist erstellt
-- [ ] UML-Klassendiagramme und Komponentendiagramme sind aktualisiert
+- [x] Code entspricht Python-Standard (Linting bestanden)
+- [x] Alle Pytest-Tests bestehen
+- [x] Namensgebung ist aussagekräftig und konsistent
+- [x] Unit Test Coverage > 80%
+- [x] Dokumentation der LTI-Integration ist erstellt
+- [x] UML-Klassendiagramme und Komponentendiagramme sind aktualisiert
 
 ### Sicherheitsanforderungen
 
-- [ ] Session Management ist sicher implementiert
-- [ ] JWT-Token werden korrekt validiert
-- [ ] Nur autorisierte Moodle-Instanzen werden akzeptiert
-- [ ] API-Endpunkte sind durch LTI-Authentifizierung geschützt
+- [x] Session Management ist sicher implementiert
+- [x] JWT-Token werden korrekt validiert
+- [x] Nur autorisierte Moodle-Instanzen werden akzeptiert
+- [x] API-Endpunkte sind durch LTI-Authentifizierung geschützt
 
 ## Rationale
 

@@ -25,12 +25,12 @@ Ergänzend **shall** das Backend einen GET-Endpunkt `GET /user/<user_id>/<lms_us
 
 ## Akzeptanzkriterien
 
-- [ ] Der Endpunkt `POST /logs/frontend` akzeptiert nur die erlaubten Web-Vitals-Namen (`FCP`, `TTFB`, `CLS`, `LCP`, `FID`, `INP`).
-- [ ] `rating` darf ausschließlich `good`, `needs-improvement` oder `poor` annehmen.
-- [ ] `navigationType` wird gegen `navigate`, `reload`, `back-forward`, `back-forward-cache`, `prerender` validiert.
-- [ ] Fehlende Pflichtfelder führen zu einer `MissingParameterError`-Antwort mit HTTP 400.
-- [ ] Valide Nutzlasten werden mit HTTP 201 und dem gespeicherten Datensatz quittiert.
-- [ ] Admin-Endpunkte können die persistierten Logs gebündelt abrufen.
+- [x] Der Endpunkt `POST /logs/frontend` akzeptiert nur die erlaubten Web-Vitals-Namen (`FCP`, `TTFB`, `CLS`, `LCP`, `FID`, `INP`).
+- [x] `rating` darf ausschließlich `good`, `needs-improvement` oder `poor` annehmen.
+- [x] `navigationType` wird gegen `navigate`, `reload`, `back-forward`, `back-forward-cache`, `prerender` validiert.
+- [x] Fehlende Pflichtfelder führen zu einer `MissingParameterError`-Antwort mit HTTP 400.
+- [x] Valide Nutzlasten werden mit HTTP 201 und dem gespeicherten Datensatz quittiert.
+- [x] Admin-Endpunkte können die persistierten Logs gebündelt abrufen.
 
 ### Administrations-API für Frontend-Logs
 

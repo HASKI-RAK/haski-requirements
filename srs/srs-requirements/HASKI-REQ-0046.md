@@ -35,12 +35,12 @@ Das Backend **shall** News-Einträge über den REST-Endpunkt `POST /news` persis
 
 ## Akzeptanzkriterien
 
-- [ ] `POST /news` persistiert valide News mit den oben genannten Pflichtfeldern.
-- [ ] `GET /news` liefert nur nicht abgelaufene News und kann nach Universität/ Sprache gefiltert werden.
-- [ ] Fehlende Pflichtfelder führen zu einer Fehlerantwort mit `{"error": ..., "message": ...}` und HTTP 400.
-- [ ] Datenbankeinträge enthalten Zeitstempel `created_at` und `expiration_date`, um Auto-Ausblendungen zu ermöglichen.
-- [ ] Admin- oder Service-Rollen können News aktualisieren oder löschen, ohne historische Daten zu beschädigen.
-- [ ] Newsbanner-Komponenten können mehrere Meldungen geordnet abrufen (siehe Frontend-Komponente `Newsbanner`).
+- [x] `POST /news` persistiert valide News mit den oben genannten Pflichtfeldern.
+- [x] `GET /news` liefert nur nicht abgelaufene News und kann nach Universität/ Sprache gefiltert werden.
+- [x] Fehlende Pflichtfelder führen zu einer Fehlerantwort mit `{"error": ..., "message": ...}` und HTTP 400.
+- [x] Datenbankeinträge enthalten Zeitstempel `created_at` und `expiration_date`, um Auto-Ausblendungen zu ermöglichen.
+- [x] Admin- oder Service-Rollen können News aktualisieren oder löschen, ohne historische Daten zu beschädigen.
+- [x] Newsbanner-Komponenten können mehrere Meldungen geordnet abrufen (siehe Frontend-Komponente `Newsbanner`).
 
 ## Rationale
 

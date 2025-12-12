@@ -70,23 +70,23 @@ Das System **shall** Lehrenden die Möglichkeit bieten, konfigurierbare Standard
 
 ### Erstellung und Verwaltung von Standard-Lernpfaden
 
-- [ ] Lehrende können einen Standard-Lernpfad für das HASKI-System erstellen
-- [ ] Wenn kein Standard-Lernpfad gesetzt ist, wird der erste Kursersteller aufgefordert, einen zu erstellen
-- [ ] Lehrende können einen bestehenden Standard-Lernpfad aktualisieren
+- [x] Lehrende können einen Standard-Lernpfad für das HASKI-System erstellen
+- [x] Wenn kein Standard-Lernpfad gesetzt ist, wird der erste Kursersteller aufgefordert, einen zu erstellen
+- [x] Lehrende können einen bestehenden Standard-Lernpfad aktualisieren
 - [x] Die Aktualisierung eines Standard-Lernpfads löst eine Neuberechnung aller abhängigen studentischen Lernpfade aus (GH-84)
 
 ### Konfiguration von Scaffolding-Elementen
 
-- [ ] Standardmäßig ist der Lernpfad in der von Lehrenden definierten Reihenfolge (prof-standard) organisiert
-- [ ] Lehrende können für jedes Thema und Unter-Thema spezifische Algorithmen auswählen (z.B. Graph, ACO)
-- [ ] Die gewählten Algorithmus-Einstellungen werden auf alle Lernpfade der Studierenden angewendet
+- [x] Standardmäßig ist der Lernpfad in der von Lehrenden definierten Reihenfolge (prof-standard) organisiert
+- [x] Lehrende können für jedes Thema und Unter-Thema spezifische Algorithmen auswählen (z.B. Graph, ACO)
+- [x] Die gewählten Algorithmus-Einstellungen werden auf alle Lernpfade der Studierenden angewendet
 
 ### Technische Anforderungen
 
-- [ ] Backend-Endpunkte für CRUD-Operationen auf Standard-Lernpfaden sind implementiert
-- [ ] Datenbankstruktur unterstützt Speicherung von Standard-Lernpfaden und deren Konfiguration
-- [ ] Rollenbasierte Zugriffskontrolle stellt sicher, dass nur autorisierte Lehrende Lernpfade konfigurieren können
-- [ ] Frontend-Benutzeroberfläche ermöglicht intuitive Erstellung und Bearbeitung von Lernpfaden
+- [x] Backend-Endpunkte für CRUD-Operationen auf Standard-Lernpfaden sind implementiert
+- [x] Datenbankstruktur unterstützt Speicherung von Standard-Lernpfaden und deren Konfiguration
+- [x] Rollenbasierte Zugriffskontrolle stellt sicher, dass nur autorisierte Lehrende Lernpfade konfigurieren können
+- [x] Frontend-Benutzeroberfläche ermöglicht intuitive Erstellung und Bearbeitung von Lernpfaden
 
 ## Rationale
 

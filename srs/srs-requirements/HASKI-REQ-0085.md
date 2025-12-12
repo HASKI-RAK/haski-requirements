@@ -90,21 +90,21 @@ Das Frontend **shall** den Standard-Lernpfad eines Topics als interaktives Node-
 
 ### Node-Darstellung
 
-- [ ] Für jede unterstützte Lernaktivitäts-Klassifikation (z.B. Beispiel, Feedback, Selbsttest) existiert ein eigener Node-Typ mit passendem Icon gemäß Projektdesign.
-- [ ] Nodes zeigen den Bearbeitungsstatus (done/disabled/recommended) über Farbe, Rahmen oder Symbolik konsistent an.
-- [ ] Ein Klick auf einen Node öffnet das zugehörige Lern- oder Verwaltungs-Modal (z.B. IFrame, Delete-Dialog) mit den hinterlegten Metadaten.
+- [x] Für jede unterstützte Lernaktivitäts-Klassifikation (z.B. Beispiel, Feedback, Selbsttest) existiert ein eigener Node-Typ mit passendem Icon gemäß Projektdesign.
+- [x] Nodes zeigen den Bearbeitungsstatus (done/disabled/recommended) über Farbe, Rahmen oder Symbolik konsistent an.
+- [x] Ein Klick auf einen Node öffnet das zugehörige Lern- oder Verwaltungs-Modal (z.B. IFrame, Delete-Dialog) mit den hinterlegten Metadaten.
 
 ### Layout und Interaktion
 
-- [ ] Die Lernpfad-Darstellung nutzt ReactFlow mit Stable Layouting und Drag-Blocking, sodass die Reihenfolge der Aktivitäten erhalten bleibt.
-- [ ] Ein Toggle erlaubt den Wechsel zwischen gruppierter und linearer Ansicht (z.B. "Grouped" vs. "Single"), ohne dass ReactFlow neu initialisiert wird.
-- [ ] Tooltipps, Kontextmenüs oder Modals für Einstellungen (z.B. Algorithmuswechsel, Delete) funktionieren aus jeder Ansicht heraus und schließen konsistent.
+- [x] Die Lernpfad-Darstellung nutzt ReactFlow mit Stable Layouting und Drag-Blocking, sodass die Reihenfolge der Aktivitäten erhalten bleibt.
+- [x] Ein Toggle erlaubt den Wechsel zwischen gruppierter und linearer Ansicht (z.B. "Grouped" vs. "Single"), ohne dass ReactFlow neu initialisiert wird.
+- [x] Tooltipps, Kontextmenüs oder Modals für Einstellungen (z.B. Algorithmuswechsel, Delete) funktionieren aus jeder Ansicht heraus und schließen konsistent.
 
 ### Status- und Icon-Verwaltung
 
-- [ ] Die `getNodeIcon`-Utility liefert für jede Klassifikation ein passendes Material-Icon und wird zentral durch die NodeTypes-Registry verifiziert.
-- [ ] Neue Klassifikationen können über die Registry eingebunden werden, ohne den Rendering-Flow zu brechen (z.B. Additional Literature für AB/FO/LZ aus GH-257).
-- [ ] Fehlende Daten (z.B. Topic ohne Learning Elements) führen zu einer robusten, aber leeren Darstellung anstatt zu Fehlern.
+- [x] Die `getNodeIcon`-Utility liefert für jede Klassifikation ein passendes Material-Icon und wird zentral durch die NodeTypes-Registry verifiziert.
+- [x] Neue Klassifikationen können über die Registry eingebunden werden, ohne den Rendering-Flow zu brechen (z.B. Additional Literature für AB/FO/LZ aus GH-257).
+- [x] Fehlende Daten (z.B. Topic ohne Learning Elements) führen zu einer robusten, aber leeren Darstellung anstatt zu Fehlern.
 
 ## Rationale
 

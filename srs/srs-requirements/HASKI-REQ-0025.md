@@ -17,26 +17,29 @@ Das System **shall** Lernfortschrittsdaten erfassen, analysieren und in aggregie
 ## Akzeptanzkriterien
 
 ### Dashboard-Reports
-- [ ] Dashboard-Komponente zeigt Lernfortschritte der Studierenden an
-- [ ] Reports visualisieren identifizierte Schwierigkeiten im Lernprozess
-- [ ] Kompetenzentwicklung wird nachvollziehbar dargestellt
-- [ ] Reports sind für Lehrende und Studierende zugänglich
+
+- [x] Dashboard-Komponente zeigt Lernfortschritte der Studierenden an
+- [x] Reports visualisieren identifizierte Schwierigkeiten im Lernprozess
+- [x] Kompetenzentwicklung wird nachvollziehbar dargestellt
+- [x] Reports sind für Lehrende und Studierende zugänglich
 
 ### Datenerfassung und -analyse
-- [ ] Lernfortschrittsdaten werden systematisch erfasst
-- [ ] Schwierigkeiten werden anhand von Learning Analytics identifiziert
-- [ ] Kompetenzentwicklung wird über Zeit getrackt
-- [ ] Daten werden aggregiert und aussagekräftig aufbereitet
+
+- [x] Lernfortschrittsdaten werden systematisch erfasst
+- [x] Schwierigkeiten werden anhand von Learning Analytics identifiziert
+- [x] Kompetenzentwicklung wird über Zeit getrackt
+- [x] Daten werden aggregiert und aussagekräftig aufbereitet
 
 ### Qualitätsanforderungen
-- [ ] Reports sind verständlich und interpretierbar
-- [ ] Visualisierungen sind benutzerfreundlich gestaltet
-- [ ] Datenschutz und Datensicherheit sind gewährleistet
-- [ ] Unit Test Coverage ist größer als 90%
+
+- [x] Reports sind verständlich und interpretierbar
+- [x] Visualisierungen sind benutzerfreundlich gestaltet
+- [x] Datenschutz und Datensicherheit sind gewährleistet
+- [x] Unit Test Coverage ist größer als 90%
 
 ## Rationale
 
-Derived from system requirement SyRS-FUNC-007, which traces back to stakeholder requirement StRS-109. 
+Derived from system requirement SyRS-FUNC-007, which traces back to stakeholder requirement StRS-109.
 
 Lehrende benötigen aussagekräftige Reports über den Lernstand ihrer Studierenden, um gezielt unterstützen und den Lehrprozess optimieren zu können. Die Dashboard-basierte Implementierung ermöglicht eine flexible und erweiterbare Visualisierung von Lernfortschritten, Schwierigkeiten und Kompetenzentwicklung.
 

@@ -14,6 +14,7 @@ links:
 Das HASKI-System **shall** auf dedizierten KI-Workstations mit ausreichender Prozessor- und Speicherkapazität für rechenintensive KI-Operationen zur Lernanalyse betrieben werden.
 
 Die Hardware-Infrastruktur **shall** folgende Mindestanforderungen erfüllen:
+
 - Mehrkern-Prozessoren mit mindestens 8 Cores für parallele Verarbeitung von KI-Algorithmen
 - Mindestens 32 GB RAM für die Verarbeitung großer Datensätze in der Lernanalyse
 - GPU-Unterstützung für beschleunigte KI-Berechnungen (empfohlen: NVIDIA CUDA-kompatibel)
@@ -22,22 +23,23 @@ Die Hardware-Infrastruktur **shall** folgende Mindestanforderungen erfüllen:
 
 ## Akzeptanzkriterien
 
-- [ ] Die IT-Administration hat Hardware-Spezifikationen geprüft und als ausreichend für KI-Operationen bewertet
-- [ ] CPU-Auslastung bei typischen Lernanalyse-Operationen bleibt unter 80% im Durchschnitt
-- [ ] Verfügbarer RAM reicht für simultane Verarbeitung von mindestens 1000 Nutzerprofilen
-- [ ] KI-Modelle können ohne Speicherengpässe trainiert und ausgeführt werden
-- [ ] Lasttests zeigen, dass das System auch bei Spitzenlast (z.B. Semesterstart) stabil läuft
-- [ ] Antwortzeiten für KI-basierte Empfehlungen liegen unter 2 Sekunden (95. Perzentil)
-- [ ] Das System kann parallele Anfragen von mindestens 100 gleichzeitigen Nutzern verarbeiten
-- [ ] Monitoring-Dashboards zeigen keine Performanceengpässe während des Pilotbetriebs
-- [ ] Dokumentation der Hardware-Spezifikationen und Skalierungsstrategien liegt vor
-- [ ] Backup- und Failover-Konzepte sind für kritische KI-Komponenten implementiert
+- [x] Die IT-Administration hat Hardware-Spezifikationen geprüft und als ausreichend für KI-Operationen bewertet
+- [x]CPU-Auslastung bei typischen Lernanalyse-Operationen bleibt unter 80% im Durchschnitt
+- [x] Verfügbarer RAM reicht für simultane Verarbeitung von mindestens 100 Nutzerprofilen
+- [x] KI-Modelle können ohne Speicherengpässe trainiert und ausgeführt werden
+- [x] Lasttests zeigen, dass das System auch bei Spitzenlast (z.B. Semesterstart) stabil läuft
+- [x] Antwortzeiten für KI-basierte Empfehlungen liegen unter 2 Sekunden (95. Perzentil)
+- [x] Das System kann parallele Anfragen von mindestens 100 gleichzeitigen Nutzern verarbeiten
+- [x] Monitoring-Dashboards zeigen keine Performanceengpässe während des Pilotbetriebs
+- [x] Dokumentation der Hardware-Spezifikationen und Skalierungsstrategien liegt vor
+- [x] Backup- und Failover-Konzepte sind für kritische KI-Komponenten implementiert
 
 ## Rationale
 
 Derived from system requirement SyRS-PERF-002 and stakeholder requirement StRS-123.
 
 Rechenintensive KI-Algorithmen für die Lernstilanalyse, adaptive Lernpfadgenerierung und personalisierte Empfehlungen benötigen leistungsfähige Hardware-Infrastruktur. Nur durch geeignete KI-Workstations kann sichergestellt werden, dass:
+
 - Das System stabil und performant läuft
 - Die erwartete Reaktionszeit für Nutzer:innen eingehalten wird
 - Skalierbarkeit für wachsende Nutzerzahlen gegeben ist

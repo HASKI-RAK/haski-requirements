@@ -67,12 +67,12 @@ Aufbauend auf diesem Katalog **shall** das System es authentifizierten Studieren
 
 ### Algorithmus-Katalog
 
-- [ ] Ein REST-Endpunkt `POST /algorithm` akzeptiert die Pflichtfelder `short_name` (URI-tauglicher Schlüssel) und `full_name` (Anzeigename) und liefert bei Erfolg HTTP 201 mit den persistierten Werten sowie einer internen ID zurück.
-- [ ] Fehlende oder falsch typisierte Pflichtfelder führen zu einer Validierungsantwort (HTTP 400) mit erzwingender Fehlermeldung; keine inkonsistenten Datensätze werden gespeichert.
-- [ ] Der `short_name` ist systemweit eindeutig; doppelte Einträge werden mit HTTP 409/400 abgelehnt, ohne bestehende Algorithmen zu überschreiben.
-- [ ] Neu erfasste Algorithmen sind unmittelbar in den Auswahl- und Konfigurations-Endpunkten für Lernpfade verfügbar (z.B. `POST /student/<id>/topic/<id>/algorithm`).
-- [ ] Der Endpunkt ist mit der bestehenden Rollen-/Rechteprüfung geschützt, sodass nur autorisierte Rollen (Kursersteller:innen, Tutor:innen, Admins) den Katalog verändern können.
-- [ ] Alle erfolgreichen und fehlgeschlagenen Katalogänderungen werden serverseitig protokolliert, damit Konfigurationsfehler nachvollziehbar bleiben.
+- [x] Ein REST-Endpunkt `POST /algorithm` akzeptiert die Pflichtfelder `short_name` (URI-tauglicher Schlüssel) und `full_name` (Anzeigename) und liefert bei Erfolg HTTP 201 mit den persistierten Werten sowie einer internen ID zurück.
+- [x] Fehlende oder falsch typisierte Pflichtfelder führen zu einer Validierungsantwort (HTTP 400) mit erzwingender Fehlermeldung; keine inkonsistenten Datensätze werden gespeichert.
+- [x] Der `short_name` ist systemweit eindeutig; doppelte Einträge werden mit HTTP 409/400 abgelehnt, ohne bestehende Algorithmen zu überschreiben.
+- [x] Neu erfasste Algorithmen sind unmittelbar in den Auswahl- und Konfigurations-Endpunkten für Lernpfade verfügbar (z.B. `POST /student/<id>/topic/<id>/algorithm`).
+- [x] Der Endpunkt ist mit der bestehenden Rollen-/Rechteprüfung geschützt, sodass nur autorisierte Rollen (Kursersteller:innen, Tutor:innen, Admins) den Katalog verändern können.
+- [x] Alle erfolgreichen und fehlgeschlagenen Katalogänderungen werden serverseitig protokolliert, damit Konfigurationsfehler nachvollziehbar bleiben.
 
 ### Algorithmuszuweisung pro Topic und Studierenden
 
