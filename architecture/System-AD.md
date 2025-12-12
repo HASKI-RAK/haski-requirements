@@ -80,12 +80,11 @@ Das HASKI‑System ist in folgende Umgebung eingebettet:
 
 - **Externe Systeme**
 
-  - Hochschul‑Moodle‑Instanzen (LMS): Quellsystem für Nutzer, Kurse, Topics, Learning Elements.
-  - Identity Provider / LTI‑Plattformen: Authentifizierung und Autorisierung via LTI/OIDC.
-  - **NodeGrade**: Bewertung von Programmieraufgaben, Rückfluss von Scores/Feedback an HASKI.
-  - **LAAC** (optional/geplant): zentrale Analytics‑Verarbeitung/Persistenz.
+  - Moodle‑Instanzen (LMS): Quellsystem für Nutzer, Kurse, Topics, Learning Elements.
+  - Identity Provider / LTI‑Plattformen von Moodle: Authentifizierung und Autorisierung via LTI/OIDC.
+  - **NodeGrade**: Bewertung von Freitextaufgaben, Rückfluss von Scores/Feedback/Klassifizierung an HASKI.
+  - **LAAC**: zentrale Analytics‑Verarbeitung/Persistenz für adaptive Lernpfade.
   - **LRS**: empfängt xAPI‑Statements aus dem Frontend.
-  - Optionale Analyse‑/Reporting‑Tools.
 
 - **Benutzergruppen**
   - Studierende, Lehrende, Administrator:innen greifen ausschließlich über das Frontend (Browser) auf HASKI zu.
@@ -157,12 +156,15 @@ Nicht‑funktionale Anforderungen (Performance, Skalierbarkeit, Verfügbarkeit) 
   - Einschreibungen und Kurszuordnungen werden über Einzel‑ und Bulk‑Endpunkte übernommen.
 
 - **HASKI → NodeGrade**
+
   - Übergabe von Programmieraufgaben/Artefakten an NodeGrade, Rücknahme von Scores/Feedback (geplant/teilweise umgesetzt im separaten Repo).
 
 - **HASKI → LAAC**
+
   - Geplante Export‑/Sync‑Pfade für aggregierte Analytics‑Daten; aktuell nicht umgesetzt.
 
 - **Frontend → LRS (xAPI)**
+
   - xAPI‑Statements werden direkt aus dem Browser an den konfigurierten LRS‑Endpoint gesendet (siehe `src/pages/App/App.hooks.tsx`, `public/config/env.*.json`).
   - Optionales Backend‑Forwarding noch nicht implementiert.
 
@@ -199,7 +201,7 @@ Ausgewählte, dokumentationswürdige Architekturentscheidungen:
 - **Performance**: Antwortzeiten für zentrale User‑Flows (Kursübersicht, Lernpfadabruf) im Sekundenbereich; Algorithmus‑Laufzeiten ggf. asynchron.
 - **Sicherheit**: Rollenbasiertes Zugriffskonzept, Transportverschlüsselung (TLS), Logging sicherheitsrelevanter Ereignisse, Minimierung personenbezogener Daten.
 - **Wartbarkeit**: Klar getrennte Module, konsistente Coding‑Guidelines, automatisierte Tests und statische Analysen.
-- **Health/Monitoring**: Health/Metrics‑Endpoints im Backend geplant (Ticket folgt), derzeit nicht implementiert.
+- **Health/Monitoring**: Health/Metrics‑Endpoints im Backend.
 
 ## 9 Rückverfolgbarkeit zu Anforderungen
 
