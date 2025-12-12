@@ -7,8 +7,11 @@ stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-COMP-004
 links:
-  stories: []
+  stories: ["HASKI-RAK/HASKI-Frontend#51"]
   parents: ["SyRS-COMP-004"]
+  tests:
+    - path: "frontend/src/components/PrivacyModal/PrivacyModal.test.tsx"
+      name: "Test PrivacyModal"
 ---
 
 ## Beschreibung

@@ -23,6 +23,41 @@ links:
       "HASKI-RAK/HASKI-Backend#121",
     ]
   parents: ["SyRS-FUNC-005"]
+  tests:
+    - path: "frontend/src/components/Nodes/BasicNode/BasicNode.test.tsx"
+      name: "BasicNode"
+    - path: "frontend/src/components/BorderedPaper/BorderedPaper.test.tsx"
+      name: "BorderedPaper"
+    - path: "frontend/src/components/Nodes/AdditionalLiteratureNode/AdditionalLiteratureNode.test.tsx"
+      name: "AdditionalLiteratureNode"
+    - path: "frontend/src/components/Nodes/ApplicationExampleNode/ApplicationExampleNode.test.tsx"
+      name: "ApplicationExampleNode"
+    - path: "frontend/src/components/Nodes/DefaultGroup/DefaultGroup.test.tsx"
+      name: "DefaultGroup"
+    - path: "frontend/src/components/Nodes/EvaluationQuestionnaireNode/EvaluationQuestionnaireNode.test.tsx"
+      name: "EvaluationQuestionnaireNode"
+    - path: "frontend/src/components/Nodes/ExampleNode/ExampleNode.test.tsx"
+      name: "ExampleNode"
+    - path: "frontend/src/components/Nodes/ExerciseNode/ExerciseNode.test.tsx"
+      name: "ExerciseNode"
+    - path: "frontend/src/components/Nodes/ExplanationNode/ExplanationNode.test.tsx"
+      name: "ExplanationNode"
+    - path: "frontend/src/components/Nodes/FeedbackNode/FeedbackNode.test.tsx"
+      name: "FeedbackNode"
+    - path: "frontend/src/components/Nodes/ForumNode/ForumNode.test.tsx"
+      name: "ForumNode"
+    - path: "frontend/src/components/Nodes/LearningObjectiveNode/LearningObjectiveNode.test.tsx"
+      name: "LearningObjectiveNode"
+    - path: "frontend/src/components/Nodes/SelfAssessmentNode/SelfAssessmentNode.test.tsx"
+      name: "SelfAssessmentNode"
+    - path: "frontend/src/components/Nodes/ShortTextualIntroductionNode/ShortTextualIntroductionNode.test.tsx"
+      name: "ShortTextualIntroductionNode"
+    - path: "frontend/src/components/Nodes/SummaryNode/SummaryNode.test.tsx"
+      name: "SummaryNode"
+    - path: "frontend/src/components/Nodes/VideoNode/VideoNode.test.tsx"
+      name: "VideoNode"
+    - path: "frontend/src/components/Nodes/NodeTypes/NodeTypes.test.tsx"
+      name: "NodeTypes (getNodeIcon)"
 ---
 
 ## Beschreibung

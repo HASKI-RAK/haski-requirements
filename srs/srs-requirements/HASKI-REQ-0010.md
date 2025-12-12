@@ -16,7 +16,15 @@ links:
       "HASKI-RAK/HASKI-Frontend#272",
       "HASKI-RAK/HASKI-Frontend#57",
     ]
-  tests: []
+  tests:
+    - path: "frontend/src/components/Nodes/VideoNode/VideoNode.test.tsx"
+      name: "VideoNode tests"
+    - path: "frontend/src/components/Nodes/VideoNode/ExplanationNode.test.tsx"
+      name: "ExplanationNode tests"
+  tests: [
+
+    
+  ]
   parents: ["SyRS-FUNC-004", "SyRS-INT-001"]
 ---
 
