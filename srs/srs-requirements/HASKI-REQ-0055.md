@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0057", "HASKI-REQ-0061"]
 links:
   stories:
     [

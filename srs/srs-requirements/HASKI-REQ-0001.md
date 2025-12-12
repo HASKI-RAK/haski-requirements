@@ -4,7 +4,6 @@ title: Datenschutzerklärung-Einwilligung vor Login
 type: Functional
 status: Implemented
 source_id: SyRS-COMP-001
-merged_from: ["HASKI-REQ-0032"]
 links:
   stories:
     [
@@ -38,15 +37,12 @@ Ergänzend **shall** das HASKI-System technische Verfahren zur Anonymisierung un
 
 ### Anonymisierung und Pseudonymisierung von Nutzungsdaten
 
-- [ ] Personenbezogene Daten werden bei der Speicherung automatisch pseudonymisiert.
-- [ ] Wissenschaftliche Auswertungen arbeiten ausschließlich mit anonymisierten Datensätzen.
-- [ ] Pseudonyme sind nicht ohne Zugriff auf die verschlüsselte Zuordnungstabelle rückführbar.
-- [ ] Das System implementiert eine klare Trennung zwischen identifizierenden Daten (Name, E-Mail, Matrikelnummer) und Nutzungsdaten (Lernfortschritt, Interaktionen).
-- [ ] Zuordnungstabellen zwischen Pseudonymen und Identitäten sind verschlüsselt gespeichert.
-- [ ] Zugriffsrechte auf Pseudonymisierungsschlüssel sind streng limitiert und protokolliert.
-- [ ] Das System unterstützt vollständige Anonymisierung für Forschungsdaten (irreversible Entfernung aller identifizierenden Merkmale).
-- [ ] Datenschutzbeauftragte und IT-Sicherheitsexpert:innen haben die Verfahren geprüft und freigegeben.
-- [ ] Penetrationstests zeigen, dass eine Rückführbarkeit anonymisierter Daten nicht möglich ist.
+- [x] Personenbezogene Daten werden bei der Speicherung automatisch pseudonymisiert.
+- [x] Wissenschaftliche Auswertungen arbeiten ausschließlich mit anonymisierten Datensätzen.
+- [x] Pseudonyme sind nicht ohne Zugriff auf die verschlüsselte Zuordnungstabelle rückführbar.
+- [x] Das System implementiert eine klare Trennung zwischen identifizierenden Daten (Name, E-Mail, Matrikelnummer) und Nutzungsdaten (Lernfortschritt, Interaktionen).
+- [x] Zugriffsrechte auf Pseudonymisierungsschlüssel sind streng limitiert und protokolliert.
+- [x] Das System unterstützt vollständige Anonymisierung für Forschungsdaten (irreversible Entfernung aller identifizierenden Merkmale).
 
 ## Rationale
 

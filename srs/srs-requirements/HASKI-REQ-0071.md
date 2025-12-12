@@ -31,11 +31,11 @@ links:
       name: "fetchLearningPathElementSpecificStatus has expected behaviour"
     - path: "frontend/src/components/StyledLinearProgress/StyledLinearProgress.test.tsx"
       name: "StyledLinearProgress tests"
-    - path: "HASKI-Frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"
+    - path: "frontend/src/components/StyledLinearProgress/LinearProgressWithLabel.test.tsx"
       name: "LinearProgressWithLabel"
-    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementSpecificStatusSlice.test.ts"
+    - path: "frontend/src/store/Slices/LearningPathElementSpecificStatusSlice.test.ts"
       name: "LearningPathElementSpecificStatusSlice"
-    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementStatusSlice.test.ts"
+    - path: "frontend/src/store/Slices/LearningPathElementStatusSlice.test.ts"
       name: "LearningPathElementStatusSlice"
 ---
 

@@ -36,11 +36,10 @@ links:
       name: "Test the RingBuffer class"
     - path: "frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
       name: "RemoteTopicSlice "
-    - path: "HASKI-Frontend/src/shared/config.test.ts"
+    - path: "frontend/src/shared/config.test.ts"
       name: "setConfig"
-    - path: "HASKI-Frontend/src/services/RequestResponse.test.ts"
+    - path: "frontend/src/services/RequestResponse.test.ts"
       name: "RequestResponse"
-  merged_from: ["HASKI-REQ-0099"]
 ---
 
 ## Beschreibung

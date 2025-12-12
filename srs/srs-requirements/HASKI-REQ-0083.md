@@ -13,21 +13,20 @@ links:
   tests:
     - path: "frontend/src/components/ImageCollection/ImageCollection.test.tsx"
       name: "ImageCollection Component"
-    - path: "HASKI-Frontend/src/pages/AboutUs/AboutUs.test.tsx"
+    - path: "frontend/src/pages/AboutUs/AboutUs.test.tsx"
       name: "AboutUs"
     - path: "frontend/src/pages/AboutUs/AboutUs.test.tsx"
       name: "AboutUs"
-    - path: "HASKI-Frontend/src/components/TextCard/TextCardLeft/TextCardLeft.test.tsx"
+    - path: "frontend/src/components/TextCard/TextCardLeft/TextCardLeft.test.tsx"
       name: "TextCardRight tests"
-    - path: "HASKI-Frontend/src/components/TextCard/TextCardRight/TextCardRight.test.tsx"
+    - path: "frontend/src/components/TextCard/TextCardRight/TextCardRight.test.tsx"
       name: "TextCardLeft tests"
-    - path: "HASKI-Frontend/src/components/TextStepper/TextStepper.test.tsx"
+    - path: "frontend/src/components/TextStepper/TextStepper.test.tsx"
       name: "TextStepper tests"
-    - path: "HASKI-Frontend/src/components/Typewriter/Typewriter.test.tsx"
+    - path: "frontend/src/components/Typewriter/Typewriter.test.tsx"
       name: "Typewriter tests"
-    - path: "HASKI-Frontend/src/pages/ProjectDescription/ProjectDescription.test.tsx"
+    - path: "frontend/src/pages/ProjectDescription/ProjectDescription.test.tsx"
       name: "ProjectDescription tests"
-  merged_from: ["HASKI-REQ-0098"]
 ---
 
 ## Beschreibung

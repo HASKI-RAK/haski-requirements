@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0076"]
 links:
   parents:
     - "SyRS-INT-003"
@@ -38,7 +37,7 @@ links:
       name: "Course Page"
     - path: "frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
       name: "fetchRemoteTopics has expected behaviour"
-    - path: "HASKI-Frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
+    - path: "frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
       name: "postAddAllStudentsToTopics has expected behaviour"
     - path: "frontend/src/services/LearningElement/postLearningElement.test.tsx"
       name: "postLearningElement has expected behaviour"

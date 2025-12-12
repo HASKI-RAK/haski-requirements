@@ -50,15 +50,6 @@ links:
       name: "test_delete_questionnaire_list_k"
     - path: "backend/tests/unit/test_service.py"
       name: "test_delete_questionnaire_ils"
-  merged_from:
-    [
-      "HASKI-REQ-0049",
-      "HASKI-REQ-0050",
-      "HASKI-REQ-0051",
-      "HASKI-REQ-0052",
-      "HASKI-REQ-0074",
-      "HASKI-REQ-0079",
-    ]
 ---
 
 ## Beschreibung

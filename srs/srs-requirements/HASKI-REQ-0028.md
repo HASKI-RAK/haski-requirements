@@ -141,9 +141,9 @@ links:
       name: "test_getrandomstring"
     - path: "backend/tests/unit/lti/test_cryptorandom.py"
       name: "test_getrandomstringbase64"
-    - path: "HASKI-Frontend/src/store/Slices/AuthSlice.test.ts"
+    - path: "frontend/src/store/Slices/AuthSlice.test.ts"
       name: "AuthSlice expire persistence"
-    - path: "HASKI-Frontend/src/store/Slices/UserSlice.test.ts"
+    - path: "frontend/src/store/Slices/UserSlice.test.ts"
       name: "UserSlice caching"
 ---
 

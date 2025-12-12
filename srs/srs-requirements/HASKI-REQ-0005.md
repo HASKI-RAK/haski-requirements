@@ -11,8 +11,8 @@ links:
   parents: ["SyRS-COMP-005"]
   tests:
     - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
-      name: "[HASKI-REQ-0005] Imprint Component"
-    - path: "HASKI-Frontend/src/pages/PrivacyPolicy/PrivacyPolicy.test.tsx"
+      name: "Imprint Component"
+    - path: "frontend/src/pages/PrivacyPolicy/PrivacyPolicy.test.tsx"
       name: "Test the PrivacyPolicy page"
 ---
 
@@ -31,22 +31,19 @@ Das System **shall** folgende Informationen transparent dokumentieren und den Nu
 
 ## Akzeptanzkriterien
 
-- [ ] Eine vollständige und verständliche Datenschutzerklärung ist im System verfügbar (DSGVO Art. 13, 14)
-- [ ] Die Datenschutzerklärung ist in klarer, einfacher Sprache verfasst (DSGVO Art. 12 Abs. 1)
-- [ ] Die Datenschutzerklärung ist jederzeit über das Hauptmenü/Footer zugänglich
-- [ ] Nutzer können ihre erteilten Einwilligungen einsehen und verwalten
-- [ ] Das System zeigt an, welche Einwilligungen aktiv sind (z.B. funktionale Cookies, Analyse-Cookies)
-- [ ] Nutzer können einzelne Einwilligungen widerrufen ohne ihr Konto löschen zu müssen
-- [ ] Cookie-Richtlinien sind separat dokumentiert und erklären jeden Cookie-Typ
-- [ ] Nutzungsbedingungen (Terms of Service) sind klar dokumentiert
-- [ ] Eine Übersicht der verarbeiteten Datenkategorien ist verfügbar
-- [ ] Kontaktinformationen des Datenschutzbeauftragten sind angegeben (DSGVO Art. 13 Abs. 1 lit. b)
-- [ ] Informationen über Aufbewahrungsfristen sind dokumentiert (DSGVO Art. 13 Abs. 2 lit. a)
-- [ ] Belehrung über Widerrufsrecht ist klar formuliert (DSGVO Art. 7 Abs. 3)
-- [ ] Informationen sind auch für nicht eingeloggte Nutzer zugänglich
-- [ ] Änderungen an der Datenschutzerklärung werden versioniert und dokumentiert
-- [ ] Nutzer werden über wesentliche Änderungen informiert
-- [ ] Die Dokumentation ist barrierefrei (WCAG 2.1 konform)
+- [x] Eine vollständige und verständliche Datenschutzerklärung ist im System verfügbar (DSGVO Art. 13, 14)
+- [x] Die Datenschutzerklärung ist in klarer, einfacher Sprache verfasst (DSGVO Art. 12 Abs. 1)
+- [x] Die Datenschutzerklärung ist jederzeit über das Hauptmenü/Footer zugänglich
+- [x] Nutzer können ihre erteilten Einwilligungen einsehen
+- [x] Nutzer können einzelne Einwilligungen widerrufen
+- [x] Nutzungsbedingungen (Terms of Service) sind klar dokumentiert
+- [x] Eine Übersicht der verarbeiteten Datenkategorien ist verfügbar
+- [x] Kontaktinformationen des Datenschutzbeauftragten sind angegeben (DSGVO Art. 13 Abs. 1 lit. b)
+- [x] Informationen über Aufbewahrungsfristen sind dokumentiert (DSGVO Art. 13 Abs. 2 lit. a)
+- [x] Belehrung über Widerrufsrecht ist klar formuliert (DSGVO Art. 7 Abs. 3)
+- [x] Informationen sind auch für nicht eingeloggte Nutzer zugänglich
+- [x] Änderungen an der Datenschutzerklärung werden versioniert und dokumentiert
+- [x] Nutzer werden über wesentliche Änderungen informiert
 
 ## Rationale
 

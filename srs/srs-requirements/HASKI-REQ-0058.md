@@ -12,7 +12,7 @@ links:
   tests:
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_path_for_student"
-    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementSlice.test.ts"
+    - path: "frontend/src/store/Slices/LearningPathElementSlice.test.ts"
       name: "LearningPathElementSlice caching"
 ---
 

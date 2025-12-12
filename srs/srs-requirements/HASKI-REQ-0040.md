@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0041"]
 links:
   parents: ["SyRS-FUNC-008", "SyRS-FUNC-002"]
   stories: ["HASKI-RAK/HASKI-Backend#83", "HASKI-RAK/HASKI-Frontend#306"]
@@ -52,9 +51,9 @@ links:
       name: "test_update_learning_path_learning_element_algorithm"
     - path: "backend/tests/unit/test_service.py"
       name: "test_update_student_lpath_le_algorithm"
-    - path: "HASKI-Frontend/src/store/Slices/StudentLpLeAlgSlice.test.ts"
+    - path: "frontend/src/store/Slices/StudentLpLeAlgSlice.test.ts"
       name: "StudentLpLeAlgSlice cache"
-    - path: "HASKI-Frontend/src/store/Slices/TeacherLpLeAlgorithmSlice.test.ts"
+    - path: "frontend/src/store/Slices/TeacherLpLeAlgorithmSlice.test.ts"
       name: "TeacherLpLeAlgorithmSlice cache"
 ---
 

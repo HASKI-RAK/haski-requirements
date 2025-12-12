@@ -5,7 +5,6 @@ type: Functional
 status: Implemented
 stakeholder_priority: Medium
 verification_method: Test
-merged_from: ["HASKI-REQ-0080"]
 links:
   parents:
     - "SyRS-FUNC-011"

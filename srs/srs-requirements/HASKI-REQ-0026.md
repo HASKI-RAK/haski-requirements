@@ -36,7 +36,7 @@ links:
       name: "SortableItem Component"
     - path: "frontend/src/services/DefaultLearningPath/fetchDefaultLearningPath.test.tsx"
       name: "fetchDefaultLearningPath has expected behaviour"
-    - path: "HASKI-Frontend/src/store/Slices/DefaultLearningPathSlice.test.ts"
+    - path: "frontend/src/store/Slices/DefaultLearningPathSlice.test.ts"
       name: "DefaultLearningPathSlice caching"
     - path: "frontend/src/services/DefaultLearningPath/fetchDisabledClassifications.test.tsx"
       name: "fetchDisabledClassifications has expected behaviour"

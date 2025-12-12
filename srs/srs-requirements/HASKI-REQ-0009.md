@@ -19,7 +19,6 @@ links:
       "HASKI-RAK/NodeGrade#40",
     ]
   tests: []
-  merged_from: ["HASKI-REQ-0033"]
 ---
 
 ## Beschreibung

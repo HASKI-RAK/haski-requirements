@@ -5,7 +5,6 @@ type: Functional
 status: Implemented
 stakeholder_priority: High
 verification_method: Demonstration
-merged_from: ["HASKI-REQ-0027"]
 links:
   stories:
     [

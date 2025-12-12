@@ -61,7 +61,6 @@ links:
       name: "postAddAllStudentsToTopics has expected behaviour"
     - path: "frontend/src/services/Course/postAddAllStudentsToCourse.test.ts"
       name: "postAddAllStudentsToCourse has expected behaviour"
-  merged_from: ["HASKI-REQ-0092", "HASKI-REQ-0038", "HASKI-REQ-0078"]
 ---
 
 ## Beschreibung

@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-INT-003
-merged_from: ["HASKI-REQ-0073"]
 links:
   parents: ["SyRS-INT-003"]
   stories: ["HASKI-RAK/HASKI-Backend#81", "HASKI-RAK/HASKI-Backend#30"]

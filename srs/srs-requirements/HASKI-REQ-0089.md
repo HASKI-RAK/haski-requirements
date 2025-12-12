@@ -6,26 +6,25 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-019
-merged_from: ["HASKI-REQ-0088"]
 links:
   parents: ["SyRS-FUNC-019", "SyRS-INT-001"]
   stories: ["HASKI-RAK/HASKI-Frontend#124", "HASKI-RAK/HASKI-Frontend#127"]
   tests:
-    - path: "HASKI-Frontend/src/components/GlobalNav/CourseMenu/CourseMenu.test.tsx"
+    - path: "frontend/src/components/GlobalNav/CourseMenu/CourseMenu.test.tsx"
       name: "CourseMenu tests"
-    - path: "HASKI-Frontend/src/components/GlobalNav/FurtherInfoMenu/FurtherInfoMenu.test.tsx"
+    - path: "frontend/src/components/GlobalNav/FurtherInfoMenu/FurtherInfoMenu.test.tsx"
       name: "FurtherInfoMenu tests"
-    - path: "HASKI-Frontend/src/components/GlobalNav/GlobalNavMenu/GlobalNavMenu.test.tsx"
+    - path: "frontend/src/components/GlobalNav/GlobalNavMenu/GlobalNavMenu.test.tsx"
       name: "GlobalNavMenu tests"
-    - path: "HASKI-Frontend/src/components/GlobalNav/StatisticsMenu/StatisticsMenu.test.tsx"
+    - path: "frontend/src/components/GlobalNav/StatisticsMenu/StatisticsMenu.test.tsx"
       name: "StatisticsMenu tests"
-    - path: "HASKI-Frontend/src/components/LocalNav/LocalNavBar/LocalNavBar.test.tsx"
+    - path: "frontend/src/components/LocalNav/LocalNavBar/LocalNavBar.test.tsx"
       name: "LocalNavBar tests"
-    - path: "HASKI-Frontend/src/components/LocalNav/LocalNavItem/LocalNavItem.test.tsx"
+    - path: "frontend/src/components/LocalNav/LocalNavItem/LocalNavItem.test.tsx"
       name: "LocalNavItem tests"
-    - path: "HASKI-Frontend/src/components/Footer/Footer.test.tsx"
+    - path: "frontend/src/components/Footer/Footer.test.tsx"
       name: "Footer"
-    - path: "HASKI-Frontend/src/pages/MainFrame/MainFrame.test.tsx"
+    - path: "frontend/src/pages/MainFrame/MainFrame.test.tsx"
       name: "MainFrame tests"
     - path: "frontend/src/pages/Imprint/Imprint.test.tsx"
       name: "Imprint Component"

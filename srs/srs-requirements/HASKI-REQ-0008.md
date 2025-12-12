@@ -30,43 +30,35 @@ Das HASKI-System **shall** den Studierenden die Möglichkeit bieten, zwischen ei
 
 ### Modus-Auswahl und Konfiguration
 
-- [ ] System bietet eine Einstellung zur Wahl zwischen "Adaptiver Modus" und "Selbstgesteuerter Modus"
-- [ ] Die Auswahl ist für Studierende leicht zugänglich (z.B. in Benutzereinstellungen oder Dashboard)
-- [ ] Die Modus-Auswahl ist persistent gespeichert und bleibt über Sessions hinweg erhalten
-- [ ] Studierende können den Modus jederzeit wechseln ohne Datenverlust
-- [ ] Bei Moduswechsel wird der Studierende über die Konsequenzen informiert
+- [x] System bietet die Wahl die vorgegebenen Lernpfade zu befolfen oder diese selbstgesteuert zu erkunden
+- [x] Die Auswahl ist für Studierende leicht zugänglich (z.B. in Benutzereinstellungen oder Dashboard)
+- [x] Studierende können ihr Vorgehen jederzeit ändern ohne Datenverlust
 
-### Adaptiver Modus (Systemgesteuert)
+### Adaptiver Lernpad (Systemgesteuert)
 
-- [ ] System generiert automatisch Lernpfad-Empfehlungen basierend auf ILS-Ergebnissen
-- [ ] Lernressourcen werden nach Lernstil, Kompetenz und Fortschritt priorisiert
-- [ ] System zeigt empfohlene "nächste Schritte" im Lernpfad an
-- [ ] Adaptive Algorithmen beeinflussen die Reihenfolge und Auswahl der Lerninhalte
-- [ ] Studierende sehen Hinweise, warum bestimmte Inhalte empfohlen werden
+- [x] System generiert automatisch Lernpfad-Empfehlungen basierend auf ILS-Ergebnissen
+- [x] Lernressourcen werden nach Lernstil, Kompetenz und Fortschritt priorisiert
+- [x] System zeigt empfohlene "nächste Schritte" im Lernpfad an
+- [x] Adaptive Algorithmen beeinflussen die Reihenfolge und Auswahl der Lerninhalte
 
-### Selbstgesteuerter Modus (Nutzerkontrolliert)
+### Selbstgesteuerte Nutzung des Systems (Nutzerkontrolliert)
 
-- [ ] Alle verfügbaren Lernressourcen sind ohne Priorisierung zugänglich
-- [ ] Keine systemgenerierten Empfehlungen oder "nächste Schritte" werden angezeigt
-- [ ] Studierende können frei durch Topics und Learning Elements navigieren
-- [ ] Suchfunktion und Filter ermöglichen eigenständiges Auffinden von Inhalten
-- [ ] Fortschrittsanzeige bleibt verfügbar, aber ohne prescriptive Empfehlungen
+- [x] Alle verfügbaren Lernressourcen sind ohne Priorisierung zugänglich
+- [x] Studierende können frei durch Topics und Learning Elements navigieren
+- [x] Fortschrittsanzeige bleibt verfügbar, aber ohne prescriptive Empfehlungen
 
 ### Benutzererfahrung und Transparenz
 
-- [ ] Beim ersten Login wird der Unterschied zwischen den Modi klar erklärt
-- [ ] System zeigt an, welcher Modus aktuell aktiv ist
-- [ ] Hilfe-Funktion erklärt die Vor- und Nachteile beider Modi
-- [ ] UI passt sich an den gewählten Modus an (z.B. Hervorhebung von Empfehlungen im adaptiven Modus)
-- [ ] Wechsel zwischen Modi ist intuitiv und mit maximal 2 Klicks möglich
+- [x] Nutzer werden von der Möglichkeit in kenntniss gesetzt, den adaptiven Lernpfad zu befolgen oder das System selbstgesteuert zu bedienen
+- [x] Hilfe-Funktion erklärt die Nutzung des Systems in kürze
 
 ### Datenintegrität und Kompatibilität
 
-- [ ] ILS-Fragebogen wird in beiden Modi erfasst (optional im selbstgesteuerten Modus)
-- [ ] Lernfortschritt wird unabhängig vom Modus korrekt erfasst
-- [ ] xAPI-Statements werden in beiden Modi gleichermaßen generiert
-- [ ] Wechsel zwischen Modi führt nicht zu inkonsistenten Daten
-- [ ] Bereits absolvierte Inhalte bleiben markiert, unabhängig vom Modus
+- [x] ILS-Fragebogen ergebnisse werdern für die adaptiven Lernpfade berücksichtigt
+- [x] Lernfortschritt wird unabhängig vom Lernverhalten korrekt erfasst
+- [x] xAPI-Statements werden unabhängig vom Lernverhalten gleichermaßen generiert
+- [x] Daten sind konsistent unabhängig von der befolgung des Lernpfads (adaptiv vs selbstgesteuert)
+- [x] Bereits absolvierte Inhalte bleiben markiert
 
 ## Rationale
 

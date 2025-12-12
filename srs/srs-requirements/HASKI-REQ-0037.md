@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-INT-003
-merged_from: ["HASKI-REQ-0077", "HASKI-REQ-0082", "HASKI-REQ-0062"]
 links:
   parents: ["SyRS-INT-003", "SyRS-FUNC-008"]
   stories:

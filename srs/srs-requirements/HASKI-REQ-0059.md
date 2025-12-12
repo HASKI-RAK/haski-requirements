@@ -24,9 +24,8 @@ links:
       name: "test_get_student_learning_path_learning_element_algorithm"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_learning_path_for_student"
-    - path: "HASKI-Frontend/src/store/Slices/LearningPathElementSlice.test.ts"
+    - path: "frontend/src/store/Slices/LearningPathElementSlice.test.ts"
       name: "LearningPathElementSlice caching"
-  merged_from: ["HASKI-REQ-0060", "HASKI-REQ-0058"]
 ---
 
 ## Beschreibung

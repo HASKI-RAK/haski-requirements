@@ -6,7 +6,6 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0053", "HASKI-REQ-0038", "HASKI-REQ-0078", "HASKI-REQ-0082", "HASKI-REQ-0068"]
 links:
   parents:
     - "SyRS-INT-003"
@@ -114,15 +113,15 @@ links:
       name: "Test the Home page-1; Test the Home page-2"
     - path: "frontend/src/services/Courses/fetchCourses.test.tsx"
       name: "fetchCourses has expected behaviour"
-    - path: "HASKI-Frontend/src/store/Slices/CoursesSlice.test.ts"
+    - path: "frontend/src/store/Slices/CoursesSlice.test.ts"
       name: "CoursesSlice caching"
-    - path: "HASKI-Frontend/src/store/Slices/CourseSlice.test.ts"
+    - path: "frontend/src/store/Slices/CourseSlice.test.ts"
       name: "CourseSlice setCourse"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_remote_course_content"
-    - path: "HASKI-Frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
+    - path: "frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
       name: "fetchRemoteTopics has expected behaviour"
-    - path: "HASKI-Frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
+    - path: "frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
       name: "RemoteTopicSlice"
 ---
 

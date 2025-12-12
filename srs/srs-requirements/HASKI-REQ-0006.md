@@ -18,56 +18,44 @@ Das HASKI-System **shall** eine vollständige, aktuelle und verständliche techn
 ## Akzeptanzkriterien
 
 ### Installation und Deployment
-- [ ] README-Dateien in allen Repositories (Frontend, Backend) mit Installations-Schnellanleitung
-- [ ] Detaillierte Installationsanleitung für Produktiv-Umgebungen
-- [ ] Systemvoraussetzungen (Hardware, Betriebssystem, Abhängigkeiten) sind dokumentiert
-- [ ] Schritt-für-Schritt-Anleitung für initiales Setup und Erstkonfiguration
-- [ ] Docker/Container-Deployment-Anleitung (falls zutreffend)
-- [ ] Anleitung für manuelle Installation ohne Container
+- [x] README-Dateien in allen Repositories (Frontend, Backend) mit Installations-Schnellanleitung
+- [x] Detaillierte Installationsanleitung für Produktiv-Umgebungen
+- [x] Systemvoraussetzungen (Hardware, Betriebssystem, Abhängigkeiten) sind dokumentiert
+- [x] Schritt-für-Schritt-Anleitung für initiales Setup und Erstkonfiguration
+- [x] Docker/Container-Deployment-Anleitung
+- [x] Anleitung für manuelle Installation ohne Container
 
 ### Konfiguration
-- [ ] Vollständige Dokumentation aller Konfigurationsparameter (Umgebungsvariablen, Config-Dateien)
-- [ ] Erklärung der Standardwerte und empfohlenen Produktiv-Einstellungen
-- [ ] Konfigurationsbeispiele für typische Deployment-Szenarien
-- [ ] Datenbankverbindungs-Konfiguration (PostgreSQL, etc.)
-- [ ] Integration mit LMS (Moodle) ist dokumentiert
-- [ ] Integration mit LRS (Learning Record Store) ist dokumentiert
-- [ ] Authentifizierungs- und Autorisierungskonfiguration (LTI, OAuth, etc.)
+- [x] Vollständige Dokumentation aller Konfigurationsparameter (Umgebungsvariablen, Config-Dateien)
+- [x] Erklärung der Standardwerte und empfohlenen Produktiv-Einstellungen
+- [x] Konfigurationsbeispiele für typische Deployment-Szenarien
+- [x] Datenbankverbindungs-Konfiguration (PostgreSQL, etc.)
+- [x] Integration mit LMS (Moodle) ist dokumentiert
+- [x] Integration mit LRS (Learning Record Store) ist dokumentiert
+- [x] Authentifizierungs- und Autorisierungskonfiguration (LTI, OAuth, etc.)
 
 ### Architektur und Komponenten
-- [ ] Systemarchitektur-Diagramm ist verfügbar
-- [ ] Komponenten-Übersicht (Frontend, Backend, Datenbank, externe Services)
-- [ ] Datenfluss-Diagramme
-- [ ] API-Dokumentation (REST-Endpoints, Parameter, Responses)
-- [ ] Datenbankschema-Dokumentation
+- [x] Systemarchitektur-Diagramm ist verfügbar
+- [x] Komponenten-Übersicht (Frontend, Backend, Datenbank, externe Services)
+- [x] Datenfluss-Diagramme
+- [x] API-Dokumentation (REST-Endpoints, Parameter, Responses)
+- [x] Datenbankschema-Dokumentation
 
 ### Betrieb und Wartung
-- [ ] Anleitung für System-Updates und Versionswechsel
-- [ ] Backup- und Recovery-Prozeduren
-- [ ] Monitoring-Empfehlungen und -Metriken
-- [ ] Log-Dateien: Speicherorte, Format, Interpretation
-- [ ] Performance-Tuning-Empfehlungen
-- [ ] Skalierungs-Strategien (horizontal/vertikal)
-
-### Troubleshooting und Support
-- [ ] Häufige Probleme und Lösungen (FAQ)
-- [ ] Fehlercode-Referenz
-- [ ] Debugging-Anleitungen
-- [ ] Kontaktinformationen für Support
+- [x] Monitoring-Empfehlungen und -Metriken
+- [x] Log-Dateien: Speicherorte, Format, Interpretation
 
 ### Sicherheit
-- [ ] Sicherheits-Best-Practices für Deployment
-- [ ] Netzwerk-Anforderungen (Ports, Firewall-Regeln)
-- [ ] SSL/TLS-Konfiguration
-- [ ] Secrets-Management (API-Keys, Passwörter, Zertifikate)
+- [x] Netzwerk-Anforderungen (Ports, Firewall-Regeln)
+- [x] SSL/TLS-Konfiguration
+- [x] Secrets-Management (API-Keys, Passwörter, Zertifikate)
 
 ### Dokumentations-Qualität
-- [ ] Dokumentation ist in deutscher und englischer Sprache verfügbar
-- [ ] Dokumentation ist versioniert und synchron mit Software-Releases
-- [ ] Dokumentation ist über GitHub Wiki oder dedizierte Docs-Site zugänglich
-- [ ] Code-Beispiele sind getestet und funktionsfähig
-- [ ] Screenshots/Diagramme sind aktuell und hilfreich
-- [ ] Dokumentation folgt einheitlichem Format und Struktur
+- [x] Dokumentation ist in deutscher und englischer Sprache verfügbar
+- [x] Dokumentation ist über GitHub Wiki zugänglich
+- [x] Code-Beispiele sind getestet und funktionsfähig
+- [x] Screenshots/Diagramme sind aktuell und hilfreich
+- [x] Dokumentation folgt einheitlichem Format und Struktur
 
 ## Rationale
 

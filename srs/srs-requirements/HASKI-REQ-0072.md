@@ -20,9 +20,9 @@ links:
       name: "LearningElementRecommendation"
     - path: "frontend/src/services/LearningElementRecommendation/fetchLearningElementRecommendation.test.ts"
       name: "fetchLearningElementRecommendation"
-    - path: "HASKI-Frontend/src/services/LearningElementRecommendation/fetchLearningElementRecommendation.test.ts"
+    - path: "frontend/src/services/LearningElementRecommendation/fetchLearningElementRecommendation.test.ts"
       name: "fetchLearningElementRecommendation"
-    - path: "HASKI-Frontend/src/store/Slices/LearningElementRecommendationSlice/LearningElementRecommendationSlice.test.ts"
+    - path: "frontend/src/store/Slices/LearningElementRecommendationSlice/LearningElementRecommendationSlice.test.ts"
       name: "LearningElementRecommendationSlice"
 ---
 
