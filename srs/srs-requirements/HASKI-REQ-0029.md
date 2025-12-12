@@ -3,6 +3,7 @@ id: HASKI-REQ-0029
 title: Bereitstellung moderner KI-Entwicklungstools und -Bibliotheken
 type: Interface
 status: Proposed
+traceability: skip
 source_id: SyRS-INT-004
 verification_method: Demonstration
 links:

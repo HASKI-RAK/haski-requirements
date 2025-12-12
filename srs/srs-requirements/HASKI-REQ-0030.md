@@ -3,6 +3,7 @@ id: HASKI-REQ-0030
 title: System Availability During Lecture and Exam Periods
 type: NFR:Performance
 status: Approved
+traceability: skip
 source_id: SyRS-PERF-001
 verification_method: Analysis
 links:

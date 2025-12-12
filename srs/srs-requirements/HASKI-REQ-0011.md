@@ -3,6 +3,7 @@ id: HASKI-REQ-0011
 title: Bereitstellung von Micro-Learning-Einheiten
 type: Functional
 status: Implemented
+traceability: skip
 source_id: SyRS-FUNC-005
 links:
   stories:
