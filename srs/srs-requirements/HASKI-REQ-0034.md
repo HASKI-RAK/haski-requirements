@@ -113,18 +113,18 @@ Ergänzend **shall** das System Benutzende (Lehrkräfte und Studierende) automat
 
 ## Rationale
 
-Primary implementation: GitHub issue GH-85 "User created when first logged in" spezifiziert die automatische Kontoanlage bei der ersten HASKI-Anmeldung.
+Primäre Implementierung: GitHub-Issue GH-85 "User created when first logged in" spezifiziert die automatische Kontoanlage bei der ersten HASKI-Anmeldung.
 
-Related work:
+Verwandte Arbeiten:
 
 - GH-81 beschreibt die initial zu befüllenden Tabellen (`haski_user`, `settings`, `student`, `learning_characteristics`, `learning_style`, `knowledge`, `learning_analytics`, `learning_strategy`, `student_course`).
 
-Derived from system requirement SyRS-INT-003 (LTI-Schnittstellen für Moodle-Integration), das die nahtlose Datenübernahme aus Moodle verlangt.
+Abgeleitet aus der Systemanforderung SyRS-INT-003 (LTI-Schnittstellen für Moodle-Integration), die die nahtlose Datenübernahme aus Moodle verlangt.
 
 ## Hinweise
 
-- Primary issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/85
-- Related issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/81
-- Die Nutzeranlage umfasst folgende Datenstrukturen: Benutzerstammdaten, Einstellungen, Studierendenprofil, Lerncharakteristika, Lernstil, Wissensstand, Lernanalytik, Lernstrategie und Kurszuordnungen
-- Die automatische Anlage ist Voraussetzung für alle weiteren Systemfunktionen (Kurseinschreibung, Fragebogen-Bearbeitung, Lernpfad-Berechnung)
-- Verifiziert durch E2E-Tests, die alle unterstützten Rollen sowie Fehlerszenarien (fehlende Pflichtfelder, Typfehler, Duplikate) abdecken
+- Primäres Issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/85
+- Verknüpftes Issue: https://github.com/HASKI-RAK/HASKI-Backend/issues/81
+- Die Nutzeranlage umfasst folgende Datenstrukturen: Benutzerstammdaten, Einstellungen, Studierendenprofil, Lerncharakteristika, Lernstil, Wissensstand, Lernanalytik, Lernstrategie und Kurszuordnungen.
+- Die automatische Anlage ist Voraussetzung für alle weiteren Systemfunktionen (Kurseinschreibung, Fragebogen-Bearbeitung, Lernpfad-Berechnung).
+- Verifiziert durch E2E-Tests, die alle unterstützten Rollen sowie Fehlerszenarien (fehlende Pflichtfelder, Typfehler, Duplikate) abdecken.
