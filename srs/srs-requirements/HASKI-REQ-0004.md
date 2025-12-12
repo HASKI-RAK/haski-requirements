@@ -11,7 +11,7 @@ links:
   parents: ["SyRS-COMP-004"]
   tests:
     - path: "frontend/src/components/PrivacyModal/PrivacyModal.test.tsx"
-      name: "Test PrivacyModal"
+      name: "Test PrivacyModal-2"
 ---
 
 ## Beschreibung
