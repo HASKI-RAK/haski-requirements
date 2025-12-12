@@ -28,14 +28,14 @@ Information Items aus 15289 §10 werden nur wenn für das Projekt relevant in de
 |-----------------------------------------|-------------------------------------|--------| ------------------------|
 | 5.2.8.2 Examples of requirements attributes | Wir nehmen Owner, Stakeholder priority, risk, rationale, difficulty aus den requirements heraus, da diese redundant sind. | umgesetzt | siehe `requirements/` |
 | 8.2 Business Requirements Specification     | nicht umgesetzt                     | nicht geplant |  Durch das BMBF auf Basis eines genehmigten Projektantrags bewilligt.BRS-Dokument nicht erforderlich. Grundlegenden Ziele, Rahmenbedingungen und Anforderungen bereits im Projektantrag beschrieben, von der Förderinstitution geprüft und akzeptiert.
-8.4 System Requirements Specification | nicht umgesetzt | nicht geplant | 
+| 8.4 System Requirements Specification | nicht umgesetzt | nicht geplant | 
 | 9.4 Stakeholder Requirements Spec.        | `strs/StRS.md` + `strs/stakeholder-requirements/` | erstellt | vollständig |
 | 9.6 System/Software Requirements Spec.      | `srs/SRS.md` + `requirements/`      | erstellt | vollständig |
 |-----------------------------------------------|-------------------------------------|---------| ------------------------|
 | Information Item (15289)                      | Umsetzung im Projekt                | Status  | Bemerkung               |
 |-----------------------------------------------|-------------------------------------|---------| ------------------------|
 | 10.60 System Architecture Description         | `architecture/System-AD.md`         | geplant | Noch unklar |
-| 10.61 Test Plan / Specs / Report              | `tests/`                            | geplant | |
+| 10.61 Test Plan / Specs / Report              | `tests/`                            | teilweise umgesetzt | Unit/Integration-Tests: vorhanden (`backend/tests`, `frontend/src/**/*.test.tsx`, `NodeGrade`). Tailoring (gestrichen, da nicht umgesetzt/nicht praktikabel im Scope): System-/E2E-Tests mit Moodle/NodeGrade/LAAC und UI-Browser-Tests; Performance/Last/Verfügbarkeits-Tests; Security-/Penetrationstests; automatisierte xAPI/LRS-Validierung (Frontend nur Wrapper, keine Testumgebung/LRS-Mocks). |
 | 10.52 Risk Management Plan                    | `governance/Risk-Management-Plan.md`| geplant | |
 | 10.9 Configuration Management Plan            | `governance/CM-Plan.md`             | geplant | |
 | 10.24 Information Security Plan               | `governance/Info-Security-Plan.md`  | geplant | |
