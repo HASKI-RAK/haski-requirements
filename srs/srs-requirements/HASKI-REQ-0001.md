@@ -4,6 +4,7 @@ title: Datenschutzerklärung-Einwilligung vor Login
 type: Functional
 status: Implemented
 source_id: SyRS-COMP-001
+merged_from: ["HASKI-REQ-0032"]
 links:
   stories:
     [
@@ -11,7 +12,7 @@ links:
       "HASKI-RAK/HASKI-Frontend#226",
       "HASKI-RAK/HASKI-Frontend#229",
     ]
-  parents: ["SyRS-COMP-001"]
+  parents: ["SyRS-COMP-001", "SyRS-SEC-001"]
   tests:
     - path: "frontend/src/components/PrivacyModal/PrivacyModal.test.tsx"
       name: "Test PrivacyModal"
@@ -23,6 +24,8 @@ Das System **shall** vor dem ersten Login oder bei nicht erteilter Einwilligung 
 
 Das System **shall** Studierenden, die die funktionalen Cookies ablehnen, auf eine dedizierte Seite weiterleiten, die erklärt, dass das System ohne Cookies nicht nutzbar ist. Diese Seite **shall** eine Option bieten, die Cookie-Richtlinien erneut zu öffnen und die Entscheidung zu überdenken.
 
+Ergänzend **shall** das HASKI-System technische Verfahren zur Anonymisierung und Pseudonymisierung von Lern- und Nutzungsdaten implementieren, um die Identifizierbarkeit einzelner Personen zu verhindern und die DSGVO-Anforderungen gemäß Art. 25 und 32 zu erfüllen. Personenbezogene Identifikatoren **shall** von Nutzungsdaten getrennt, pseudonymisiert und nur über verschlüsselte Zuordnungstabellen verknüpft werden, damit Einwilligungs- und Datenschutzniveau auch bei Auswertungen gewahrt bleibt.
+
 ## Akzeptanzkriterien
 
 - [x] Nach Klick auf den Login-Button öffnet sich ein Modal, das den Benutzer fragt, ob er die Datenschutzerklärung akzeptiert
@@ -33,6 +36,18 @@ Das System **shall** Studierenden, die die funktionalen Cookies ablehnen, auf ei
 - [x] Unit test coverage > 90%
 - [x] Technische Dokumentation im GitHub Wiki erstellt
 
+### Anonymisierung und Pseudonymisierung von Nutzungsdaten
+
+- [ ] Personenbezogene Daten werden bei der Speicherung automatisch pseudonymisiert.
+- [ ] Wissenschaftliche Auswertungen arbeiten ausschließlich mit anonymisierten Datensätzen.
+- [ ] Pseudonyme sind nicht ohne Zugriff auf die verschlüsselte Zuordnungstabelle rückführbar.
+- [ ] Das System implementiert eine klare Trennung zwischen identifizierenden Daten (Name, E-Mail, Matrikelnummer) und Nutzungsdaten (Lernfortschritt, Interaktionen).
+- [ ] Zuordnungstabellen zwischen Pseudonymen und Identitäten sind verschlüsselt gespeichert.
+- [ ] Zugriffsrechte auf Pseudonymisierungsschlüssel sind streng limitiert und protokolliert.
+- [ ] Das System unterstützt vollständige Anonymisierung für Forschungsdaten (irreversible Entfernung aller identifizierenden Merkmale).
+- [ ] Datenschutzbeauftragte und IT-Sicherheitsexpert:innen haben die Verfahren geprüft und freigegeben.
+- [ ] Penetrationstests zeigen, dass eine Rückführbarkeit anonymisierter Daten nicht möglich ist.
+
 ## Rationale
 
 Primary implementation: GitHub issue GH-195: "User has to accept Privacy Policy before he logs in"
@@ -42,6 +57,8 @@ Related work:
 - GH-226: "Set up HASKI account the first time a user enters" - Erweitert das Konzept auf einen umfassenden Onboarding-Prozess, der neben der Datenschutzerklärung auch Cookies, Nutzungsbedingungen und Fragebögen einschließt
 
 Derived from system requirement SyRS-COMP-001, which implements stakeholder requirement StRS-104 ensuring compliance with DSGVO requirements for informed consent and data protection.
+
+Ergänzend derived from system requirement SyRS-SEC-001 and stakeholder requirement StRS-120, die technische und organisatorische Maßnahmen zur Anonymisierung und Pseudonymisierung von Lern- und Nutzungsdaten fordern. Dadurch kann die Vertraulichkeit der Studierenden gewahrt und gleichzeitig die wissenschaftliche Auswertung von Lernverhalten ermöglicht werden.
 
 ## Hinweise
 

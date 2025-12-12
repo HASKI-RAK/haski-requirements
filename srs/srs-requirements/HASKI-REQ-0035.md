@@ -6,7 +6,7 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0053", "HASKI-REQ-0038", "HASKI-REQ-0078", "HASKI-REQ-0082"]
+merged_from: ["HASKI-REQ-0053", "HASKI-REQ-0038", "HASKI-REQ-0078", "HASKI-REQ-0082", "HASKI-REQ-0068"]
 links:
   parents:
     - "SyRS-INT-003"
@@ -118,6 +118,12 @@ links:
       name: "CoursesSlice caching"
     - path: "HASKI-Frontend/src/store/Slices/CourseSlice.test.ts"
       name: "CourseSlice setCourse"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_remote_course_content"
+    - path: "HASKI-Frontend/src/services/RemoteTopics/fetchRemoteTopics.test.tsx"
+      name: "fetchRemoteTopics has expected behaviour"
+    - path: "HASKI-Frontend/src/store/Slices/RemoteTopicSlice.test.tsx"
+      name: "RemoteTopicSlice"
 ---
 
 ## Beschreibung
@@ -131,6 +137,8 @@ Das System **shall** Benutzer (Studierende, Lehrende, Course Creator) in Kursen 
 Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die Studierende ihre Kurse abrufen können – sowohl als gefilterte Übersicht aller belegten Veranstaltungen als auch für einzelne Kurse. Die Kursübersicht **shall** ausschließlich Veranstaltungen liefern, für die eine gültige Einschreibung des Studierenden besteht, und pro Kurs die wesentlichen Metadaten (interne ID, LMS-Referenz, Name, Hochschule) in konsistenter Form bereitstellen. Einzelkurs-Detailabfragen **shall** dieselben Metadaten für einen konkret adressierten Kurs zurückgeben und Anfragen außerhalb der zulässigen Einschreibungen konsequent abweisen.
 
 Über die Synchronisation hinaus **shall** das Backend vollständige CRUD-Funktionen für Kurse, Kurs-Topic-Zuordnungen und kursbezogene Abfragen bereitstellen. Dazu gehört, dass Kurse mit und ohne Startdatum gepflegt werden können, Topic-Zuordnungen konsistent bleiben und Service-Layer-Abfragen nach Hochschule, Kurs-ID oder Topic-ID stets die korrekten Datensichten liefern.
+
+Zusätzlich **shall** das Backend einen separaten Endpunkt `GET /lms/remote/course/<course_id>/content` bereitstellen, der die aus dem Moodle-LMS gelieferten Kurssektionen inklusive aller Module (Learning Elements) strukturerhaltend und weitgehend unverändert an HASKI-Clients zurückgibt. Vor dem Abruf **shall** die Kurs-ID validiert und die Moodle-Webservice-Anfrage ausgeführt werden; fehlerhafte Antworten (HTTP-Fehler, invalide JSON-Strukturen) **shall** deterministisch behandelt werden. Jedes Topic-Objekt **shall** mindestens `topic_lms_id`, `topic_lms_name` und eine Liste `lms_learning_elements` enthalten, deren Einträge wiederum mindestens `lms_id`, `lms_learning_element_name` und `lms_activity_type` bereitstellen, damit Import- und Scaffolding-Funktionen vollständige Metadaten besitzen.
 
 ## Akzeptanzkriterien
 
@@ -182,6 +190,13 @@ Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die
 - [x] Service-Methoden liefern Kurse nach Hochschule, Kurs-ID sowie studentischer Zugehörigkeit konsistent zurück.
 - [x] Das System stellt Kurs- und Topic-Inhalte pro Kurs-ID bereit, inklusive zugehöriger Learning Elements für Kurs- und Topic-Detailansichten.
 
+### Remote-LMS-Kursinhalte
+
+- [x] Erfolgreiche Aufrufe von `GET /lms/remote/course/<course_id>/content` liefern HTTP 200 und eine Liste von Topic-Objekten mit den oben genannten Pflichtfeldern.
+- [x] Jedes Topic enthält eine nicht-leere Liste `lms_learning_elements`, deren Einträge mindestens `lms_id`, `lms_learning_element_name` und `lms_activity_type` umfassen und beliebige Zusatzfelder aus Moodle beibehalten.
+- [x] Ungültige oder nicht erreichbare Moodle-Kurse führen zu einer strukturierten Fehlermeldung (HTTP 404/502), ohne interne Stacktraces preiszugeben.
+- [x] Der Endpunkt kapselt Netz-/Authentifizierungsfehler von Moodle und schreibt Fehlversuche in die Betriebslogs.
+
 ## Rationale
 
-Die Synchronisation der Kursdaten ist essenziell, um die Lernumgebung in HASKI mit dem führenden System (Moodle) konsistent zu halten. Dies wurde initial im Rahmen der Basic Backend Structure (Issue #21) umgesetzt. Die Kurs-Seite ist der zentrale Einstiegspunkt für Studierende und Lehrende, um auf die Lerninhalte zuzugreifen und diese zu verwalten.
+Die Synchronisation der Kursdaten ist essenziell, um die Lernumgebung in HASKI mit dem führenden System (Moodle) konsistent zu halten. Dies wurde initial im Rahmen der Basic Backend Structure (Issue #21) umgesetzt. Die Kurs-Seite ist der zentrale Einstiegspunkt für Studierende und Lehrende, um auf die Lerninhalte zuzugreifen und diese zu verwalten. Die Remote-Kursinhalts-API (Issue #30) ergänzt diese Synchronisation, indem sie die vollständige Kursstruktur aus Moodle für Import- und Verwaltungsfunktionen bereitstellt.
