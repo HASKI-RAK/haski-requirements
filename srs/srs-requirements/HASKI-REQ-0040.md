@@ -99,5 +99,5 @@ GitHub Issue [#83](https://github.com/HASKI-RAK/HASKI-Backend/issues/83) verlang
 
 - Beispiel-Payload: `{ "short_name": "aco", "full_name": "Ant Colony Optimization" }`. Die Antwort enthält `id`, `short_name` und `full_name`.
 - Die Persistenz erfolgt in der Tabelle `learning_path_algorithm` (oder äquivalent) und dient als Foreign-Key-Ziel für studentische und tutorielle Auswahlrelationen.
-- Beim Deployment sollen Default-Einträge (z.B. "aco", "graf", "ga") per Seed-Daten verfügbar sein; der Endpunkt ergänzt diese Liste um neue Verfahren.
+- Beim Aufsetzen sollen Default-Einträge (z.B. "aco", "graf", "ga") per Seed-Daten verfügbar sein; der Endpunkt ergänzt diese Liste um neue Verfahren.
 - Bei Erweiterungen ist sicherzustellen, dass API-Schemata der Frontends (z.B. AlgorithmSettingsModal) unverändert konsumierbar bleiben.
