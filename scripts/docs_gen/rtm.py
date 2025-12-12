@@ -274,7 +274,24 @@ def copy_rtm(verbose: bool = False):
             excerpt = excerpt[:177] + "..."
         return excerpt.replace('"', "&quot;").replace("'", "&#39;")
 
-    requirement_meta: Dict[str, Dict[str, str]] = {}
+    def is_traceability_skipped(meta: Dict) -> bool:
+        if not isinstance(meta, dict):
+            return False
+        markers = {"skip", "skipped", "ignore", "ignored", "n/a", "na", "not-testable", "non-testable"}
+        raw = meta.get("traceability")
+        if isinstance(raw, dict):
+            raw = raw.get("status") or raw.get("action") or raw.get("value")
+        if isinstance(raw, str) and raw.strip().lower() in markers:
+            return True
+        for key in ("traceability_skip", "rtm_skip"):
+            value = meta.get(key)
+            if isinstance(value, bool) and value:
+                return True
+            if isinstance(value, str) and value.strip().lower() in markers:
+                return True
+        return False
+
+    requirement_meta: Dict[str, Dict[str, object]] = {}
     excerpt_cache: Dict[str, str] = {}
     req_dir = DOCS / "srs" / "srs-requirements"
     for req_file in req_dir.glob("HASKI-REQ-*.md"):
@@ -285,8 +302,9 @@ def copy_rtm(verbose: bool = False):
         if not rid:
             continue
         title = str(meta.get("title") or "").strip()
+        skip = is_traceability_skipped(meta)
         excerpt = build_excerpt(body or "")
-        requirement_meta[rid] = {"title": title}
+        requirement_meta[rid] = {"title": title, "skip": skip}
         excerpt_cache[rid] = excerpt
 
     # Group tests per requirement so we render a single row per requirement.
@@ -299,6 +317,7 @@ def copy_rtm(verbose: bool = False):
                 "requirement_id": rid,
                 "requirement_title": row.get("requirement_title", ""),
                 "tests": [],
+                "skip_traceability": False,
             },
         )
         if not tests.get("requirement_title") and row.get("requirement_title"):
@@ -320,17 +339,25 @@ def copy_rtm(verbose: bool = False):
                 "requirement_id": rid,
                 "requirement_title": meta.get("title", ""),
                 "tests": [],
+                "skip_traceability": bool(meta.get("skip")),
             },
         )
         if not group.get("requirement_title") and meta.get("title"):
             group["requirement_title"] = meta.get("title", "")
+        # Update skip flag even if group existed from CSV rows
+        if bool(meta.get("skip")):
+            group["skip_traceability"] = True
 
     # Derive aggregated status per requirement (single status if all same, otherwise "mixed").
     status_counter: Counter[str] = Counter()
+    skipped_count = 0
     for _rid, group in grouped.items():
         tests = group.get("tests", []) or []
+        skip_trace = bool(group.get("skip_traceability"))
         statuses = {t.get("status", "") for t in tests if t.get("status")}
-        if not tests:
+        if skip_trace:
+            agg_status = "excluded"
+        elif not tests:
             agg_status = "untested"
         elif not statuses:
             agg_status = "unknown"
@@ -339,29 +366,44 @@ def copy_rtm(verbose: bool = False):
         else:
             agg_status = "mixed"
         group["aggregate_status"] = agg_status
-        if agg_status:
+        if skip_trace:
+            skipped_count += 1
+        elif agg_status:
             status_counter[agg_status] += 1
 
-    status_order = sorted(status_counter.keys())
+    summary_statuses = sorted(status_counter.keys())
+    filter_statuses = list(summary_statuses)
+    if skipped_count and "excluded" not in filter_statuses:
+        filter_statuses.append("excluded")
+
     status_lines: List[str] = []
-    total_requirements = len(grouped)
+    total_requirements = max(len(grouped) - skipped_count, 0)
+
+    def display_status(status: str) -> str:
+        if status == "excluded":
+            return "Excluded"
+        return status
 
     def badge(status: str) -> str:
         if not status:
             return ""
         cls = status.lower().replace(" ", "-")
-        return f"<span class='rtm-badge rtm-badge--{cls}'>{status}</span>"
+        return f"<span class='rtm-badge rtm-badge--{cls}'>{display_status(status)}</span>"
 
     if total_requirements:
         status_lines.append("### Status Übersicht")
         status_lines.append("")
         items = []
-        for status in status_order:
+        for status in summary_statuses:
             count = status_counter[status]
             percentage = count / total_requirements if total_requirements else 0
             items.append(f"{badge(status)} {count} ({percentage:.0%})")
         status_lines.append("<div class='rtm-status-summary'>" + " | ".join(items) + "</div>")
         status_lines.append("")
+    if skipped_count:
+        status_lines.append(
+            f"<p><em>{skipped_count} Requirement(s) als 'Excluded' markiert (nicht messbar / nicht im Metrik-Zähler).</em></p>"
+        )
 
     table_lines: List[str] = []
     if rows:
@@ -369,10 +411,10 @@ def copy_rtm(verbose: bool = False):
         table_lines.append(
             "<input id='rtm-search' type='text' placeholder='Filter (Text)...' />"
         )
-        if status_order:
+        if filter_statuses:
             table_lines.append(
                 "<select id='rtm-status-filter'><option value=''>Alle Status</option>"
-                + "".join([f"<option value='{s}'>{s}</option>" for s in status_order])
+                + "".join([f"<option value='{s}'>{s}</option>" for s in filter_statuses])
                 + "</select>"
             )
         table_lines.append("</div>")
