@@ -1,12 +1,12 @@
 ---
 id: HASKI-REQ-0035
-title: Automatische Kursanlage, -synchronisation, Enrollment und Kurs-Seite
+title: Automatische Kursanlage, Enrollment und Kurs-Seite
 type: Functional
 status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-FUNC-008
-merged_from: ["HASKI-REQ-0053"]
+merged_from: ["HASKI-REQ-0053", "HASKI-REQ-0038", "HASKI-REQ-0078", "HASKI-REQ-0082"]
 links:
   parents:
     - "SyRS-INT-003"
@@ -91,6 +91,22 @@ links:
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_courses_by_student_id"
     - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_teacher_to_course"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_student_to_course"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_add_student_to_course_duplicate"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_api_add_all_students_to_course"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_api_add_all_students_to_topics"
+    - path: "frontend/src/services/Topic/postAddAllStudentsToTopics.test.ts"
+      name: "postAddAllStudentsToTopics has expected behaviour"
+    - path: "frontend/src/services/Course/postAddAllStudentsToCourse.test.ts"
+      name: "postAddAllStudentsToCourse has expected behaviour"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_api_delete_course_from_moodle"
+    - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_courses"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_course"
@@ -110,7 +126,7 @@ Das System **shall** Kurse automatisch basierend auf Daten aus dem Learning Mana
 
 Das System **shall** eine Kurs-Seite bereitstellen, die eine Übersicht aller Themen (Topics) des Kurses anzeigt. Die Seite **shall** die Navigation zu den einzelnen Themen ermöglichen. Für Lehrende (Course Creator) **shall** zusätzlich ein Button zum Erstellen neuer Themen angezeigt werden.
 
-Das System **shall** Benutzer (Studierende, Lehrende, Course Creator) in Kursen einschreiben können. Studierende **shall** nur die Kurse sehen, in denen sie eingeschrieben sind. Das System **shall** verschiedene Rollen innerhalb eines Kurses unterstützen (Student, Teacher).
+Das System **shall** Benutzer (Studierende, Lehrende, Course Creator) in Kursen einschreiben können. Studierende **shall** nur die Kurse sehen, in denen sie eingeschrieben sind. Das System **shall** verschiedene Rollen innerhalb eines Kurses unterstützen (Student, Teacher) und über abgesicherte Endpunkte sowohl Einzelzuordnungen (Lehrkraft/Studierender zu Kurs) als auch Bulk-Synchronisationen aller in Moodle eingeschriebenen Studierenden pro Kurs vornehmen. Die Synchronisation **shall** Moodle-Einschreibungen prüfen, fehlende `student_course`-Relationen anlegen, Duplikate verhindern und auf Wunsch alle betroffenen Topics eines Kurses mit denselben Studierenden-Zuordnungen versehen, damit Lernpfade und Empfehlungen unmittelbar auf Kurs- und Topic-Ebene starten können.
 
 Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die Studierende ihre Kurse abrufen können – sowohl als gefilterte Übersicht aller belegten Veranstaltungen als auch für einzelne Kurse. Die Kursübersicht **shall** ausschließlich Veranstaltungen liefern, für die eine gültige Einschreibung des Studierenden besteht, und pro Kurs die wesentlichen Metadaten (interne ID, LMS-Referenz, Name, Hochschule) in konsistenter Form bereitstellen. Einzelkurs-Detailabfragen **shall** dieselben Metadaten für einen konkret adressierten Kurs zurückgeben und Anfragen außerhalb der zulässigen Einschreibungen konsequent abweisen.
 
@@ -136,9 +152,16 @@ Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die
 
 ### Enrollment und Sichtbarkeit
 
-- [ ] Benutzer können in Kursen eingeschrieben werden (Studierende, Lehrende, Course Creator).
-- [ ] Studierende sehen nur die Kurse, in denen sie eingeschrieben sind.
-- [ ] Das System unterstützt verschiedene Rollen innerhalb eines Kurses.
+- [x] Benutzer können in Kursen eingeschrieben werden (Studierende, Lehrende, Course Creator) – sowohl einzeln über dedizierte Endpunkte als auch bulkweise auf Basis der in Moodle vorhandenen Einschreibungen.
+- [x] Studierende sehen nur die Kurse, in denen sie (via Moodle) eingeschrieben sind; doppelte Zuordnungen werden erkannt und verhindert.
+- [x] Das System unterstützt verschiedene Rollen innerhalb eines Kurses und spiegelt Rollenänderungen aus Moodle konsistent wider.
+
+### Bulk-Synchronisation von Moodle-Einschreibungen
+
+- [x] Ein REST-Endpunkt `POST /course/<course_id>/allStudents` synchronisiert alle in Moodle eingeschriebenen Studierenden in die HASKI-Relation `student_course` und liefert bei Erfolg HTTP 201 mit `CREATED`, `course_id` und der Anzahl neu verknüpfter Studierender.
+- [x] Ein ergänzender Endpunkt `POST /course/<course_id>/topics/allStudents` stellt sicher, dass alle Topics des Kurses dieselben Studierenden-Zuordnungen erhalten; die Implementierung ist idempotent und erzeugt keine doppelten Relationen.
+- [x] Inkonsistente oder fehlende Einschreibungen (z. B. Studierende ohne passende Hochschul- oder Kurszuordnung) erzeugen keine Relationen, werden aber nachvollziehbar geloggt.
+- [x] Wiederholte Aufrufe ohne neue LMS-Einschreibungen erzeugen keine zusätzlichen Zuordnungen und kennzeichnen dies in der Antwort (`CREATED: false`).
 
 ### Kursübersicht-API (Studierendenkurse über REST)
 

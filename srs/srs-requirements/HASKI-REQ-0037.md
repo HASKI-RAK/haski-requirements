@@ -6,6 +6,7 @@ status: Implemented
 stakeholder_priority: High
 verification_method: Test
 source_id: SyRS-INT-003
+merged_from: ["HASKI-REQ-0077", "HASKI-REQ-0082"]
 links:
   parents: ["SyRS-INT-003"]
   stories:
@@ -43,15 +44,25 @@ links:
       name: "postLearningElement has expected behaviour"
     - path: "frontend/src/services/LearningElement/deleteLearningElement.test.tsx"
       name: "deleteLearningElement has expected behaviour"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_update_le_from_moodle"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_update_learning_element"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_api_delete_le_from_moodle"
 ---
 
 ## Beschreibung
 
 Das System **shall** Learning Elements automatisch auf Basis der von Moodle gelieferten Aktivitätsdaten erzeugen. Dabei **shall** alle relevanten Metadaten (LMS-ID, Aktivitätstyp, Klassifikation, Name, Erstellungszeitpunkt, Verantwortliche Person, Hochschule) persistiert und dem passenden Topic/Subtopic zugeordnet werden. Bereits vorhandene Learning Elements **shall** über ihre LMS-ID erkannt und nicht dupliziert werden; Fehler in der Nutzereingabe (fehlende Felder, falsche Datentypen) **shall** durch klare Fehlermeldungen abgefangen werden. Das Frontend **shall** Lehrenden einen mehrstufigen Import-Dialog anbieten, der die Moodle-Aktivitäten pro Topic sichtbar macht, Auswahl- und Klassifikationsschritte orchestriert und den Import direkt mit der Backend-Synchronisation verknüpft.
 
+Ergänzend **shall** das Backend einen Endpunkt `PUT /lms/learningElement/<learning_element_id>/<moodle_learning_element_id>` bereitstellen, über den Moodle aktualisierte Metadaten eines Learning Elements (z. B. Aktivitätstyp, Klassifikation, Name, Verantwortliche Person, Zeitstempel, Universität) nach HASKI synchronisiert. Die Route **shall** die Kombination aus interner Learning-Element-ID und Moodle-ID validieren, bevor Änderungen geschrieben werden, damit bestehende Zuordnungen zu Topics/Subtopics unverändert bleiben.
+
+Für alle von Moodle synchronisierten Learning Elements **shall** zusätzlich ein abgesicherter `DELETE`-Endpunkt bereitstehen, der das adressierte Learning Element mitsamt abhängigen Ratings und Relationen entfernt und eine Bestätigung zurückliefert. Während des Löschens **shall** abhängige Strukturen gemäß den Vorgaben der Kursstruktur-CRUD-Schnittstellen konsistent bereinigt werden, sodass keine verwaisten Referenzen verbleiben.
+
 ## Akzeptanzkriterien
 
-### Backend-Synchronisation (GH-21)
+### Backend-Synchronisation (Anlage)
 
 - [x] Ein REST-Endpunkt erlaubt das Anlegen von Learning Elements je Topic/Subtopic auf Basis der Moodle-LMS-ID.
 - [x] Pflichtattribute (LMS-ID, Aktivitätstyp, Klassifikation, Name, Universität, Zeitstempel, created_by) werden validiert und gespeichert.
@@ -59,6 +70,15 @@ Das System **shall** Learning Elements automatisch auf Basis der von Moodle geli
 - [x] Duplicate LMS-IDs werden erkannt und führen zu einer 400-Fehlerantwort ohne zweite Anlage.
 - [x] Ungültige Eingabedatentypen und fehlende Pflichtfelder erzeugen nachvollziehbare Fehlermeldungen.
 - [x] Erfolgreich angelegte Learning Elements stehen unmittelbar für Lernpfade, Ratings und Empfehlungen zur Verfügung.
+
+### Backend-Synchronisation (Aktualisierung & Löschen)
+
+- [x] Erfolgreiche Updates über `PUT /lms/learningElement/<learning_element_id>/<moodle_learning_element_id>` liefern HTTP 201 und geben `id`, `lms_id`, `activity_type`, `classification`, `name`, `created_by`, `created_at`, `university` zurück.
+- [x] Fehlende Pflichtfelder oder falsche Datentypen führen zu HTTP 400 mit der standardisierten Fehlstruktur (`{"error": "...", "message": "..."}`) und resultieren in keiner Datenänderung.
+- [x] Ungültige ID-Kombinationen werden mit HTTP 404 beantwortet, ohne interne Details offenzulegen.
+- [x] Die Zuordnung zum Topic/Subtopic bleibt unverändert; für verschobene Elemente muss ein eigener Move-Workflow verwendet werden.
+- [x] Zeitstempel werden auf valide ISO-8601-Formate geprüft, um Änderungsverfolgung und Synchronisation mit Moodle zu gewährleisten.
+- [x] Ein `DELETE`-Endpunkt für synchronisierte Learning Elements entfernt das adressierte Objekt mitsamt abhängigen Ratings und Relationen transaktional und bestätigt den Erfolg mit HTTP 200; Fehlerzustände führen zu einem vollständigen Rollback.
 
 ### Frontend-Import-Dialog (GH-135, GH-257)
 
