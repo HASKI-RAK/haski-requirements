@@ -10,9 +10,8 @@ links:
   parents: ["SyRS-FUNC-008", "SyRS-FUNC-002"]
   stories: ["HASKI-RAK/HASKI-Backend#83", "HASKI-RAK/HASKI-Frontend#306"]
   tests:
-    [
-      "backend/tests/e2e/test_api.py::TestApi::test_post_learning_path_algorithm",
-    ]
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_post_learning_path_algorithm"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_post_student_learning_path_learning_element_algorithm"
     - path: "backend/tests/e2e/test_api.py"
