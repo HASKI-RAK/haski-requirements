@@ -15,10 +15,11 @@ links:
       "HASKI-RAK/HASKI-Frontend#182",
       "HASKI-RAK/HASKI-Backend#8",
       "HASKI-RAK/HASKI-Backend#2",
+      "HASKI-RAK/HASKI-Backend#30",
       "HASKI-RAK/HASKI-Backend#23",
       "HASKI-RAK/HASKI-Backend#93",
     ]
-  parents: ["SyRS-FUNC-001", "SyRS-FUNC-007"]
+  parents: ["SyRS-FUNC-001", "SyRS-FUNC-007", "SyRS-FUNC-008"]
   tests:
     - path: "frontend/src/components/MenuBar/MenuBar.test.tsx"
       name: "MenuBar tests"
@@ -72,11 +73,16 @@ links:
       name: "postILS has expected behaviour"
     - path: "frontend/src/services/Questionnaire/postListK.test.tsx"
       name: "postListK has expected behaviour"
+    - path: "backend/tests/e2e/test_api.py"
+      name: "TestApi::test_get_learning_path_for_student"
+    - path: "frontend/src/store/Slices/LearningPathElementSlice.test.ts"
+      name: "LearningPathElementSlice caching"
 ---
 
 ## Beschreibung
 
 Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile, Interessen und Kompetenzen der Studierenden anpassen. Das System **shall** basierend auf den Ergebnissen des ILS-Fragebogens (Index of Learning Styles) personalisierte Lernempfehlungen generieren und den Studierenden adaptive Lernpfade bereitstellen.
+Zusätzlich **shall** das System bereits berechnete und persistierte Lernpfade pro Kurs/Topic abrufbar machen, um konsistente Anzeigen in Frontend, Tutoring-Modell und Analytics zu ermöglichen, ohne eine erneute Berechnung anzustoßen.
 
 ## Akzeptanzkriterien
 
@@ -118,6 +124,12 @@ Das HASKI-System **shall** Lernpfade automatisch an die individuellen Lernstile,
 - [x] Der Lernpfad-Endpunkt akzeptiert den Parameter `algorithm="ga"` und triggert den genetischen Algorithmus (GH-23)
 - [x] Ein `POST /user/<user_id>/<moodle_user_id>/learningPath`-Aufruf ohne Algorithmus-Parameter löst die gespeicherten Tutor:innen-/Student:innen-Präferenzen aus und liefert den berechneten Pfad zurück (GH-93)
 
+### Persistierter Lernpfad-Abruf (GH-30)
+
+- [x] Das System stellt den zuletzt gespeicherten Lernpfad eines Studierenden für ein Kurs-/Topic-Paar aus dem Persistenzspeicher bereit.
+- [x] Der Abruf liefert alle relevanten Metadaten (z. B. Berechnungszeitpunkt, Grundlage, Sequenz der Elemente), sodass der Datensatz ohne Zusatzlogik in allen Kanälen verwendet werden kann.
+- [x] Lernpfade außerhalb der eigenen Einschreibung werden nicht ausgeliefert.
+
 ## Rationale
 
 Primary implementation: GitHub issue GH-239: "User learning path is calculated after submitting ILS questionnaire"
@@ -131,6 +143,8 @@ Related work:
 - GH-182: Implementiert die Persistierung der Fragebogen-Antworten (ILS, ILS-Short, LIST-K) im Backend
 
 Derived from system requirement SyRS-FUNC-001, which implements stakeholder requirement StRS-101.
+
+SyRS-FUNC-008 fordert konsistente adaptive Lernräume. Der Abruf eines gespeicherten Lernpfads stellt sicher, dass Studierende und Lehrende jederzeit denselben Vorschlag sehen wie die Tutoring-Algorithmen, auch wenn aktuell keine neue Berechnung läuft.
 
 Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI-Systems und differenziert es von herkömmlichen Lernmanagementsystemen. Durch die Berücksichtigung individueller Lernstile (basierend auf dem ILS-Modell), Interessen und Kompetenzen wird die Motivation, Akzeptanz und der Lernerfolg der Studierenden gefördert.
 
@@ -148,5 +162,8 @@ Die automatische Anpassung von Lernpfaden ist eine Kernfunktionalität des HASKI
   - Algorithmen sind hardcoded aber konfigurierbar für verschiedene Hochschul-Standorte
   - Integration mit "Marc's Learning Path Algorithm" für die eigentliche Pfad-Generierung
   - Speicherung des ILS-Status in localStorage und Cookie
+- **Persistierte Lernpfade**:
+  - Felder und Beziehungen orientieren sich am Lernpfad-Datenmodell (siehe OAS und Backend-Dokumentation).
+  - Autorisierungs- und Filterregeln sind konsistent zu Topic- und Subtopic-Abfragen umzusetzen.
 - **Dependencies**: ILS-Fragebogen muss ausgefüllt sein, bevor Lernpfade generiert werden können
 - **Status**: Alle vier Issues sind implementiert und geschlossen (Juli 2023 - Dezember 2023)
