@@ -12,6 +12,7 @@ links:
     - "HASKI-REQ-0026"
     - "HASKI-REQ-0035"
     - "HASKI-REQ-0036"
+    - "HASKI-REQ-0082"
 ---
 
 ## Beschreibung

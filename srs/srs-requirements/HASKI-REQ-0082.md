@@ -7,7 +7,7 @@ stakeholder_priority: Medium
 verification_method: Test
 source_id: SyRS-INT-003
 links:
-  parents: ["SyRS-INT-003"]
+  parents: ["SyRS-INT-003", "SyRS-FUNC-008"]
   stories:
     - "HASKI-RAK/HASKI-Backend#21"
     - "HASKI-RAK/HASKI-Backend#121"
@@ -18,13 +18,18 @@ links:
       name: "TestApi::test_api_delete_topic_from_moodle"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_api_delete_course_from_moodle"
-    - path: "frontend/src/services/Topic/deleteTopic.test.tsx"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_course"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_course_topic_by_course"
+    - path: "backend/tests/unit/test_service.py"
+      name: "test_delete_course_topic_by_topic"
+    - path: "frontend/src/components/DeleteEntityModal/DeleteEntityModal.test.tsx"
+      name: "DeleteEntityModal Component"
     - path: "frontend/src/services/Course/deleteCourse.test.ts"
       name: "deleteCourse has expected behaviour"
     - path: "frontend/src/services/Topic/deleteTopic.test.tsx"
       name: "deleteTopic has expected behaviour"
-    - path: "frontend/src/services/Course/deleteCourse.test.ts"
-      name: "deleteCourse has expected behaviour"
     - path: "frontend/src/services/LearningElement/deleteLearningElement.test.tsx"
       name: "deleteLearningElement has expected behaviour"
 ---

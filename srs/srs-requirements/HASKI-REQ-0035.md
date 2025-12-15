@@ -43,17 +43,11 @@ links:
     - path: "backend/tests/unit/test_service.py"
       name: "test_update_course_with_start_date"
     - path: "backend/tests/unit/test_service.py"
-      name: "test_delete_course"
-    - path: "backend/tests/unit/test_service.py"
       name: "test_create_course_topic"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_course_topic_by_course"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_course_topic_by_topic"
-    - path: "backend/tests/unit/test_service.py"
-      name: "test_delete_course_topic_by_course"
-    - path: "backend/tests/unit/test_service.py"
-      name: "test_delete_course_topic_by_topic"
     - path: "backend/tests/unit/test_service.py"
       name: "test_get_topics_by_student_and_course_id"
     - path: "backend/tests/unit/test_service.py"
@@ -70,8 +64,6 @@ links:
       name: "CourseCard Component"
     - path: "frontend/src/components/CourseCard/CreateCourseCard.test.tsx"
       name: "CreateCourseCard Component"
-    - path: "frontend/src/components/DeleteEntityModal/DeleteEntityModal.test.tsx"
-      name: "DeleteEntityModal Component"
     - path: "frontend/src/pages/Course/Course.test.tsx"
       name: "Course Page"
     - path: "frontend/src/pages/Home/Home.test.tsx"
@@ -109,8 +101,6 @@ links:
     - path: "frontend/src/services/Course/postAddAllStudentsToCourse.test.ts"
       name: "postAddAllStudentsToCourse has expected behaviour"
     - path: "backend/tests/e2e/test_api.py"
-      name: "TestApi::test_api_delete_course_from_moodle"
-    - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_courses"
     - path: "backend/tests/e2e/test_api.py"
       name: "TestApi::test_get_student_course"
@@ -140,7 +130,7 @@ Das System **shall** Benutzer (Studierende, Lehrende, Course Creator) in Kursen 
 
 Ergänzend **shall** das System eine REST-Schnittstelle bereitstellen, über die Studierende ihre Kurse abrufen können – sowohl als gefilterte Übersicht aller belegten Veranstaltungen als auch für einzelne Kurse. Die Kursübersicht **shall** ausschließlich Veranstaltungen liefern, für die eine gültige Einschreibung des Studierenden besteht, und pro Kurs die wesentlichen Metadaten (interne ID, LMS-Referenz, Name, Hochschule) in konsistenter Form bereitstellen. Einzelkurs-Detailabfragen **shall** dieselben Metadaten für einen konkret adressierten Kurs zurückgeben und Anfragen außerhalb der zulässigen Einschreibungen konsequent abweisen.
 
-Über die Synchronisation hinaus **shall** das Backend vollständige CRUD-Funktionen für Kurse, Kurs-Topic-Zuordnungen und kursbezogene Abfragen bereitstellen. Dazu gehört, dass Kurse mit und ohne Startdatum gepflegt werden können, Topic-Zuordnungen konsistent bleiben und Service-Layer-Abfragen nach Hochschule, Kurs-ID oder Topic-ID stets die korrekten Datensichten liefern.
+Über die Synchronisation hinaus **shall** das Backend vollständige Verwaltungs- und Abfragefunktionen für Kurse, Kurs-Topic-Zuordnungen und kursbezogene Views bereitstellen. Dazu gehört, dass Kurse mit und ohne Startdatum erstellt und aktualisiert werden können, Topic-Zuordnungen konsistent bleiben und Service-Layer-Abfragen nach Hochschule, Kurs-ID oder Topic-ID stets die korrekten Datensichten liefern.
 
 Zusätzlich **shall** das Backend einen separaten Endpunkt `GET /lms/remote/course/<course_id>/content` bereitstellen, der die aus dem Moodle-LMS gelieferten Kurssektionen inklusive aller Module (Learning Elements) strukturerhaltend und weitgehend unverändert an HASKI-Clients zurückgibt. Vor dem Abruf **shall** die Kurs-ID validiert und die Moodle-Webservice-Anfrage ausgeführt werden; fehlerhafte Antworten (HTTP-Fehler, invalide JSON-Strukturen) **shall** deterministisch behandelt werden. Jedes Topic-Objekt **shall** mindestens `topic_lms_id`, `topic_lms_name` und eine Liste `lms_learning_elements` enthalten, deren Einträge wiederum mindestens `lms_id`, `lms_learning_element_name` und `lms_activity_type` bereitstellen, damit Import- und Scaffolding-Funktionen vollständige Metadaten besitzen.
 
@@ -189,8 +179,8 @@ Zusätzlich **shall** das Backend einen separaten Endpunkt `GET /lms/remote/cour
 
 ### Verwaltung & Abfragen
 
-- [x] Kurse können per API erstellt, aktualisiert und gelöscht werden – optionales Startdatum ist kein Pflichtfeld.
-- [x] Kurs-Topic-Zuordnungen können erzeugt, abgefragt und gelöscht werden, ohne referenzielle Integrität zu verletzen.
+- [x] Kurse können per API erstellt und aktualisiert werden – optionales Startdatum ist kein Pflichtfeld.
+- [x] Kurs-Topic-Zuordnungen können erzeugt und abgefragt werden, ohne referenzielle Integrität zu verletzen.
 - [x] Service-Methoden liefern Kurse nach Hochschule, Kurs-ID sowie studentischer Zugehörigkeit konsistent zurück.
 - [x] Das System stellt Kurs- und Topic-Inhalte pro Kurs-ID bereit, inklusive zugehöriger Learning Elements für Kurs- und Topic-Detailansichten.
 
