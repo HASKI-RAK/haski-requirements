@@ -4,3 +4,85 @@ HASKI-REQ-0001,Datenschutzerklärung-Einwilligung vor Login,demo_traceability_te
 HASKI-REQ-0001,Datenschutzerklärung-Einwilligung vor Login,demo_traceability_tests.py::test_HASKI_REQ_0001_user_authentication_invalid_credentials,demo_traceability_tests.py,19,passed
 HASKI-REQ-0002,Bereitstellung wissenschaftlich fundierter Evaluationsberichte,demo_traceability_tests.py::test_HASKI_REQ_0002_data_persistence_storage,demo_traceability_tests.py,25,passed
 HASKI-REQ-0002,Bereitstellung wissenschaftlich fundierter Evaluationsberichte,demo_traceability_tests.py::test_HASKI_REQ_0002_data_persistence_retrieval,demo_traceability_tests.py,31,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'quiz',
+  answer: 'A',
+  feedback: 'Richtig: Option A ist korrekt.',
+  score: 100,
+  durationMs: 3000,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'quiz',
+  answer: 'A',
+  feedback: 'Richtig: Option A ist korrekt.',
+  score: 100,
+  durationMs: 3000,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'freitext-keyword',
+  answer: 'Verwendet die Schlüsselbegriffe Architektur und Skalierbarkeit.',
+  feedback: 'Keywords erkannt: Architektur, Skalierbarkeit; fehlend: Latenz.',
+  score: 85,
+  durationMs: 4500,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'freitext-keyword',
+  answer: 'Verwendet die Schlüsselbegriffe Architektur und Skalierbarkeit.',
+  feedback: 'Keywords erkannt: Architektur, Skalierbarkeit; fehlend: Latenz.',
+  score: 85,
+  durationMs: 4500,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'freitext-llm',
+  answer: 'Eine längere Argumentation zur Entwurfsmusterwahl.',
+  feedback: 'LLM-Einschätzung: gute Struktur, bitte Beispiele ergänzen.',
+  score: 92,
+  durationMs: 45000,
+  maxSeconds: 60
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'freitext-llm',
+  answer: 'Eine längere Argumentation zur Entwurfsmusterwahl.',
+  feedback: 'LLM-Einschätzung: gute Struktur, bitte Beispiele ergänzen.',
+  score: 92,
+  durationMs: 45000,
+  maxSeconds: 60
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'code',
+  answer: 'function add(a,b){return a+b}',
+  feedback: 'Alle Unit-Tests bestanden, Stil prüfen (lint).',
+  score: 98,
+  durationMs: 5200,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'code',
+  answer: 'function add(a,b){return a+b}',
+  feedback: 'Alle Unit-Tests bestanden, Stil prüfen (lint).',
+  score: 98,
+  durationMs: 5200,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'diagram',
+  answer: 'Klassendiagramm mit Controller, Service, Repository.',
+  feedback: 'Struktur korrekt, fehlende Beziehung Service -> Repository.',
+  score: 76,
+  durationMs: 6200,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,"[HASKI-REQ-0009] GraphHandlerService provides immediate feedback for {
+  type: 'diagram',
+  answer: 'Klassendiagramm mit Controller, Service, Repository.',
+  feedback: 'Struktur korrekt, fehlende Beziehung Service -> Repository.',
+  score: 76,
+  durationMs: 6200,
+  maxSeconds: 10
+} tasks (HASKI-REQ-0009)",/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,162,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,[HASKI-REQ-0009] GraphHandlerService logs runtime problems while keeping the socket responsive,/home/fischerd/Development/haski-requirements/NodeGrade/packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,263,passed
+HASKI-REQ-0009,Unmittelbares Feedback zu Aufgaben,packages/backend/src/graphgateway/graph-handler.req0009.spec.ts – tag HASKI-REQ-0009,packages/backend/src/graphgateway/graph-handler.req0009.spec.ts,26,passed

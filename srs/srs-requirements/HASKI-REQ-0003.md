@@ -3,6 +3,7 @@ id: HASKI-REQ-0003
 title: Open-Source-Lizenzierung von Quellcode und Lehrmaterialien
 type: Compliance
 status: Proposed
+traceability: skip
 stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-COMP-003

@@ -3,6 +3,7 @@ id: HASKI-REQ-0002
 title: Bereitstellung wissenschaftlich fundierter Evaluationsberichte
 type: Functional
 status: Proposed
+traceability: skip
 stakeholder_priority: High
 verification_method: Review
 source_id: SyRS-COMP-002

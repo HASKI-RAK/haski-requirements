@@ -39,6 +39,9 @@ Das Gesamtsystem besteht grob aus folgenden Subsystemen:
   das Business‑Logik, Persistenz und Integrationen kapselt.
 - **Datenbank**: Relationale Datenbank für Nutzer, Kurse, Topics, Learning Elements, Lernpfade, Analytics‑Daten etc.
 - **Moodle‑Integration**: LTI/OIDC‑basierte Nutzeranmeldung sowie REST‑/Webservice‑basierte Synchronisation von Kursen, Topics, Learning Elements und Einschreibungen.
+- **NodeGrade‑Integration**: Anbindung an die Code‑Bewertungs‑/Grading‑Komponente (Repository `NodeGrade`) für automatisierte Aufgabenbewertung.
+- **LAAC‑Integration**: Geplante/optionale Anbindung an das Learning Analytics Analyzing Center (LAAC) für tiefergehende Analysen.
+- **xAPI/LRS‑Anbindung**: Frontend sendet Lernaktivitäten als xAPI‑Statements an ein LRS (per `react-xapi-wrapper` und konfigurierter LRS‑Endpoint), optional erweiterbar um Backend‑Forwarding.
 - **Monitoring & Operations**: Logging, Health‑Checks, Metriken sowie CI/CD‑Pipelines für Build, Test und Deployment.
 
 ## 4 Stakeholder und Anliegen
@@ -77,9 +80,11 @@ Das HASKI‑System ist in folgende Umgebung eingebettet:
 
 - **Externe Systeme**
 
-  - Hochschul‑Moodle‑Instanzen (LMS): Quellsystem für Nutzer, Kurse, Topics, Learning Elements.
-  - Identity Provider / LTI‑Plattformen: Authentifizierung und Autorisierung via LTI/OIDC.
-  - Optionale Analyse‑/Reporting‑Tools.
+  - Moodle‑Instanzen (LMS): Quellsystem für Nutzer, Kurse, Topics, Learning Elements.
+  - Identity Provider / LTI‑Plattformen von Moodle: Authentifizierung und Autorisierung via LTI/OIDC.
+  - **NodeGrade**: Bewertung von Freitextaufgaben, Rückfluss von Scores/Feedback/Klassifizierung an HASKI.
+  - **LAAC**: zentrale Analytics‑Verarbeitung/Persistenz für adaptive Lernpfade.
+  - **LRS**: empfängt xAPI‑Statements aus dem Frontend.
 
 - **Benutzergruppen**
   - Studierende, Lehrende, Administrator:innen greifen ausschließlich über das Frontend (Browser) auf HASKI zu.
@@ -135,8 +140,11 @@ Ziel‑Deployment (vereinfachte Sicht):
 
 - **Frontend**: Containerisierte React‑App, ausgeliefert über Webserver/Reverse Proxy (z. B. Nginx).
 - **Backend**: Python/Flask‑Anwendung in einem oder mehreren Containern, hinter einem HTTP‑Reverse‑Proxy.
-- **Datenbank**: Zentraler Datenbankdienst (z. B. PostgreSQL/MariaDB) im gesicherten Netzwerksegment.
+- **Datenbank**: PostgreSQL als primäres RDBMS (lokal/staging single‑instance). Keine HA/Failover derzeit.
 - **Moodle**: Externe Systeme, angebunden über HTTPS (LTI/OIDC, REST/Webservices).
+- **NodeGrade**: Separater Service/Repo; angebunden über HTTPS/REST (Bewertungsjobs, Ergebnisse).
+- **LAAC**: Geplant; angebunden über HTTPS für Analytics‑Daten.
+- **LRS**: Externer Dienst für xAPI‑Statements (Basic Auth lt. Frontend‑Config).
 
 Nicht‑funktionale Anforderungen (Performance, Skalierbarkeit, Verfügbarkeit) werden durch horizontale Skalierung des Backends, Caching sowie Datenbank‑Tuning adressiert.
 
@@ -146,6 +154,19 @@ Nicht‑funktionale Anforderungen (Performance, Skalierbarkeit, Verfügbarkeit) 
 
   - Nutzer‑, Kurs‑, Topic‑ und Learning‑Element‑Daten werden über dedizierte Endpunkte synchronisiert (HASKI‑REQ‑0034, 0035, 0036, 0037).
   - Einschreibungen und Kurszuordnungen werden über Einzel‑ und Bulk‑Endpunkte übernommen.
+
+- **HASKI → NodeGrade**
+
+  - Übergabe von Programmieraufgaben/Artefakten an NodeGrade, Rücknahme von Scores/Feedback (geplant/teilweise umgesetzt im separaten Repo).
+
+- **HASKI → LAAC**
+
+  - Geplante Export‑/Sync‑Pfade für aggregierte Analytics‑Daten; aktuell nicht umgesetzt.
+
+- **Frontend → LRS (xAPI)**
+
+  - xAPI‑Statements werden direkt aus dem Browser an den konfigurierten LRS‑Endpoint gesendet (siehe `src/pages/App/App.hooks.tsx`, `public/config/env.*.json`).
+  - Optionales Backend‑Forwarding noch nicht implementiert.
 
 - **HASKI intern**
   - Datendomänen sind normalisiert; Referenzen (FKs) sichern Konsistenz zwischen User, Course, Topic, LearningElement und LearningPath.
@@ -176,10 +197,11 @@ Ausgewählte, dokumentationswürdige Architekturentscheidungen:
 
 ## 8 Qualitätsanforderungen und -szenarien
 
-- **Verfügbarkeit**: ≥ 99 % in Lehr‑ und Prüfungszeiten (HASKI‑REQ‑0030); erreicht durch redundante Komponenten, Monitoring und definierte Wartungsfenster.
+- **Verfügbarkeit**: Pilotbetrieb auf Single‑Instance‑Setup (keine HA); realistisches Ziel ≥ 95 % in Lehrzeiten. 99 % wird erst nach Aufbau von Monitoring/Alerting, Backup/Recovery und ggf. Redundanz angestrebt (HASKI‑REQ‑0030 bleibt Ziel, Umsetzung offen).
 - **Performance**: Antwortzeiten für zentrale User‑Flows (Kursübersicht, Lernpfadabruf) im Sekundenbereich; Algorithmus‑Laufzeiten ggf. asynchron.
 - **Sicherheit**: Rollenbasiertes Zugriffskonzept, Transportverschlüsselung (TLS), Logging sicherheitsrelevanter Ereignisse, Minimierung personenbezogener Daten.
 - **Wartbarkeit**: Klar getrennte Module, konsistente Coding‑Guidelines, automatisierte Tests und statische Analysen.
+- **Health/Monitoring**: Health/Metrics‑Endpoints im Backend.
 
 ## 9 Rückverfolgbarkeit zu Anforderungen
 

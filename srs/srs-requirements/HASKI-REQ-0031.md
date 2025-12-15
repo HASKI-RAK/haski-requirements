@@ -3,6 +3,7 @@ id: HASKI-REQ-0031
 title: Hardware-Anforderungen für KI-basierte Lernanalyse
 type: NFR:Performance
 status: Proposed
+traceability: skip
 source_id: SyRS-PERF-002
 links:
   stories: []

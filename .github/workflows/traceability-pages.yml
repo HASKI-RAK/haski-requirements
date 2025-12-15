@@ -41,19 +41,42 @@ jobs:
           path: backend_artifact
           if_no_artifact_found: warn
 
+      - name: Download latest NodeGrade test artifact
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          repo: ${{ github.repository_owner }}/NodeGrade
+          workflow: test-report.yml
+          branch: main
+          name: nodegrade-jest-results
+          path: nodegrade_artifact
+          if_no_artifact_found: warn
+
       - name: Place test reports in expected locations
         run: |
-          mkdir -p frontend/reports backend/reports
-          if [ -f frontend_artifact/jest-results.json ]; then
-            cp frontend_artifact/jest-results.json frontend/reports/jest-results.json
-          else
-            echo '{"testResults": []}' > frontend/reports/jest-results.json
-          fi
-          if [ -f backend_artifact/pytest-report.json ]; then
-            cp backend_artifact/pytest-report.json backend/reports/pytest-report.json
-          else
-            echo '{"tests": []}' > backend/reports/pytest-report.json
-          fi
+          mkdir -p frontend/reports backend/reports NodeGrade/reports
+
+          copy_if_exists() {
+            local search_dir="$1"; shift
+            local filename="$1"; shift
+            local dest="$1"; shift
+            local found
+            found=$(find "$search_dir" -type f -name "$filename" -print -quit)
+            if [ -n "$found" ]; then
+              cp "$found" "$dest"
+              echo "Copied $filename from $found to $dest"
+              return 0
+            fi
+            return 1
+          }
+
+          copy_if_exists frontend_artifact jest-results.json frontend/reports/jest-results.json \
+            || echo '{"testResults": []}' > frontend/reports/jest-results.json
+
+          copy_if_exists backend_artifact pytest-report.json backend/reports/pytest-report.json \
+            || echo '{"tests": []}' > backend/reports/pytest-report.json
+
+          copy_if_exists nodegrade_artifact jest-results.json NodeGrade/reports/jest-results.json \
+            || echo '{"testResults": []}' > NodeGrade/reports/jest-results.json
 
       - name: Install Python deps
         run: pip install -r requirements.txt

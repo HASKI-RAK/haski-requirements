@@ -4,6 +4,10 @@ test_reports:
     path: ../../frontend/reports/jest-results.json
   - type: pytest
     path: ../../backend/reports/pytest-report.json
+  - type: jest
+    path: ../../NodeGrade/reports/jest-results.json
+  - type: ts-tags
+    path: ../../NodeGrade
 output: RTM.csv
 
 # Optional: mappings to build GitHub file:line links in generated docs.
