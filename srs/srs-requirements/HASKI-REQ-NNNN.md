@@ -2,6 +2,7 @@
 id: ${newReqId}
 title: [Derive from primary issue title and SyRS, make it requirement-focused]
 type: [Infer from SyRS type and issue labels: Functional | Interface | NFR:Performance | NFR:Security | NFR:Usability]
+traceability: skip
 status: [Map primary issue state: open->Approved, closed->Implemented]
 source_id: [${input:syrsId}]
 links:
